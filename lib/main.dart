@@ -50,6 +50,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _prime = 2;
 
   void _incrementCounter() {
     setState(() {
@@ -59,7 +60,20 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      _prime = nextPrime(_prime);
     });
+  }
+  int nextPrime(int last)
+  {
+    while(!isPrime(++last));
+    return last;
+  }
+  bool isPrime(int n)
+  {
+    for(int i = 2; i * i <= n; i++)
+      if(n % i == 0)
+        return false;
+    return true;
   }
 
   @override
@@ -97,10 +111,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Prime Index:',
             ),
             Text(
               '$_counter',
+              style: Theme.of(context).textTheme.display1,
+            ),
+            Text(
+              'Prime:',
+            ),
+            Text(
+              '$_prime',
               style: Theme.of(context).textTheme.display1,
             ),
           ],
