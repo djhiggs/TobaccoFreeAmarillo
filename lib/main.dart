@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'settings.dart';
 import 'profile.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'dart:math';
 
 void main() => runApp(MyApp());
 
@@ -24,8 +26,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      //home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: Settings(title: "SETTINGS", profileData: Profile(),),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: Settings(title: "SETTINGS", profileData: Profile(),),
     );
   }
 }
@@ -75,7 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
         return false;
     return true;
   }
-
+  Widget GenerateGraph(){
+    var lines = List<charts.Series<int,DateTime>>();
+    return null;
+  }
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
