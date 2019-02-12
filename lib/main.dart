@@ -1,143 +1,232 @@
 import 'package:flutter/material.dart';
-import 'settings.dart';
-import 'profile.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
-import 'dart:math';
+import 'package:flutter/cupertino.dart';
+import './tabs/home.dart' as _firstTab;
+import './tabs/dashboard.dart' as _secondTab;
+import './tabs/settings.dart' as _thirdTab;
+import './screens/about.dart' as _aboutPage;
+import './screens/support.dart' as _supportPage;
 
-void main() => runApp(MyApp());
+void main() => runApp(new MaterialApp(
+  title: 'Flutter Starter',
+  theme: new ThemeData(
+    primarySwatch: Colors.blueGrey,
+    scaffoldBackgroundColor: Colors.white,
+    primaryColor: Colors.blueGrey, backgroundColor: Colors.white
+  ),
+  home: new Tabs(),
+  onGenerateRoute: (RouteSettings settings) {
+    switch (settings.name) {
+      case '/about': return new FromRightToLeft(
+        builder: (_) => new _aboutPage.About(),
+        settings: settings,
+      );
+      case '/support': return new FromRightToLeft(
+        builder: (_) => new _supportPage.Support(),
+        settings: settings,
+      );
+    }
+  },
+  // routes: <String, WidgetBuilder> {
+  //   '/about': (BuildContext context) => new _aboutPage.About(),
+  // }
+));
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  // Testing the repo.  More testing
-  // Another change
-  // Just another change1
+class FromRightToLeft<T> extends MaterialPageRoute<T> {
+  FromRightToLeft({ WidgetBuilder builder, RouteSettings settings })
+    : super(builder: builder, settings: settings);
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+  Widget buildTransitions(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child) {
+
+    if (settings.isInitialRoute)
+      return child;
+
+    return new SlideTransition(
+      child: new Container(
+        decoration: new BoxDecoration(
+          boxShadow: [
+            new BoxShadow(
+              color: Colors.black26,
+              blurRadius: 25.0,
+            )
+          ]
+        ),
+        child: child,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-      //home: Settings(title: "SETTINGS", profileData: Profile(),),
+      position: new Tween<Offset>(
+        begin: const Offset(1.0, 0.0),
+        end: Offset.zero,
+      )
+      .animate(
+        new CurvedAnimation(
+          parent: animation,
+          curve: Curves.fastOutSlowIn,
+        )
+      ),
     );
   }
+  @override Duration get transitionDuration => const Duration(milliseconds: 400);
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class Tabs extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  TabsState createState() => new TabsState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  int _prime = 2;
+class TabsState extends State<Tabs> {
+  
+  PageController _tabController;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-      _prime = nextPrime(_prime);
-    });
-  }
-  int nextPrime(int last)
-  {
-    while(!isPrime(++last));
-    return last;
-  }
-  bool isPrime(int n)
-  {
-    for(int i = 2; i * i <= n; i++)
-      if(n % i == 0)
-        return false;
-    return true;
-  }
-  Widget GenerateGraph(){
-    var lines = List<charts.Series<int,DateTime>>();
-    return null;
-  }
+  var _title_app = null;
+  int _tab = 0;
+
   @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Prime Index:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-            Text(
-              'Prime:',
-            ),
-            Text(
-              '$_prime',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+  void initState() {
+    super.initState();
+    _tabController = new PageController();
+    this._title_app = TabItems[0].title;
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+    _tabController.dispose();
+  }
+
+  @override
+  Widget build (BuildContext context) => new Scaffold(
+
+    //App Bar
+    appBar: new AppBar(
+      title: new Text(
+        _title_app, 
+        style: new TextStyle(
+          fontSize: Theme.of(context).platform == TargetPlatform.iOS ? 17.0 : 20.0,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      elevation: Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
+    ),
+
+    //Content of tabs
+    body: new PageView(
+      controller: _tabController,
+      onPageChanged: onTabChanged,
+      children: <Widget>[
+        new _firstTab.Home(),
+        new _secondTab.Dashboard(),
+        new _thirdTab.Settings()
+      ],
+    ),
+
+    //Tabs
+    bottomNavigationBar: Theme.of(context).platform == TargetPlatform.iOS ?
+      new CupertinoTabBar(
+        activeColor: Colors.blueGrey,
+        currentIndex: _tab,
+        onTap: onTap,
+        items: TabItems.map((TabItem) {
+          return new BottomNavigationBarItem(
+            title: new Text(TabItem.title),
+            icon: new Icon(TabItem.icon),
+          );
+        }).toList(),
+      ):
+      new BottomNavigationBar(
+        currentIndex: _tab,
+        onTap: onTap,
+        items: TabItems.map((TabItem) {
+          return new BottomNavigationBarItem(
+            title: new Text(TabItem.title),
+            icon: new Icon(TabItem.icon),
+          );
+        }).toList(),
+    ),
+
+    //Drawer
+    drawer: new Drawer(
+      child: new ListView(
+        children: <Widget>[
+          new Container(
+            height: 120.0,
+            child: new DrawerHeader(
+              padding: new EdgeInsets.all(0.0),
+              decoration: new BoxDecoration(
+                color: new Color(0xFFECEFF1),
+              ),
+              child: new Center(
+                child: new FlutterLogo(
+                  colors: Colors.blueGrey,
+                  size: 54.0,
+                ),
+              ),
+            ),
+          ),
+          new ListTile(
+            leading: new Icon(Icons.chat),
+            title: new Text('Support'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).pushNamed('/support');
+            }
+          ),
+          new ListTile(
+            leading: new Icon(Icons.info),
+            title: new Text('About'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).pushNamed('/about');
+            }
+          ),
+          new Divider(),
+          new ListTile(
+            leading: new Icon(Icons.exit_to_app),
+            title: new Text('Sign Out'),
+            onTap: () {
+              Navigator.pop(context);
+            }
+          ),
+        ],
+      )
+    )
+  );
+
+  void onTap(int tab){
+    _tabController.jumpToPage(tab);
+  }
+
+  void onTabChanged(int tab) {
+    setState((){
+      this._tab = tab;
+    });
+
+    switch (tab) {
+      case 0:
+        this._title_app = TabItems[0].title;
+      break;
+
+      case 1:
+        this._title_app = TabItems[1].title;
+      break;
+
+      case 2:
+        this._title_app = TabItems[2].title;
+      break;
+    }
   }
 }
+
+class TabItem {
+  const TabItem({ this.title, this.icon });
+  final String title;
+  final IconData icon;
+}
+
+const List<TabItem> TabItems = const <TabItem>[
+  const TabItem(title: 'Home', icon: Icons.home),
+  const TabItem(title: 'Dashboard', icon: Icons.dashboard),
+  const TabItem(title: 'Settings', icon: Icons.settings)
+];
