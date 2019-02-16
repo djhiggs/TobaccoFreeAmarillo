@@ -118,7 +118,7 @@ class TabsState extends State<Tabs> {
       children: <Widget>[
         new _firstTab.Home(),
         new _secondTab.Dashboard(),
-        new _thirdTab.Settings()
+        new _thirdTab.StatefulSettings()
       ],
     ),
 
