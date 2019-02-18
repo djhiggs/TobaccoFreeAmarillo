@@ -88,7 +88,8 @@ class _Settings extends State<StatefulSettings>{
           20,0,20,spacingFactor
         ),),
         new FlatButton(onPressed: (){
-          
+          showDialog(context:context,
+            builder: privacyPolicyBuilder);
           },
           color: Colors.black12,
           child: Text("View Privacy Policy",
@@ -105,4 +106,21 @@ class _Settings extends State<StatefulSettings>{
       ],
     ),
   ));
+  Widget privacyPolicyBuilder(BuildContext context) => AlertDialog(
+              title: Text("Privacy Policy"),
+              content: Column(children: <Widget>[Text("    You get no data, we get all of the data, you get no data.  We want the data. " + 
+              "Oh yeah, and we are also planning to take all of your data, we like to say that: \"Nothing is sacred, we get it all\" " + 
+              "So just keep that in mind, you get nothing, we get everything."),
+              Text(" -- Team")
+              ]),
+              actions: <Widget>[
+                FlatButton(
+                  color: Colors.black26,
+                  textColor: Colors.black,
+                  child: Text("Accept"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },)
+              ],
+          );
 }
