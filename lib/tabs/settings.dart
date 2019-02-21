@@ -29,83 +29,60 @@ class _Settings extends State<StatefulSettings>{
   bool soundEnabled = false;
   @override
   Widget build(BuildContext context) => new Container(
-    child: Padding( 
-      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 50),
-      child: new Column(
-      
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        new FlatButton(onPressed: (){
-            setState(() {
-             notificationsEnabled = !notificationsEnabled;
-             notificationsTxt = notificationsEnabled?
-              "Disable Notifications" : "Enable Notifications"; 
-            });
-          },
-          color: Colors.black12,
-          child: Text('$notificationsTxt',
-            textScaleFactor: buttonTextScaleFactor,)),
-        new Padding(
-          child: new Text("Used for achievments and awards"
-          ,maxLines: 3,
-          textScaleFactor: descriptionScaleFactor,
-        ),
-        padding: EdgeInsets.fromLTRB(
-          20,0,20,spacingFactor
-        ),),
-        new FlatButton(onPressed: (){
-          
-          },
-          color: Colors.black12,
-          child: Text("     Update Profile     ",
-            textScaleFactor: buttonTextScaleFactor)
-        ),
-        new Padding(
-          child: new Text("Edit user information"
-          ,maxLines: 3,
-          textScaleFactor: descriptionScaleFactor,
-        ),
-        padding: EdgeInsets.fromLTRB(
-          20,0,20,spacingFactor
-        ),),
-        new FlatButton(onPressed: (){
-          setState(() {
-             soundEnabled = !soundEnabled;
-             soundTxt = soundEnabled?
-              "     Disable Sound      " : "     Enable Sound       ";
-            });
-          },
-          color: Colors.black12,
-          child: Text('$soundTxt',
-            textScaleFactor: buttonTextScaleFactor)
-        ),
-        new Padding(
-          child: new Text("Toggle sound"
-          ,maxLines: 3,
-          textScaleFactor: descriptionScaleFactor,
-        ),
-        padding: EdgeInsets.fromLTRB(
-          20,0,20,spacingFactor
-        ),),
-        new FlatButton(onPressed: (){
-          showDialog(context:context,
-            builder: privacyPolicyBuilder);
-          },
-          color: Colors.black12,
-          child: Text("View Privacy Policy",
-            textScaleFactor: buttonTextScaleFactor)
-        ),
-        new Padding(
-          child: new Text("Find out what information we are taking from you."
-          ,maxLines: 3,
-          textScaleFactor: descriptionScaleFactor,
-        ),
-        padding: EdgeInsets.fromLTRB(
-          20,0,20,spacingFactor
-        ),),
-      ],
-    ),
-  ));
+      child: ListView(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(" Notifications",textScaleFactor: buttonTextScaleFactor),
+              new Switch(onChanged: (bool state){
+                notificationsEnabled = state;
+              },
+              value: notificationsEnabled)
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(" Sound",textScaleFactor: buttonTextScaleFactor,),
+              new Switch(onChanged: (bool state){
+                soundEnabled = state;
+              },
+              value: soundEnabled)
+            ],
+          ),
+          FlatButton(
+            onPressed: (){
+              //edit profile
+            },
+            child: 
+            Text(
+              "Edit Profile",
+              textScaleFactor: buttonTextScaleFactor,
+              textAlign: TextAlign.left,
+              ),
+              
+          ),
+          Text(
+            "Edit user information",
+            textScaleFactor: 0.7,
+            style: TextStyle(color: Colors.grey),
+            textAlign: TextAlign.center,
+            ),
+          FlatButton(
+            onPressed: (){
+              showDialog(
+                builder: privacyPolicyBuilder, 
+                context: context
+              );
+            },
+            child: 
+            Text(
+              "View Privacy Policy",
+              textScaleFactor: buttonTextScaleFactor
+              ),
+          ),
+        ], ));
   Widget privacyPolicyBuilder(BuildContext context) => AlertDialog(
               title: Text("Privacy Policy"),
               content: Column(children: <Widget>[Text("    You get no data, we get all of the data, you get no data.  We want the data. " + 
