@@ -201,9 +201,14 @@ class _Settings extends State<StatefulSettings>{
           List<DropdownMenuItem<TobaccoProducts>> buildDropDownMenuItems()
           {
             var names = TobaccoProducts.values;
+            int startingIndex = names[0].toString().indexOf('.') + 1;
             List<DropdownMenuItem<TobaccoProducts>> elements =List();
+
             for (var name in names) {
-              elements.add(DropdownMenuItem(value: name));
+              elements.add(DropdownMenuItem(
+                value: name,
+                child: Text(name.toString().substring(startingIndex)),
+                ));
             }
             return elements;
           }
