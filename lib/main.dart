@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import './tabs/home.dart' as _firstTab;
 import './tabs/dashboard.dart' as _secondTab;
 import './tabs/settings.dart' as _thirdTab;
-import './screens/about.dart' as _aboutPage;
+import './screens/profile.dart' as _profilePage;
 import './screens/support.dart' as _supportPage;
 
 void main() => runApp(new MaterialApp(
@@ -16,8 +16,8 @@ void main() => runApp(new MaterialApp(
   home: new Tabs(),
   onGenerateRoute: (RouteSettings settings) {
     switch (settings.name) {
-      case '/about': return new FromRightToLeft(
-        builder: (_) => new _aboutPage.About(),
+      case '/profile': return new FromRightToLeft(
+        builder: (_) => new _profilePage.MyTextInput(),
         settings: settings,
       );
       case '/support': return new FromRightToLeft(
@@ -174,11 +174,11 @@ class TabsState extends State<Tabs> {
             }
           ),
           new ListTile(
-            leading: new Icon(Icons.info),
-            title: new Text('About'),
+            leading: new Icon(Icons.account_circle),
+            title: new Text('Profile'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.of(context).pushNamed('/about');
+              Navigator.of(context).pushNamed('/profile');
             }
           ),
           new Divider(),
