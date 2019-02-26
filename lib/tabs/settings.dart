@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/person.dart';
-import 'package:flutter_starter/smokeChart.dart';
+import 'package:tobaccoFreeAmarilloApp/person.dart';
+import 'package:tobaccoFreeAmarilloApp/smokeChart.dart';
 
 class Settings extends StatelessWidget {
   @override
@@ -57,7 +57,7 @@ class _Settings extends State<StatefulSettings>{
                 ),
                 onFieldSubmitted: (String txt){
                   person.nickname = txt;
-                },
+                },initialValue: person.nickname,
               ),
                 TextFormField(
                 decoration: const InputDecoration(
@@ -137,6 +137,27 @@ class _Settings extends State<StatefulSettings>{
                 },
               )
             ],
+          ),
+          FormField(
+            builder: (FormFieldState field) {
+              return Row(
+                children: <Widget>[
+                  FlatButton(child: Text("Cancel"), 
+                  onPressed: () {
+                    person = Person();
+                    setState(() { });
+                  },),
+                  FlatButton(child: Text("Apply"), 
+                  onPressed: () {
+
+                    person.export();
+                    setState(() {
+                      
+                    });
+                  },)
+                ],
+              );
+            },
           ),
           ListTile(
             title: Text("Privacy Policy",
