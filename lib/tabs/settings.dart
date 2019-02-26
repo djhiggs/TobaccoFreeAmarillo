@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/person.dart';
+import 'package:flutter_starter/smokeChart.dart';
 
 class Settings extends StatelessWidget {
   @override
@@ -17,70 +19,162 @@ class StatefulSettings extends StatefulWidget {
   @override
   _Settings createState() => _Settings();
 }
+  Person person =Person();
 class _Settings extends State<StatefulSettings>{
   final double spacingFactor = 25;
   final double buttonTextScaleFactor = 1.75;
   final double descriptionScaleFactor = 0.9;
-  //placeholder variables
-  String notificationsTxt = "Enable Notifications";
-  String soundTxt = "     Enable Sound       ";
-  //
-  bool notificationsEnabled = false;
-  bool soundEnabled = false;
+
   @override
   Widget build(BuildContext context) => new Container(
       child: ListView(
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(" Notifications",textScaleFactor: buttonTextScaleFactor),
-              new Switch(onChanged: (bool state){
-                notificationsEnabled = state;
+          ListTile(
+            title: Text("Notifications",
+            textScaleFactor: buttonTextScaleFactor,),
+            trailing: Switch(onChanged: (bool state){
+                person.notificationsEnabled = state;
               },
-              value: notificationsEnabled)
-            ],
+              value: person.notificationsEnabled),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(" Sound",textScaleFactor: buttonTextScaleFactor,),
-              new Switch(onChanged: (bool state){
-                soundEnabled = state;
+          ListTile(
+            title: Text("Sound",
+            textScaleFactor: buttonTextScaleFactor,),
+            trailing: Switch(onChanged: (bool state){
+                person.soundEnabled = state;
               },
-              value: soundEnabled)
-            ],
+              value: person.soundEnabled),
           ),
-          FlatButton(
-            onPressed: (){
-              //edit profile
-            },
-            child: 
-            Text(
-              "Edit Profile",
-              textScaleFactor: buttonTextScaleFactor,
-              textAlign: TextAlign.left,
+          ExpansionTile(
+            title: Text("Personal Information",
+            textScaleFactor: buttonTextScaleFactor,),
+            children: <Widget>[
+              TextFormField(
+                decoration: const InputDecoration(
+                  icon: const Icon(Icons.person),
+                  hintText: 'Enter a nickname',
+                  labelText: 'Nickname',
+                ),
+                onFieldSubmitted: (String txt){
+                  person.nickname = txt;
+                },
               ),
-              
+                TextFormField(
+                decoration: const InputDecoration(
+                  icon: const Icon(Icons.map),
+                  hintText: 'Enter your zipcode',
+                  labelText: 'Zipcode',
+                ),
+                onFieldSubmitted: (String txt){
+                  person.nickname = txt;
+                },
+              ),
+            ],
           ),
-          Text(
-            "Edit user information",
-            textScaleFactor: 0.7,
-            style: TextStyle(color: Colors.grey),
-            textAlign: TextAlign.center,
-            ),
-          FlatButton(
-            onPressed: (){
+          ExpansionTile(
+            title: Text("Sessation Settings",
+            textScaleFactor: buttonTextScaleFactor,),
+            children: <Widget>[
+              TextFormField(
+                initialValue: person.smokeChart.startingAmountPerWeek.toString(),
+                decoration: const InputDecoration(
+                  icon: const Icon(Icons.smoking_rooms),
+                  hintText: 'tobacco products used per week',
+                  labelText: 'Average Usage',
+                ),
+                onFieldSubmitted: (String txt){
+                  int count = int.tryParse(txt);
+                  if(count !=null)
+                    person.smokeChart.startingAmountPerWeek = count;
+                  else throw null;
+                },
+              ),
+              TextFormField(
+                initialValue: person.smokeChart.desiredEndAmount.toString(),
+                decoration: const InputDecoration(
+                  icon: const Icon(Icons.smoking_rooms),
+                  hintText: 'desired tobacco products used per week',
+                  labelText: 'Desired Usage',
+                ),
+                onFieldSubmitted: (String txt){
+                  int count = int.tryParse(txt);
+                  if(count !=null)
+                    person.smokeChart.desiredEndAmount = count;
+                  else throw null;
+                },
+              ),
+              TextFormField(
+                initialValue: person.smokeChart.initialUpperBound.toString(),
+                decoration: const InputDecoration(
+                  icon: const Icon(Icons.chevron_left),
+                  hintText: 'max tobacco products used per week',
+                  labelText: 'Max Usage',
+                ),
+                onFieldSubmitted: (String txt){
+                  int count = int.tryParse(txt);
+                  if(count !=null)
+                    person.smokeChart.initialUpperBound = count;
+                  else throw null;
+                },
+              ),
+              TextFormField(
+                initialValue: person.smokeChart.initialLowerBound.toString(),
+                decoration: const InputDecoration(
+                  icon: const Icon(Icons.chevron_right),
+                  hintText: 'min tobacco products used per week',
+                  labelText: 'Minimum Usage',
+                ),
+                onFieldSubmitted: (String txt){
+                  int count = int.tryParse(txt);
+                  if(count !=null)
+                    person.smokeChart.initialLowerBound = count;
+                  else throw null;
+                },
+              ),
+              TextFormField(
+                initialValue: person.smokeChart.sessationChangeTimeDays.toString(),
+                decoration: const InputDecoration(
+                  icon: const Icon(Icons.timer),
+                  hintText: 'desired days till completion',
+                  labelText: 'Desired days until complete',
+                ),
+                onFieldSubmitted: (String txt){
+                  int count = int.tryParse(txt);
+                  if(count !=null)
+                    person.smokeChart.sessationChangeTimeDays = count;
+                  else throw null;
+                },
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text("       Sessation Item",textScaleFactor: 1.4),
+                ),
+              FormField(
+                builder: (FormFieldState field) {
+                  return DropdownButton(
+                    value: person.smokeChart.vice,
+                    hint: new Text("Wut r u stopping?"),
+                    items: buildDropDownMenuItems(),
+                    onChanged: (TobaccoProducts newProduct){
+                      person.smokeChart.vice =newProduct;
+                      setState(() {
+                        
+                      });
+                    },
+                  );
+                },
+              )
+            ],
+          ),
+          ListTile(
+            title: Text("Privacy Policy",
+            textScaleFactor: 1.2,),
+            onTap: (){
               showDialog(
                 builder: privacyPolicyBuilder, 
                 context: context
               );
             },
-            child: 
-            Text(
-              "View Privacy Policy",
-              textScaleFactor: buttonTextScaleFactor
-              ),
           ),
         ], ));
   Widget privacyPolicyBuilder(BuildContext context) => AlertDialog(
@@ -100,4 +194,18 @@ class _Settings extends State<StatefulSettings>{
                 },)
               ],
           );
+          List<DropdownMenuItem<TobaccoProducts>> buildDropDownMenuItems()
+          {
+            var names = TobaccoProducts.values;
+            int startingIndex = names[0].toString().indexOf('.') + 1;
+            List<DropdownMenuItem<TobaccoProducts>> elements =List();
+
+            for (var name in names) {
+              elements.add(DropdownMenuItem(
+                value: name,
+                child: Text(name.toString().substring(startingIndex)),
+                ));
+            }
+            return elements;
+          }
 }
