@@ -7,18 +7,15 @@ class SmokeChart extends StatefulWidget {
   }
 }
   enum TobaccoProducts{
-    Cigaretts,
-    Cigars,
-    Vapes,
-    Other,
+    Smoking,
+    Vaping,
+    SmokelessTobacco,
   }
 class SmokeChartState extends State<SmokeChart> {
   DateTime sessationStartDate;
   int sessationChangeTimeDays;
   int startingAmountPerWeek;
   int desiredEndAmount;
-  int initialUpperBound;
-  int initialLowerBound;
   TobaccoProducts vice;
 
   SmokeChartState({Key key})
@@ -29,8 +26,6 @@ class SmokeChartState extends State<SmokeChart> {
       sessationChangeTimeDays = 72;
       startingAmountPerWeek = 14;
       desiredEndAmount = 2;
-      initialUpperBound = 18;
-      initialLowerBound = 10;
     }
     else
     {

@@ -104,34 +104,6 @@ class _Settings extends State<StatefulSettings>{
                 },
               ),
               TextFormField(
-                initialValue: person.smokeChart.initialUpperBound.toString(),
-                decoration: const InputDecoration(
-                  icon: const Icon(Icons.chevron_left),
-                  hintText: 'max tobacco products used per week',
-                  labelText: 'Max Usage',
-                ),
-                onFieldSubmitted: (String txt){
-                  int count = int.tryParse(txt);
-                  if(count !=null)
-                    person.smokeChart.initialUpperBound = count;
-                  else throw null;
-                },
-              ),
-              TextFormField(
-                initialValue: person.smokeChart.initialLowerBound.toString(),
-                decoration: const InputDecoration(
-                  icon: const Icon(Icons.chevron_right),
-                  hintText: 'min tobacco products used per week',
-                  labelText: 'Minimum Usage',
-                ),
-                onFieldSubmitted: (String txt){
-                  int count = int.tryParse(txt);
-                  if(count !=null)
-                    person.smokeChart.initialLowerBound = count;
-                  else throw null;
-                },
-              ),
-              TextFormField(
                 initialValue: person.smokeChart.sessationChangeTimeDays.toString(),
                 decoration: const InputDecoration(
                   icon: const Icon(Icons.timer),
@@ -200,10 +172,19 @@ class _Settings extends State<StatefulSettings>{
             int startingIndex = names[0].toString().indexOf('.') + 1;
             List<DropdownMenuItem<TobaccoProducts>> elements =List();
 
-            for (var name in names) {
+            for (var objectifiedName in names) {
+              String name = objectifiedName.toString().substring(startingIndex);
+              String upperName = name.toUpperCase();
+              for(int i = 1; i < name.length; i++)
+                if(name.codeUnitAt(i) == upperName.codeUnitAt(i))
+                {
+                  name = name.substring(0,i) + ' ' + name.substring(i);
+                  upperName = upperName.substring(0,i) + ' ' + upperName.substring(i);
+                  i++;
+                }
               elements.add(DropdownMenuItem(
-                value: name,
-                child: Text(name.toString().substring(startingIndex)),
+                value: objectifiedName,
+                child: Text(name),
                 ));
             }
             return elements;

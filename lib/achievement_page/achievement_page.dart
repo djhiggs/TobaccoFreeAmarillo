@@ -9,9 +9,6 @@ class AchievementPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Achievements'),
-      ),
       body: ListView.builder(
         itemCount: achievements.length,
         itemBuilder: (context, index) {

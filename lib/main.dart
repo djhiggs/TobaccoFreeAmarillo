@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'achievement_page/achievement.dart';
 import './tabs/home.dart' as _firstTab;
 import './tabs/dashboard.dart' as _secondTab;
 import './tabs/settings.dart' as _thirdTab;
 import './screens/profile.dart' as _profilePage;
 import './screens/support.dart' as _supportPage;
+import 'achievement_page/achievement_page.dart' as _achievementPage;
+
 
 void main() => runApp(new MaterialApp(
   title: 'Flutter Starter',
@@ -69,7 +72,7 @@ class FromRightToLeft<T> extends MaterialPageRoute<T> {
       ),
     );
   }
-  @override Duration get transitionDuration => const Duration(milliseconds: 400);
+  @override Duration get transitionDuration => const Duration(milliseconds: 50);
 }
 
 class Tabs extends StatefulWidget {
@@ -78,9 +81,11 @@ class Tabs extends StatefulWidget {
 }
 
 class TabsState extends State<Tabs> {
-  
+  List<Achievement> achievements = List<Achievement>();
   PageController _tabController;
-
+TabsState(){
+  achievements.add(Achievement(true, "achievement1", "description"));
+}
   var _title_app = null;
   int _tab = 0;
 
@@ -118,7 +123,8 @@ class TabsState extends State<Tabs> {
       children: <Widget>[
         new _firstTab.Home(),
         new _secondTab.Dashboard(),
-        new _thirdTab.StatefulSettings()
+        new _thirdTab.StatefulSettings(),
+        new _achievementPage.AchievementPage(achievements: achievements)
       ],
     ),
 
@@ -136,6 +142,7 @@ class TabsState extends State<Tabs> {
         }).toList(),
       ):
       new BottomNavigationBar(
+        type:BottomNavigationBarType.fixed,
         currentIndex: _tab,
         onTap: onTap,
         items: TabItems.map((TabItem) {
@@ -215,6 +222,11 @@ class TabsState extends State<Tabs> {
       case 2:
         this._title_app = TabItems[2].title;
       break;
+      
+      case 3:
+        this._title_app =TabItems[3].title;
+      break;
+
     }
   }
 }
@@ -228,5 +240,6 @@ class TabItem {
 const List<TabItem> TabItems = const <TabItem>[
   const TabItem(title: 'Home', icon: Icons.home),
   const TabItem(title: 'Dashboard', icon: Icons.dashboard),
-  const TabItem(title: 'Settings', icon: Icons.settings)
+  const TabItem(title: 'Settings', icon: Icons.settings),
+  const TabItem(title: 'Achievement', icon: Icons.more)
 ];
