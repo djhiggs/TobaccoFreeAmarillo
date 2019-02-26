@@ -19,11 +19,12 @@ class StatefulSettings extends StatefulWidget {
   @override
   _Settings createState() => _Settings();
 }
+  Person person =Person();
 class _Settings extends State<StatefulSettings>{
   final double spacingFactor = 25;
   final double buttonTextScaleFactor = 1.75;
   final double descriptionScaleFactor = 0.9;
-  Person person =Person();
+
   @override
   Widget build(BuildContext context) => new Container(
       child: ListView(
@@ -60,7 +61,7 @@ class _Settings extends State<StatefulSettings>{
               ),
                 TextFormField(
                 decoration: const InputDecoration(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.map),
                   hintText: 'Enter your zipcode',
                   labelText: 'Zipcode',
                 ),
@@ -77,7 +78,7 @@ class _Settings extends State<StatefulSettings>{
               TextFormField(
                 initialValue: person.smokeChart.startingAmountPerWeek.toString(),
                 decoration: const InputDecoration(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.smoking_rooms),
                   hintText: 'tobacco products used per week',
                   labelText: 'Average Usage',
                 ),
@@ -91,7 +92,7 @@ class _Settings extends State<StatefulSettings>{
               TextFormField(
                 initialValue: person.smokeChart.desiredEndAmount.toString(),
                 decoration: const InputDecoration(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.smoking_rooms),
                   hintText: 'desired tobacco products used per week',
                   labelText: 'Desired Usage',
                 ),
@@ -105,7 +106,7 @@ class _Settings extends State<StatefulSettings>{
               TextFormField(
                 initialValue: person.smokeChart.initialUpperBound.toString(),
                 decoration: const InputDecoration(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.chevron_left),
                   hintText: 'max tobacco products used per week',
                   labelText: 'Max Usage',
                 ),
@@ -119,7 +120,7 @@ class _Settings extends State<StatefulSettings>{
               TextFormField(
                 initialValue: person.smokeChart.initialLowerBound.toString(),
                 decoration: const InputDecoration(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.chevron_right),
                   hintText: 'min tobacco products used per week',
                   labelText: 'Minimum Usage',
                 ),
@@ -131,23 +132,9 @@ class _Settings extends State<StatefulSettings>{
                 },
               ),
               TextFormField(
-                initialValue: person.smokeChart.initialUpperBound.toString(),
-                decoration: const InputDecoration(
-                  icon: const Icon(Icons.person),
-                  hintText: 'max tobacco products used per week',
-                  labelText: 'Max Usage',
-                ),
-                onFieldSubmitted: (String txt){
-                  int count = int.tryParse(txt);
-                  if(count !=null)
-                    person.smokeChart.initialUpperBound = count;
-                  else throw null;
-                },
-              ),
-              TextFormField(
                 initialValue: person.smokeChart.sessationChangeTimeDays.toString(),
                 decoration: const InputDecoration(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.timer),
                   hintText: 'desired days till completion',
                   labelText: 'Desired days until complete',
                 ),
@@ -158,20 +145,29 @@ class _Settings extends State<StatefulSettings>{
                   else throw null;
                 },
               ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text("       Sessation Item",textScaleFactor: 1.4),
+                ),
               FormField(
                 builder: (FormFieldState field) {
                   return DropdownButton(
+                    value: person.smokeChart.vice,
+                    hint: new Text("Wut r u stopping?"),
                     items: buildDropDownMenuItems(),
                     onChanged: (TobaccoProducts newProduct){
                       person.smokeChart.vice =newProduct;
+                      setState(() {
+                        
+                      });
                     },
                   );
                 },
-                )
+              )
             ],
           ),
           ListTile(
-            title: Text("View Privacy Policy",
+            title: Text("Privacy Policy",
             textScaleFactor: 1.2,),
             onTap: (){
               showDialog(

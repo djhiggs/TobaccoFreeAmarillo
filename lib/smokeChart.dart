@@ -10,6 +10,7 @@ class SmokeChart extends StatefulWidget {
     Cigaretts,
     Cigars,
     Vapes,
+    Other,
   }
 class SmokeChartState extends State<SmokeChart> {
   DateTime sessationStartDate;
