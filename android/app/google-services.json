@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:16789625294:android:c84941b1e9aac113",
+        "mobilesdk_app_id": "1:16789625294:android:c67be1c016383fb7",
         "android_client_info": {
-          "package_name": "anti.vaping.tmp"
+          "package_name": "tfa.cessation.app"
         }
       },
       "oauth_client": [
