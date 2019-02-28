@@ -7,15 +7,17 @@ class Person
   bool notificationsEnabled;
   bool soundEnabled;
   SmokeChartState smokeChart; 
+
   Person()
   {
     db = Database();
     smokeChart = SmokeChartState();
-    if(null == null)//no file stored
+    if(!import())//no file stored
     {
       nickname = "";
       notificationsEnabled =false;
       soundEnabled =false;
+      
     }
     else
     {
@@ -24,18 +26,34 @@ class Person
   }
 
   void export(){
-
-    //cloud saved elements
-    db.createRecord("Users",{
+    var userData = {
       'DesiredCessationTime':smokeChart.sessationChangeTimeDays,
       'EndingUsage':smokeChart.desiredEndAmount,
       'Nickname':nickname,
       'Product':TobaccoProducts.values.indexOf(smokeChart.vice),
-      'StartingUsage':smokeChart.startingAmountPerWeek
-    });
+      'StartingUsage':smokeChart.startingAmountPerWeek,
+      'StartingDate':smokeChart.sessationStartDate
+    };
+    //cloud saved elements
+    db.createRecordRemote("Users",userData);
     //local settings
+    userData["notificationsEnabled"] =notificationsEnabled;
+    userData["soundEnabled"] =soundEnabled;
+    db.setLocalData("userData.txt", userData);
   }
-  void import(){
-
+  bool import(){
+    var raw = db.getLocalData("userData.txt");
+    if(raw ==null)
+      return false;
+    else
+      {
+        smokeChart.sessationChangeTimeDays = int.parse(raw["DesiredCessationTime"]);
+        smokeChart.desiredEndAmount = int.parse(raw["EndingUsage"]);
+        smokeChart.vice = TobaccoProducts.values[int.parse(raw["Product"])];
+        smokeChart.startingAmountPerWeek = int.parse(raw["StartingUsage"]);
+        smokeChart.sessationChangeTimeDays = int.parse(raw["DesiredCessationTime"]);
+        smokeChart.sessationStartDate = DateTime.fromMicrosecondsSinceEpoch(int.parse(raw["StartDate"]));
+        return true;
+      }
   }
 }

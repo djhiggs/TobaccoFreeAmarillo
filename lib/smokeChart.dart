@@ -21,17 +21,10 @@ class SmokeChartState extends State<SmokeChart> {
 
   SmokeChartState({Key key})
   {
-    if(true)//no file stored
-    {
-      sessationStartDate = DateTime.now();
-      sessationChangeTimeDays = 72;
-      startingAmountPerWeek = 14;
-      desiredEndAmount = 2;
-    }
-    else
-    {
-      throw new Exception("Case not implemented, get some IO!!!!");
-    }
+    sessationStartDate = DateTime.now();
+    sessationChangeTimeDays = 72;
+    startingAmountPerWeek = 14;
+    desiredEndAmount = 2;
   }
   @override
   Widget build(BuildContext context) {
