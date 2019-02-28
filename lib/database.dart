@@ -11,12 +11,13 @@ class Database
   Firestore db = Firestore.instance;
   Future createRecordRemote(String table, Map<String, dynamic> content) async
   {
-    if(_clientID.length == 0)
+    if(Database._clientID.length == 0)
     {
       var prefs =await SharedPreferences.getInstance();
       try{
         _clientID =prefs.getString("ClientID");
-        //throw null;
+        if(_clientID ==null)
+          throw null;
       }
       catch (e) 
       {
@@ -27,8 +28,7 @@ class Database
           });
       }
     }
-    else
-      db.document(table + '/' + _clientID).updateData(content);
+    db.document(table + '/' + _clientID).updateData(content);
   }
   
   //bool initDone = false;
