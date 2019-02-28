@@ -19,31 +19,39 @@ class StatefulSettings extends StatefulWidget {
   @override
   _Settings createState() => _Settings();
 }
-  Person person =Person();
+  Person _person;
 class _Settings extends State<StatefulSettings>{
   final double spacingFactor = 25;
   final double buttonTextScaleFactor = 1.75;
   final double descriptionScaleFactor = 0.9;
 
   @override
-  Widget build(BuildContext context) => new Container(
+  Widget build(BuildContext context)
+  {
+    int i = 5;
+    //_person.export();
+    if(_person ==null){
+      _person = new Person();
+      _person.import().whenComplete((){setState((){});});
+    }
+    return new Container(
       child: ListView(
         children: <Widget>[
           ListTile(
             title: Text("Notifications",
             textScaleFactor: buttonTextScaleFactor,),
             trailing: Switch(onChanged: (bool state){
-                person.notificationsEnabled = state;
+                _person.notificationsEnabled = state;
               },
-              value: person.notificationsEnabled),
+              value: _person.notificationsEnabled),
           ),
           ListTile(
             title: Text("Sound",
             textScaleFactor: buttonTextScaleFactor,),
             trailing: Switch(onChanged: (bool state){
-                person.soundEnabled = state;
+                _person.soundEnabled = state;
               },
-              value: person.soundEnabled),
+              value: _person.soundEnabled),
           ),
           ExpansionTile(
             title: Text("Personal Information",
@@ -56,8 +64,8 @@ class _Settings extends State<StatefulSettings>{
                   labelText: 'Nickname',
                 ),
                 onFieldSubmitted: (String txt){
-                  person.nickname = txt;
-                },initialValue: person.nickname,
+                  _person.nickname = txt;
+                },initialValue: _person.nickname,
               ),
                 TextFormField(
                 decoration: const InputDecoration(
@@ -66,17 +74,17 @@ class _Settings extends State<StatefulSettings>{
                   labelText: 'Zipcode',
                 ),
                 onFieldSubmitted: (String txt){
-                  person.nickname = txt;
-                },
+                  _person.zipCode = int.parse(txt);
+                },initialValue: _person.zipCode.toString(),
               ),
             ],
           ),
           ExpansionTile(
-            title: Text("Sessation Settings",
+            title: Text("Cessation Settings",
             textScaleFactor: buttonTextScaleFactor,),
             children: <Widget>[
               TextFormField(
-                initialValue: person.smokeChart.startingAmountPerWeek.toString(),
+                initialValue: _person.smokeChart.averageUsage.toString(),
                 decoration: const InputDecoration(
                   icon: const Icon(Icons.smoking_rooms),
                   hintText: 'tobacco products used per week',
@@ -85,12 +93,12 @@ class _Settings extends State<StatefulSettings>{
                 onFieldSubmitted: (String txt){
                   int count = int.tryParse(txt);
                   if(count !=null)
-                    person.smokeChart.startingAmountPerWeek = count;
+                    _person.smokeChart.averageUsage = count;
                   else throw null;
                 },
               ),
               TextFormField(
-                initialValue: person.smokeChart.desiredEndAmount.toString(),
+                initialValue: _person.smokeChart.desiredUsage.toString(),
                 decoration: const InputDecoration(
                   icon: const Icon(Icons.smoking_rooms),
                   hintText: 'desired tobacco products used per week',
@@ -99,12 +107,12 @@ class _Settings extends State<StatefulSettings>{
                 onFieldSubmitted: (String txt){
                   int count = int.tryParse(txt);
                   if(count !=null)
-                    person.smokeChart.desiredEndAmount = count;
+                    _person.smokeChart.desiredUsage = count;
                   else throw null;
                 },
               ),
               TextFormField(
-                initialValue: person.smokeChart.sessationChangeTimeDays.toString(),
+                initialValue: _person.smokeChart.desiredDaysUntilComplete.toString(),
                 decoration: const InputDecoration(
                   icon: const Icon(Icons.timer),
                   hintText: 'desired days till completion',
@@ -113,22 +121,22 @@ class _Settings extends State<StatefulSettings>{
                 onFieldSubmitted: (String txt){
                   int count = int.tryParse(txt);
                   if(count !=null)
-                    person.smokeChart.sessationChangeTimeDays = count;
+                    _person.smokeChart.desiredDaysUntilComplete = count;
                   else throw null;
                 },
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text("       Sessation Item",textScaleFactor: 1.4),
+                child: Text("       Cessation Item",textScaleFactor: 1.4),
                 ),
               FormField(
                 builder: (FormFieldState field) {
                   return DropdownButton(
-                    value: person.smokeChart.vice,
+                    value: _person.smokeChart.product,
                     hint: new Text("Wut r u stopping?"),
                     items: buildDropDownMenuItems(),
                     onChanged: (TobaccoProducts newProduct){
-                      person.smokeChart.vice =newProduct;
+                      _person.smokeChart.product =newProduct;
                       setState(() {
                         
                       });
@@ -144,13 +152,13 @@ class _Settings extends State<StatefulSettings>{
                 children: <Widget>[
                   FlatButton(child: Text("Cancel"), 
                   onPressed: () {
-                    person = Person();
+                    _person.import();
                     setState(() { });
                   },),
                   FlatButton(child: Text("Apply"), 
                   onPressed: () {
 
-                    person.export();
+                    _person.export();
                     setState(() {
                       
                     });
@@ -170,6 +178,7 @@ class _Settings extends State<StatefulSettings>{
             },
           ),
         ], ));
+  }
   Widget privacyPolicyBuilder(BuildContext context) => AlertDialog(
               title: Text("Privacy Policy"),
               content: Column(children: <Widget>[Text("    You get no data, we get all of the data, you get no data.  We want the data. " + 

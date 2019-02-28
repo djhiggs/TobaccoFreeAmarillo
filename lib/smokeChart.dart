@@ -13,18 +13,19 @@ class SmokeChart extends StatefulWidget {
     SmokelessTobacco,
   }
 class SmokeChartState extends State<SmokeChart> {
-  DateTime sessationStartDate;
-  int sessationChangeTimeDays;
-  int startingAmountPerWeek;
-  int desiredEndAmount;
-  TobaccoProducts vice;
+  DateTime startDate;
+  int desiredDaysUntilComplete;
+  int averageUsage;
+  int desiredUsage;
+  TobaccoProducts product;
 
   SmokeChartState({Key key})
   {
-    sessationStartDate = DateTime.now();
-    sessationChangeTimeDays = 72;
-    startingAmountPerWeek = 14;
-    desiredEndAmount = 2;
+    startDate = DateTime.now();
+    desiredDaysUntilComplete = 72;
+    averageUsage = 14;
+    desiredUsage = 2;
+    product =TobaccoProducts.SmokelessTobacco;
   }
   @override
   Widget build(BuildContext context) {
