@@ -14,21 +14,18 @@ class Database
     if(Database._clientID.length == 0)
     {
       var prefs =await SharedPreferences.getInstance();
-      try{
-        _clientID =prefs.getString("ClientID");
-        if(_clientID ==null)
-          throw null;
-      }
-      catch (e) 
-      {
+      _clientID =prefs.getString("ClientID");
+      if(_clientID ==null)
         db.collection(table).add(content).then(
           (DocumentReference reference) {
             _clientID = reference.documentID;
             prefs.setString("ClientID", _clientID);
+          }).whenComplete((){
+            db.document(table + '/' + _clientID).updateData(content);
           });
-      }
+      else
+        db.document(table + '/' + _clientID).updateData(content);
     }
-    db.document(table + '/' + _clientID).updateData(content);
   }
   
   //bool initDone = false;
