@@ -4,7 +4,7 @@ class MyTextInput extends StatefulWidget {
   @override
   MyTextInputState createState() => new MyTextInputState();
 }
-
+//test
 class MyTextInputState extends State<MyTextInput> {
   String nickname = "";
   String dropdownValue;
