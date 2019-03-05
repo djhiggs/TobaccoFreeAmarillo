@@ -2,6 +2,14 @@ import 'smokeChart.dart';
 import 'database.dart';
 class Person
 {
+  static Person person = Person().initialize();
+
+
+  factory Person(){
+    
+    return person;
+  }
+
   Database db;
   String nickname;
   bool notificationsEnabled;
@@ -9,7 +17,7 @@ class Person
   SmokeChartState smokeChart; 
   int zipCode;
 
-  Person()
+  initialize()
   {
     db = Database();
     smokeChart = SmokeChartState();
@@ -17,6 +25,7 @@ class Person
     notificationsEnabled =false;
     soundEnabled =false;
     zipCode = -1;
+    import();
   }
 
   void export() async{

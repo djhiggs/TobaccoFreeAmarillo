@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '../person.dart';
 
 class Support extends StatelessWidget {
+
   @override
   Widget build (BuildContext context) => new Scaffold(
 
