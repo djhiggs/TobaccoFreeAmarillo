@@ -32,7 +32,10 @@ class _Settings extends State<StatefulSettings>{
     //_person.export();
     if(_person ==null){
       _person = new Person();
-      _person.import().whenComplete((){setState((){});});
+      Person.getInstance().then((Person p){
+        _person = p;
+        setState((){});
+      });
     }
     return new Container(
       child: ListView(

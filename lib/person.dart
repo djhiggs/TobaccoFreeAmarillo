@@ -2,14 +2,25 @@ import 'smokeChart.dart';
 import 'database.dart';
 class Person
 {
-  static Person person = Person().initialize();
 
-
-  factory Person(){
-    
-    return person;
+  Person(){ 
+    db = Database();
+    smokeChart = SmokeChartState();
+    nickname = "";
+    notificationsEnabled =false;
+    soundEnabled =false;
+    zipCode = -1;
   }
+  static Person _person =null;
 
+
+  static Future<Person> getInstance() async
+  {
+    if(_person ==null)
+      _person =Person();
+      await _person._initialize();
+    return _person;
+  }
   Database db;
   String nickname;
   bool notificationsEnabled;
@@ -17,15 +28,16 @@ class Person
   SmokeChartState smokeChart; 
   int zipCode;
 
-  initialize()
+  _initialize() async
   {
+
     db = Database();
     smokeChart = SmokeChartState();
     nickname = "";
     notificationsEnabled =false;
     soundEnabled =false;
     zipCode = -1;
-    import();
+    await import();
   }
 
   void export() async{
