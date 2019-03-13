@@ -38,5 +38,6 @@ class Points
       instance._points = 0;
       instance.addPoints(0);
     }
+    return instance;
   }
 }
