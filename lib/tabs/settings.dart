@@ -180,7 +180,8 @@ class _Settings extends State<StatefulSettings>{
               );
             },
           ),
-        ], ));
+        ], 
+      ));
   }
   Widget privacyPolicyBuilder(BuildContext context) => AlertDialog(
               title: Text("Privacy Policy"),
@@ -199,27 +200,27 @@ class _Settings extends State<StatefulSettings>{
                 },)
               ],
           );
-          List<DropdownMenuItem<TobaccoProducts>> buildDropDownMenuItems()
-          {
-            var names = TobaccoProducts.values;
-            int startingIndex = names[0].toString().indexOf('.') + 1;
-            List<DropdownMenuItem<TobaccoProducts>> elements =List();
+  List<DropdownMenuItem<TobaccoProducts>> buildDropDownMenuItems()
+  {
+    var names = TobaccoProducts.values;
+    int startingIndex = names[0].toString().indexOf('.') + 1;
+    List<DropdownMenuItem<TobaccoProducts>> elements =List();
 
-            for (var objectifiedName in names) {
-              String name = objectifiedName.toString().substring(startingIndex);
-              String upperName = name.toUpperCase();
-              for(int i = 1; i < name.length; i++)
-                if(name.codeUnitAt(i) == upperName.codeUnitAt(i))
-                {
-                  name = name.substring(0,i) + ' ' + name.substring(i);
-                  upperName = upperName.substring(0,i) + ' ' + upperName.substring(i);
-                  i++;
-                }
-              elements.add(DropdownMenuItem(
-                value: objectifiedName,
-                child: Text(name),
-                ));
-            }
-            return elements;
-          }
+    for (var objectifiedName in names) {
+      String name = objectifiedName.toString().substring(startingIndex);
+      String upperName = name.toUpperCase();
+      for(int i = 1; i < name.length; i++)
+        if(name.codeUnitAt(i) == upperName.codeUnitAt(i))
+        {
+          name = name.substring(0,i) + ' ' + name.substring(i);
+          upperName = upperName.substring(0,i) + ' ' + upperName.substring(i);
+          i++;
+        }
+      elements.add(DropdownMenuItem(
+        value: objectifiedName,
+        child: Text(name),
+        ));
+    }
+    return elements;
+  }
 }
