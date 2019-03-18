@@ -84,7 +84,8 @@ class TabsState extends State<Tabs> {
   List<Achievement> achievements = List<Achievement>();
   PageController _tabController;
 TabsState(){
-  achievements.add(Achievement(true, "achievement1", "description"));
+  achievements.add(Achievement(true, "Achievement 1", "description", "5"));
+  achievements.add(Achievement(false, "Achievement 2", "description", "10"));
 }
   var _title_app = null;
   int _tab = 0;
