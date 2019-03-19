@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spritewidget/spritewidget.dart';
-import 'package:spritewidget/spritewidget.dart' as spriteWidget;
 import 'gameTemplate.dart';
 
 //class GameGarage extends StatelessWidget {
