@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'gameTemplate.dart';
+import 'game.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override
@@ -7,11 +7,11 @@ import 'gameTemplate.dart';
 //}
 class GameGarage extends StatefulWidget {
   static List<Game> _gamesList = <Game>[
-    Game(null,"First Game"),
-    Game(null,"Second Game"),
-    Game(null,"Third Game"),
-    Game(null,"Fourth Game"),
-    Game(null,"Fifth Game"),
+    Game(),
+    Game(),
+    Game(),
+    Game(),
+    Game(),
   ];
   //StatelessWidget _parent;
   //BuildContext _context;  
