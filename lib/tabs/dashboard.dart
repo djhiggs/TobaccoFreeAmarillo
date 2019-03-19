@@ -31,7 +31,7 @@ class DashboardState extends State<Dashboard> {
         ),
       );
     else{
-      GameGarage garage =GameGarage();
+      GameGarage garage =GameGarage(context);
       return garage.build(context);
     }
   }
