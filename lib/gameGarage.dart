@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:spritewidget/spritewidget.dart';
-import 'package:spritewidget/spritewidget.dart' as spriteWidget;
-import 'gameTemplate.dart';
+import 'genericGame.dart';
+import 'games/sidescroller.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override
 //  Widget build(BuildContext context) => new Container();
 //}
 class GameGarage extends StatefulWidget {
-  static List<Game> _gamesList = <Game>[
-    Game(null,"First Game"),
-    Game(null,"Second Game"),
-    Game(null,"Third Game"),
-    Game(null,"Fourth Game"),
-    Game(null,"Fifth Game"),
+  static List<GenericGame> _gamesList;
+  GameGarage(BuildContext context){
+    _gamesList = <GenericGame>[
+    SideScroller(context),
+    GenericGame(context),
+    GenericGame(context),
+    GenericGame(context),
+    GenericGame(context),
   ];
+  }
   //StatelessWidget _parent;
   //BuildContext _context;  
   //GameGarage(this._parent,this._context){
@@ -33,11 +35,11 @@ class GameGarage extends StatefulWidget {
       Divider(color: Colors.black26,)
     ];
     
-    for(Game game in _gamesList){
+    for(GenericGame game in _gamesList){
       games.add(ListTile(
         title: Center(child: Text(game.title,textScaleFactor: buttonTextScaleFactor,)),
         onTap: (){
-
+          game.open();
         },
       ));
     }
