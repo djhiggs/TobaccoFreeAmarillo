@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'achievement_page/achievement.dart';
 import './tabs/home.dart' as _firstTab;
-import './tabs/dashboard.dart' as _secondTab;
+import './tabs/gameGarage.dart' as _secondTab;
 import './tabs/settings.dart' as _thirdTab;
 import './screens/profile.dart' as _profilePage;
 import './screens/support.dart' as _supportPage;
@@ -123,7 +123,7 @@ TabsState(){
       onPageChanged: onTabChanged,
       children: <Widget>[
         new _firstTab.Home(),
-        new _secondTab.Dashboard(),
+        new _secondTab.GameGarage(context),
         new _thirdTab.StatefulSettings(),
         new _achievementPage.AchievementPage(achievements: achievements)
       ],
@@ -240,7 +240,11 @@ class TabItem {
 
 const List<TabItem> TabItems = const <TabItem>[
   const TabItem(title: 'Home', icon: Icons.home),
-  const TabItem(title: 'Dashboard', icon: Icons.dashboard),
+  const TabItem(title: 'Game Garage', icon: Icons.gamepad),
   const TabItem(title: 'Settings', icon: Icons.settings),
+<<<<<<< HEAD
+  const TabItem(title: 'Achievements', icon: Icons.more)
+=======
   const TabItem(title: 'Achievement', icon: Icons.star)
+>>>>>>> 9f1926c74ff5b15568c9d8eb92c9b5bd61bd80a4
 ];

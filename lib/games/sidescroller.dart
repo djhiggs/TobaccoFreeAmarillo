@@ -9,7 +9,7 @@ import 'package:tobaccoFreeAmarilloApp/genericGame.dart';
 class SideScroller extends GenericGame{
   SideScroller(BuildContext context) : super(context){
     this.title = "Side Scroller";
-    this.add(SpriteComponent.square(64, "lib\games\sprites\GenericTexture1.png"));
+    //this.add(SpriteComponent.square(64, "lib\games\sprites\GenericTexture1.png"));
   }
   @override
   start() {
@@ -22,6 +22,6 @@ class SideScroller extends GenericGame{
   @override
   void render(Canvas canvas) {
     // TODO: implement render
-    super.render(canvas);
+    //super.render(canvas);
   }
 } 
