@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../genericGame.dart';
-import '../games/sidescroller.dart';
+import 'games/genericGame.dart';
+import 'games/sidescroller.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override

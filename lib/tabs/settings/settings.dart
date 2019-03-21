@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tobaccoFreeAmarilloApp/person.dart';
-import 'package:tobaccoFreeAmarilloApp/smokeChart.dart';
+import '../settings/person.dart';
+import '../settings/smokeChart.dart';
 
 class Settings extends StatelessWidget {
   @override

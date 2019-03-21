@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'achievement_page/achievement.dart';
-import './tabs/home.dart' as _firstTab;
-import './tabs/gameGarage.dart' as _secondTab;
-import './tabs/settings.dart' as _thirdTab;
-import './screens/profile.dart' as _profilePage;
-import './screens/support.dart' as _supportPage;
-import 'achievement_page/achievement_page.dart' as _achievementPage;
+import 'tabs/achievement_page/achievement.dart';
+import 'tabs/home/home.dart' as _firstTab;
+import 'tabs/gameGarage/gameGarage.dart' as _secondTab;
+import 'tabs/settings/settings.dart' as _thirdTab;
+import 'tabs/achievement_page/achievement_page.dart' as _achievementPage;
 
 
 void main() => runApp(new MaterialApp(
@@ -17,18 +15,6 @@ void main() => runApp(new MaterialApp(
     primaryColor: Colors.blueGrey, backgroundColor: Colors.white
   ),
   home: new Tabs(),
-  onGenerateRoute: (RouteSettings settings) {
-    switch (settings.name) {
-      case '/profile': return new FromRightToLeft(
-        builder: (_) => new _profilePage.MyTextInput(),
-        settings: settings,
-      );
-      case '/support': return new FromRightToLeft(
-        builder: (_) => new _supportPage.Support(),
-        settings: settings,
-      );
-    }
-  },
   // routes: <String, WidgetBuilder> {
   //   '/about': (BuildContext context) => new _aboutPage.About(),
   // }

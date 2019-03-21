@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../person.dart';
+import '../settings/person.dart';
 class Home extends StatefulWidget {
   Person _person;
   @override

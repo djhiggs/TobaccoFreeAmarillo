@@ -4,7 +4,7 @@ import 'package:flame/components/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:flame/flame.dart' as flame;
-import 'package:tobaccoFreeAmarilloApp/genericGame.dart';
+import 'genericGame.dart';
 
 class SideScroller extends GenericGame{
   SideScroller(BuildContext context) : super(context){
