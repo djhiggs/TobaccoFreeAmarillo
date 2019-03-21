@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'games/genericGame.dart';
 import 'games/sidescroller.dart';
+import 'package:tobaccoFreeAmarilloApp/tabs/gameGarage/games/home_page.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override
@@ -37,7 +38,7 @@ class GameGarage extends StatelessWidget {
       games.add(RaisedButton(
         child: Center(child: Text(game.title,textScaleFactor: buttonTextScaleFactor,)),
         onPressed: (){
-          //game.open();
+          game.open();
         },
       ));
     }
@@ -57,6 +58,15 @@ class GameGarage extends StatelessWidget {
   //  this.;
   //}
 }
+
+class TicTac extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      theme: new ThemeData(primaryColor: Colors.black),
+      home: new TicTac(),
+    );
+  }
 /*
 enum RunningModes
 {
@@ -75,4 +85,4 @@ class GameGarageState extends State<GameGarage> {
   buildGameTemplate(){
   }
 
-}*/
+}*/}
