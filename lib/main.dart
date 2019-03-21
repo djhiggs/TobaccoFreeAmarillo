@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tobaccoFreeAmarilloApp/landing_screen.dart';
 import 'tabs/achievement_page/achievement.dart';
 import 'tabs/home/home.dart' as _firstTab;
 import 'tabs/gameGarage/gameGarage.dart' as _secondTab;
 import 'tabs/settings/settings.dart' as _thirdTab;
 import 'tabs/achievement_page/achievement_page.dart' as _achievementPage;
+
 
 
 void main() => runApp(new MaterialApp(
@@ -76,9 +79,22 @@ TabsState(){
   var _title_app = null;
   int _tab = 0;
 
+
+checkIfFirstLaunch() {
+    SharedPreferences.getInstance().then((pref) async {
+      final isFirstLaunch = pref.getBool("IS_FIRST_LAUNCH") ?? true;
+      if (isFirstLaunch) {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => LandingScreen()));
+        pref.setBool("IS_FIRST_LAUNCH", false);
+      } 
+    });
+  }
+  
   @override
   void initState() {
     super.initState();
+    checkIfFirstLaunch();
     _tabController = new PageController();
     this._title_app = TabItems[0].title;
   }
