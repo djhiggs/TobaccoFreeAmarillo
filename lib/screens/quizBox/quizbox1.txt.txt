@@ -1,0 +1,11 @@
+question: What does nicotine do to the brain?
+choice: Slows it down.
+choice: Makes it happy.
+answer: Improves alertness.
+choice: Depresses you.
+
+2) Which of these is a downside to smoking a cigarette?
+a) Increased heart rate.
+b) Irritated throat.
+c) Decreased blood flow to skin, fingers, and toes.
+d) All of these are downsides. *
