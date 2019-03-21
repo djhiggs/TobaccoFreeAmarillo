@@ -20,6 +20,6 @@ class GenericGame extends game.BaseGame{
     }));
   }
   close(){
-    
+    Navigator.of(_context).pop();
   }
 }

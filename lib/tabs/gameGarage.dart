@@ -34,9 +34,9 @@ class GameGarage extends StatelessWidget {
       Divider(color: Colors.black26,)
     ];
     for(GenericGame game in _gamesList){
-      games.add(ListTile(
-        title: Center(child: Text(game.title,textScaleFactor: buttonTextScaleFactor,)),
-        onTap: (){
+      games.add(RaisedButton(
+        child: Center(child: Text(game.title,textScaleFactor: buttonTextScaleFactor,)),
+        onPressed: (){
           //game.open();
         },
       ));
