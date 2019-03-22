@@ -87,7 +87,7 @@ checkIfFirstLaunch() {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => LandingScreen()));
         pref.setBool("IS_FIRST_LAUNCH", false);
-      } 
+      }      
     });
   }
   
@@ -156,8 +156,8 @@ checkIfFirstLaunch() {
         }).toList(),
     ),
 
-    //Drawer
-    drawer: new Drawer(
+   /* //Drawer
+   drawer: new Drawer(
       child: new ListView(
         children: <Widget>[
           new Container(
@@ -201,7 +201,7 @@ checkIfFirstLaunch() {
           ),
         ],
       )
-    )
+   )*/
   );
 
   void onTap(int tab){

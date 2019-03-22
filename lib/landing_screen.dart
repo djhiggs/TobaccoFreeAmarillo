@@ -14,8 +14,6 @@ class _LandingScreenState extends State<LandingScreen> {
 
   final firestore = Firestore.instance;
 
-  
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -28,9 +26,7 @@ class _LandingScreenState extends State<LandingScreen> {
               color: theme.primaryColor,
               height: size.height / 3,
               child: Center(
-                  child: FlutterLogo(
-                size: 80,
-              )),
+                  child: new Image.asset('images/tfa.png', fit: BoxFit.fill)),
             ),
             SizedBox(height: 20),
             SizedBox(
@@ -94,12 +90,12 @@ class _LandingScreenState extends State<LandingScreen> {
                 child: Text(
                   "Next",
                   style: theme.textTheme.headline.copyWith(
-                      color: theme.primaryColor, fontWeight: FontWeight.bold),
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50)),
+              color: theme.primaryColor,
+               shape: RoundedRectangleBorder(
+               borderRadius: BorderRadius.circular(50)),
             ),
           ],
         ),
