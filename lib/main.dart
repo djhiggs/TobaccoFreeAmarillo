@@ -7,7 +7,6 @@ import 'tabs/home/home.dart' as _firstTab;
 import 'tabs/gameGarage/gameGarage.dart' as _secondTab;
 import 'tabs/settings/settings.dart' as _thirdTab;
 import 'tabs/achievement_page/achievement_page.dart' as _achievementPage;
-import 'package:tobaccoFreeAmarilloApp/tabs/gameGarage/games/home_page.dart' as _ticTac;
 
 
 void main() => runApp(new MaterialApp(
