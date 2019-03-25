@@ -36,7 +36,8 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets: 
     - images/tfa.png
-    - assets/images/GenericTexture1.bmp
+    - assets/images/GenericTexture1.png
+    - assets/images/Grass.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/.
 
