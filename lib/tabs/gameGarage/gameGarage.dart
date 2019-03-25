@@ -34,12 +34,30 @@ class GameGarage extends StatelessWidget {
       Divider(color: Colors.black26,)
     ];
     for(GenericGame game in _gamesList){
-      games.add(RaisedButton(
-        child: Center(child: Text(game.title,textScaleFactor: buttonTextScaleFactor,)),
+      games.add(
+        ButtonTheme(
+          padding:EdgeInsets.fromLTRB(20, 10, 20, 10),
+          height: 125,
+          child:
+          RaisedButton(
+            elevation: 25,
+            splashColor: Colors.red,
+            padding: const EdgeInsets.all(1.0),
+            color: const Color.fromARGB(150, 0, 0, 250),
+            child: Text(game.title),
+            onPressed: (){
+              //game.open();
+          },)
+        )
+      );
+      /* (RaisedButton(
+        child: RoundedRectangleBorder(
+          child:
+        Text(game.title,textScaleFactor: buttonTextScaleFactor,)),
         onPressed: (){
-          game.open();
+          //game.open();
         },
-      ));
+      )); */
     }
     return ListView(
       children: games,
