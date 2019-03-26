@@ -16,17 +16,29 @@ import 'dart:ui';
 
 import 'package:flame/anchor.dart';
 import 'package:flame/palette.dart';
+import 'sidescroller.dart';
+import 'package:box2d_flame/box2d.dart';
+import 'vector2D.dart';
 
-class SideScroller extends GenericGame{
-  SideScroller(BuildContext context) : super(context){
-    this.title = "Side Scroller";
+class GolfGame extends SideScroller{
+  final double g = -9.81;
+  Vector2D golfBallLocation;
+  Vector2D golfBallVelocity;
+  GolfGame(BuildContext context) : super(context){
+    this.title = "Golf Game";
+    Flame.images.load("Grass.png");
   }
   @override
   start() {
-
+    
   }
   @override
   stop() {
 
+  }
+  @override
+  void render(ui.Canvas canvas) {
+    camera =golfBallLocation.tpPosition();
+    super.render(canvas);
   }
 } 
