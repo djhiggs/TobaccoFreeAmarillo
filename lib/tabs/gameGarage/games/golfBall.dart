@@ -8,7 +8,7 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'vector2D.dart';
 
-class GolfBall{
+class GolfBall extends Component{
   SpriteComponent _component;
   final double _diameter = 32;
   Vector2D golfBallLocation = Vector2D(0, 0);
@@ -28,18 +28,22 @@ class GolfBall{
         height: _diameter,
       )
     );
+    golfBallLocation.y = this._floorHeight;
     _component.width = _diameter;
     _component.height = _diameter;
   }
   void update(double dt){
-    golfBallLocation += (g*0.5*dt+golfBallVelocity)*dt;
+    golfBallLocation += (golfBallVelocity + g*0.5*dt)*dt;
     golfBallVelocity += g*dt;
-    if(golfBallLocation.y <=_floorHeight && golfBallVelocity.y < 0)
+    if(golfBallLocation.y < _floorHeight && golfBallVelocity.y < 0){
       golfBallVelocity.y *= -0.8;
+      golfBallVelocity.x *= 0.8;
+    }
   }
+  Position screenPosition;
   void render(Canvas canvas) {
-    
-    _component.setByPosition(Position(golfBallLocation.x,MediaQuery.of(_context).size.height-_diameter-golfBallLocation.y));
+    screenPosition = Position(golfBallLocation.x,MediaQuery.of(_context).size.height-_diameter-golfBallLocation.y);
+    _component.setByPosition(screenPosition);
     //_component.setByPosition(Position(0,0));
     _component.render(canvas);
   }

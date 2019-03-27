@@ -29,27 +29,43 @@ class GolfGame extends SideScroller{
   //Body golfBallBody;
   //World world;
   GolfBall golfBall;
-  ui.Image grass;
-  GolfGame(BuildContext context) : super(context){
+  Sprite grass;
+  BuildContext context;
+  GolfGame(this.context) : super(context){
     this.title = "Golf Game";
     Flame.images.load("Grass.png");
-    grass = Flame.images.loadedFiles["Grass.png"];
+    grass = Sprite.fromImage(Flame.images.loadedFiles["Grass.png"],
+      x: 0,
+      y: 0,
+      width: 32,
+      height: 32);
+    var y = MediaQuery.of(context).size.height - _floorHeight;
+    for(int i = 0; i < 100; i++){
+      var c = SpriteComponent.fromSprite(32, 32, grass);
+      c.y = y;
+      c.x = i*32.0;
+      components.add(c);
+    }
+
     golfBall =GolfBall(context,_floorHeight);
+    components.add(golfBall);
   }
   @override
   void update(double dt) {
-    // TODO: implement update
-    golfBall.update(dt);
+
+    //golfBall.update(dt);
     super.update(dt);
 
   }
   @override
   void render(ui.Canvas canvas) {
-    golfBall.render(canvas);
-    camera =Position(0, golfBall.golfBallLocation.y);
+    //camera =golfBall.screenPosition;
+    //golfBall.render(canvas);
     //for(int i = 0; i < 4; i++){
     //      canvas.drawImage(grass, p, paint);
     //}
-    //super.render(canvas);
+    if(golfBall !=null && golfBall.screenPosition !=null)
+      camera =Position(golfBall.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
+    super.render(canvas);
   }
 }
