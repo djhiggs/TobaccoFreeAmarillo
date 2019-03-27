@@ -41,10 +41,13 @@ class GolfGame extends SideScroller{
       height: 32);
     var y = MediaQuery.of(context).size.height - _floorHeight;
     for(int i = 0; i < 100; i++){
-      var c = SpriteComponent.fromSprite(32, 32, grass);
-      c.y = y;
-      c.x = i*32.0;
-      components.add(c);
+      for(int j = 0; j < 10; j++){
+        var c = SpriteComponent.fromSprite(32, 32, grass);
+        c.y = y + j*32;
+        c.x = i*32.0;
+        components.add(c);
+      }
+
     }
 
     golfBall =GolfBall(context,_floorHeight);
