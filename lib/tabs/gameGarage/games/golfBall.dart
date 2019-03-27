@@ -33,7 +33,10 @@ class GolfBall extends Component{
     _component.height = _diameter;
   }
   void update(double dt){
-    golfBallLocation += (golfBallVelocity + g*0.5*dt)*dt;
+    if(golfBallLocation.y < _floorHeight)
+      golfBallLocation += (golfBallVelocity + g*0.5*dt)*dt;
+    else
+      golfBallLocation += golfBallVelocity*dt;
     golfBallVelocity += g*dt;
     if(golfBallLocation.y < _floorHeight && golfBallVelocity.y < 0){
       golfBallVelocity.y *= -0.8;
