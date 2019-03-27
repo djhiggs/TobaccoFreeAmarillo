@@ -38,6 +38,7 @@ flutter:
     - images/tfa.png
     - assets/images/GenericTexture1.png
     - assets/images/Grass.png
+    - assets/images/GolfBall.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/.
 

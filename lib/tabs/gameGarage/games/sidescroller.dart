@@ -21,12 +21,4 @@ class SideScroller extends GenericGame{
   SideScroller(BuildContext context) : super(context){
     this.title = "Side Scroller";
   }
-  @override
-  start() {
-
-  }
-  @override
-  stop() {
-
-  }
 } 

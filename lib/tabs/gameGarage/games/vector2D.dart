@@ -8,7 +8,7 @@ class Vector2D {
   Vector2D operator -(Vector2D b) => Vector2D(x-b.x,y-b.y);
   Vector2D operator *(double b) => Vector2D(x*b,y*b);
   Vector2D operator /(double b) => Vector2D(x/b,y/b);
-  Position tpPosition() => Position(x,y);
+  Position toPosition() => Position(x,y);
   double dot(Vector2D b) => x*b.x+y*b.y;
   double cross(Vector2D b) => x*b.y-y*b.x;
   //angle is in radians

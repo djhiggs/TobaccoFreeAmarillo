@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'games/genericGame.dart';
 import 'games/sidescroller.dart';
+import 'games/golfGame.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override
@@ -10,7 +11,7 @@ class GameGarage extends StatelessWidget {
   static List<GenericGame> _gamesList;
   GameGarage(BuildContext context){
     _gamesList = <GenericGame>[
-    SideScroller(context),
+    GolfGame(context,),
     GenericGame(context),
     GenericGame(context),
     GenericGame(context),
@@ -46,7 +47,7 @@ class GameGarage extends StatelessWidget {
             color: const Color.fromARGB(150, 0, 0, 250),
             child: Text(game.title),
             onPressed: (){
-              //game.open();
+              game.open();
           },)
         )
       );
