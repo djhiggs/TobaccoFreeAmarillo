@@ -1,4 +1,4 @@
-import 'package:tobaccoFreeAmarilloApp/game/collision/collision_box.dart';
+import '../collision/collision_box.dart';
 
 class TRexConfig {
   static double dropVelocity = -5.0;

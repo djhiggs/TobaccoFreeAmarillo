@@ -4,7 +4,7 @@ import 'package:flame/components/component.dart';
 import 'package:flame/components/resizable.dart';
 
 import 'package:flame/components/composed_component.dart';
-import 'package:tobaccoFreeAmarilloApp/game/horizon/horizon_line.dart';
+import '../horizon/horizon_line.dart';
 
 class Horizon extends PositionComponent with Resizable, ComposedComponent {
   HorizonLine horizonLine;

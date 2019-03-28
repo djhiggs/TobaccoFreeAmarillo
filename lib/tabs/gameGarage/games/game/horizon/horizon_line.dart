@@ -7,9 +7,9 @@ import 'package:flame/components/component.dart';
 import 'package:flame/components/resizable.dart';
 
 import 'package:flame/components/composed_component.dart';
-import 'package:tobaccoFreeAmarilloApp/game/horizon/clouds.dart';
-import 'package:tobaccoFreeAmarilloApp/game/horizon/config.dart';
-import 'package:tobaccoFreeAmarilloApp/game/obstacle/obstacle.dart';
+import '../horizon/clouds.dart';
+import '../horizon/config.dart';
+import '../obstacle/obstacle.dart';
 
 Random rnd = new Random();
 

@@ -1,7 +1,7 @@
-import 'package:tobaccoFreeAmarilloApp/game/collision/collision_box.dart';
-import 'package:tobaccoFreeAmarilloApp/game/obstacle/obstacle.dart';
-import 'package:tobaccoFreeAmarilloApp/game/t_rex/config.dart';
-import 'package:tobaccoFreeAmarilloApp/game/t_rex/t_rex.dart';
+import 'collision_box.dart';
+import '../obstacle/obstacle.dart';
+import '../t_rex/config.dart';
+import '../t_rex/t_rex.dart';
 
 bool checkForCollision(Obstacle obstacle, TRex tRex) {
   CollisionBox tRexBox = CollisionBox(

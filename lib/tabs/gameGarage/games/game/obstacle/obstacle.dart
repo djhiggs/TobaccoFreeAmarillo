@@ -4,12 +4,12 @@ import 'package:flame/components/component.dart';
 import 'package:flame/components/resizable.dart';
 import 'package:flame/components/composed_component.dart';
 import 'package:flame/sprite.dart';
-import 'package:tobaccoFreeAmarilloApp/game/collision/collision_box.dart';
-import 'package:tobaccoFreeAmarilloApp/game/custom/util.dart';
-import 'package:tobaccoFreeAmarilloApp/game/game_config.dart';
-import 'package:tobaccoFreeAmarilloApp/game/horizon/config.dart';
-import 'package:tobaccoFreeAmarilloApp/game/obstacle/config.dart';
-import 'package:tobaccoFreeAmarilloApp/game/obstacle/obstacle_type.dart';
+import '../collision/collision_box.dart';
+import '../custom/util.dart';
+import '../game_config.dart';
+import '../horizon/config.dart';
+import '../obstacle/config.dart';
+import '../obstacle/obstacle_type.dart';
 
 class ObstacleManager extends PositionComponent
     with Resizable, ComposedComponent {

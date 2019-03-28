@@ -14,7 +14,7 @@ class GolfBall extends Component{
   Vector2D golfBallLocation = Vector2D(0, 0);
   Vector2D golfBallVelocity =Vector2D(40, 400);
   final Vector2D g = Vector2D(0, -128);
-  double _floorHeight;
+  int _floorHeight;
   BuildContext _context;
   GolfBall(this._context, this._floorHeight){
     if(!Flame.images.loadedFiles.containsKey("GolfBall.png"))
@@ -28,7 +28,7 @@ class GolfBall extends Component{
         height: _diameter,
       )
     );
-    golfBallLocation.y = this._floorHeight;
+    golfBallLocation.y = this._floorHeight + 1.0;
     _component.width = _diameter;
     _component.height = _diameter;
   }

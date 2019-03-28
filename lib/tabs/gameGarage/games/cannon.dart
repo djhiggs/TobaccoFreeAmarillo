@@ -9,7 +9,11 @@ import 'package:flutter/material.dart';
 import 'vector2D.dart';
 import 'package:flame/flame.dart';
 class Cannon extends Component {
-  Cannon(){
+  final _width = 128;
+  final _height = 128;
+  BuildContext _context;
+  int _floorHeight;
+  Cannon(this._context,this._floorHeight){
     if(!Flame.images.loadedFiles.containsKey("CannonStand.png"))
       Flame.images.load("CannonStand.png");
     if(!Flame.images.loadedFiles.containsKey("CannonBarrel.png"))
@@ -30,8 +34,8 @@ class Cannon extends Component {
         y: 0,
         width: 64,
         height: 64));
-    _cannonBarrel.width = 64;
-    _cannonBarrel.height = 64;
+    _cannonBarrel.width = 100;
+    _cannonBarrel.height = 40;
   }
   
   bool active = true;
@@ -39,6 +43,11 @@ class Cannon extends Component {
   SpriteComponent _cannonBarrel;
   @override
   void render(Canvas c) {
+    if(_cannonStand.y == 0){
+      var screenHeight = MediaQuery.of(_context).size.height;
+      _cannonStand.y = screenHeight - _height;
+      _cannonBarrel.y = screenHeight - 60;
+    }
     // TODO: implement render
   }
 

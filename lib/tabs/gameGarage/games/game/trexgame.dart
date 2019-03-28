@@ -4,7 +4,7 @@ import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tobaccoFreeAmarilloApp/game/game.dart';
+import 'game.dart';
 
 //void main() async {
 //  Flame.audio.disableLog();
