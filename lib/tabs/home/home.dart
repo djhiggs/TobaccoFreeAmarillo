@@ -27,7 +27,6 @@ class HomeState extends State<Home> {
       });
     }
     return new Scaffold(
-        appBar: new AppBar(title: new Text("My Home Page")),
         body: new Stack(
           children: <Widget>[
             IntroPageView(),
