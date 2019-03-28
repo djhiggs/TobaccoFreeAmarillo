@@ -31,8 +31,6 @@ class TRex extends GenericGame
     tRexGame = TRexGame(spriteImage: image[0]);
     });
     Flame.audio.disableLog();
-    //List<ui.Image> image = await Flame.images.loadAll(["sprite.png"]);
-    //TRexGame tRexGame = TRexGame(spriteImage: image[0]);
 
     Flame.util.addGestureRecognizer(new TapGestureRecognizer()
       ..onTapDown = (TapDownDetails evt) => tRexGame.onTap());
