@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/game.dart';
-import 'package:tobaccoFreeAmarilloApp/game/Horizon/horizon.dart';
+import 'horizon/horizon.dart';
 import 'collision/collision_utils.dart';
 import 'game_config.dart';
 import 'game_over/game_over.dart';

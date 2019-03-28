@@ -69,10 +69,10 @@ class GameGarage extends StatelessWidget {
   /*
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return GameGarageState();
-  }*/
-    //non graphical methods
+  }
+  */
+  //non graphical methods
   //_exitWindow(){
   //  _parent.build(_context);
   //  this.;
