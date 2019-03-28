@@ -96,7 +96,7 @@ class IntroPageItem extends StatelessWidget {
       //  vertical: 100.0,
       //  horizontal: 8.0,
       //),
-      padding:EdgeInsets.fromLTRB(8.0, 110.0, 8.0, 10.0),
+      padding:EdgeInsets.fromLTRB(8.0, 140.0, 8.0, 10.0),
       child: Material(
         elevation: 4.0,
         borderRadius: BorderRadius.circular(8.0),
