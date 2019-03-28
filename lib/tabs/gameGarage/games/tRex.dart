@@ -27,15 +27,15 @@ class TRex extends GenericGame
       Flame.audio.disableLog();
   //List<Image> image = await Flame.images.loadAll(["sprite.png"]);
   //TRexGame tRexGame = TRexGame(spriteImage: image[0]);
-  Flame.images.loadAll(["sprite.png"]).then((List<Image> image){
-    tRexGame = TRexGame(spriteImage: image[0]);
+  Flame.images.load("sprite.png").then((Image image){
+    tRexGame = TRexGame(spriteImage: image);
     });
     Flame.audio.disableLog();
 
     Flame.util.addGestureRecognizer(new TapGestureRecognizer()
       ..onTapDown = (TapDownDetails evt) => tRexGame.onTap());
 
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    //SystemChrome.setEnabledSystemUIOverlays([]);
   }
   @override
   // TODO: implement widget
