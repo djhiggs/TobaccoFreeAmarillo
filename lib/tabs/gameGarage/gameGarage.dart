@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'games/genericGame.dart';
 import 'games/sidescroller.dart';
 import 'games/golfGame.dart';
+import 'package:tobaccoFreeAmarilloApp/game/trexgame.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override
