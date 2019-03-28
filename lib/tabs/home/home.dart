@@ -36,14 +36,17 @@ class HomeState extends State<Home> {
                   child: CalendarCarousel<Achievement>(
                     iconColor: Colors.blueGrey,
                     weekdayTextStyle: TextStyle(fontSize: 14.0, color: Colors.blueGrey),
-                    headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.blueGrey),
+                    headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.black),
                     weekFormat: true,
                     weekDayFormat: WeekdayFormat.short,
                     height: 170.0,
-                    onDayPressed:
-                        (DateTime data, List<Achievement> achievement) {
-                      this.setState(() {});
-                    },
+                    selectedDayBorderColor: Colors.white,
+                    selectedDayButtonColor: Colors.white,
+                    selectedDayTextStyle: TextStyle(color: Colors.black),
+                    markedDateIconBorderColor: Colors.white,
+                    todayBorderColor: Colors.white,
+                    todayButtonColor: Colors.white,
+                    todayTextStyle: TextStyle(color:Colors.black),
                   ),
                 ))
           ],

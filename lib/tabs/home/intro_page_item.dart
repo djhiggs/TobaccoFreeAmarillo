@@ -40,9 +40,8 @@ class IntroPageItem extends StatelessWidget {
         item.category,
         style: textTheme.caption.copyWith(
           color: Colors.black,
-          fontWeight: FontWeight.bold,
           letterSpacing: 2.0,
-          fontSize: 14.0,
+          fontSize: 20.0,
         ),
         textAlign: TextAlign.center,
       ),
@@ -54,21 +53,30 @@ class IntroPageItem extends StatelessWidget {
         padding: const EdgeInsets.only(top: 16.0),
         child: Text(
           item.title,
-          style: textTheme.title
-              .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
+          style: textTheme.title.copyWith(color: Colors.black),
+          textAlign: TextAlign.left,
         ),
       ),
     );
 
     return Positioned(
-      bottom: 5.0,
+      bottom: 50,
       left: 32.0,
       right: 32.0,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
+          Text(item.stat,
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
           categoryText,
+          Container(
+            width: 180.0,
+            child: new Divider(
+              color: Colors.black,
+              height: 50,
+              ),
+          ),
           titleText,
         ],
       ),
@@ -77,7 +85,6 @@ class IntroPageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var imageOverlayGradient = DecoratedBox(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -96,15 +103,13 @@ class IntroPageItem extends StatelessWidget {
       //  vertical: 100.0,
       //  horizontal: 8.0,
       //),
-      padding:EdgeInsets.fromLTRB(8.0, 140.0, 8.0, 10.0),
+      padding: EdgeInsets.fromLTRB(8.0, 140.0, 8.0, 10.0),
       child: Material(
         elevation: 4.0,
         borderRadius: BorderRadius.circular(8.0),
         child: Stack(
           fit: StackFit.expand,
           children: [
-            
-            
             _buildTextContainer(context),
           ],
         ),
