@@ -21,16 +21,19 @@ import 'sidescroller.dart';
 //import 'package:box2d_flame/box2d.dart';
 import 'vector2D.dart';
 import 'golfBall.dart';
+import 'cannon.dart';
 
 class GolfGame extends SideScroller{
 
   final double _diameter = 128;
-  final double _floorHeight = 128;
+  final int _floorHeight = 128;
   //Body golfBallBody;
   //World world;
   GolfBall golfBall;
+
   Sprite grass;
   BuildContext context;
+  Cannon cannon;
   GolfGame(this.context) : super(context){
     this.title = "Golf Game";
     Flame.images.load("Grass.png");
@@ -47,10 +50,10 @@ class GolfGame extends SideScroller{
         c.x = i*32.0;
         components.add(c);
       }
-
     }
 
     golfBall =GolfBall(context,_floorHeight);
+    cannon = Cannon(context,_floorHeight);
     components.add(golfBall);
   }
   @override

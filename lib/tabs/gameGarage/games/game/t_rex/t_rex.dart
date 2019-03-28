@@ -6,7 +6,7 @@ import 'package:flame/components/component.dart';
 import 'package:flame/components/composed_component.dart';
 import 'package:flame/components/resizable.dart';
 import 'package:flame/sprite.dart';
-import 'package:tobaccoFreeAmarilloApp/game/t_rex/config.dart';
+import '../t_rex/config.dart';
 
 enum TRexStatus { crashed, ducking, jumping, running, waiting, intro }
 

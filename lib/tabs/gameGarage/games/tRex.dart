@@ -5,11 +5,11 @@ import 'package:flame/components/component.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:tobaccoFreeAmarilloApp/game/game.dart';
-import 'package:tobaccoFreeAmarilloApp/game/trexgame.dart';
+import 'game/game.dart';
+import 'game/trexgame.dart';
 
 import 'genericGame.dart';
-import 'package:tobaccoFreeAmarilloApp/game/trexgame.dart';
+import 'game/trexgame.dart';
 
 import 'dart:ui' as ui;
 
@@ -17,7 +17,7 @@ import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/services.dart';
-import 'package:tobaccoFreeAmarilloApp/game/game.dart';
+import 'game/game.dart';
 
 class TRex extends GenericGame
 {
@@ -35,6 +35,7 @@ class TRex extends GenericGame
     Flame.util.addGestureRecognizer(new TapGestureRecognizer()
       ..onTapDown = (TapDownDetails evt) => tRexGame.onTap());
 
+    //be careful with this because it messes with the ui
     //SystemChrome.setEnabledSystemUIOverlays([]);
   }
   @override

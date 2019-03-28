@@ -4,7 +4,7 @@ import 'package:flame/components/component.dart';
 import 'package:flame/components/resizable.dart';
 import 'package:flame/components/composed_component.dart';
 import 'package:flame/sprite.dart';
-import 'package:tobaccoFreeAmarilloApp/game/game_over/config.dart';
+import '../game_over/config.dart';
 
 class GameOverPanel extends PositionComponent
     with Resizable, ComposedComponent {

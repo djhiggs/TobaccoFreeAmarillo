@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
-import 'package:tobaccoFreeAmarilloApp/game/collision/collision_box.dart';
+import '../collision/collision_box.dart';
 
 class ObstacleType {
   final String type;

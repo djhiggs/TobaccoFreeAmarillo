@@ -3,7 +3,7 @@ import 'package:tobaccoFreeAmarilloApp/tabs/gameGarage/games/tRex.dart';
 import 'games/genericGame.dart';
 import 'games/sidescroller.dart';
 import 'games/golfGame.dart';
-import 'package:tobaccoFreeAmarilloApp/game/trexgame.dart';
+import 'games/game/trexgame.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override

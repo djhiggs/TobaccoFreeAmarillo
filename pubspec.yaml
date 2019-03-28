@@ -40,6 +40,8 @@ flutter:
     - assets/images/Grass.png
     - assets/images/GolfBall.png
     - assets/images/sprite.png
+    - assets/images/CannonBarrel.png
+    - assets/images/CannonStand.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/.
 

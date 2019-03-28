@@ -4,8 +4,8 @@ import 'package:flame/components/component.dart';
 import 'package:flame/components/resizable.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/components/composed_component.dart';
-import 'package:tobaccoFreeAmarilloApp/game/custom/util.dart';
-import 'package:tobaccoFreeAmarilloApp/game/horizon/config.dart';
+import '../custom/util.dart';
+import '../horizon/config.dart';
 
 class CloudManager extends PositionComponent with Resizable, ComposedComponent {
   Image spriteImage;

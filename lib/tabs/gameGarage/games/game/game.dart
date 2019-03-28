@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flame/game.dart';
 import 'package:tobaccoFreeAmarilloApp/game/Horizon/horizon.dart';
-import 'package:tobaccoFreeAmarilloApp/game/collision/collision_utils.dart';
-import 'package:tobaccoFreeAmarilloApp/game/game_config.dart';
-import 'package:tobaccoFreeAmarilloApp/game/game_over/game_over.dart';
-import 'package:tobaccoFreeAmarilloApp/game/t_rex/config.dart';
-import 'package:tobaccoFreeAmarilloApp/game/t_rex/t_rex.dart';
+import 'collision/collision_utils.dart';
+import 'game_config.dart';
+import 'game_over/game_over.dart';
+import 't_rex/config.dart';
+import 't_rex/t_rex.dart';
 
 enum TRexGameStatus { playing, waiting, gameOver }
 
