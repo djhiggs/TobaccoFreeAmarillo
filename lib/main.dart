@@ -243,5 +243,5 @@ const List<TabItem> TabItems = const <TabItem>[
   const TabItem(title: 'Home', icon: Icons.home),
   const TabItem(title: 'Game Garage', icon: Icons.gamepad),
   const TabItem(title: 'Settings', icon: Icons.settings),
-  const TabItem(title: 'Achievements', icon: Icons.more)
+  const TabItem(title: 'Achievements', icon: Icons.star)
 ];

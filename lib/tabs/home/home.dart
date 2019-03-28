@@ -31,9 +31,12 @@ class HomeState extends State<Home> {
           children: <Widget>[
             IntroPageView(),
             Container(
-                margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 445.0),
+                margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 385.0),
                 child: Center(
                   child: CalendarCarousel<Achievement>(
+                    iconColor: Colors.blueGrey,
+                    weekdayTextStyle: TextStyle(fontSize: 14.0, color: Colors.blueGrey),
+                    headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.blueGrey),
                     weekFormat: true,
                     weekDayFormat: WeekdayFormat.short,
                     height: 170.0,
