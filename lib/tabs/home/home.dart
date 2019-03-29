@@ -48,7 +48,9 @@ class HomeState extends State<Home> {
                     todayButtonColor: Colors.white,
                     todayTextStyle: TextStyle(color:Colors.black),
                   ),
-                ))
+                )
+              ),
+            
           ],
         ));
   }

@@ -23,7 +23,7 @@ class IntroPageItem extends StatelessWidget {
       child: Transform(
         alignment: FractionalOffset.bottomCenter,
         transform: Matrix4.translationValues(
-          xTranslation,
+          0.0,
           0.0,
           0.0,
         ),
@@ -67,8 +67,8 @@ class IntroPageItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Text(item.stat,
-              textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           categoryText,
           Container(
             width: 180.0,
