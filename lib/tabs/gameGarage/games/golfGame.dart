@@ -66,10 +66,11 @@ class GolfGame extends SideScroller{
   }
   @override
   void render(ui.Canvas canvas) {
-
+   // if(cannon !=null)
+    //  cannon.render(canvas);
     if(golfBall !=null && golfBall.screenPosition !=null&&false)
-      //camera =Position(golfBall.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
-    camera =Position(cannon.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
+      camera =Position(golfBall.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
+    //camera =Position(cannon.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
     super.render(canvas);
   }
 }

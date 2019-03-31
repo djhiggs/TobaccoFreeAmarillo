@@ -33,27 +33,45 @@ class Cannon extends Component {
         x: 0,
         y: 0,
         width: 64,
-        height: 64));
+        height: 40.0 + _floorHeight));
     _cannonBarrel.width = 100;
-    _cannonBarrel.height = 40;
+    _cannonBarrel.height = 40.0 + _floorHeight;
+
+    _cannonPosition =Vector2D(0, _floorHeight.toDouble());
   }
   
   bool active = true;
   SpriteComponent _cannonStand;
   SpriteComponent _cannonBarrel;
+  //relative to bottom left of cannon
+  final Vector2D _cannonStandPos =Vector2D(64, 64); 
+  final Vector2D _cannonBarrelPos =Vector2D(0, 0);
+  
+  //
+
+  Vector2D _cannonPosition; 
+  double _screenHeight = -1;
   @override
   void render(Canvas c) {
-    if(_cannonStand.y == 0){
-      var screenHeight = MediaQuery.of(_context).size.height;
-      _cannonStand.y = screenHeight - _height;
-      _cannonBarrel.y = screenHeight - 60;
-    }
+    if(_screenHeight == -1)//{
+      _screenHeight = MediaQuery.of(_context).size.height;
+    //_cannonStand.y = screenHeight - _height;
+    //_cannonBarrel.y = screenHeight - 60;
+    //}
+    _cannonBarrel.setByPosition(Position(_cannonPosition.x + _cannonBarrelPos.x,
+      _screenHeight - _cannonBarrel.height - _cannonPosition.y - _cannonBarrelPos.y));
+    _cannonBarrel.render(c);
+
+    _cannonStand.setByPosition(Position(_cannonPosition.x + _cannonStandPos.x,
+      _screenHeight - _cannonStand.height - _cannonPosition.y - _cannonStandPos.y));
+    _cannonStand.render(c);
   }
-  Position screenPosition; 
+  //Position screenPosition; 
   @override
   void update(double t) {
-    screenPosition = Position(_cannonStand.x,MediaQuery.of(_context).size.height-_cannonStand.height-_cannonStand.y+128);
-    // TODO: implement update
+    
+    //screenPosition = Position(
+    //  _cannonStand.x,MediaQuery.of(_context).size.height-_cannonStand.height-_cannonStand.y-_floorHeight);
   }
   
 }
