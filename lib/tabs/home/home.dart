@@ -10,6 +10,7 @@ class Home extends StatefulWidget {
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return HomeState(_person);
+    //List<> achievements = List<>();
   }
 }
 
@@ -26,6 +27,13 @@ class HomeState extends State<Home> {
         setState(() {});
       });
     }
+    _onPressed() {
+      List<bool> days = List<bool>();
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(title: Text("test")),
+      );
+    }
     return new Scaffold(
         body: new Stack(
           children: <Widget>[
@@ -33,7 +41,7 @@ class HomeState extends State<Home> {
             Container(
                 margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 385.0),
                 child: Center(
-                  child: CalendarCarousel<Achievement>(
+                  child: CalendarCarousel<bool>(
                     iconColor: Colors.blueGrey,
                     weekdayTextStyle: TextStyle(fontSize: 14.0, color: Colors.blueGrey),
                     headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.black),
@@ -47,11 +55,15 @@ class HomeState extends State<Home> {
                     todayBorderColor: Colors.white,
                     todayButtonColor: Colors.white,
                     todayTextStyle: TextStyle(color:Colors.black),
+                    //onDayPressed: (DateTime data, List<>),
+                    onDayPressed: (DateTime data, List<bool> days){
+                      _onPressed();
+                    }
                   ),
                 )
               ),
-            
           ],
-        ));
+        )
+    );
   }
 }
