@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:io';
+import 'dart:math';
 import 'item.dart';
 import 'genericGame.dart';
 
@@ -45,16 +48,35 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+/* Stream<int> countUpForever() async* {
+  int counter = 0;
+  while (true){
+    sleep(new Duration(seconds: 7));
+    counter += 5;
+  }
+
+}
+ */
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  int _boots = 0;
-  int _hammers = 0;
+  int counter = 0;
+  
+  Stream<int> countUpForever() async* {
+  while (true){
+    sleep(new Duration(seconds: 7));
+    counter += 5;
+  }
+
+}
+
+  Item hammer = new Item('Hammer', '+5 per click', 5, 25);
+  Item boot = new Item('Boot', '+2 per click', 2, 15);
+  Item car = new Item('Car', '+12 per click', 12, 100);
 
 
-  void _incrementHammer(){
+  /* void _incrementHammer(){
     setState(() {
       if (_counter >= 25) {
-        _hammers++;
+        hammer.amountOfItem++;
         _counter -= 25;
       }
       else{
@@ -64,11 +86,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementBoot() {
     setState(() {
       if (_counter >= 15){
-         _boots++;
+         boot.amountOfItem++;
          _counter -= 15;
          } 
     });
-  }
+  } */
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -76,16 +98,16 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter += (1 + (_boots * 2) + (_hammers * 5));
+      counter += (1 + (boot.amountOfItem * 2) + (hammer.amountOfItem * 5));
     });
   }
   
   
   void _resetGame(){
     setState(() {
-    _counter = 0;
-    _boots = 0;
-    _hammers = 0; 
+    counter = 0;
+    boot.amountOfItem = 0;
+    hammer.amountOfItem = 0; 
     });
   }
   @override
@@ -126,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have crushed this many cigarettes:',
             ),
             Text(
-              '$_counter',
+              '$counter',
               style: Theme.of(context).textTheme.display1,
             ),
             RaisedButton(
@@ -134,17 +156,23 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Reset Game'),
             ),
             RaisedButton(
-              onPressed: _incrementBoot,
-              child: Text('Add Boot (+5 Crushes Per Click): ' +_boots.toString()),
+              onPressed: boot.incrementItem,
+              child: Text('Add Boot' + boot.itemDescription + boot.amountOfItem.toString()),
             ),
             RaisedButton(
-              onPressed: _incrementHammer,
-              child:Text('Add Hammer (+2 Crushes per click): ' + _hammers.toString()),
+              onPressed: hammer.incrementItem,
+              child:Text('Add Hammer' + hammer.itemDescription + hammer.amountOfItem.toString()),
             ),
-            RaisedButton(
-              onPressed: _incrementCounter,
-              child: Text("Press to Crush!"),
-            )
+            ButtonTheme(
+              buttonColor: Color.fromARGB(100, 200, 200, 75),
+              minWidth: 150,
+              height: 75,
+              child: RaisedButton(
+                onPressed: _incrementCounter,
+                child: 
+                  Text("Press to Crush!"),
+              )
+            ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

@@ -3,6 +3,7 @@ class Item{
   String itemDescription;
   int crushPerClick;
   int price;
+  int amountOfItem = 0;
 
   Item(
     this.itemName,
@@ -10,5 +11,10 @@ class Item{
     this.crushPerClick,
     this.price
   );
+  void incrementItem() {
+    amountOfItem++;
 }
+
+}
+
 
