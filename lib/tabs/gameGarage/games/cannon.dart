@@ -48,11 +48,11 @@ class Cannon extends Component {
       _cannonStand.y = screenHeight - _height;
       _cannonBarrel.y = screenHeight - 60;
     }
-    // TODO: implement render
   }
-
+  Position screenPosition; 
   @override
   void update(double t) {
+    screenPosition = Position(_cannonStand.x,MediaQuery.of(_context).size.height-_cannonStand.height-_cannonStand.y+128);
     // TODO: implement update
   }
   

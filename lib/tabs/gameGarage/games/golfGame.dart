@@ -55,6 +55,7 @@ class GolfGame extends SideScroller{
     golfBall =GolfBall(context,_floorHeight);
     cannon = Cannon(context,_floorHeight);
     components.add(golfBall);
+    components.add(cannon);
   }
   @override
   void update(double dt) {
@@ -65,13 +66,10 @@ class GolfGame extends SideScroller{
   }
   @override
   void render(ui.Canvas canvas) {
-    //camera =golfBall.screenPosition;
-    //golfBall.render(canvas);
-    //for(int i = 0; i < 4; i++){
-    //      canvas.drawImage(grass, p, paint);
-    //}
-    if(golfBall !=null && golfBall.screenPosition !=null)
-      camera =Position(golfBall.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
+
+    if(golfBall !=null && golfBall.screenPosition !=null&&false)
+      //camera =Position(golfBall.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
+    camera =Position(cannon.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
     super.render(canvas);
   }
 }
