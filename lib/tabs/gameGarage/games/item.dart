@@ -13,8 +13,11 @@ class Item{
   );
   void incrementItem() {
     amountOfItem++;
-}
+  }
 
+  //void update(double dt) {
+  //  amountOfItem += increaseRate*dt;
+  //}
 }
 
 
