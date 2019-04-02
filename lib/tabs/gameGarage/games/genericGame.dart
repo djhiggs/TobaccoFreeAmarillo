@@ -8,12 +8,6 @@ class GenericGame extends game.BaseGame{
   GenericGame(this._context){
     title = "Game " + (count++).toString();
   }
-  start(){
-
-  }
-  stop(){
-
-  }
   open(){
     Navigator.push(_context, MaterialPageRoute(builder: (BuildContext context) {
       return this.widget;

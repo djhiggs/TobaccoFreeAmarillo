@@ -6,7 +6,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-import 'vector2D.dart';
+import '../vector2D.dart';
 
 class GolfBall extends Component{
   SpriteComponent _component;
