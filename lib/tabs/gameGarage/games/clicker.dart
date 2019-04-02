@@ -4,10 +4,11 @@ import 'dart:io';
 import 'dart:math';
 import 'item.dart';
 import 'genericGame.dart';
-
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'cigGameUpgrade.dart';
 
 class CigClick extends StatelessWidget {
+  MyHomePage homePage = MyHomePage(title: 'Cigarette Crush');
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -25,14 +26,20 @@ class CigClick extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Cigarette Crush'),
+      home: homePage,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
+  //double crushedCounter = -1;
+  MyHomePage({Key key, this.title}) : super(key: key){
+    SharedPreferences.getInstance().then((SharedPreferences s){
+      crushedCounter = s.getDouble("CrushedCounter");
+      if(crushedCounter == null)
+        crushedCounter = 0;
+    });
+  }
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -41,11 +48,23 @@ class MyHomePage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
+  List<CigGameUpgrade> passiveUpgrades = <CigGameUpgrade>[
 
+  ];
+  List<CigGameUpgrade> activeUpgrades = <CigGameUpgrade>[
+
+  ];
+  
+  int passiveIncreaseRate;
+  int activeIncreaseRate;
+  double crushedCounter = -1;
   final String title;
-
+  _MyHomePageState currentState;
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState(){
+    currentState = _MyHomePageState(this);
+    return currentState;
+  }
 }
 
 /* Stream<int> countUpForever() async* {
@@ -58,15 +77,16 @@ class MyHomePage extends StatefulWidget {
 }
  */
 class _MyHomePageState extends State<MyHomePage> {
-  int counter = 0;
+  MyHomePage homePage;
+  _MyHomePageState(this.homePage);
   
-  Stream<int> countUpForever() async* {
-  while (true){
-    sleep(new Duration(seconds: 7));
-    counter += 5;
-  }
+  //Stream<int> countUpForever() async* {
+  //while (true){
+  //  sleep(new Duration(seconds: 7));
+  //  counter += 5;
+  //}
 
-}
+  //}
 
   Item hammer = new Item('Hammer', '+5 per click', 5, 25);
   Item boot = new Item('Boot', '+2 per click', 2, 15);
@@ -98,14 +118,13 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      counter += (1 + (boot.amountOfItem * 2) + (hammer.amountOfItem * 5));
+      homePage.crushedCounter += (1 + (boot.amountOfItem * 2) + (hammer.amountOfItem * 5));
     });
   }
   
-  
   void _resetGame(){
     setState(() {
-    counter = 0;
+    homePage.crushedCounter = 0;
     boot.amountOfItem = 0;
     hammer.amountOfItem = 0; 
     });
@@ -148,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have crushed this many cigarettes:',
             ),
             Text(
-              '$counter',
+              '$homePage.crushedCounter',
               style: Theme.of(context).textTheme.display1,
             ),
             RaisedButton(
