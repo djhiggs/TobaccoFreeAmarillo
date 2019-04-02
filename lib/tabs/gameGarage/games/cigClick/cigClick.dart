@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'cigClickUpgrade.dart';
 import '../genericGame.dart';
 import 'cigClickWidget.dart';
+import 'dart:async';
 
 class CigClick extends GenericGame{
   CigClickWidget _cigClickWidget;
@@ -20,13 +21,13 @@ class CigClick extends GenericGame{
   double totalCigs = 0;
   double cigsOnClick = 1;
   @override
-  void update(double dt) {
-    totalCigs +=cigsPerSecond*dt;
-    super.update(dt);
-  }
-  @override
-  void render(Canvas canvas) {
-    _cigClickWidget.refresh();
-    super.render(canvas);
+  open() {
+    Timer.periodic(Duration(seconds: 1), 
+      (Timer timer){
+        const double dt = 1;
+        totalCigs +=cigsPerSecond*dt;
+        _cigClickWidget.refresh();
+      });
+    return super.open();
   }
 }

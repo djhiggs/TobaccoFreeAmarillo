@@ -44,6 +44,7 @@ class CigClickWidgetState extends State<CigClickWidget> {
       widgets.add(ListTile(
         leading: Icon(Icons.arrow_upward),
         title: Text(upgrade.title),
+        trailing: Text("λ" + upgrade.cost.toString()),
         subtitle: Text(upgrade.amountOwned.toString() + " owned"),
         onTap: (){
           if(game.totalCigs >= upgrade.cost){
