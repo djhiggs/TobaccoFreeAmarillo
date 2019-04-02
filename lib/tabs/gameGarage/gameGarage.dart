@@ -27,15 +27,63 @@ class GameGarage extends StatelessWidget {
   final double spacingFactor = 25;
   final double buttonTextScaleFactor = 1.75;
   final double descriptionScaleFactor = 0.9;
-  Widget build(BuildContext context) => new Container(
-    child: _renderGameList()
-  );
-  ListView _renderGameList(){
-    List<Widget> games = <Widget>[
-      Center(child: Text("Game Garage!!",
-      textScaleFactor: buttonTextScaleFactor,)),
-      Divider(color: Colors.black26,)
-    ];
+  //final List<> achievements;
+  Widget build(BuildContext context) {
+    ListTile makeListTile(index) => ListTile(
+        //When tile is tapped navigate to details page
+        onTap: () {
+          _gamesList[index].open();
+        },
+        contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        leading: Container(
+          padding: EdgeInsets.only(right: 12.0),
+          decoration: new BoxDecoration(
+              border: new Border(
+                  right: new BorderSide(width: 1.0, color: Colors.white24))),
+          child: Icon(Icons.check_circle, color: Colors.white),
+        ),
+        title: Text(
+          _gamesList[index].title,
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        // Show the points you can get from completing this achievement
+        subtitle: Row(
+          children: <Widget>[
+            Text(
+                _gamesList[index].description,
+                style: TextStyle(color: Colors.white))
+          ],
+        ),
+        // Show the difficulty of the achievement
+        //subtitle: Row(
+        //children: <Widget>[
+        //Icon(Icons.linear_scale, color: Colors.yellowAccent),
+        //Text(" Intermediate", style: TextStyle(color: Colors.white))
+        //],
+        //),
+        trailing:
+            Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0));
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: _gamesList.length,
+        itemBuilder: (context, index) {
+          return Card(
+            elevation: 8.0,
+            margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+            child: Container(
+                decoration:
+                    BoxDecoration(
+                      color: Colors.blueGrey,
+                    ),
+                child: makeListTile(index)),
+          );
+        },
+      ),
+    );
+  }
+    //child: _renderGameList()
+  /* ListView _renderGameList(){
+    List<Widget> games = <Widget>[];
     for(GenericGame game in _gamesList){
       games.add(
         ButtonTheme(
@@ -53,56 +101,9 @@ class GameGarage extends StatelessWidget {
           },)
         )
       );
-      /* (RaisedButton(
-        child: RoundedRectangleBorder(
-          child:
-        Text(game.title,textScaleFactor: buttonTextScaleFactor,)),
-        onPressed: (){
-          //game.open();
-        },
-      )); */
     }
     return ListView(
       children: games,
-    );
-  }
-  /*
-  @override
-  State<StatefulWidget> createState() {
-    return GameGarageState();
-  }
-  */
-  //non graphical methods
-  //_exitWindow(){
-  //  _parent.build(_context);
-  //  this.;
-  //}
+    ); */
+  
 }
-
-class TicTac extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      theme: new ThemeData(primaryColor: Colors.black),
-      home: new TicTac(),
-    );
-  }
-/*
-enum RunningModes
-{
-  Nothing,
-  BouncyGame,
-}
-
-class GameGarageState extends State<GameGarage> {
-  RunningModes mode;
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return new Container();
-    
-  }
-  buildGameTemplate(){
-  }
-
-}*/}
