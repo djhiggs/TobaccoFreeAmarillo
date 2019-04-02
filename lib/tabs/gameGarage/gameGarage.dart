@@ -4,6 +4,7 @@ import 'games/genericGame.dart';
 import 'games/sidescroller.dart';
 import 'games/golfGame.dart';
 import 'games/game/trexgame.dart';
+import 'games/clickerWrapper.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override
@@ -15,7 +16,7 @@ class GameGarage extends StatelessWidget {
     _gamesList = <GenericGame>[
     GolfGame(context,),
     TRex(context),
-    GenericGame(context),
+    ClickerWrapper(context),
     GenericGame(context),
     GenericGame(context),
   ];
