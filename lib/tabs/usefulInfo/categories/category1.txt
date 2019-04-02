@@ -1,0 +1,18 @@
+Category: Immediate Health Effects
+	Topic: Smoking
+		Passage: 
+			Paragraph: Smoking is incredibly rough on your body. When you smoke a cigarette, hookah, or any tobacco product, several things will happen to your body:
+			Paragraph: Your brain is stimulated by the nicotine in the tobacco, this makes you feel alert and helps improve your concentration. You may also begin to feel relaxed. Your heart rate increases as well to get more blood to your brain.
+			Paragraph: Those all sound great, but they do come with some downsides. Due to the increase in heart rate, your blood pressure also increases, which is hard on your body and your heart. Your skin, fingers, and toes will actually get less blood flow (since it is being directed towards your brain). This causes them to cool down. You may also get a headache if you have not smoked in a while or are smoking for the first time. This is caused from the sudden increase in bloodflow to your brain.
+			Paragraph: The smoke itself is not just funny colored air. It is actually carrying all the burned material from the tobacco and the other chemicals. This will of course travel down the lungs, but as it travels down, it will coat your throat. This residue will not only irritate your throat and your wind pipe, it is also able to be swallowed, which will then irritate your stomach, causing cramping and nausea, especially if you have not smoked recently or are a first time smoker.
+				Quiz:
+					Question: What does nicotine do to the brain?
+						Choice: Slows it down.
+						Choice: Makes it happy.
+						Answer: Improves alertness.
+						Choice: Depresses you.
+					Question: Which of these is a downside to smoking a cigarette?
+						Choice: Increased heart rate.
+						Choice: Irritated throat.
+						Choice: Decreased blood flow to skin, fingers, and toes.
+						Answer: All of these are downsides.
