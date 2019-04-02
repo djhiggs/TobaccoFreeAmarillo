@@ -4,7 +4,7 @@ import 'usefulinfo.dart';
 // This class should pull from usefulinfo.dart but I am failing to get this to pull properly
 
 
-
+/*
 class PassageType {
   PassageType(this.title, [this.children = const <PassageType>[]]);
   final String title;
@@ -44,7 +44,7 @@ class PassageType {
     )
   ];
 
-
+*/
 // Ignore this code
 
 /*class PassageTypeTile extends StatelessWidget {
@@ -63,15 +63,18 @@ class PassageType {
 }*/
 
 // This code should work, but I can't figure out why I keep getting errors
-
+/* 
 class PassageTypeTile extends StatelessWidget{
-  const PassageTypeTile(this.infoBox);
-
-  final PassageType infoBox;
-
+  //const PassageTypeTile();
+  PassageTypeTile(this.index) {
+    infoData = UsefulInfo(index);
+  }
+  int index;
+  //final PassageType infoBox = PassageType(title: "",);
+  UsefulInfo infoData;
   Widget _buildTiles(PassageType root) {
     return ExpansionTile(
-      key: PageStorageKey<PassageType>(root),
+      key: PageStorageKey<int>(root),
       title: Text(root.title),
       children: root.children.map<Widget>(_buildTiles).toList(),
     );
@@ -79,8 +82,31 @@ class PassageTypeTile extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return _buildTiles(infoBox);
+    return ExpansionTile(
+      key: PageStorageKey<int>(root),
+      title: Text(root.title),
+      children: root.children.map<Widget>(_buildTiles).toList(),
+    );
   }
-}
+} */
 
+class InfoPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return null;
+  }
+
+}
+class InfoPageState extends State<InfoPage>{
+  List<UsefulInfo> data;
+  InfoPageState(this.data){
+
+  }
+  @override
+  Widget build(BuildContext context) {
+    
+  }
+  
+}
 
