@@ -17,13 +17,12 @@ import 'dart:ui';
 
 import 'package:flame/anchor.dart';
 import 'package:flame/palette.dart';
-import '../sidescroller.dart';
 //import 'package:box2d_flame/box2d.dart';
 import '../vector2D.dart';
 import 'golfBall.dart';
 import 'cannon.dart';
 
-class GolfGame extends SideScroller{
+class GolfGame extends GenericGame{
 
   final double _diameter = 128;
   final int _floorHeight = 128;

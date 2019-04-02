@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tobaccoFreeAmarilloApp/tabs/gameGarage/games/tRex.dart';
 import 'games/genericGame.dart';
-import 'games/sidescroller.dart';
 import 'games/golfGame/golfGame.dart';
 import 'games/game/trexgame.dart';
-import 'games/clickerWrapper.dart';
+import 'games/cigClick/cigClick.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override
@@ -14,9 +13,9 @@ class GameGarage extends StatelessWidget {
   static List<GenericGame> _gamesList;
   GameGarage(BuildContext context){
     _gamesList = <GenericGame>[
-    GolfGame(context,),
+    //GolfGame(context,),
     TRex(context),
-    ClickerWrapper(context),
+    CigClick(context),
     GenericGame(context),
     GenericGame(context),
   ];

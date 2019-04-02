@@ -5,7 +5,6 @@ import 'dart:math';
 import 'item.dart';
 import 'genericGame.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'cigGameUpgrade.dart';
 
 class CigClick extends StatelessWidget {
   MyHomePage homePage = MyHomePage(title: 'Cigarette Crush');
@@ -48,12 +47,7 @@ class MyHomePage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-  List<CigGameUpgrade> passiveUpgrades = <CigGameUpgrade>[
 
-  ];
-  List<CigGameUpgrade> activeUpgrades = <CigGameUpgrade>[
-
-  ];
   
   int passiveIncreaseRate;
   int activeIncreaseRate;
