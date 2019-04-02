@@ -41,7 +41,7 @@ class GameGarage extends StatelessWidget {
           decoration: new BoxDecoration(
               border: new Border(
                   right: new BorderSide(width: 1.0, color: Colors.white24))),
-          child: Icon(Icons.check_circle, color: Colors.white),
+          child: Icon(Icons.gamepad, color: Colors.white),
         ),
         title: Text(
           _gamesList[index].title,
