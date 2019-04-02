@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:io';
+import 'dart:math';
 import 'item.dart';
 import 'genericGame.dart';
-
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'cigGameUpgrade.dart';
 
 class CigClick extends StatelessWidget {
+  MyHomePage homePage = MyHomePage(title: 'Cigarette Crush');
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -22,14 +26,20 @@ class CigClick extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Cigarette Crush'),
+      home: homePage,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
+  //double crushedCounter = -1;
+  MyHomePage({Key key, this.title}) : super(key: key){
+    SharedPreferences.getInstance().then((SharedPreferences s){
+      crushedCounter = s.getDouble("CrushedCounter");
+      if(crushedCounter == null)
+        crushedCounter = 0;
+    });
+  }
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -38,23 +48,55 @@ class MyHomePage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
+  List<CigGameUpgrade> passiveUpgrades = <CigGameUpgrade>[
 
+  ];
+  List<CigGameUpgrade> activeUpgrades = <CigGameUpgrade>[
+
+  ];
+  
+  int passiveIncreaseRate;
+  int activeIncreaseRate;
+  double crushedCounter = -1;
   final String title;
-
+  _MyHomePageState currentState;
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState(){
+    currentState = _MyHomePageState(this);
+    return currentState;
+  }
 }
 
+/* Stream<int> countUpForever() async* {
+  int counter = 0;
+  while (true){
+    sleep(new Duration(seconds: 7));
+    counter += 5;
+  }
+
+}
+ */
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  int _boots = 0;
-  int _hammers = 0;
+  MyHomePage homePage;
+  _MyHomePageState(this.homePage);
+  
+  //Stream<int> countUpForever() async* {
+  //while (true){
+  //  sleep(new Duration(seconds: 7));
+  //  counter += 5;
+  //}
+
+  //}
+
+  Item hammer = new Item('Hammer', '+5 per click', 5, 25);
+  Item boot = new Item('Boot', '+2 per click', 2, 15);
+  Item car = new Item('Car', '+12 per click', 12, 100);
 
 
-  void _incrementHammer(){
+  /* void _incrementHammer(){
     setState(() {
       if (_counter >= 25) {
-        _hammers++;
+        hammer.amountOfItem++;
         _counter -= 25;
       }
       else{
@@ -64,11 +106,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementBoot() {
     setState(() {
       if (_counter >= 15){
-         _boots++;
+         boot.amountOfItem++;
          _counter -= 15;
          } 
     });
-  }
+  } */
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -76,16 +118,15 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter += (1 + (_boots * 2) + (_hammers * 5));
+      homePage.crushedCounter += (1 + (boot.amountOfItem * 2) + (hammer.amountOfItem * 5));
     });
   }
   
-  
   void _resetGame(){
     setState(() {
-    _counter = 0;
-    _boots = 0;
-    _hammers = 0; 
+    homePage.crushedCounter = 0;
+    boot.amountOfItem = 0;
+    hammer.amountOfItem = 0; 
     });
   }
   @override
@@ -126,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have crushed this many cigarettes:',
             ),
             Text(
-              '$_counter',
+              '$homePage.crushedCounter',
               style: Theme.of(context).textTheme.display1,
             ),
             RaisedButton(
@@ -134,17 +175,23 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Reset Game'),
             ),
             RaisedButton(
-              onPressed: _incrementBoot,
-              child: Text('Add Boot (+5 Crushes Per Click): ' +_boots.toString()),
+              onPressed: boot.incrementItem,
+              child: Text('Add Boot' + boot.itemDescription + boot.amountOfItem.toString()),
             ),
             RaisedButton(
-              onPressed: _incrementHammer,
-              child:Text('Add Hammer (+2 Crushes per click): ' + _hammers.toString()),
+              onPressed: hammer.incrementItem,
+              child:Text('Add Hammer' + hammer.itemDescription + hammer.amountOfItem.toString()),
             ),
-            RaisedButton(
-              onPressed: _incrementCounter,
-              child: Text("Press to Crush!"),
-            )
+            ButtonTheme(
+              buttonColor: Color.fromARGB(100, 200, 200, 75),
+              minWidth: 150,
+              height: 75,
+              child: RaisedButton(
+                onPressed: _incrementCounter,
+                child: 
+                  Text("Press to Crush!"),
+              )
+            ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

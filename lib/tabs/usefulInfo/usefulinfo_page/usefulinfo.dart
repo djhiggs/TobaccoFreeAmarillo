@@ -2,11 +2,13 @@ import 'dart:io';
 
 class UsefulInfo
 {
+  UsefulInfo(){
+    //infoBox(index);
+  } 
   var quizPassed = false;
 
   String topic;
   String passage;
-
   //Pulls data from infoBox/infoBox$index.txt and assimilates it into 'this' object.
   infoBox(int index) async
   {
@@ -15,5 +17,6 @@ class UsefulInfo
     for(int i = 1; i < lines.length; i++)
       passage += lines[i];
   }
+
 
 }

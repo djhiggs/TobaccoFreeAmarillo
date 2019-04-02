@@ -21,16 +21,19 @@ import '../sidescroller.dart';
 //import 'package:box2d_flame/box2d.dart';
 import '../vector2D.dart';
 import 'golfBall.dart';
+import 'cannon.dart';
 
 class GolfGame extends SideScroller{
 
   final double _diameter = 128;
-  final double _floorHeight = 128;
+  final int _floorHeight = 128;
   //Body golfBallBody;
   //World world;
   GolfBall golfBall;
+
   Sprite grass;
   BuildContext context;
+  Cannon cannon;
   GolfGame(this.context) : super(context){
     this.title = "Golf Game";
     Flame.images.load("Grass.png");
@@ -47,11 +50,12 @@ class GolfGame extends SideScroller{
         c.x = i*32.0;
         components.add(c);
       }
-
     }
 
     golfBall =GolfBall(context,_floorHeight);
+    cannon = Cannon(context,_floorHeight);
     components.add(golfBall);
+    components.add(cannon);
   }
   @override
   void update(double dt) {
@@ -62,13 +66,11 @@ class GolfGame extends SideScroller{
   }
   @override
   void render(ui.Canvas canvas) {
-    //camera =golfBall.screenPosition;
-    //golfBall.render(canvas);
-    //for(int i = 0; i < 4; i++){
-    //      canvas.drawImage(grass, p, paint);
-    //}
-    if(golfBall !=null && golfBall.screenPosition !=null)
+   // if(cannon !=null)
+    //  cannon.render(canvas);
+    if(golfBall !=null && golfBall.screenPosition !=null&&false)
       camera =Position(golfBall.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
+    //camera =Position(cannon.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
     super.render(canvas);
   }
 }

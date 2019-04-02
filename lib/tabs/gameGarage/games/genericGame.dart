@@ -4,9 +4,11 @@ import 'package:flame/flame.dart' as flame;
 class GenericGame extends game.BaseGame{
   static int count = 0;
   String title;
+  String description;
   BuildContext _context;
   GenericGame(this._context){
     title = "Game " + (count++).toString();
+    description = "This is a game";
   }
   open(){
     Navigator.push(_context, MaterialPageRoute(builder: (BuildContext context) {

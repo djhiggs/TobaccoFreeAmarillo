@@ -27,10 +27,9 @@ class Person
   bool soundEnabled;
   SmokeChartState smokeChart; 
   int zipCode;
-
+  int expectedSmokingAmount(DateTime time) => 3;
   _initialize() async
   {
-
     db = Database();
     smokeChart = SmokeChartState();
     nickname = "";

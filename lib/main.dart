@@ -7,6 +7,7 @@ import 'tabs/home/home.dart' as _firstTab;
 import 'tabs/gameGarage/gameGarage.dart' as _secondTab;
 import 'tabs/settings/settings.dart' as _thirdTab;
 import 'tabs/achievement_page/achievement_page.dart' as _achievementPage;
+import 'tabs/usefulInfo/usefulinfo_page/info_page.dart' as _infoTab;
 
 
 void main() => runApp(new MaterialApp(
@@ -125,8 +126,10 @@ checkIfFirstLaunch() {
       children: <Widget>[
         new _firstTab.Home(),
         new _secondTab.GameGarage(context),
+        //new _infoTab.PassageTypeTile(infoBox),
+        new _achievementPage.AchievementPage(achievements: achievements),
         new _thirdTab.StatefulSettings(),
-        new _achievementPage.AchievementPage(achievements: achievements)
+        
       ],
     ),
 
@@ -242,6 +245,7 @@ class TabItem {
 const List<TabItem> TabItems = const <TabItem>[
   const TabItem(title: 'Home', icon: Icons.home),
   const TabItem(title: 'Game Garage', icon: Icons.gamepad),
+  const TabItem(title: 'Useful Info', icon: Icons.book),
+  const TabItem(title: 'Achievements', icon: Icons.star),
   const TabItem(title: 'Settings', icon: Icons.settings),
-  const TabItem(title: 'Achievements', icon: Icons.more)
 ];
