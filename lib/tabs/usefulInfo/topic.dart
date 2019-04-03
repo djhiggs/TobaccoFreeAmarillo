@@ -12,8 +12,8 @@ class Topic extends StatelessWidget{
     for(var paragraph in passage){
       children.add(Padding(child: Text(paragraph), padding: EdgeInsets.symmetric(
         vertical: 0,
-        horizontal: 16
-      ),));
+        horizontal: 16,
+      )));
       children.add(Text(""));//empty line
     }
     //for the quiz
