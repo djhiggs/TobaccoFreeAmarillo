@@ -34,7 +34,7 @@ class Topic extends StatelessWidget{
     //
     return ExpansionTile(
       title: Text(header),
-      initiallyExpanded: true,
+      initiallyExpanded: false,
       children: children,
     );
   }
