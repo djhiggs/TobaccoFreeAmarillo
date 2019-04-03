@@ -1,7 +1,5 @@
 
 import 'dart:ui';
-
-import 'package:flame/anchor.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/position.dart';
@@ -41,10 +39,10 @@ class Cannon extends Component {
     _cannonBarrel.height = 30;
 
     _cannonPosition =Vector2D(0, _floorHeight.toDouble());
-    _dragDownDetails =DragDownDetails();
+    
     //_cannonBarrel.anchor =;
   }
-  
+  //DragUpdateDetails dragUpdateDetails = DragUpdateDetails();
   bool active = true;
   SpriteComponent _cannonStand;
   SpriteComponent _cannonBarrel;
@@ -76,17 +74,17 @@ class Cannon extends Component {
     _cannonBarrel.render(c);
   }
   //Position screenPosition; 
-  DragDownDetails _dragDownDetails;
   @override
   void update(double t) {
     //screenPosition = Position(
     //  _cannonStand.x,MediaQuery.of(_context).size.height-_cannonStand.height-_cannonStand.y-_floorHeight);
-    var p1 =Vector2D(
-      _dragDownDetails.globalPosition.dx,
-      _screenHeight - _dragDownDetails.globalPosition.dy);
-      p1 -= _cannonPosition;
-      power = p1.length();
-      _cannonBarrel.angle = p1.angle() + pi;
+    
+    //var p1 =Vector2D(
+    //  dragUpdateDetails.globalPosition.dx,
+    //  _screenHeight - dragUpdateDetails.globalPosition.dy);
+    //  p1 -= _cannonPosition;
+    //  power = p1.length();
+    //  _cannonBarrel.angle = p1.angle() + pi;
   }
   double power;//user's desired firing power
   void fire(GolfGame game){

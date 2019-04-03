@@ -13,7 +13,7 @@ class Category extends StatelessWidget{
       children.add(topic.build(context));
     return ExpansionTile(
       title: Text(header,textScaleFactor: 1.4,),
-      initiallyExpanded: true,
+      initiallyExpanded: false,
       children: children,
     );
   }
