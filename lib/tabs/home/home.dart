@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import '../settings/person.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
-import '../achievement_page/achievement.dart';
 import 'intro_page_view.dart';
 
 class Home extends StatefulWidget {
   Person _person;
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return HomeState(_person);
     //List<> achievements = List<>();
   }

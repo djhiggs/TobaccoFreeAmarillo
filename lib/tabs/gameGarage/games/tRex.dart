@@ -13,10 +13,8 @@ import 'game/trexgame.dart';
 
 import 'dart:ui' as ui;
 
-import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' as material;
-import 'package:flutter/services.dart';
 import 'game/game.dart';
 
 class TRex extends GenericGame
@@ -32,13 +30,12 @@ class TRex extends GenericGame
     });
     Flame.audio.disableLog();
 
-    Flame.util.addGestureRecognizer(new TapGestureRecognizer()
+    Flame.util.addGestureRecognizer(TapGestureRecognizer()
       ..onTapDown = (TapDownDetails evt) => tRexGame.onTap());
 
     //be careful with this because it messes with the ui
     //SystemChrome.setEnabledSystemUIOverlays([]);
   }
   @override
-  // TODO: implement widget
   Widget get widget => material.Material(child: GameWrapper(tRexGame));
 }
