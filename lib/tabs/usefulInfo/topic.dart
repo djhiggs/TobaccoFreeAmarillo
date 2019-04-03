@@ -4,7 +4,7 @@ class Topic extends StatelessWidget{
   String header;
   //composed of "Paragraph: "'s
   List<String> passage;
-  List<Question> quiz;
+  List<Question> quiz = List();
 
   @override
   Widget build(BuildContext context) {
