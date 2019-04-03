@@ -16,3 +16,62 @@ Category: Immediate Health Effects
 						Choice: Irritated throat.
 						Choice: Decreased blood flow to skin, fingers, and toes.
 						Answer: All of these are downsides.
+	Topic: Smokeless Tobacco
+		Passage: 
+			Paragraph: Smokeless Tobacco, like chewing tobacco or snuff may seem to be easier on you than regular smoking, however it has its own set of problems:
+			Paragraph: Like smoking, the smokeless tobacco has nicotine. Unlike regular smoking, nicotine enters your body through your gums and other soft lining in your mouth. Once in your blood, the nicotine makes it's way to the rest of your body where it will begin to work the same way it does when you smoke. You may begin to feel relaxed as the nicotine begins to take effect and you will also feel more alert.
+			Paragraph: As with smoking, there are downsides to using smokeless tobacco. Most are the same, however one major difference is you won't have any immediate effects on your wind pipe or lungs. You are not supposed to actually swallow the dip or snuff in your mouth, but it is unavoidable that some will be swallowed. This tobacco juice is pretty hard on your stomach, easily causing cramps and nausea. It also can dry out your mouth and lips.
+			Paragraph: The nicotine increases your heart rate (to increase blood flow to your now more alert brain), which means your blood pressure also increases, which is hard on your body and your heart. Your skin, fingers, and toes will actually get less blood flow (since it is being directed towards your brain). This causes them to cool down. You may also get a headache if you have not dipped or chewed in a while or are trying it for the first time. This is caused from the sudden increase in bloodflow to your brain.
+				Quiz: 
+					Question: In what way is smokeless tobacco different from smoking?
+						Choice: It has a brightly colored candy coating.
+						Choice: It coats your lungs in tar.
+						Answer: It does not immediately effect your lungs or wind pipe.
+						Choice: It makes your brain more alert.
+	Topic: Vaping
+		Passage: 
+			Paragraph: Vaping and e-cigarettes are a bit unique from smoking or smokeless tobacco in that it doesn't use tobacco. Because of this, alot of people think that vaping is the safer alternative to using tobacco products. Unforutuntely, this is not true.
+			Paragraph: Vaping does not burn tobacco like smoking does. It still contains nicotine in the form of a usually flavored liquid that gets vaporized and then inhaled. This nicotine then acts on the body in the exact same way that it does when using traditional tobacco products like cigarettes. Your brain is stimulated by the nicotine, this makes you feel alert and helps improve your concentration. You may also begin to feel relaxed. Your heart rate increases as well to get more blood to your brain.
+			Paragraph: Since you don't have to worry about burning tobacco, then you might think you are avoiding all the nasty side effects that smoking carries with it, right? That is unfortunately wrong. The liquid vaporized contains chemicals such as Propylene glycol and glycerin. These chemicals are irritants for soft tissues like those found in your mouth, throat, and eyes. This can make your eyes, tongue, and throat itchy and sore.
+			Paragraph: On top of that, Propylene glycol and glycerin, when heated and vaporized can also turn into formaldehyde and acetaldehyde. These chemicals are known to cause cancer, but can more immediately further irritate your air ways and soft tissues in your mouth.
+				Quiz: 
+					Question: How does vaping get nicotine into your body?
+						Choice: It burns tobacco, releasing this nicotine into the air.
+						Choice: It pierces your tongue, pushing the nicotine dirctly into your blood.
+						Choice: It is the vaping liquid is swallowed like cough medicine.
+						Answer:	None of the above.					
+Category: Long Term Effects on the Body 
+	Topic: Smoking - Heart and Stroke
+		Passage: 
+			Paragraph: Smoking is pretty hard on your body, especially for people who use it for a long time. When you smoke for a long time, you increase your chances of having many health problems. You double or even quadruple your chances of having heart disease and stroke. This is because your blood vessels thicken due to the long-term smoking, which makes them more narrow. This causes your blood pressure to increase (even when not smoking!) which which puts strain on your heart and also increases the chance for clots to form. When you do get a clot, its effect is determined depending on where you get it.
+			Paragraph: If you clot in your legs or another deep vein in your body (called thrombosis) you can feel pain and swelling. If you clot in the arteries and veins around your heart, you run the risk of having a heart attack. If you have a clot by your brain, you have a stroke. While the thrombosis isn't neccesarily life threatening by itself, if you are clotting in those areas of your body, there is a good chance you are going to have clotting around your heart and brain as well, and a clot in those areas can be extremely damaging to your body, if not lethal.
+				Quiz: 
+					Question: 
+						Choice: 
+						Choice: 
+						Choice:
+						Choice:						
+	Topic: 
+		Passage: 
+			Paragraph: 
+			Paragraph: 
+			Paragraph: 
+			Paragraph: 
+				Quiz: 
+					Question: 
+						Choice: 
+						Choice: 
+						Choice:
+						Choice:					
+	Topic: 
+		Passage: 
+			Paragraph: 
+			Paragraph: 
+			Paragraph: 
+			Paragraph: 
+				Quiz: 
+					Question: 
+						Choice: 
+						Choice: 
+						Choice:
+						Choice:					
