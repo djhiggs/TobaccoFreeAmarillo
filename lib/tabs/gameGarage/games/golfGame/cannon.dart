@@ -8,12 +8,15 @@ import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import '../vector2D.dart';
+import 'golfGame.dart';
+import 'golfBall.dart';
+import 'dart:math';
 class Cannon extends Component {
   final _width = 128;
   final _height = 128;
-  BuildContext _context;
+  BuildContext context;
   int _floorHeight;
-  Cannon(this._context,this._floorHeight){
+  Cannon(this.context,this._floorHeight){
     if(!Flame.images.loadedFiles.containsKey("CannonStand.png"))
       Flame.images.load("CannonStand.png");
     if(!Flame.images.loadedFiles.containsKey("CannonBarrel.png"))
@@ -38,6 +41,7 @@ class Cannon extends Component {
     _cannonBarrel.height = 30;
 
     _cannonPosition =Vector2D(0, _floorHeight.toDouble());
+    _dragDownDetails =DragDownDetails();
     //_cannonBarrel.anchor =;
   }
   
@@ -55,7 +59,7 @@ class Cannon extends Component {
   @override
   void render(Canvas c) {
     if(_screenHeight == -1){
-      _screenHeight = MediaQuery.of(_context).size.height;
+      _screenHeight = MediaQuery.of(context).size.height;
       //position =Anchor(Offset.fromDirection(-math.pi/2,_screenHeight));
 
     //_cannonStand.y = screenHeight - _height;
@@ -72,11 +76,28 @@ class Cannon extends Component {
     _cannonBarrel.render(c);
   }
   //Position screenPosition; 
+  DragDownDetails _dragDownDetails;
   @override
   void update(double t) {
-    _cannonBarrel.angle = 0.0;
     //screenPosition = Position(
     //  _cannonStand.x,MediaQuery.of(_context).size.height-_cannonStand.height-_cannonStand.y-_floorHeight);
+    var p1 =Vector2D(
+      _dragDownDetails.globalPosition.dx,
+      _screenHeight - _dragDownDetails.globalPosition.dy);
+      p1 -= _cannonPosition;
+      power = p1.length();
+      _cannonBarrel.angle = p1.angle() + pi;
   }
+  double power;//user's desired firing power
+  void fire(GolfGame game){
+    var direction = Vector2D.fromAngle(_cannonBarrel.angle);
+    var pos = _cannonPosition + direction*_width.toDouble()/2;
+    var velocity =direction*power;
+    GolfBall golfBall =GolfBall(context, _floorHeight);
+    golfBall.golfBallLocation =pos;
+    golfBall.golfBallVelocity =velocity;
+    game.add(golfBall);
+  }
+  
   
 }

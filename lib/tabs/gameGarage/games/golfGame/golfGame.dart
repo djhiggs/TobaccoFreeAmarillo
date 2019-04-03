@@ -71,5 +71,6 @@ class GolfGame extends GenericGame{
       camera =Position(golfBall.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
     //camera =Position(cannon.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
     super.render(canvas);
+    
   }
 }

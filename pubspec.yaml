@@ -41,7 +41,6 @@ flutter:
     - assets/images/sprite.png
     - assets/images/CannonBarrel.png
     - assets/images/CannonStand.png
-    - categories/
     - lib/tabs/usefulInfo/categories/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/.

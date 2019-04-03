@@ -13,7 +13,7 @@ class GameGarage extends StatelessWidget {
   static List<GenericGame> _gamesList;
   GameGarage(BuildContext context){
     _gamesList = <GenericGame>[
-    //GolfGame(context,),
+    GolfGame(context,),
     TRex(context),
     CigClick(context),
     GenericGame(context),
