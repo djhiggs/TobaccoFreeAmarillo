@@ -5,6 +5,7 @@ import 'topic.dart';
 
 
 class Categories{
+  // Parses out all the raw text from category1.txt into usable lists for display in Useful Info tab.
   List<Category> categories;
   static const int _categoryCount = 1; 
   Future import() async{

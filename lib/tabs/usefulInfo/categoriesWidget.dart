@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'categories.dart';
+
+// Builds the Expanding tiles Widgets for the drop down children and children of those children
 class CategoriesWidget extends StatefulWidget{
   Categories _categories =Categories();
   @override
