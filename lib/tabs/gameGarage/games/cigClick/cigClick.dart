@@ -9,7 +9,7 @@ class CigClick extends GenericGame{
   CigClickWidget cigClickWidget;
   CigClick(BuildContext context) : super(context){
     this.title = "Cig Click";
-    cigClickWidget =CigClickWidget(this);
+    cigClickWidget = CigClickWidget(this);
   }
 
   @override

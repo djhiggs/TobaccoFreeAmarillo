@@ -35,8 +35,8 @@ class CigClickWidgetState extends State<CigClickWidget> {
   //to destroy cig's
   List<Widget> buildList(){
     List<Widget> widgets = <Widget>[
-      IconButton(icon: Icon(Icons.smoking_rooms),
-        iconSize: 64,
+        IconButton(icon: Icon(Icons.smoking_rooms),
+        iconSize: 124,
         onPressed: (){
           game.totalCigs +=game.cigsOnClick;
         },
@@ -66,6 +66,7 @@ class CigClickWidgetState extends State<CigClickWidget> {
           }
         },
       ));
+      
     }
     return widgets;
   }
