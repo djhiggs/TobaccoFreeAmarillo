@@ -51,24 +51,21 @@ Category: Long Term Effects on the Body
 						Choice: 
 						Choice:
 						Choice:						
-	Topic: 
+	Topic: Smoking - Respiratory
 		Passage: 
-			Paragraph: 
-			Paragraph: 
-			Paragraph: 
-			Paragraph: 
+			Paragraph: Smoking, as one might expect, puts alot of nasty pollutants into your lungs. It's main way of delivering nicotine to your blood and brain is through all the tiny blood vessels in your lungs. These vessels are attached to small air sacs that actually catch the air you breath in (called alveoli). Alveoli are very delicate. When you smoke, you fill them with junk that, after a while, causes all kinds of problems. 
+			Paragraph: First up, if you have asthma, smoking can trigger an attack and even worsen the attacks you already have. Beyond that, you have a much higher chance of developing one or mulitple forms of lung cancer, since most lung cancers can be caused by smoking. You also are more likely to develop emphysema, a condition where your alveoli are damaged and swollen, reducing their effectiveness, which leaves you feeling breathless even when not exercising. Longterm smokers also can develop chronic bronchitis, so you basically feel like you have bronchitis all the time. These last two diseases are known as Chronic Obstructive Pulmonary Disease, or COPD, and people who smoke are 12 to 13 times more likely to be killed by these diseases. You essentially suffocate yourself to death.
 				Quiz: 
 					Question: 
 						Choice: 
 						Choice: 
 						Choice:
 						Choice:					
-	Topic: 
+	Topic: Smoking - Other Risks
 		Passage: 
-			Paragraph: 
-			Paragraph: 
-			Paragraph: 
-			Paragraph: 
+			Paragraph: Cardiovascular (heart and blood vessels) and Respiratory problems are not the only things smoking can do to your body. Smoking tobacco is rough on your whole body. Your risk for getting cancer shoots up to almost all of your organs in your body. Your bladder, cervix, colon, rectum, throat, kidney, liver, vocal chords, liver, mouth, tongue, and pancreas all have increased risk of developing cancer. It can even cause leukemia in your blood!
+			Paragraph: It hurts your bones and joints by increasing your chances of getting arthritis and making inflammation happen much easier. Your bone density and strength is also reduced, giving you weaker bones. You also are 30 to 40% more likely to get diabetes compared to a person who doesn't smoke. Your eyes can develop cataracts (clouding of your lenses, making it harder to see) and can also damage your retina in your eye (macular degeneration). The retina is what receives the light that enters your eye, allowing you to see.
+			Paragraph: Finally, smoking has severe effects on pregnant women, especially the baby. Women who smoke have increased liklihood for babies being born too early, babies having low birth weight, and birth defects like clefts in their mouth and face. But that is if you are lucky enough to have the baby live. Smoking also leads to stillborn babies or sudden infant death syndrome (SIDS or crib death). Men are also effected, reducing fertility and increasing the chance for birth defects due to mutated sperm.
 				Quiz: 
 					Question: 
 						Choice: 
