@@ -10,10 +10,13 @@ class Topic extends StatelessWidget{
   Widget build(BuildContext context) {
     var children = <Widget>[];
     for(var paragraph in passage){
-      children.add(Padding(child: Text(paragraph), padding: EdgeInsets.symmetric(
+      children.add(Padding(child: Text(paragraph, 
+      style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.5),), 
+      padding: EdgeInsets.symmetric(
         vertical: 0,
         horizontal: 16,
-      )));
+      ),
+      ));
       children.add(Text(""));//empty line
     }
     //for the quiz
