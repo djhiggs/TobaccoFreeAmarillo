@@ -35,13 +35,14 @@ class CigClickWidgetState extends State<CigClickWidget> {
   //to destroy cig's
   List<Widget> buildList(){
     List<Widget> widgets = <Widget>[
-        IconButton(icon: Icon(Icons.smoking_rooms),
-        iconSize: 124,
-        onPressed: (){
-          game.totalCigs +=game.cigsOnClick;
-        },
+      Text(
+        "Total Cigarettes Crushed",
+        style: TextStyle(fontSize: 24),
       ),
-      Text("Total Cigs: " + game.totalCigs.round().toString()),
+      Text(
+        game.totalCigs.round().toString(),
+        style: TextStyle(fontSize: 36),
+      ),
       ListTile(title: Text("Upgrades"),)];
       Timer(Duration(milliseconds: 100),(){
         const double dt = 0.1;
@@ -68,6 +69,13 @@ class CigClickWidgetState extends State<CigClickWidget> {
       ));
       
     }
+    widgets.add(
+      IconButton(icon: Icon(Icons.smoking_rooms),
+        iconSize: 100,
+        onPressed: (){
+          game.totalCigs +=game.cigsOnClick;
+        },
+      ));
     return widgets;
   }
   
