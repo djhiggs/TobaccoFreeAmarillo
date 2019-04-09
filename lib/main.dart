@@ -73,8 +73,7 @@ class TabsState extends State<Tabs> {
   List<Achievement> achievements = List<Achievement>();
   PageController _tabController;
 TabsState(){
-  achievements.add(Achievement(true, "Achievement 1", "description", "5"));
-  achievements.add(Achievement(false, "Achievement 2", "description", "10"));
+
 }
   var _title_app = null;
   int _tab = 0;
@@ -127,7 +126,7 @@ checkIfFirstLaunch() {
         new _firstTab.Home(),
         new _secondTab.GameGarage(context),
         new CategoriesWidget(),
-        new _achievementPage.AchievementPage(achievements: achievements),
+        new _achievementPage.AchievementPage(),
         new _thirdTab.StatefulSettings(),
         
       ],
@@ -244,8 +243,8 @@ class TabItem {
 
 const List<TabItem> TabItems = const <TabItem>[
   const TabItem(title: 'Home', icon: Icons.home),
-  const TabItem(title: 'Game Garage', icon: Icons.gamepad),
+  const TabItem(title: 'Games', icon: Icons.gamepad),
   const TabItem(title: 'Useful Info', icon: Icons.book),
-  const TabItem(title: 'Achievements', icon: Icons.star),
+  const TabItem(title: 'Trophies', icon: Icons.star),
   const TabItem(title: 'Settings', icon: Icons.settings),
 ];

@@ -3,9 +3,12 @@ import 'achievement_detail.dart';
 import 'achievement.dart';
 
 class AchievementPage extends StatelessWidget {
-  final List<Achievement> achievements;
+  static List<Achievement> achievements= <Achievement>[
+    Achievement(true, "Achievement 1", "description", 5),
+    Achievement(false, "Achievement 2", "description", 10),
+  ];
 
-  AchievementPage({Key key, @required this.achievements}) : super(key: key);
+  AchievementPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,7 @@ class AchievementPage extends StatelessWidget {
         // Show the points you can get from completing this achievement
         subtitle: Row(
           children: <Widget>[
-            Text("Points: " + achievements[index].points,
+            Text("Points: " + achievements[index].points.toString(),
                 style: TextStyle(color: Colors.white))
           ],
         ),

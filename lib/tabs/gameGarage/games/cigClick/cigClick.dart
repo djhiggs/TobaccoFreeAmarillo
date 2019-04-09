@@ -4,19 +4,28 @@ import '../genericGame.dart';
 import 'cigClickWidget.dart';
 import 'dart:async';
 import 'dart:math';
+import '../../../achievement_page/achievement.dart';
+import '../../../achievement_page/achievement_page.dart';
 
 class CigClick extends GenericGame{
   CigClickWidget cigClickWidget;
+  List<Achievement> achievements;
   CigClick(BuildContext context) : super(context){
-    this.title = "Cig Click";
-    cigClickWidget =CigClickWidget(this);
+    this.title = "Cigarette Crush";
+    cigClickWidget = CigClickWidget(this);
+    AchievementPage.achievements.addAll(achievements);
   }
 
   @override
   Widget get widget => cigClickWidget;
   List<Upgrade> upgrades = <Upgrade>[
     Upgrade(5,log(2),false,1,0,"Hammer"),
-    Upgrade(5,log(2),true,5,0,"Auto Hammer"),
+    Upgrade(20,log(2),false,3,0,'Boot'),
+    Upgrade(775,log(2),false,30,0,'Wrecking ball'),
+    Upgrade(325,log(2),true,4,0,'Trash Compactor'),
+    Upgrade(1500,log(3),true,12,0,'Grandma with a shoe'),
+
+
   ];
   double cigsPerSecond = 0;
   double totalCigs = 0;
