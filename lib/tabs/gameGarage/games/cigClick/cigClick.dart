@@ -21,7 +21,6 @@ class CigClick extends GenericGame{
     Upgrade(325,log(2),true,4,0,'Trash Compactor'),
     Upgrade(1500,log(3),true,12,0,'Grandma with a shoe'),
 
-
   ];
   double cigsPerSecond = 0;
   double totalCigs = 0;
