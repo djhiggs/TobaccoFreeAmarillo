@@ -120,4 +120,52 @@ Category: Long Term Effects on the Body
 						Choice: They can get the fluid on their eyes or skin.
 						Answer: They both swallow or spill the fluid on their skin or eyes.
 						Choice:	None of the above.
-																						
+Category: Cost
+	Topic: Smoking
+		Passage: 
+			Paragraph: 
+			Paragraph: 
+			Paragraph: 
+				Quiz: 
+					Question: 
+						Choice: 
+						Choice: 
+						Choice: 
+						Choice: 
+					Question: 
+						Choice: 
+						Choice: 
+						Choice: 
+						Choice:	
+	Topic: Smokless Tobacco
+		Passage: 
+			Paragraph: 
+			Paragraph: 
+			Paragraph: 
+				Quiz: 
+					Question: 
+						Choice: 
+						Choice: 
+						Choice: 
+						Choice: 
+					Question: 
+						Choice: 
+						Choice: 
+						Choice: 
+						Choice:	
+	Topic: Vaping
+		Passage: 
+			Paragraph: 
+			Paragraph: 
+			Paragraph: 
+				Quiz: 
+					Question: 
+						Choice: 
+						Choice: 
+						Choice: 
+						Choice: 
+					Question: 
+						Choice: 
+						Choice: 
+						Choice: 
+						Choice:						
