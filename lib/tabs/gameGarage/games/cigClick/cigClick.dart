@@ -13,7 +13,7 @@ class CigClick extends GenericGame{
   CigClick(BuildContext context) : super(context){
     this.title = "Cigarette Crush";
     cigClickWidget = CigClickWidget(this);
-    AchievementPage.achievements.addAll(achievements);
+    //AchievementPage.achievements.addAll(achievements);
   }
 
   @override
