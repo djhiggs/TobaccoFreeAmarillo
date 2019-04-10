@@ -46,29 +46,78 @@ Category: Long Term Effects on the Body
 			Paragraph: Smoking is pretty hard on your body, especially for people who use it for a long time. When you smoke for a long time, you increase your chances of having many health problems. You double or even quadruple your chances of having heart disease and stroke. This is because your blood vessels thicken due to the long-term smoking, which makes them more narrow. This causes your blood pressure to increase (even when not smoking!) which which puts strain on your heart and also increases the chance for clots to form. When you do get a clot, its effect is determined depending on where you get it.
 			Paragraph: If you clot in your legs or another deep vein in your body (called thrombosis) you can feel pain and swelling. If you clot in the arteries and veins around your heart, you run the risk of having a heart attack. If you have a clot by your brain, you have a stroke. While the thrombosis isn't neccesarily life threatening by itself, if you are clotting in those areas of your body, there is a good chance you are going to have clotting around your heart and brain as well, and a clot in those areas can be extremely damaging to your body, if not lethal.
 				Quiz: 
-					Question: 
-						Choice: 
-						Choice: 
-						Choice:
-						Choice:						
+					Question: What do you call a blood clot in your deep veins in your body?
+						Answer: Thrombosis
+						Choice: Trombonis
+						Choice: Symbiosis
+						Choice:	Mytosis
+					Question: What causes your chances of having a stroke and heart disease to increase so drastically?
+						Choice: You get tar on your heart from the years of smoking.
+						Choice: The nicotine causes your brain to trick your heart into pumping too hard.
+						Answer: The blood vessel walls get thicker, making the tube more narrow.
+						Choice:	The constant shortness of breath begins to stress you out.						
 	Topic: Smoking - Respiratory
 		Passage: 
 			Paragraph: Smoking, as one might expect, puts alot of nasty pollutants into your lungs. It's main way of delivering nicotine to your blood and brain is through all the tiny blood vessels in your lungs. These vessels are attached to small air sacs that actually catch the air you breath in (called alveoli). Alveoli are very delicate. When you smoke, you fill them with junk that, after a while, causes all kinds of problems. 
 			Paragraph: First up, if you have asthma, smoking can trigger an attack and even worsen the attacks you already have. Beyond that, you have a much higher chance of developing one or mulitple forms of lung cancer, since most lung cancers can be caused by smoking. You also are more likely to develop emphysema, a condition where your alveoli are damaged and swollen, reducing their effectiveness, which leaves you feeling breathless even when not exercising. Longterm smokers also can develop chronic bronchitis, so you basically feel like you have bronchitis all the time. These last two diseases are known as Chronic Obstructive Pulmonary Disease, or COPD, and people who smoke are 12 to 13 times more likely to be killed by these diseases. You essentially suffocate yourself to death.
 				Quiz: 
-					Question: 
-						Choice: 
-						Choice: 
-						Choice:
-						Choice:					
+					Question: What are alveioli?
+						Choice: They rhyme with ravioli so they must be pasta.
+						Answer: Little air sacs inside your lungs that catch the air you breathe. 
+						Choice: Chambers in your lungs that control where the air you breathe in goes.
+						Choice:	Blood vessels that pull oxygen from the air you breathe in.
+					Question: What resipiratory diseases are associated with longterm smoking?
+						Choice: Chronic Obstructive Pulmonary Disease.
+						Choice: Emphysema.
+						Choice: Lung Cancer.
+						Answer: All of these are diseases associated with longterm smoking.						
 	Topic: Smoking - Other Risks
 		Passage: 
 			Paragraph: Cardiovascular (heart and blood vessels) and Respiratory problems are not the only things smoking can do to your body. Smoking tobacco is rough on your whole body. Your risk for getting cancer shoots up to almost all of your organs in your body. Your bladder, cervix, colon, rectum, throat, kidney, liver, vocal chords, liver, mouth, tongue, and pancreas all have increased risk of developing cancer. It can even cause leukemia in your blood!
 			Paragraph: It hurts your bones and joints by increasing your chances of getting arthritis and making inflammation happen much easier. Your bone density and strength is also reduced, giving you weaker bones. You also are 30 to 40% more likely to get diabetes compared to a person who doesn't smoke. Your eyes can develop cataracts (clouding of your lenses, making it harder to see) and can also damage your retina in your eye (macular degeneration). The retina is what receives the light that enters your eye, allowing you to see.
 			Paragraph: Finally, smoking has severe effects on pregnant women, especially the baby. Women who smoke have increased liklihood for babies being born too early, babies having low birth weight, and birth defects like clefts in their mouth and face. But that is if you are lucky enough to have the baby live. Smoking also leads to stillborn babies or sudden infant death syndrome (SIDS or crib death). Men are also effected, reducing fertility and increasing the chance for birth defects due to mutated sperm.
 				Quiz: 
-					Question: 
-						Choice: 
-						Choice: 
-						Choice:
-						Choice:					
+					Question: Which of these are effects smoking can have on a baby born to a mother who smokes while pregnant?
+						Choice: The baby could be born with hydro encephalathy.
+						Answer: The baby might have a cleft pallet.
+						Choice: The baby might have macular degeneration.
+						Choice: The baby could be born with diabetes.
+					Question: What part of the body does leukemia occur?
+						Answer: Blood
+						Choice: Kidneys
+						Choice: Lungs
+						Choice:	Bones
+	Topic: Smmokeless Tobacco
+		Passage: 
+			Paragraph: Smokeless Tobacco doesn't have to be inhaled to not still be harmful to your body in the longterm. Tobacco itself has many harmful chemicals, even if it was raised organically. The human body can develop many different cancers in the mouth and esophagus and even the pancreas when exposed to these chemicals for a long period of time.
+			Paragraph: People who use products like chaw or snuff can develop white or gray patches inside their mouth. These patches, called leukoplakia, are actually highly likely to develop cancer. Your chances for teeth and gum disease also skyrockets, and even to the point where you might lose your teeth! This is caused from the longterm exposure from the chemical soup mixed with your saliva resting on your teeth. It's exactly like with sugar, but far more deadly.
+			Paragraph: Like smoking, smokeless tobacco causes problems with many parts of your body, especially with women who are prenant. The nicotine from the tobacco can effect how the baby's brain develops, as well as increasing the chances or stillbirth or premature birth.
+			Paragraph: The nicotine in the tobacco increases your risk for heart disease as well as stroke, but this is increased even further by the ruining of your mouth, teeth, and gums. People who suffer from diseases originating in the mouth actually are at much higher risk for heart disease than people who have healthy mouths, teeth, and gums.
+				Quiz: 
+					Question: What are the patches that form inside a smokeless tobacco users mouth called?
+						Choice: Leukocytosis
+						Answer: Leukoplakia 
+						Choice: Leukemia
+						Choice: Leukecrecia
+					Question: Smokeless tobacco may not effect your lungs like regular smoking, but what parts of the body does it effect?
+						Choice: Pancreas
+						Choice: Mouth
+						Choice: Heart
+						Answer:	All of these are effected by smokeless tobacco.
+	Topic: Vaping
+		Passage: 
+			Paragraph: Vaping or E-cigarettes are pretty new, so not as much is known yet in regards to longterm health effects from using them.  This doesn't mean they are relatively harmless though. They still deliver nicotine to the body, which is very hard on the body, especially the cardiovascular system. Heart attack, stroke, and other heart diseases are all much more likely to happen when you use vapes for a long time.
+			Paragraph: The chemicals used in the liquid that keeps the nicotine are not well known and can (and do) change, but they have been known to be carcinogens (cancer causing) from several different manufacturors. This is especially true when they are burned and heated. Two of these chemicals used in the vape fluid, propylene glycol and glycerin, turn into formaldehyde and acetaldehyde, two known carcinogens that can lead to many different kinds of cancer in your body.
+			Paragraph: You can also be poisoned by swallowing unheated vape fluid or even by getting in your skin or eyes. This can cause permanent damage to your body, especially if you have been exposing your self to the fluid over a long period of time.
+				Quiz: 
+					Question: Why is there little known about the longterm effects of vaping?
+						Answer: It is still pretty new technology, and people have not been using it long enough.
+						Choice: Due to patents from e-cigarette companies, we are legally unable to invesitigate what is in the vaping liquids they make.
+						Choice: The batteries do not last long enough in the vaping devices to allow scientists time to study their effects.
+						Choice: People refuse to acknowledge the fact that they are still inhaling nicotine.
+					Question: How can a person be poisoned from using a vape?
+						Choice: They can swallow the vape fluid.
+						Choice: They can get the fluid on their eyes or skin.
+						Answer: They both swallow or spill the fluid on their skin or eyes.
+						Choice:	None of the above.
+																						
