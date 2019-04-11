@@ -5,22 +5,22 @@ import 'package:flame/components/component.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'game/game.dart';
-import 'game/trexgame.dart';
+import 'game.dart';
+import 'trexgame.dart';
 
-import 'genericGame.dart';
-import 'game/trexgame.dart';
+import '../genericGame.dart';
+import 'trexgame.dart';
 
 import 'dart:ui' as ui;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' as material;
-import 'game/game.dart';
+import 'game.dart';
 
-class TRex extends GenericGame
+class TRexInterface extends GenericGame
 {
   TRexGame tRexGame;
-  TRex(BuildContext context) : super(context) {
+  TRexInterface(BuildContext context) : super(context) {
     title = "T Rex Game";
       Flame.audio.disableLog();
   //List<Image> image = await Flame.images.loadAll(["sprite.png"]);

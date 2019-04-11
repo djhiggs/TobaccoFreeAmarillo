@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tobaccoFreeAmarilloApp/tabs/gameGarage/games/tRex.dart';
+import './games/tRex/tRexInterface.dart';
 import 'games/genericGame.dart';
 import 'games/golfGame/golfGame.dart';
-import 'games/game/trexgame.dart';
+import 'games/trex/trexgame.dart';
 import 'games/cigClick/cigClick.dart';
 import './games/snake/snakeInterface.dart';
 
@@ -15,7 +15,7 @@ class GameGarage extends StatelessWidget {
   GameGarage(BuildContext context){
     _gamesList = <GenericGame>[
     GolfGame(context,),
-    TRex(context),
+    TRexInterface(context),
     CigClick(context),
     GenericGame(context),
     GenericGame(context),

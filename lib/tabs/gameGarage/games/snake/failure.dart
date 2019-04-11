@@ -6,9 +6,9 @@ class Failure extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Container(
       color: const Color(0xFFFFFFFF),
-      width: BOARD_SIZE,
-      height: BOARD_SIZE,
-      padding: const EdgeInsets.all(TEXT_PADDING),
+      width: Globals.boardSize,
+      height: Globals.boardSize,
+      padding: EdgeInsets.all(Globals.textPadding),
       child: Center(
         child: Text("Game over! Tap to play again!",
             textAlign: TextAlign.center,
