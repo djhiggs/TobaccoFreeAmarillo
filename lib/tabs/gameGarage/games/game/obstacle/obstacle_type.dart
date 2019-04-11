@@ -32,7 +32,7 @@ class ObstacleType {
   });
 
   static const cactusSmall = ObstacleType._internal("cactusSmall",
-      width: 34.0,
+      width: 40.0,
       height: 70.0,
       y: 20.0,
       multipleSpeed: 4,
@@ -60,7 +60,7 @@ class ObstacleType {
       ]);
 
   static const cactusLarge = ObstacleType._internal("cactusLarge",
-      width: 50.0,
+      width: 54.0,
       height: 100.0,
       y: 1.0,
       multipleSpeed: 7,
@@ -75,9 +75,9 @@ class ObstacleType {
   static Sprite spriteForType(ObstacleType type, Image spriteImage) {
     if (type == cactusSmall) {
       return Sprite.fromImage(spriteImage,
-          x: 446.0, y: 2.0, width: type.width, height: type.height);
+          x: 449.0, y: 2.0, width: type.width, height: type.height);
     }
     return Sprite.fromImage(spriteImage,
-        x: 652.0, y: 2.0, width: type.width, height: type.height);
+        x: 642.0, y: 2.0, width: type.width, height: type.height);
   }
 }
