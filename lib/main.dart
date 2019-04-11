@@ -11,7 +11,7 @@ import 'tabs/usefulInfo/categoriesWidget.dart';
 
 
 void main() => runApp(new MaterialApp(
-  title: 'Flutter Starter',
+  title: 'TFA Cessation',
   theme: new ThemeData(
     primarySwatch: Colors.blueGrey,
     scaffoldBackgroundColor: Colors.white,
