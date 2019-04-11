@@ -9,11 +9,11 @@ import '../../../achievement_page/achievement_page.dart';
 
 class CigClick extends GenericGame{
   CigClickWidget cigClickWidget;
-  List<Achievement> achievements;
+  List<Achievement> achievements = List();
   CigClick(BuildContext context) : super(context){
     this.title = "Cigarette Crush";
     cigClickWidget = CigClickWidget(this);
-    //AchievementPage.achievements.addAll(achievements);
+    AchievementPage.achievements.addAll(achievements);
   }
 
   @override
