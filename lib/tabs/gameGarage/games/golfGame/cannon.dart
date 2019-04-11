@@ -76,6 +76,11 @@ class Cannon extends Component {
   //Position screenPosition; 
   @override
   void update(double t) {
+    // GestureDetector detector = GestureDetector(
+    //   onPanUpdate: (DragUpdateDetails e){
+        
+    //   }
+    // );
     //screenPosition = Position(
     //  _cannonStand.x,MediaQuery.of(_context).size.height-_cannonStand.height-_cannonStand.y-_floorHeight);
     

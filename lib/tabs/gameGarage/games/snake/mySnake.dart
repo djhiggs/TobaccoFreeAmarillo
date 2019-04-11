@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'game.dart';
 
-void main() => runApp(new MyApp());
+//void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   @override
