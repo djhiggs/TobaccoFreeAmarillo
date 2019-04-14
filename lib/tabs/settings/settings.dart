@@ -19,12 +19,12 @@ class StatefulSettings extends StatefulWidget {
       : super(key: key);
 
   @override
-  _Settings createState() => _Settings();
+  SettingsState createState() => SettingsState();
 }
 
 Person _person;
 
-class _Settings extends State<StatefulSettings> {
+class SettingsState extends State<StatefulSettings> {
   final double spacingFactor = 25;
   final double buttonTextScaleFactor = 1.75;
   final double descriptionScaleFactor = 0.9;
@@ -220,7 +220,8 @@ class _Settings extends State<StatefulSettings> {
           )
         ],
       );
-  List<DropdownMenuItem<TobaccoProducts>> buildDropDownMenuItems() {
+  
+  static List<DropdownMenuItem<TobaccoProducts>> buildDropDownMenuItems() {
     var names = TobaccoProducts.values;
     int startingIndex = names[0].toString().indexOf('.') + 1;
     List<DropdownMenuItem<TobaccoProducts>> elements = List();

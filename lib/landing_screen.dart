@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tobaccoFreeAmarilloApp/tabs/settings/smokeChart.dart';
+import 'tabs/settings/person.dart';
+import 'tabs/settings/settings.dart';
 
 class LandingScreen extends StatefulWidget {
   @override
@@ -12,10 +15,15 @@ class _LandingScreenState extends State<LandingScreen> {
   final _zipCodeController = TextEditingController();
   int _tabaccoTypesIndex = 0;
 
-  final firestore = Firestore.instance;
+  Person _person = Person();
 
   @override
   Widget build(BuildContext context) {
+    tobaccoTypes =getTobaccoProductNames();
+    Person.getInstance().then(
+      (Person p){
+        _person = p;
+      });
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -66,7 +74,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   items: List.generate(3, (index) {
                     return DropdownMenuItem(
                       value: index,
-                      child: Text(tabaccoTypes[index]),
+                      child: Text(tobaccoTypes[index]),
                     );
                   }),
                   onChanged: (value) async {
@@ -78,11 +86,11 @@ class _LandingScreenState extends State<LandingScreen> {
             SizedBox(height: 10),
             RaisedButton(
               onPressed: () {
-                firestore.collection("clients").add({
-                  "nickname": _nickNameController.text,
-                  "zipcode": _zipCodeController.text,
-                  "type": tabaccoTypes[_tabaccoTypesIndex]
-                });
+                _person.nickname =_nickNameController.text;
+                _person.zipCode =int.parse(_zipCodeController.text);  
+                _person.smokeChart.product = 
+                  TobaccoProducts.values[_tabaccoTypesIndex];
+                _person.export();
                 Navigator.of(context).pop();
               },
               child: Padding(
@@ -102,6 +110,22 @@ class _LandingScreenState extends State<LandingScreen> {
       ),
     );
   }
+  List<String> tobaccoTypes;
+  List<String> getTobaccoProductNames() {
+    List<String> names = List();
+    int startingIndex = TobaccoProducts.values[0].toString().indexOf('.') + 1;
+    for (var raw in TobaccoProducts.values) {
+      String name = raw.toString().substring(startingIndex);
+      String upperName = name.toUpperCase();
+      for (int i = 1; i < name.length; i++)
+        if (name.codeUnitAt(i) == upperName.codeUnitAt(i)) {
+          name = name.substring(0, i) + ' ' + name.substring(i);
+          upperName = upperName.substring(0, i) + ' ' + upperName.substring(i);
+          i++;
+        }
+      names.add(name);
+    }
+    return names;
+  }
 }
 
-const tabaccoTypes = ["Smoking", "Vaping", "Smokeless Tabacco"];
