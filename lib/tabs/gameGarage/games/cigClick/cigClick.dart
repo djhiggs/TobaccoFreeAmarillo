@@ -4,12 +4,16 @@ import '../genericGame.dart';
 import 'cigClickWidget.dart';
 import 'dart:async';
 import 'dart:math';
+import '../../../achievement_page/achievement.dart';
+import '../../../achievement_page/achievement_page.dart';
 
 class CigClick extends GenericGame{
   CigClickWidget cigClickWidget;
+  List<Achievement> achievements;
   CigClick(BuildContext context) : super(context){
     this.title = "Cigarette Crush";
     cigClickWidget = CigClickWidget(this);
+    //AchievementPage.achievements.addAll(achievements);
   }
 
   @override

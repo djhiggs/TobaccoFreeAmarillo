@@ -11,7 +11,7 @@ import 'tabs/usefulInfo/categoriesWidget.dart';
 
 
 void main() => runApp(new MaterialApp(
-  title: 'Flutter Starter',
+  title: 'TFA Cessation',
   theme: new ThemeData(
     primarySwatch: Colors.blueGrey,
     scaffoldBackgroundColor: Colors.white,
@@ -73,8 +73,7 @@ class TabsState extends State<Tabs> {
   List<Achievement> achievements = List<Achievement>();
   PageController _tabController;
 TabsState(){
-  achievements.add(Achievement(true, "Achievement 1", "description", "5"));
-  achievements.add(Achievement(false, "Achievement 2", "description", "10"));
+
 }
   var _title_app = null;
   int _tab = 0;
@@ -127,7 +126,7 @@ checkIfFirstLaunch() {
         new _firstTab.Home(),
         new _secondTab.GameGarage(context),
         new CategoriesWidget(),
-        new _achievementPage.AchievementPage(achievements: achievements),
+        new _achievementPage.AchievementPage(),
         new _thirdTab.StatefulSettings(),
         
       ],
