@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:tobaccoFreeAmarilloApp/tabs/usefulInfo/quiz.dart';
 import 'category.dart';
 import 'question.dart';
 import 'topic.dart';
@@ -39,10 +40,10 @@ class Categories{
           case "Question":
             question =Question();
             question.question =content;
-            topic.quiz.add(question);
+            topic.quiz.questions.add(question);
             break;
           case "Quiz:":
-            topic.quiz = List();
+            topic.quiz = Quiz();
             break;
           case "Paragraph":
             topic.passage.add(content);

@@ -184,8 +184,6 @@ class _BoardState extends State<Board> {
         _changeDirectionBasedOnTap(tapUpDetails);
         break;
       case GameState.VICTORY:
-        _changeGameState(GameState.SPLASH);
-        break;
       case GameState.FAILURE:
         _changeGameState(GameState.SPLASH);
         break;
@@ -210,53 +208,20 @@ class _BoardState extends State<Board> {
 
     switch (_direction) {
       case Direction.LEFT:
-        if (y < currentHeadPos.y) {
-          setState(() {
-            _direction = Direction.UP;
-          });
-          return;
-        }
-
-        if (y > currentHeadPos.y) {
-          setState(() {
-            _direction = Direction.DOWN;
-          });
-          return;
-        }
-        break;
-
       case Direction.RIGHT:
         if (y < currentHeadPos.y) {
           setState(() {
             _direction = Direction.UP;
           });
-          return;
         }
-
-        if (y > currentHeadPos.y) {
+        else if (y > currentHeadPos.y) {
           setState(() {
             _direction = Direction.DOWN;
           });
-          return;
         }
         break;
 
       case Direction.UP:
-        if (x < currentHeadPos.x) {
-          setState(() {
-            _direction = Direction.LEFT;
-          });
-          return;
-        }
-
-        if (x > currentHeadPos.x) {
-          setState(() {
-            _direction = Direction.RIGHT;
-          });
-          return;
-        }
-        break;
-
       case Direction.DOWN:
         if (x < currentHeadPos.x) {
           setState(() {
@@ -264,8 +229,7 @@ class _BoardState extends State<Board> {
           });
           return;
         }
-
-        if (x > currentHeadPos.x) {
+        else if (x > currentHeadPos.x) {
           setState(() {
             _direction = Direction.RIGHT;
           });

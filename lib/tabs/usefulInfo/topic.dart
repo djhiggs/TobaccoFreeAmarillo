@@ -1,10 +1,10 @@
-import 'question.dart';
+import 'quiz.dart';
 import 'package:flutter/material.dart';
 class Topic extends StatelessWidget{
   String header;
   //composed of "Paragraph: "'s
   List<String> passage;
-  List<Question> quiz = List();
+  Quiz quiz = Quiz();
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +19,12 @@ class Topic extends StatelessWidget{
       ));
       children.add(Text(""));//empty line
     }
-    //for the quiz
-    var questions = <Widget>[];
-    for(var question in quiz)
-      questions.add(question.build(context));
     children.add(RaisedButton(
-      color: Colors.blue,
-      child: Text("Take Quiz"),
-      onPressed: (){showDialog(context: context, builder: (BuildContext context){
-          AlertDialog(title: Text("Quiz"),
-            content: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: questions));
-        }); 
+      child: Text('Take Quiz'), 
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+          return quiz;
+        }));
       },
     ));
     //
