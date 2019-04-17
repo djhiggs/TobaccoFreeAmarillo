@@ -6,6 +6,7 @@ import 'package:flame/components/component.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:flame/flame.dart' as flame;
@@ -35,26 +36,67 @@ class GolfGame extends GenericGame{
   Cannon cannon;
   GolfGame(this.context) : super(context){
     this.title = "Golf Game";
-    Flame.images.load("Grass.png");
-    grass = Sprite.fromImage(Flame.images.loadedFiles["Grass.png"],
-      x: 0,
-      y: 0,
-      width: 32,
-      height: 32);
-    var y = MediaQuery.of(context).size.height - _floorHeight;
-    for(int i = 0; i < 100; i++){
-      for(int j = 0; j < 10; j++){
-        var c = SpriteComponent.fromSprite(32, 32, grass);
-        c.y = y + j*32;
-        c.x = i*32.0;
-        components.add(c);
+    () async{
+      await Flame.images.load("Grass.png");
+      grass = Sprite.fromImage(Flame.images.loadedFiles["Grass.png"],
+        x: 0,
+        y: 0,
+        width: 32,
+        height: 32);
+      var y = MediaQuery.of(context).size.height - _floorHeight;
+      for(int i = 0; i < 100; i++){
+        for(int j = 0; j < 10; j++){
+          var c = SpriteComponent.fromSprite(32, 32, grass);
+          c.y = y + j*32;
+          c.x = i*32.0;
+          components.add(c);
+        }
       }
-    }
 
-    golfBall =GolfBall(context,_floorHeight);
-    cannon = Cannon(context,_floorHeight);
-    components.add(golfBall);
-    components.add(cannon);
+      golfBall =GolfBall(context,_floorHeight);
+      cannon = Cannon(context,_floorHeight);
+
+      // Flame.util.addGestureRecognizer(PanGestureRecognizer()..
+      //   onUpdate = (DragUpdateDetails details){
+      //     var pressPos = Vector2D.fromOffset(details.globalPosition);
+      //     pressPos.y =cannon.screenHeight - pressPos.y;
+      //     cannon.setAngle(pressPos.angle());
+      //   }
+      // );
+
+      components.add(golfBall);
+      components.add(cannon);
+    };
+    // Flame.images.load("Grass.png");
+    // grass = Sprite.fromImage(Flame.images.loadedFiles["Grass.png"],
+    //   x: 0,
+    //   y: 0,
+    //   width: 32,
+    //   height: 32);
+    // var y = MediaQuery.of(context).size.height - _floorHeight;
+    // for(int i = 0; i < 100; i++){
+    //   for(int j = 0; j < 10; j++){
+    //     var c = SpriteComponent.fromSprite(32, 32, grass);
+    //     c.y = y + j*32;
+    //     c.x = i*32.0;
+    //     components.add(c);
+    //   }
+    // }
+
+    // golfBall =GolfBall(context,_floorHeight);
+    // cannon = Cannon(context,_floorHeight);
+
+    // // Flame.util.addGestureRecognizer(PanGestureRecognizer()..
+    // //   onUpdate = (DragUpdateDetails details){
+    // //     var pressPos = Vector2D.fromOffset(details.globalPosition);
+    // //     pressPos.y =cannon.screenHeight - pressPos.y;
+    // //     cannon.setAngle(pressPos.angle());
+    // //   }
+    // // );
+
+    // components.add(golfBall);
+    // components.add(cannon);
+    
   }
   @override
   void update(double dt) {
