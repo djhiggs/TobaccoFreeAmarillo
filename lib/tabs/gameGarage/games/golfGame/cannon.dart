@@ -41,6 +41,13 @@ class Cannon extends Component {
     _cannonPosition =Vector2D(0, _floorHeight.toDouble());
     
     //_cannonBarrel.anchor =;
+    GestureDetector detector = GestureDetector(
+      onPanUpdate: (DragUpdateDetails details){
+        var pressPos = Vector2D.fromOffset(details.globalPosition);
+        pressPos.y =_screenHeight - pressPos.y;
+        _cannonBarrel.angle =pressPos.angle();
+      },
+    );
   }
   //DragUpdateDetails dragUpdateDetails = DragUpdateDetails();
   bool active = true;

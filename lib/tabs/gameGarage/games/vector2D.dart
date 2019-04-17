@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flame/position.dart';
 class Vector2D {
@@ -13,6 +14,7 @@ class Vector2D {
   double cross(Vector2D b) => x*b.y-y*b.x;
   double length() => x*x+y*y;
   //angle is in radians
+  static Vector2D fromOffset(Offset offset) => Vector2D(offset.dx,offset.dy);
   static Vector2D fromAngle(double angle) => Vector2D(cos(angle),sin(angle));
   double angle() => atan2(y, x);
 }
