@@ -5,13 +5,12 @@ class SnakePiece extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      width: Globals.pieceSize,
-      height: Globals.pieceSize,
+      width: PIECE_SIZE,
+      height: PIECE_SIZE,
       decoration: new BoxDecoration(
           color: const Color(0xFF0080FF),
           border: new Border.all(color: const Color(0xFFFFFFFF)),
-          //borderRadius: BorderRadius.circular(PIECE_SIZE)),
-      )
+          borderRadius: BorderRadius.circular(PIECE_SIZE)),
     );
   }
 }

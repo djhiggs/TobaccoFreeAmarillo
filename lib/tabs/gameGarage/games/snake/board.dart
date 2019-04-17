@@ -29,8 +29,8 @@ class _BoardState extends State<Board> {
   Widget build(BuildContext context) {
     return new Container(
         color: const Color(0xFFFFFFFF),
-        width: Globals.boardSize,
-        height: Globals.boardSize,
+        width: BOARD_SIZE,
+        height: BOARD_SIZE,
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTapUp: (tapUpDetails) {
@@ -53,15 +53,15 @@ class _BoardState extends State<Board> {
         _snakePiecePositions.forEach((i) {
           snakePiecesAndApple.add(Positioned(
             child: SnakePiece(),
-            left: i.x * Globals.pieceSize,
-            top: i.y * Globals.pieceSize,
+            left: i.x * PIECE_SIZE,
+            top: i.y * PIECE_SIZE,
           ));
         });
 
         final apple = Positioned(
           child: Apple(),
-          left: _applePosition.x * Globals.pieceSize,
-          top: _applePosition.y * Globals.pieceSize,
+          left: _applePosition.x * PIECE_SIZE,
+          top: _applePosition.y * PIECE_SIZE,
         );
 
         snakePiecesAndApple.add(apple);
@@ -120,8 +120,8 @@ class _BoardState extends State<Board> {
 
     if (currentHeadPos.x < 0 ||
         currentHeadPos.y < 0 ||
-        currentHeadPos.x > Globals.boardSize / Globals.pieceSize ||
-        currentHeadPos.y > Globals.boardSize / Globals.pieceSize) {
+        currentHeadPos.x > BOARD_SIZE / PIECE_SIZE ||
+        currentHeadPos.y > BOARD_SIZE / PIECE_SIZE) {
       return true;
     }
 
@@ -139,7 +139,7 @@ class _BoardState extends State<Board> {
 
   bool _isBoardFilled() {
     final totalPiecesThatBoardCanFit =
-        (Globals.boardSize * Globals.boardSize) / (Globals.pieceSize * Globals.pieceSize);
+        (BOARD_SIZE * BOARD_SIZE) / (PIECE_SIZE * PIECE_SIZE);
     if (_snakePiecePositions.length == totalPiecesThatBoardCanFit) {
       return true;
     }
@@ -201,34 +201,40 @@ class _BoardState extends State<Board> {
   void _changeDirectionBasedOnTap(TapUpDetails tapUpDetails) {
     RenderBox getBox = context.findRenderObject();
     var localPosition = getBox.globalToLocal(tapUpDetails.globalPosition);
-    final x = (localPosition.dx / Globals.pieceSize).round();
-    final y = (localPosition.dy / Globals.pieceSize).round();
+    final x = (localPosition.dx / PIECE_SIZE).round();
+    final y = (localPosition.dy / PIECE_SIZE).round();
 
     final currentHeadPos = _snakePiecePositions.first;
 
     switch (_direction) {
       case Direction.LEFT:
       case Direction.RIGHT:
-        if (y < currentHeadPos.y)
+        if (y < currentHeadPos.y) {
           setState(() {
             _direction = Direction.UP;
           });
-        else if (y > currentHeadPos.y)
+        }
+        else if (y > currentHeadPos.y) {
           setState(() {
             _direction = Direction.DOWN;
           });
+        }
         break;
 
       case Direction.UP:
       case Direction.DOWN:
-        if (x < currentHeadPos.x)
+        if (x < currentHeadPos.x) {
           setState(() {
             _direction = Direction.LEFT;
           });
-        else if (x > currentHeadPos.x)
+          return;
+        }
+        else if (x > currentHeadPos.x) {
           setState(() {
             _direction = Direction.RIGHT;
           });
+          return;
+        }
         break;
     }
   }
@@ -241,7 +247,7 @@ class _BoardState extends State<Board> {
 
   void _generateFirstSnakePosition() {
     setState(() {
-      final midPoint = (Globals.boardSize / Globals.pieceSize / 2);
+      final midPoint = (BOARD_SIZE / PIECE_SIZE / 2);
       _snakePiecePositions = [
         Point(midPoint, midPoint - 2),
         Point(midPoint, midPoint - 1),
@@ -256,7 +262,7 @@ class _BoardState extends State<Board> {
     setState(() {
       Random rng = Random();
       var min = 0;
-      var max = Globals.boardSize ~/ Globals.pieceSize;
+      var max = BOARD_SIZE ~/ PIECE_SIZE;
       var nextX = min + rng.nextInt(max - min);
       var nextY = min + rng.nextInt(max - min);
 

@@ -34,13 +34,9 @@ flutter:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
-  assets: 
+  assets:
     - images/tfa.png
-    - assets/images/Grass.png
-    - assets/images/GolfBall.png
-    - assets/images/sprite.png
-    - assets/images/CannonBarrel.png
-    - assets/images/CannonStand.png
+    - assets/images/
     - lib/tabs/usefulInfo/categories/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/.

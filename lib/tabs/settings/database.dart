@@ -1,63 +1,77 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class Database
 {
-  static Database _instance;
-  SharedPreferences _local;
-  DocumentReference _remote;
-  Database();
-  static Future<Database> getInstance() async{
-    if(_instance ==null){
-      _instance =Database();
-      await _instance.connect();
+  final String _packageName = "anti.vaping.tmp";
+  final String _nickname = "tobaccoFreeApp";
+  //DOUBLE-STRUCK CAPITAL C (Complex domain symbol)
+  static String _clientID = "";
+
+  Firestore db = Firestore.instance;
+  Future createRecordRemote(String table, Map<String, dynamic> content) async
+  {
+    if(Database._clientID.length == 0)
+    {
+      var prefs =await SharedPreferences.getInstance();
+      _clientID =prefs.getString("ClientID");
+      if(_clientID ==null)
+        db.collection(table).add(content).then(
+          (DocumentReference reference) {
+            _clientID = reference.documentID;
+            prefs.setString("ClientID", _clientID);
+          }).whenComplete((){
+            db.document(table + '/' + _clientID).updateData(content);
+          });
+      else
+        db.document(table + '/' + _clientID).updateData(content);
     }
-    return _instance;
   }
-  bool exists() => 
-    _local.getKeys().length != 0;  
-
-  Future connect() async{
-    _local 
-    = await SharedPreferences.getInstance();
-    if(_local.getKeys().length == 0)
-      _remote = await Firestore.instance.collection("Users").add(
-        Map<String,dynamic>());
-    else
-      _remote = Firestore.instance.
-        document("Users/" + this["userID"].toString());
+  
+  //bool initDone = false;
+  //void setLocalData(String filename, Map<String,dynamic> map) async
+  //{
+  //  var writer = (await _getLocalFile(filename)).openWrite();
+  //  map.forEach((String key, dynamic value){
+  //    writer.writeln(key + _delimiter + value.toString());
+  //  });
+  //  writer.close();
+  //}
+  void setLocalData(Map<String,dynamic> values) async
+  {
+    var preferences =await SharedPreferences.getInstance();
+    values.forEach((String key, dynamic value){
+      preferences.setString(key, value.toString());
+    });
   }
-
-  operator [](String key) => _local.get(key);
-
-  void operator []=(String key,dynamic value) {
-    setLocal(key, value);
-    _remote.updateData(<String,dynamic>{key:value});
+  Future<Map<String,String>> getLocalData(List<String> keys) async
+  {
+    var preferences =await SharedPreferences.getInstance();
+    Map<String,String> data = new Map();
+    for(var key in keys)
+      data[key] =preferences.getString(key);
+    return data;
   }
-
-  Future<bool> setLocal(String key,dynamic value){
-    var type = value.runtimeType;
-    if(type == true.runtimeType)
-      return _local.setBool(key, value);
-    if(type == 1.0.runtimeType)
-      return _local.setDouble(key, value);
-    if(type == 1.runtimeType)
-      return _local.setInt(key, value);
-    if(type == "".runtimeType)
-      return _local.setString(key, value);
-    if(type == <String>[].runtimeType)
-      return _local.setStringList(key, value);
-    return _local.setString(key, value.toString());
-  }
-  Future updateRange(Map<String,dynamic> data) async{
-    Map<String,dynamic> changedData = Map();
-    for(String key in data.keys){
-      var localCopy = this[key];
-      var newData = data[key];
-      if(localCopy != newData){
-        changedData[key]=newData;
-        await setLocal(key, newData);
-      }
-    }
-    await _remote.updateData(changedData);
-  }  
+  //Future<Map<String,String>> getLocalData(String filename) async
+  //{
+  //  try{
+  //    Map<String,String> data = new Map<String,String>();
+  //    //var lines = (await _getLocalFile(filename)).readAsLinesSync();
+  //    var obj = (await _getLocalFile(filename));
+  //    if(!obj.existsSync())
+  //      return null;
+  //    var lines = obj.readAsLinesSync();
+  //    for(var line in lines){
+  //      //name + _delimiter + value
+  //      //no quotes or spaces
+  //      var tokens = line.split(_delimiter);  
+  //      data[tokens[0]] = tokens[1]; 
+  //    }
+  //    return data;
+  //  }
+  //  catch(e)
+  //  {
+  //    return null;
+  //  }
+  //}
 }

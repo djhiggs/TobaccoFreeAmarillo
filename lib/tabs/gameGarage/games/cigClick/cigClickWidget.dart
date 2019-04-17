@@ -51,7 +51,7 @@ class CigClickWidgetState extends State<CigClickWidget> {
       });
     for(Upgrade upgrade in game.upgrades){
       widgets.add(ListTile(
-        leading: Icon(Icons.arrow_upward),
+        leading: Container(child: Image.asset('images/Hammer.png'),),
         title: Text(upgrade.title),
         trailing: Text("λ" + upgrade.cost().round().toString()),
         subtitle: Text(upgrade.amountOwned.toString() + " owned"),

@@ -72,10 +72,6 @@ class IntroPageItem extends StatelessWidget {
           categoryText,
           Container(
             width: 180.0,
-            child: new Divider(
-              color: Colors.black,
-              height: 50,
-              ),
           ),
           titleText,
         ],
@@ -109,7 +105,11 @@ class IntroPageItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: Stack(
           fit: StackFit.expand,
-          children: [
+          children: <Widget>[
+            Opacity(
+              opacity: 0.1,
+              child: Icon(Icons.smoke_free, size: 200.0,color: Colors.red,),
+            ),
             _buildTextContainer(context),
           ],
         ),

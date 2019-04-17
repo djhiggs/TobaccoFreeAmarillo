@@ -10,21 +10,18 @@ import 'tabs/achievement_page/achievement_page.dart' as _achievementPage;
 import 'tabs/usefulInfo/categoriesWidget.dart';
 
 
-void main(){ 
-
-  runApp(new MaterialApp(
-    title: 'Flutter Starter',
-    theme: new ThemeData(
-      primarySwatch: Colors.blueGrey,
-      scaffoldBackgroundColor: Colors.white,
-      primaryColor: Colors.blueGrey, backgroundColor: Colors.white
-    ),
-    home: new Tabs(),
-    // routes: <String, WidgetBuilder> {
-    //   '/about': (BuildContext context) => new _aboutPage.About(),
-    // }
-  ));
-}
+void main() => runApp(new MaterialApp(
+  title: 'TFA Cessation',
+  theme: new ThemeData(
+    primarySwatch: Colors.blueGrey,
+    scaffoldBackgroundColor: Colors.white,
+    primaryColor: Colors.blueGrey, backgroundColor: Colors.white
+  ),
+  home: new Tabs(),
+  // routes: <String, WidgetBuilder> {
+  //   '/about': (BuildContext context) => new _aboutPage.About(),
+  // }
+));
 
 class FromRightToLeft<T> extends MaterialPageRoute<T> {
   FromRightToLeft({ WidgetBuilder builder, RouteSettings settings })

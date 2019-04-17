@@ -16,12 +16,9 @@ class Person
 
   static Future<Person> getInstance() async
   {
-    if(_person ==null){
-      _person = Person();
-      await _person.db.connect();
-      if(!_person.db.exists())
-        await _person.export();
-    }
+    if(_person ==null)
+      _person =Person();
+      await _person._initialize();
     return _person;
   }
   Database db;
@@ -31,7 +28,18 @@ class Person
   SmokeChartState smokeChart; 
   int zipCode;
   int expectedSmokingAmount(DateTime time) => 3;
-  Future export() async{
+  _initialize() async
+  {
+    db = Database();
+    smokeChart = SmokeChartState();
+    nickname = "";
+    notificationsEnabled =false;
+    soundEnabled =false;
+    zipCode = -1;
+    await import();
+  }
+
+  void export() async{
     var userData = {
       'DesiredDaysUntilComplete':smokeChart.desiredDaysUntilComplete,
       'EndingUsage':smokeChart.desiredUsage,
@@ -42,21 +50,49 @@ class Person
       'ZipCode':zipCode,
     };
     //cloud saved elements
-    await db.updateRange(userData);
+    db.createRecordRemote("Users",userData).whenComplete(()
+      {
+        userData["NotificationsEnabled"] =notificationsEnabled;
+        userData["SoundEnabled"] =soundEnabled;
+        db.setLocalData(userData);
+      }
+    );
     //local settings
-    await db.setLocal('NotificationsEnabled',notificationsEnabled);
-    await db.setLocal('SoundEnabled',soundEnabled);
+
   }
-  Future import() async
+  Future<bool> import() async
   {
-    smokeChart.desiredDaysUntilComplete = int.parse(db["DesiredDaysUntilComplete"]);
-    smokeChart.desiredUsage = int.parse(db["EndingUsage"]);
-    nickname = db["Nickname"];
-    smokeChart.product = TobaccoProducts.values.elementAt(int.parse(db["Product"]));
-    smokeChart.averageUsage = int.parse(db["StartingUsage"]);
-    smokeChart.startDate = DateTime.fromMicrosecondsSinceEpoch(int.parse(db["StartDate"]));
-    notificationsEnabled = db["NotificationsEnabled"] =="true";
-    soundEnabled = db["SoundEnabled"] =="true";
-    zipCode = int.parse(db["ZipCode"]);
+    var raw = await db.getLocalData(<String>[
+      'DesiredDaysUntilComplete',
+      'EndingUsage',
+      'Nickname',
+      'Product',
+      'StartingUsage',
+      'StartDate',
+      'NotificationsEnabled',
+      'SoundEnabled',
+      'ZipCode'
+    ]);
+    
+    if(raw ==null)
+      return false;
+    else
+      {
+        try{
+          smokeChart.desiredDaysUntilComplete = int.parse(raw["DesiredDaysUntilComplete"]);
+          smokeChart.desiredUsage = int.parse(raw["EndingUsage"]);
+          nickname = raw["Nickname"];
+          smokeChart.product = TobaccoProducts.values.elementAt(int.parse(raw["Product"]));
+          smokeChart.averageUsage = int.parse(raw["StartingUsage"]);
+          smokeChart.startDate = DateTime.fromMicrosecondsSinceEpoch(int.parse(raw["StartDate"]));
+          notificationsEnabled = raw["NotificationsEnabled"] =="true";
+          soundEnabled = raw["SoundEnabled"] =="true";
+          zipCode = int.parse(raw["ZipCode"]);
+        }
+        catch(e){//this can most likely be removed (or should at least have a better catch)
+          return false;
+        }
+        return true;
+      }
   }
 }

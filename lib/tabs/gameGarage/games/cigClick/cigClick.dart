@@ -9,11 +9,11 @@ import '../../../achievement_page/achievement_page.dart';
 
 class CigClick extends GenericGame{
   CigClickWidget cigClickWidget;
-  List<Achievement> achievements = List();
+  List<Achievement> achievements;
   CigClick(BuildContext context) : super(context){
     this.title = "Cigarette Crush";
     cigClickWidget = CigClickWidget(this);
-    AchievementPage.achievements.addAll(achievements);
+    //AchievementPage.achievements.addAll(achievements);
   }
 
   @override
@@ -24,7 +24,6 @@ class CigClick extends GenericGame{
     Upgrade(775,log(2),false,30,0,'Wrecking ball'),
     Upgrade(325,log(2),true,4,0,'Trash Compactor'),
     Upgrade(1500,log(3),true,12,0,'Grandma with a shoe'),
-
 
   ];
   double cigsPerSecond = 0;
