@@ -124,7 +124,7 @@ checkIfFirstLaunch() {
       onPageChanged: onTabChanged,
       children: <Widget>[
         new _firstTab.Home(),
-        new _secondTab.GameGarage(context),
+        _secondTab.GameGarage.getInstance(context),
         new CategoriesWidget(),
         new _achievementPage.AchievementPage(),
         new _thirdTab.StatefulSettings(),
