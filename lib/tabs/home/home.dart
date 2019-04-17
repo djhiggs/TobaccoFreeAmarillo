@@ -26,7 +26,7 @@ class HomeState extends State<Home> {
       });
     }
     _onPressed() {
-      List<bool> days = List<bool>();
+      //List<bool> days = List<bool>();
       showDialog(
         context: context,
         builder: (context) => AlertDialog(title: Text("test")),
@@ -35,6 +35,13 @@ class HomeState extends State<Home> {
     return new Scaffold(
         body: new Stack(
           children: <Widget>[
+            // Tried to add a button widget to the home screen but gave me an error
+            //Container(
+            //  margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 385.0),
+            //   child: InkWell(
+            //     onTap: _onPressed(),
+            //  ),
+            //),
             IntroPageView(),
             Container(
                 margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 385.0),
