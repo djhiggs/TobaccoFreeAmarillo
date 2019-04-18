@@ -13,9 +13,9 @@ import 'tabs/usefulInfo/categoriesWidget.dart';
 void main() => runApp(new MaterialApp(
   title: 'TFA Cessation',
   theme: new ThemeData(
-    primarySwatch: Colors.blue,
+    primarySwatch: Colors.green,
     scaffoldBackgroundColor: Colors.white,
-    primaryColor: Colors.orangeAccent[400], backgroundColor: Colors.white,
+    primaryColor: Colors.green, backgroundColor: Colors.white,
   ),
   home: new Tabs(),
   // routes: <String, WidgetBuilder> {
