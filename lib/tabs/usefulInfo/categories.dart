@@ -34,7 +34,7 @@ class Categories{
             question.choices.add(content);
             break;
           case "Answer":
-            question.answerIndex =question.choices.length;
+            question.correctAnswerIndex =question.choices.length;
             question.choices.add(content);
             break;
           case "Question":

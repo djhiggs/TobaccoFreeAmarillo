@@ -13,7 +13,7 @@ class Person
   }
   static Person _person =null;
 
-
+  ///use this to create a person instance
   static Future<Person> getInstance() async
   {
     if(_person ==null){

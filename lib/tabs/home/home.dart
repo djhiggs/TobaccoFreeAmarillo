@@ -17,7 +17,6 @@ class HomeState extends State<Home> {
   HomeState(this._person) : super();
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     if (_person == null) {
       _person = Person(); //initial state to get rid of nulls
       Person.getInstance().then((Person p) {
