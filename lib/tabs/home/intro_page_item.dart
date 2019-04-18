@@ -108,7 +108,7 @@ class IntroPageItem extends StatelessWidget {
           children: <Widget>[
             Opacity(
               opacity: 0.1,
-              child: Icon(Icons.smoke_free, size: 200.0,color: Colors.blueGrey,),
+              child: Icon(Icons.smoke_free, size: 200.0,color: Theme.of(context).primaryColor,),
             ),
             _buildTextContainer(context),
           ],

@@ -43,9 +43,9 @@ class HomeState extends State<Home> {
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition),
             child: Center(
               child: CalendarCarousel<bool>(
-                iconColor: Colors.blueGrey,
+                iconColor: Theme.of(context).primaryColor,
                 weekdayTextStyle:
-                    TextStyle(fontSize: 14.0, color: Colors.blueGrey),
+                    TextStyle(fontSize: 14.0, color: Theme.of(context).primaryColor),
                 headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.black),
                 //weekFormat: false,
                 //weekDayFormat: WeekdayFormat.short,

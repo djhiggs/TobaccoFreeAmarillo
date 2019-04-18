@@ -15,7 +15,7 @@ void main() => runApp(new MaterialApp(
   theme: new ThemeData(
     primarySwatch: Colors.blueGrey,
     scaffoldBackgroundColor: Colors.white,
-    primaryColor: Colors.blueGrey, backgroundColor: Colors.white
+    primaryColor: Colors.blue, backgroundColor: Colors.white
   ),
   home: new Tabs(),
   // routes: <String, WidgetBuilder> {
@@ -135,7 +135,8 @@ checkIfFirstLaunch() {
     //Tabs
     bottomNavigationBar: Theme.of(context).platform == TargetPlatform.iOS ?
       new CupertinoTabBar(
-        activeColor: Colors.blueGrey,
+        //activeColor: Colors.blueGrey,
+        activeColor: Theme.of(context).primaryColor,
         currentIndex: _tab,
         onTap: onTap,
         items: TabItems.map((TabItem) {
