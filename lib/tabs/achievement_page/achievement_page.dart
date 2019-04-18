@@ -69,7 +69,7 @@ class AchievementPage extends StatelessWidget {
           return Card(
             elevation: 8.0,
             margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-            color:Colors.blueGrey,
+            color: Theme.of(context).primaryColor,
             child: Container(
                 //decoration:
                     //BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),

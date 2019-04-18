@@ -26,7 +26,7 @@ class AchievementDetailScreen extends StatelessWidget {
                 padding: EdgeInsets.all(40.0),
                 width: MediaQuery.of(context).size.width,
                 decoration:
-                    BoxDecoration(color: Colors.blueGrey),
+                    BoxDecoration(color: Theme.of(context).primaryColor),
                 child: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +79,7 @@ class AchievementDetailScreen extends StatelessWidget {
                   Text(
                     //this.achievement.description,
                     "This description is longer for testing purposes. Please excuse me as I try to see if this fontsize is a good fit.",
-                    style: TextStyle(color: Colors.blueGrey[500], fontSize: 25.0),
+                    style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 25.0),
                   ),
                 ],
               ),
