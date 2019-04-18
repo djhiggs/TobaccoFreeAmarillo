@@ -79,7 +79,7 @@ class GameGarage extends StatelessWidget {
             child: Container(
                 decoration:
                     BoxDecoration(
-                      color: Colors.blueGrey,
+                      color: Theme.of(context).primaryColor,
                     ),
                 child: makeListTile(index)),
           );
