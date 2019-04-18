@@ -83,6 +83,7 @@ class IntroPageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var imageOverlayGradient = DecoratedBox(
       decoration: BoxDecoration(
+        //image: Image.asset(name),
         gradient: LinearGradient(
           begin: FractionalOffset.bottomCenter,
           end: FractionalOffset.topCenter,
