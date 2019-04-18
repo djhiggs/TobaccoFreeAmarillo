@@ -26,49 +26,73 @@ class HomeState extends State<Home> {
       });
     }
     _onPressed() {
-      //List<bool> days = List<bool>();
       showDialog(
-        context: context,
-        builder: (context) => AlertDialog(title: Text("test")),
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("test"),
+        //contentPadding: ,
+        titlePadding: EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+        ),
       );
     }
+    double calenderPosition = 385.0;
     return new Scaffold(
         body: new Stack(
-          children: <Widget>[
-            // Tried to add a button widget to the home screen but gave me an error
-            //Container(
-            //  margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 385.0),
-            //   child: InkWell(
-            //     onTap: _onPressed(),
-            //  ),
-            //),
-            IntroPageView(),
-            Container(
-                margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 385.0),
-                child: Center(
-                  child: CalendarCarousel<bool>(
-                    iconColor: Colors.blueGrey,
-                    weekdayTextStyle: TextStyle(fontSize: 14.0, color: Colors.blueGrey),
-                    headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.black),
-                    weekFormat: true,
-                    weekDayFormat: WeekdayFormat.short,
-                    height: 170.0,
-                    selectedDayBorderColor: Colors.white,
-                    selectedDayButtonColor: Colors.white,
-                    selectedDayTextStyle: TextStyle(color: Colors.black),
-                    markedDateIconBorderColor: Colors.white,
-                    todayBorderColor: Colors.white,
-                    todayButtonColor: Colors.white,
-                    todayTextStyle: TextStyle(color:Colors.black),
-                    //onDayPressed: (DateTime data, List<>),
-                    onDayPressed: (DateTime data, List<bool> days){
-                      _onPressed();
-                    }
-                  ),
-                )
+      children: <Widget>[
+        IntroPageView(),
+        Container(
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition),
+            child: Center(
+              child: CalendarCarousel<bool>(
+                iconColor: Colors.blueGrey,
+                weekdayTextStyle:
+                    TextStyle(fontSize: 14.0, color: Colors.blueGrey),
+                headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.black),
+                //weekFormat: false,
+                //weekDayFormat: WeekdayFormat.short,
+                height: 300.0,
+                selectedDayBorderColor: Colors.white,
+                selectedDayButtonColor: Colors.white,
+                selectedDayTextStyle: TextStyle(color: Colors.black),
+                markedDateIconBorderColor: Colors.white,
+                todayBorderColor: Colors.white,
+                todayButtonColor: Colors.white,
+                todayTextStyle: TextStyle(color: Colors.black),
+                //onDayPressed: (DateTime data, List<>),
+                //onDayPressed: (DateTime data, List<bool> days){
+                //  _onPressed();
+                //}
               ),
-          ],
-        )
-    );
+            )),
+        Opacity(
+          opacity: 0.0,
+          child: ButtonTheme(
+            minWidth: 500.0,
+            child: Container(
+              margin:
+                  EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition - 100),
+              child: Center(
+                child: RaisedButton(
+                  onPressed: () {_onPressed();},
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    ));
+
+//     return new Scaffold(
+//         body: new Stack(
+//           children: <Widget>[
+//             Container(
+//               child: RaisedButton(
+//                 onPressed: _onPressed(),
+//               ),
+//             ),
+//             IntroPageView(),
+//           ],
+//         )
+//     );
   }
 }

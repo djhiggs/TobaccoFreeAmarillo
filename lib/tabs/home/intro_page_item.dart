@@ -99,7 +99,7 @@ class IntroPageItem extends StatelessWidget {
       //  vertical: 100.0,
       //  horizontal: 8.0,
       //),
-      padding: EdgeInsets.fromLTRB(8.0, 140.0, 8.0, 10.0),
+      padding: EdgeInsets.fromLTRB(8.0, 180.0, 8.0, 10.0),
       child: Material(
         elevation: 4.0,
         borderRadius: BorderRadius.circular(8.0),
@@ -108,7 +108,7 @@ class IntroPageItem extends StatelessWidget {
           children: <Widget>[
             Opacity(
               opacity: 0.1,
-              child: Icon(Icons.smoke_free, size: 200.0,color: Colors.red,),
+              child: Icon(Icons.smoke_free, size: 200.0,color: Colors.blueGrey,),
             ),
             _buildTextContainer(context),
           ],
