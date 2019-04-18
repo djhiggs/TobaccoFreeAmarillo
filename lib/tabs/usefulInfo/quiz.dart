@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'question.dart';
 class Quiz extends StatefulWidget
 {
-  List<Question> questions;
+  List<Question> questions = List();
   @override
   QuizState createState() {
     // TODO: implement createState
@@ -17,8 +17,16 @@ class QuizState extends State<Quiz>
   List<Question> questions;
   @override
   Widget build(BuildContext context) {
-    return currentQuestion == -1?
-      null:
-      questions[currentQuestion];
+    return 
+      Container(child: currentQuestion == -1?
+        _buildResultPage():
+        questions[currentQuestion]
+      );
+  }
+  Widget _buildResultPage(){
+    int totalScore = 0;
+    for(Question q in questions){
+      
+    }
   }
 }

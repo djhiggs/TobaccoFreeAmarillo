@@ -41,13 +41,8 @@ class Cannon extends Component {
     _cannonPosition =Vector2D(0, _floorHeight.toDouble());
     
     //_cannonBarrel.anchor =;
-    GestureDetector detector = GestureDetector(
-      onPanUpdate: (DragUpdateDetails details){
-        var pressPos = Vector2D.fromOffset(details.globalPosition);
-        pressPos.y =_screenHeight - pressPos.y;
-        _cannonBarrel.angle =pressPos.angle();
-      },
-    );
+
+    
   }
   //DragUpdateDetails dragUpdateDetails = DragUpdateDetails();
   bool active = true;
@@ -60,11 +55,11 @@ class Cannon extends Component {
   //
   //Anchor position;
   Vector2D _cannonPosition; 
-  double _screenHeight = -1;
+  double screenHeight = -1;
   @override
   void render(Canvas c) {
-    if(_screenHeight == -1){
-      _screenHeight = MediaQuery.of(context).size.height;
+    if(screenHeight == -1){
+      screenHeight = MediaQuery.of(context).size.height;
       //position =Anchor(Offset.fromDirection(-math.pi/2,_screenHeight));
 
     //_cannonStand.y = screenHeight - _height;
@@ -72,10 +67,10 @@ class Cannon extends Component {
     }
 
     _cannonStand.setByPosition(Position(_cannonPosition.x + _cannonStandPos.x,
-      _screenHeight - _cannonStand.height - _cannonPosition.y - _cannonStandPos.y));
+      screenHeight - _cannonStand.height - _cannonPosition.y - _cannonStandPos.y));
 
     _cannonBarrel.setByPosition(Position(_cannonPosition.x + _cannonBarrelPos.x,
-      _screenHeight - _cannonBarrel.height - _cannonPosition.y - _cannonBarrelPos.y));
+      screenHeight - _cannonBarrel.height - _cannonPosition.y - _cannonBarrelPos.y));
     _cannonBarrel.setByPosition(Position(-16,8));
     _cannonStand.render(c);
     _cannonBarrel.render(c);
@@ -83,6 +78,7 @@ class Cannon extends Component {
   //Position screenPosition; 
   @override
   void update(double t) {
+    //_cannonBarrel.angle = 3.1415926535/2;
     //screenPosition = Position(
     //  _cannonStand.x,MediaQuery.of(_context).size.height-_cannonStand.height-_cannonStand.y-_floorHeight);
     
@@ -92,7 +88,9 @@ class Cannon extends Component {
     //  p1 -= _cannonPosition;
     //  power = p1.length();
     //  _cannonBarrel.angle = p1.angle() + pi;
+    
   }
+  void setAngle(double angle) => _cannonBarrel.angle =angle;
   double power;//user's desired firing power
   void fire(GolfGame game){
     var direction = Vector2D.fromAngle(_cannonBarrel.angle);

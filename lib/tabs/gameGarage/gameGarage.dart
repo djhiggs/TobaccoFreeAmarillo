@@ -10,15 +10,21 @@ import 'games/cigClick/cigClick.dart';
 //  Widget build(BuildContext context) => new Container();
 //}
 class GameGarage extends StatelessWidget {
+  static GameGarage _instance;
   static List<GenericGame> _gamesList;
+  static getInstance(BuildContext context){
+    if(_instance ==null)
+      _instance =GameGarage(context);
+    return _instance;
+  }
   GameGarage(BuildContext context){
     _gamesList = <GenericGame>[
-    GolfGame(context,),
-    TRex(context),
-    CigClick(context),
-    GenericGame(context),
-    GenericGame(context),
-  ];
+      GolfGame(context,),
+      TRex(context),
+      CigClick(context),
+      GenericGame(context),
+      GenericGame(context),
+    ];
   }
   //StatelessWidget _parent;
   //BuildContext _context;  
