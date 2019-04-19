@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'upgrade.dart';
 import 'cigClick.dart';
+
 class CigClickWidget extends StatefulWidget{
   CigClick game;
   CigClickWidget(this.game);
@@ -50,8 +51,8 @@ class CigClickWidgetState extends State<CigClickWidget> {
         setState(() {});
       });
     for(Upgrade upgrade in game.upgrades){
-      widgets.add(ListTile(
-        leading: Container(child: Image.asset('images/Hammer.png'),),
+      widgets.add(ListTile( //Container(child: Image.asset('images/Hammer.png'),),
+        leading: Image.asset('assets/images/Hammer.png'),
         title: Text(upgrade.title),
         trailing: Text("λ" + upgrade.cost().round().toString()),
         subtitle: Text(upgrade.amountOwned.toString() + " owned"),
@@ -70,12 +71,24 @@ class CigClickWidgetState extends State<CigClickWidget> {
       
     }
     widgets.add(
-      IconButton(icon: Icon(Icons.smoking_rooms),
+    /*   IconButton(icon: Icon(Icons.smoking_rooms),
         iconSize: 100,
         onPressed: (){
           game.totalCigs +=game.cigsOnClick;
         },
-      ));
+      )*/
+      Container(
+      width: 415,
+      height: 115,
+      child:
+      RaisedButton(
+        child: Image.asset('assets/images/RealCigarette.png'),
+        onPressed: (){
+          game.totalCigs += game.cigsOnClick;
+        },
+      ),
+      )
+    );
     return widgets;
   }
   
