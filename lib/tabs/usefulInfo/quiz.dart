@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
 import 'question.dart';
+import '../settings/database.dart';
 class Quiz extends StatefulWidget
 {
+  Quiz(this.db,this.quizID){
+    completed = db["QuizStatus$quizID"];
+  }
   //int currentQuestion;
+  int quizID;
+  Database db;
+  bool completed;
   List<Question> questions = List();
   @override
   QuizState createState() {
-    return QuizState(0,questions);
+    return QuizState(completed? questions.length:0,questions,db,quizID);
   }
 }
 class QuizState extends State<Quiz>
 {
-  QuizState(this.currentQuestion,this.questions);
+  static int _quizPassedCount = 0;
+  QuizState(this.currentQuestion,this.questions,this.db,this.quizID);
   int currentQuestion;
+  int quizID;
   List<Question> questions;
+  Database db;
   @override
   Widget build(BuildContext context) {
-    if(currentQuestion >= questions.length)
+    if(currentQuestion >= questions.length){
+      db["QuizStatus$quizID"] = true;
+      _quizPassedCount++;
       return _buildResultPage();
+    }
     else{
       questions[currentQuestion].state = this;
       return Scaffold(

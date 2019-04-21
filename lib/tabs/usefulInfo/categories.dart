@@ -3,6 +3,7 @@ import 'package:tobaccoFreeAmarilloApp/tabs/usefulInfo/quiz.dart';
 import 'category.dart';
 import 'question.dart';
 import 'topic.dart';
+import '../settings/database.dart';
 
 
 class Categories{
@@ -10,10 +11,12 @@ class Categories{
   List<Category> categories;
   static const int _categoryCount = 1; 
   Future import() async{
+    Database db =await Database.getInstance();
     categories = List();
     Question question;
     Topic topic;
     Category category;
+    int quizID = 0;
     for(int i = 1; i<= _categoryCount;i++){
       var ln = await rootBundle.loadString('lib/tabs/usefulInfo/categories/category$i.txt');
       var lines = ln.replaceAll('\r', "").replaceAll('\t', "").split('\n');
@@ -43,7 +46,7 @@ class Categories{
             topic.quiz.questions.add(question);
             break;
           case "Quiz:":
-            topic.quiz = Quiz();
+            topic.quiz = Quiz(db,quizID++);
             break;
           case "Paragraph":
             topic.passage.add(content);
@@ -52,7 +55,7 @@ class Categories{
             topic.passage = List();
             break;
           case "Topic":
-            topic = Topic();
+            topic = Topic(db,quizID);
             topic.header = content;
             category.topics.add(topic);
             break;

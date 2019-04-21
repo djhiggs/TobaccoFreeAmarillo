@@ -1,10 +1,14 @@
 import 'quiz.dart';
 import 'package:flutter/material.dart';
+import '../settings/database.dart';
 class Topic extends StatelessWidget{
+  Topic(Database db,int quizID){
+    quiz =Quiz(db, quizID);
+  }
   String header;
   //composed of "Paragraph: "'s
   List<String> passage;
-  Quiz quiz = Quiz();
+  Quiz quiz;
 
   @override
   Widget build(BuildContext context) {
