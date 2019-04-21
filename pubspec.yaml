@@ -37,6 +37,8 @@ flutter:
   assets:
     - images/tfa.png
     - assets/images/RealCigarette.png
+    - assets/images/
+    - assets/images/sprite.png
     - lib/tabs/usefulInfo/categories/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/.
