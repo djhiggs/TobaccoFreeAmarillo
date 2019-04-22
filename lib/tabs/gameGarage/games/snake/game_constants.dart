@@ -1,3 +1,13 @@
-const BOARD_SIZE = 320.0;
-const PIECE_SIZE = 20.0;
-const TEXT_PADDING = 32.0;
+import 'package:flutter/material.dart';
+class Globals{
+  static initialize(BuildContext context){
+    boardSize = MediaQuery.of(context).size.width;
+    pieceSize = 0.0625*boardSize;
+    textPadding = 0.1*boardSize;
+  }
+  static double boardSize = 200;
+  static double pieceSize = 20.0;
+  static double textPadding = 32.0;
+}
+
+

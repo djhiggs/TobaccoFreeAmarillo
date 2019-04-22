@@ -6,9 +6,9 @@ class Splash extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Container(
       color: const Color(0xFFFFFFFF),
-      width: BOARD_SIZE,
-      height: BOARD_SIZE,
-      padding: const EdgeInsets.all(TEXT_PADDING),
+      width: Globals.boardSize,
+      height: Globals.boardSize,
+      padding: EdgeInsets.all(Globals.textPadding),
       child: Center(
         child: Text("Tap to start the Game!",
             textAlign: TextAlign.center,

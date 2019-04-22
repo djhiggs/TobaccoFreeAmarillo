@@ -4,6 +4,7 @@ import 'games/genericGame.dart';
 import 'games/golfGame/golfGame.dart';
 import 'games/game/trexgame.dart';
 import 'games/cigClick/cigClick.dart';
+import 'games/snake/snakeInterface.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override
@@ -22,7 +23,7 @@ class GameGarage extends StatelessWidget {
       GolfGame(context,),
       TRex(context),
       CigClick(context),
-      GenericGame(context),
+      SnakeInterface(context),
       GenericGame(context),
     ];
   }
