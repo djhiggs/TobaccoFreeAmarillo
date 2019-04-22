@@ -5,12 +5,12 @@ class Apple extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      width: PIECE_SIZE,
-      height: PIECE_SIZE,
+      width: Globals.pieceSize,
+      height: Globals.pieceSize,
       decoration: new BoxDecoration(
           color: const Color(0xFFFF0000),
           border: new Border.all(color: const Color(0xFFFFFFFF)),
-          borderRadius: BorderRadius.circular(PIECE_SIZE)),
+          borderRadius: BorderRadius.circular(Globals.pieceSize)),
     );
   }
 }
