@@ -4,7 +4,7 @@ import '../settings/database.dart';
 class Quiz extends StatefulWidget
 {
   Quiz(this.db,this.quizID){
-    completed = db["QuizStatus$quizID"];
+    //completed = db["QuizStatus$quizID"];
   }
   //int currentQuestion;
   int quizID;
@@ -13,7 +13,8 @@ class Quiz extends StatefulWidget
   List<Question> questions = List();
   @override
   QuizState createState() {
-    return QuizState(completed? questions.length:0,questions,db,quizID);
+    return QuizState(0,questions,db,quizID);
+    //return QuizState(completed? questions.length:0,questions,db,quizID);
   }
 }
 class QuizState extends State<Quiz>
@@ -27,8 +28,8 @@ class QuizState extends State<Quiz>
   @override
   Widget build(BuildContext context) {
     if(currentQuestion >= questions.length){
-      db["QuizStatus$quizID"] = true;
-      _quizPassedCount++;
+    //  db["QuizStatus$quizID"] = true;
+    //  _quizPassedCount++;
       return _buildResultPage();
     }
     else{
