@@ -142,19 +142,19 @@ Category: Cost
 	Topic: Smokeless Tobacco
 		Passage: 
 			Paragraph: Smokeless tobacco like dip or snuff averages to about $6 a can. Depending on how much you use, you could be spending as much as $3,120 a year. It can be quite a bit more if you use the more expensive brands and types as well.
-			Paragraph: If you were to get cancer from the longterm use of smokeless tobacco, the average cost is $7,500 for medical care. This 
-			Paragraph: 
+			Paragraph: If you were to get cancer from the longterm use of smokeless tobacco, the average cost is $7,500 for medical care. This can vary wildly and you can get multiple types of cancer and mouth diseases at the same time. 
+			Paragraph: Smoking may cause some issues with your teeth, it pales in comparison to smokeless tobacco. Costs for whitening your teeth (since they are going to be stained by the tobacco juice) can range from $100 to $650 per treatment, and unfortuantley these are not permanent, so if you want white teeth, you are going to have to keep coming back.
 				Quiz: 
-					Question: 
-						Choice: 
-						Choice: 
-						Choice: 
-						Choice: 
-					Question: 
-						Choice: 
-						Choice: 
-						Choice: 
-						Choice: 	
+					Question: What is one of the downsides of whitening your teeth?
+						Choice: It tastes like old gym socks.
+						Choice: Your teeth will glow when exposed to UV light.
+						Answer: The treatments are not permanent.
+						Choice: Your gums will be sore for days.
+					Question: Medical costs for treating oral cancers average out to about:
+						Answer: $7,500
+						Choice: $10,000
+						Choice: $6,000
+						Choice: $9,400
 	Topic: Vaping
 		Passage: 
 			Paragraph: 
