@@ -3,51 +3,73 @@ import 'question.dart';
 import '../settings/database.dart';
 class Quiz extends StatefulWidget
 {
+  static void initialize() async{
+    //_quizPassedCount = db["QuizPassCount"];
+  }
+  static int _quizPassedCount = -1;
   Quiz(this.db,this.quizID){
-    //completed = db["QuizStatus$quizID"];
+    passed = db["QuizStatus$quizID"];
+    if(passed ==null)
+      passed =false;
   }
   //int currentQuestion;
   int quizID;
   Database db;
-  bool completed;
+  bool passed;
   List<Question> questions = List();
   @override
   QuizState createState() {
-    return QuizState(0,questions,db,quizID);
-    //return QuizState(completed? questions.length:0,questions,db,quizID);
+    return QuizState(0,this);
+    //return QuizState(passed? questions.length:0,this);
+  }
+  setStatus(bool newStatus){
+    if(newStatus ==passed)
+      return;
+    if(newStatus){
+      double totalScore = 0;
+      for(Question q in questions)
+        if(q.chosenAnswerIndex == q.correctAnswerIndex)
+          totalScore += 100.0/questions.length;
+      if(totalScore >= 70){//passed
+        _quizPassedCount++;
+        passed = true;
+      }
+    } 
+    else{//reset
+      
+    } 
   }
 }
 class QuizState extends State<Quiz>
 {
-  static int _quizPassedCount = 0;
-  QuizState(this.currentQuestion,this.questions,this.db,this.quizID);
+  QuizState(this.currentQuestion,this.quiz);
   int currentQuestion;
-  int quizID;
-  List<Question> questions;
-  Database db;
+  Quiz quiz;
   @override
   Widget build(BuildContext context) {
-    if(currentQuestion >= questions.length){
-    //  db["QuizStatus$quizID"] = true;
-    //  _quizPassedCount++;
+    if(currentQuestion >= quiz.questions.length){
+      if(quiz.passed){
+        //return
+      }
+      quiz.setStatus(true);
       return _buildResultPage();
     }
     else{
-      questions[currentQuestion].state = this;
+      quiz.questions[currentQuestion].state = this;
       return Scaffold(
         appBar: AppBar(
         leading: new IconButton(icon: Icon(Icons.close),
         onPressed: ()=>Navigator.of(context).pop(),),
       ),
-        body: questions[currentQuestion]);
+        body: quiz.questions[currentQuestion]);
     }
   }
   Widget _buildResultPage(){
     double totalScore = 0;
     List<Widget> content = List();
-    for(Question q in questions){
+    for(Question q in quiz.questions){
       if(q.chosenAnswerIndex == q.correctAnswerIndex)
-        totalScore += 100.0/questions.length;
+        totalScore += 100.0/quiz.questions.length;
       List<Widget> answers = List();
       for(int i = 0; i < q.choices.length; i++)
         answers.add(Card(child: Row(
