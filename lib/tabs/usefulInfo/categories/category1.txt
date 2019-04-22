@@ -127,22 +127,22 @@ Category: Cost
 		Passage: 
 			Paragraph: Smoking cigarettes can be a pretty expensive habit. Currently, the average price of cigarettes is $6.69 a pack. If you smoke a pack a day, you are looking at $2,442 a year! That's a lot of money you are virtually burning up!
 			Paragraph: This doesn't include any health costs due to longterm smoking. If you were to get any lung or heart disease, you might be saddled with constantly increasing costs averaging almost $19,000. Thats the cost of a small car!
-			Paragraph: 
+			Paragraph: If you are a minor, and are caught with tobacco on you, you could be slapped with a fine up to $250 and be forced to do community service or attend tobacco education programs. If you don't follow through, you could lose your license!
 				Quiz: 
-					Question: 
-						Choice: 
-						Choice: 
-						Choice: 
-						Choice: 
-					Question: 
-						Choice: 
-						Choice: 
-						Choice: 
-						Choice: 	
-	Topic: Smokless Tobacco
+					Question: How much is the average cost of cigarettes?
+						Choice: $4.89 a pack
+						Answer: $6.69 a pack
+						Choice: $8.99 a pack
+						Choice: $5.99 a pack
+					Question: What happens if you do not follow through with paying your fines or other requirments if you are a minor caught with tobacco?
+						Answer: You could lose your license.
+						Choice: You could be sent to jail for up to a month.
+						Choice: You will have your fines doubled.
+						Choice: Your parents are sent to jail for up to a month.
+	Topic: Smokeless Tobacco
 		Passage: 
-			Paragraph: 
-			Paragraph: 
+			Paragraph: Smokeless tobacco like dip or snuff averages to about $6 a can. Depending on how much you use, you could be spending as much as $3,120 a year. It can be quite a bit more if you use the more expensive brands and types as well.
+			Paragraph: If you were to get cancer from the longterm use of smokeless tobacco, the average cost is $7,500 for medical care. This 
 			Paragraph: 
 				Quiz: 
 					Question: 
