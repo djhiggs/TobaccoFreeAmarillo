@@ -125,8 +125,8 @@ Category: Long Term Effects on the Body
 Category: Cost
 	Topic: Smoking
 		Passage: 
-			Paragraph: 
-			Paragraph: 
+			Paragraph: Smoking cigarettes can be a pretty expensive habit. Currently, the average price of cigarettes is $6.69 a pack. If you smoke a pack a day, you are looking at $2,442 a year! That's a lot of money you are virtually burning up!
+			Paragraph: This doesn't include any health costs due to longterm smoking. If you were to get any lung or heart disease, you might be saddled with constantly increasing costs averaging almost $19,000. Thats the cost of a small car!
 			Paragraph: 
 				Quiz: 
 					Question: 
