@@ -41,7 +41,7 @@ class CigClickWidgetState extends State<CigClickWidget> {
         style: TextStyle(fontSize: 24),
       ),
       Text(
-        game.totalCigs.round().toString(),
+        '🚬  ' + game.totalCigs.round().toString() + '  🚬',
         style: TextStyle(fontSize: 36),
       ),
       ListTile(title: Text("Upgrades"),)];
@@ -51,10 +51,10 @@ class CigClickWidgetState extends State<CigClickWidget> {
         setState(() {});
       });
     for(Upgrade upgrade in game.upgrades){
-      widgets.add(ListTile( //Container(child: Image.asset('images/Hammer.png'),),
+      widgets.add(ListTile(
         leading: Image.asset(upgrade.image),
         title: Text(upgrade.title),
-        trailing: Text("λ" + upgrade.cost().round().toString()),
+        trailing: Text('🚬' + upgrade.cost().round().toString()),
         subtitle: Text(upgrade.amountOwned.toString() + " owned"),
         onTap: (){
           if(game.totalCigs >= upgrade.cost()){
@@ -78,18 +78,28 @@ class CigClickWidgetState extends State<CigClickWidget> {
         },
       )*/
       Container(
-      width: 415,
-      height: 115,
-      child:
-      RaisedButton(
-        child: Image.asset('assets/images/RealCigarette.png'),
-        onPressed: (){
-          game.totalCigs += game.cigsOnClick;
-        },
-      ),
-      )
+      width: 300,
+      height: 100,
+      color: Colors.transparent,
+      child: new Container(
+            decoration: new BoxDecoration(
+              color: Colors.lightGreen,
+              borderRadius: new BorderRadius.all(
+                Radius.circular(40)
+              )
+            ),
+            child: 
+              RaisedButton(
+                child: Image.asset('assets/images/RealCigarette.png'),
+                color: Colors.green,
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                onPressed: (){
+                  game.totalCigs += game.cigsOnClick;
+                },
+              ),
+            ),
+          )
     );
     return widgets;
   }
-  
 }
