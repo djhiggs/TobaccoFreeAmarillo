@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'intro_item.dart';
+//import 'intro_item.dart';
 import 'page_transformer.dart';
 
-class IntroPageItem extends StatelessWidget {
-  IntroPageItem({
-    @required this.item,
+class MotivationItem extends StatelessWidget {
+  MotivationItem({
     @required this.pageVisibility,
   });
 
-  final IntroItem item;
   final PageVisibility pageVisibility;
 
   Widget _applyTextEffects({
@@ -37,7 +35,8 @@ class IntroPageItem extends StatelessWidget {
     var categoryText = _applyTextEffects(
       translationFactor: 300.0,
       child: Text(
-        item.category,
+        //item.category,
+        "test",
         style: textTheme.caption.copyWith(
           color: Colors.black,
           letterSpacing: 2.0,
@@ -52,7 +51,8 @@ class IntroPageItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0),
         child: Text(
-          item.title,
+          //item.title,
+          "test",
           style: textTheme.title.copyWith(color: Colors.black),
           textAlign: TextAlign.left,
         ),
@@ -66,7 +66,9 @@ class IntroPageItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Text(item.stat,
+          Text(
+              //item.stat,
+              "test",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           categoryText,
@@ -83,23 +85,16 @@ class IntroPageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var imageOverlayGradient = DecoratedBox(
       decoration: BoxDecoration(
-        //image: Image.asset(name),
-        gradient: LinearGradient(
-          begin: FractionalOffset.bottomCenter,
-          end: FractionalOffset.topCenter,
-          colors: [
-            const Color(0xFF000000),
-            const Color(0x00000000),
-          ],
         ),
+      child: Container(
+        child:  Image.asset(
+          'assets/images/balcony.jpg',
+          fit: BoxFit.fitHeight,
+          ),
       ),
     );
 
     return Padding(
-      //padding: const EdgeInsets.symmetric(
-      //  vertical: 100.0,
-      //  horizontal: 8.0,
-      //),
       padding: EdgeInsets.fromLTRB(8.0, 180.0, 8.0, 10.0),
       child: Material(
         elevation: 4.0,
@@ -108,8 +103,8 @@ class IntroPageItem extends StatelessWidget {
           fit: StackFit.expand,
           children: <Widget>[
             Opacity(
-              opacity: 0.1,
-              child: Icon(Icons.smoke_free, size: 200.0,color: Theme.of(context).primaryColor,),
+              opacity: 0.2,
+              child: imageOverlayGradient,
             ),
             _buildTextContainer(context),
           ],
@@ -118,3 +113,4 @@ class IntroPageItem extends StatelessWidget {
     );
   }
 }
+

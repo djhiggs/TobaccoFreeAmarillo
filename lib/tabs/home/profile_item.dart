@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'intro_item.dart';
+//import 'intro_item.dart';
 import 'page_transformer.dart';
 
 class ProfileItem extends StatelessWidget {
@@ -18,15 +18,16 @@ class ProfileItem extends StatelessWidget {
 
     return Opacity(
       opacity: pageVisibility.visibleFraction,
-      child: Transform(
-        alignment: FractionalOffset.bottomCenter,
-        transform: Matrix4.translationValues(
-          0.0,
-          0.0,
-          0.0,
-        ),
-        child: child,
-      ),
+      child: child,
+      // child: Transform(
+      //   alignment: FractionalOffset.bottomCenter,
+      //   // transform: Matrix4.translationValues(
+      //   //   0.0,
+      //   //   0.0,
+      //   //   0.0,
+      //   // ),
+      //   child: child,
+      // ),
     );
   }
 

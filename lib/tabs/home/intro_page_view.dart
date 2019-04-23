@@ -7,6 +7,8 @@ import 'profile_item.dart';
 class IntroPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    
     return Scaffold(
       body: Center(
         child: SizedBox.fromSize(
@@ -15,6 +17,8 @@ class IntroPageView extends StatelessWidget {
             pageViewBuilder: (context, visibilityResolver) {
               return PageView.builder(
                 controller: PageController(viewportFraction: 0.85),
+                //items: = <Widget>[
+                //]
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   //final item = sampleItems[index];
@@ -23,6 +27,7 @@ class IntroPageView extends StatelessWidget {
                   return ProfileItem(
                     pageVisibility: pageVisibility,
                   );
+                  
                 },
               );
             },
