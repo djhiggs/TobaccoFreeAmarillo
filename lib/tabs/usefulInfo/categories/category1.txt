@@ -30,6 +30,11 @@ Category: Immediate Health Effects
 						Choice: It coats your lungs in tar.
 						Answer: It does not immediately effect your lungs or wind pipe.
 						Choice: It makes your brain more alert.
+					Question: How does the nicotine make it from your mouth to your blood stream?
+						Choice: By injecting it into your gum line.
+						Choice: By getting absorbed in the lungs by the alveoli.
+						Answer: By getting absorbed by the soft tissue lining the mouth and throat.
+						Choice: By being digested in the stomach.
 	Topic: Vaping
 		Passage: 
 			Paragraph: Vaping and e-cigarettes are a bit unique from smoking or smokeless tobacco in that it doesn't use tobacco. Because of this, alot of people think that vaping is the safer alternative to using tobacco products. Unforutuntely, this is not true.
@@ -89,7 +94,7 @@ Category: Long Term Effects on the Body
 						Choice: Kidneys
 						Choice: Lungs
 						Choice: Bones
-	Topic: Smmokeless Tobacco
+	Topic: Smokeless Tobacco
 		Passage: 
 			Paragraph: Smokeless Tobacco doesn't have to be inhaled to not still be harmful to your body in the longterm. Tobacco itself has many harmful chemicals, even if it was raised organically. The human body can develop many different cancers in the mouth and esophagus and even the pancreas when exposed to these chemicals for a long period of time.
 			Paragraph: People who use products like chaw or snuff can develop white or gray patches inside their mouth. These patches, called leukoplakia, are actually highly likely to develop cancer. Your chances for teeth and gum disease also skyrockets, and even to the point where you might lose your teeth! This is caused from the longterm exposure from the chemical soup mixed with your saliva resting on your teeth. It's exactly like with sugar, but far more deadly.
@@ -120,7 +125,7 @@ Category: Long Term Effects on the Body
 					Question: How can a person be poisoned from using a vape?
 						Choice: They can swallow the vape fluid.
 						Choice: They can get the fluid on their eyes or skin.
-						Answer: They both swallow or spill the fluid on their skin or eyes.
+						Answer: They swallow or spill the fluid on their skin or eyes.
 						Choice: None of the above.
 Category: Cost
 	Topic: Smoking
