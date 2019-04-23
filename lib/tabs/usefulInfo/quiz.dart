@@ -58,7 +58,7 @@ class QuizState extends State<Quiz>
       quiz.questions[currentQuestion].state = this;
       return Scaffold(
         appBar: AppBar(
-        leading: new IconButton(icon: Icon(Icons.close),
+        leading: IconButton(icon: Icon(Icons.close),
         onPressed: ()=>Navigator.of(context).pop(),),
       ),
         body: quiz.questions[currentQuestion]);
