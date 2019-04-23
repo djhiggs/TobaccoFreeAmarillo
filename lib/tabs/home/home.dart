@@ -28,7 +28,7 @@ class HomeState extends State<Home> {
       showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("test"),
+        title: Text("Check out your successful days with this Calender!"),
         //contentPadding: ,
         titlePadding: EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
         ),
