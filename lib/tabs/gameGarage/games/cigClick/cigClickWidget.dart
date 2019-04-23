@@ -83,7 +83,7 @@ class CigClickWidgetState extends State<CigClickWidget> {
       color: Colors.transparent,
       child: new Container(
             decoration: new BoxDecoration(
-              color: Colors.lightGreen,
+              color: Colors.green,
               borderRadius: new BorderRadius.all(
                 Radius.circular(40)
               )
