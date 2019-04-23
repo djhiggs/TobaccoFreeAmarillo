@@ -15,14 +15,12 @@ class IntroPageView extends StatelessWidget {
             pageViewBuilder: (context, visibilityResolver) {
               return PageView.builder(
                 controller: PageController(viewportFraction: 0.85),
-                itemCount: sampleItems.length,
+                itemCount: 5,
                 itemBuilder: (context, index) {
-                  final item = sampleItems[index];
+                  //final item = sampleItems[index];
                   final pageVisibility =
                       visibilityResolver.resolvePageVisibility(index);
-
-                  return Profile_Item(
-                    item: item,
+                  return ProfileItem(
                     pageVisibility: pageVisibility,
                   );
                 },

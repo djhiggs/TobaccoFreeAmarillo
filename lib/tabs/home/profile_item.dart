@@ -3,13 +3,11 @@ import 'package:meta/meta.dart';
 import 'intro_item.dart';
 import 'page_transformer.dart';
 
-class Profile_Item extends StatelessWidget {
-  Profile_Item({
-    @required this.item,
+class ProfileItem extends StatelessWidget {
+  ProfileItem({
     @required this.pageVisibility,
   });
 
-  final IntroItem item;
   final PageVisibility pageVisibility;
 
   Widget _applyTextEffects({
@@ -37,7 +35,8 @@ class Profile_Item extends StatelessWidget {
     var categoryText = _applyTextEffects(
       translationFactor: 300.0,
       child: Text(
-        item.category,
+        //item.category,
+        "test",
         style: textTheme.caption.copyWith(
           color: Colors.black,
           letterSpacing: 2.0,
@@ -52,7 +51,8 @@ class Profile_Item extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0),
         child: Text(
-          item.title,
+          //item.title,
+          "test",
           style: textTheme.title.copyWith(color: Colors.black),
           textAlign: TextAlign.left,
         ),
@@ -66,7 +66,9 @@ class Profile_Item extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Text(item.stat,
+          Text(
+              //item.stat,
+              "test",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           categoryText,
