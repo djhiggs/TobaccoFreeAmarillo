@@ -15,8 +15,10 @@ class CategoriesWidgetState extends State<CategoriesWidget>{
   CategoriesWidgetState(this._categories);
   @override
   Widget build(BuildContext context) {
-    if(_categories.categories ==null)
+    if(_categories.categories ==null){
       _categories.import().whenComplete(() =>setState(() {}));
+      return Container();
+    }
     var children = <Widget>[
       /*ListTile(title: Text("Useful Information",textScaleFactor: 1.8,))*/
     ];

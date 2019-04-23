@@ -88,6 +88,7 @@ class QuizState extends State<Quiz>
                       q.question,
                       textAlign: TextAlign.justify,
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 10,
                     ),
                   padding: EdgeInsets.fromLTRB(8, 8, 32, 8),
                   ),
@@ -102,11 +103,20 @@ class QuizState extends State<Quiz>
       );
     }
     content.insert(0, Text(totalScore.toInt().toString() + "/100",textScaleFactor: 4));
+    if(totalScore < 70)
+      content.add(RaisedButton(
+        child: Text("Retry"),
+        onPressed: (){
+          currentQuestion = 0;
+          setState(() { });
+        },
+      ));
     return Scaffold(
       appBar: AppBar(
-        leading: new IconButton(icon: Icon(Icons.close),
-          onPressed: ()=>Navigator.of(context).pop(),),
-        title: Text("Results",textScaleFactor: 1.3,),
+        leading: IconButton(
+          icon: Icon(Icons.close),
+          onPressed: ()=>Navigator.of(context).pop()),
+        title: Text("Results",textScaleFactor: 1.3),
       ),
       body: Column(children: content),
     );

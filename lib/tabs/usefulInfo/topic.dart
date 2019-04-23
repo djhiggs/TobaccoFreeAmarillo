@@ -16,7 +16,7 @@ class Topic extends StatelessWidget{
     for(var paragraph in passage){
       children.add(Padding(child: Text(paragraph, 
       overflow: TextOverflow.ellipsis,
-      maxLines: 3,), 
+      maxLines: 3), 
       padding: EdgeInsets.symmetric(
         vertical: 0,
         horizontal: 16,
