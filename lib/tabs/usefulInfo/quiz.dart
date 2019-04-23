@@ -88,6 +88,7 @@ class QuizState extends State<Quiz>
                       q.question,
                       textAlign: TextAlign.justify,
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 10,
                     ),
                   padding: EdgeInsets.fromLTRB(8, 8, 32, 8),
                   ),
