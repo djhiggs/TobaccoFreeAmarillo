@@ -18,15 +18,16 @@ class MotivationItem extends StatelessWidget {
 
     return Opacity(
       opacity: pageVisibility.visibleFraction,
-      child: Transform(
-        alignment: FractionalOffset.bottomCenter,
-        transform: Matrix4.translationValues(
-          0.0,
-          0.0,
-          0.0,
-        ),
-        child: child,
-      ),
+      child: child,
+      // child: Transform(
+      //   alignment: FractionalOffset.bottomCenter,
+      //   // transform: Matrix4.translationValues(
+      //   //   0.0,
+      //   //   0.0,
+      //   //   0.0,
+      //   // ),
+      //   child: child,
+      // ),
     );
   }
 
@@ -88,7 +89,7 @@ class MotivationItem extends StatelessWidget {
         ),
       child: Container(
         child:  Image.asset(
-          'assets/images/balcony.jpg',
+          'assets/images/child_dad.jpg',
           fit: BoxFit.fitHeight,
           ),
       ),
@@ -113,4 +114,3 @@ class MotivationItem extends StatelessWidget {
     );
   }
 }
-
