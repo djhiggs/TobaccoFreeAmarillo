@@ -3,8 +3,8 @@ import 'package:meta/meta.dart';
 import 'intro_item.dart';
 import 'page_transformer.dart';
 
-class IntroPageItem extends StatelessWidget {
-  IntroPageItem({
+class Profile_Item extends StatelessWidget {
+  Profile_Item({
     @required this.item,
     @required this.pageVisibility,
   });
@@ -83,23 +83,16 @@ class IntroPageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var imageOverlayGradient = DecoratedBox(
       decoration: BoxDecoration(
-        //image: Image.asset(name),
-        gradient: LinearGradient(
-          begin: FractionalOffset.bottomCenter,
-          end: FractionalOffset.topCenter,
-          colors: [
-            const Color(0xFF000000),
-            const Color(0x00000000),
-          ],
         ),
+      child: Container(
+        child:  Image.asset(
+          'assets/images/bank_notes.jpg',
+          fit: BoxFit.fitHeight,
+          ),
       ),
     );
 
     return Padding(
-      //padding: const EdgeInsets.symmetric(
-      //  vertical: 100.0,
-      //  horizontal: 8.0,
-      //),
       padding: EdgeInsets.fromLTRB(8.0, 180.0, 8.0, 10.0),
       child: Material(
         elevation: 4.0,
@@ -108,8 +101,8 @@ class IntroPageItem extends StatelessWidget {
           fit: StackFit.expand,
           children: <Widget>[
             Opacity(
-              opacity: 0.1,
-              child: Icon(Icons.smoke_free, size: 200.0,color: Theme.of(context).primaryColor,),
+              opacity: 0.2,
+              child: imageOverlayGradient,
             ),
             _buildTextContainer(context),
           ],

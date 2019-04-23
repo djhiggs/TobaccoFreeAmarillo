@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'intro_item.dart';
 import 'intro_page_item.dart';
 import 'page_transformer.dart';
+import 'profile_item.dart';
 
 class IntroPageView extends StatelessWidget {
   @override
@@ -20,7 +21,7 @@ class IntroPageView extends StatelessWidget {
                   final pageVisibility =
                       visibilityResolver.resolvePageVisibility(index);
 
-                  return IntroPageItem(
+                  return Profile_Item(
                     item: item,
                     pageVisibility: pageVisibility,
                   );
