@@ -54,7 +54,7 @@ class CigClickWidgetState extends State<CigClickWidget> {
       widgets.add(ListTile(
         leading: Image.asset(upgrade.image),
         title: Text(upgrade.title),
-        trailing: Text('🚬' + upgrade.cost().round().toString()),
+        trailing: Text('Cost: 🚬' + upgrade.cost().round().toString()),
         subtitle: Text(upgrade.amountOwned.toString() + " owned"),
         onTap: (){
           if(game.totalCigs >= upgrade.cost()){
