@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'intro_item.dart';
-import 'intro_page_item.dart';
 import 'page_transformer.dart';
 import 'profile_item.dart';
 import 'motivation_item.dart';
