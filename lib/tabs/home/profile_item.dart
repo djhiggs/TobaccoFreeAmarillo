@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 //import 'intro_item.dart';
 import 'page_transformer.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class ProfileItem extends StatelessWidget {
   ProfileItem({
@@ -59,24 +60,38 @@ class ProfileItem extends StatelessWidget {
         ),
       ),
     );
+    var daysUntilFreeIndicator = new CircularPercentIndicator(
+      radius: 175.0,
+      lineWidth: 25.0,
+      animation: true,
+      percent: 0.7,
+      center: Text(
+        "0 Days",
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+      ),
+      header:  Text(
+        "Nickname",
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+      ),
+      footer:  Text(
+        "Until You are Smoke Free!",
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+      ),
+      circularStrokeCap: CircularStrokeCap.round,
+      progressColor: Colors.deepPurpleAccent,
+    );
 
     return Positioned(
-      bottom: 50,
+      bottom: 25,
       left: 32.0,
       right: 32.0,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Text(
-              //item.stat,
-              "test",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-          categoryText,
           Container(
-            width: 180.0,
+            //width: 180.0,
+            child: daysUntilFreeIndicator,
           ),
-          titleText,
         ],
       ),
     );
@@ -85,13 +100,12 @@ class ProfileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var imageOverlayGradient = DecoratedBox(
-      decoration: BoxDecoration(
-        ),
+      decoration: BoxDecoration(),
       child: Container(
-        child:  Image.asset(
-          'assets/images/bank_notes.jpg',
+        child: Image.asset(
+          'assets/images/endurance.jpg',
           fit: BoxFit.fitHeight,
-          ),
+        ),
       ),
     );
 
@@ -99,12 +113,13 @@ class ProfileItem extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(8.0, 180.0, 8.0, 10.0),
       child: Material(
         elevation: 4.0,
+        shape: null,
         borderRadius: BorderRadius.circular(8.0),
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
             Opacity(
-              opacity: 0.2,
+              opacity: 0.25,
               child: imageOverlayGradient,
             ),
             _buildTextContainer(context),

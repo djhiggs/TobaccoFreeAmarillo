@@ -3,8 +3,8 @@ import 'package:meta/meta.dart';
 //import 'intro_item.dart';
 import 'page_transformer.dart';
 
-class GameItem extends StatelessWidget {
-  GameItem({
+class MilestoneItem extends StatelessWidget {
+  MilestoneItem({
     @required this.pageVisibility,
   });
 
@@ -89,7 +89,7 @@ class GameItem extends StatelessWidget {
         ),
       child: Container(
         child:  Image.asset(
-          'assets/images/bamboo.jpg',
+          'assets/images/endurance.jpg',
           fit: BoxFit.fitHeight,
           ),
       ),
