@@ -35,6 +35,7 @@ class IntroPageView extends StatelessWidget {
                   ),
                   ];
               return PageView.builder(
+                
                 controller: PageController(viewportFraction: 0.85),
                 itemCount: 5,
                 itemBuilder: (context, index) {
