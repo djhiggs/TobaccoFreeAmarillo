@@ -18,7 +18,7 @@ class Person
   {
     if(_person ==null){
       _person = Person();
-      await _person.db.connect();
+      _person.db =await Database.getInstance();
       if(!_person.db.exists())
         await _person.export();
     }

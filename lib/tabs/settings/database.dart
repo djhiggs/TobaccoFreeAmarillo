@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../usefulInfo/quiz.dart';
 class Database
 {
   static Database _instance;
@@ -12,7 +13,8 @@ class Database
   static Future<Database> getInstance() async{
     if(_instance ==null){
       _instance =Database();
-      await _instance.connect();
+      await _instance._connect();
+      Quiz.initialize(_instance);
     }
     return _instance;
   }
@@ -20,7 +22,7 @@ class Database
   bool exists() => 
     _local.getKeys().length != 0;  
 
-  Future connect() async{
+  Future _connect() async{
     _local 
     = await SharedPreferences.getInstance();
     if(_local.getKeys().length == 0)

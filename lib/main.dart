@@ -8,6 +8,7 @@ import 'tabs/gameGarage/gameGarage.dart' as _secondTab;
 import 'tabs/settings/settings.dart' as _thirdTab;
 import 'tabs/achievement_page/achievement_page.dart' as _achievementPage;
 import 'tabs/usefulInfo/categoriesWidget.dart';
+import 'tabs/usefulInfo/quiz.dart';
 
 
 void main() => runApp(new MaterialApp(

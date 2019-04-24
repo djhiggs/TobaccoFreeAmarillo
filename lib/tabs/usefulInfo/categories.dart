@@ -46,7 +46,7 @@ class Categories{
             topic.quiz.questions.add(question);
             break;
           case "Quiz:":
-            topic.quiz = Quiz(db,quizID++);
+            topic.quiz = Quiz(quizID);
             break;
           case "Paragraph":
             topic.passage.add(content);
@@ -55,7 +55,7 @@ class Categories{
             topic.passage = List();
             break;
           case "Topic":
-            topic = Topic(db,quizID);
+            topic = Topic(db,quizID++);
             topic.header = content;
             category.topics.add(topic);
             break;

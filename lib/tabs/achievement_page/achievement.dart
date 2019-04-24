@@ -1,6 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
 class Achievement{
-
   bool status;
   String name;
   String description;
