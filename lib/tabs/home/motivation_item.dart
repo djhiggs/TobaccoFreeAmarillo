@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 //import 'intro_item.dart';
 import 'page_transformer.dart';
-import '../settings/person.dart';
 
 class MotivationItem extends StatelessWidget {
   MotivationItem({
@@ -20,79 +19,64 @@ class MotivationItem extends StatelessWidget {
     return Opacity(
       opacity: pageVisibility.visibleFraction,
       child: child,
+      // child: Transform(
+      //   alignment: FractionalOffset.bottomCenter,
+      //   // transform: Matrix4.translationValues(
+      //   //   0.0,
+      //   //   0.0,
+      //   //   0.0,
+      //   // ),
+      //   child: child,
+      // ),
     );
   }
 
   _buildTextContainer(BuildContext context) {
-    Person _person = new Person();
-    var moneySaved = "\$" +
-        (_person.smokeChart.averageUsage *
-                5.06 *
-                (((DateTime.now().millisecondsSinceEpoch -
-                            _person
-                                .smokeChart.startDate.millisecondsSinceEpoch) /
-                        (3600 * 1000 * 24 * 7))
-                    .round()))
-            .toString();
+    var textTheme = Theme.of(context).textTheme;
+    var categoryText = _applyTextEffects(
+      translationFactor: 300.0,
+      child: Text(
+        //item.category,
+        "Get help if you want it",
+        style: textTheme.caption.copyWith(
+          color: Colors.black,
+          letterSpacing: 2.0,
+          fontSize: 20.0,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    var titleText = _applyTextEffects(
+      translationFactor: 200.0,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: Text(
+          //item.title,
+          "Smokers can receive free resources and assistance to help them quit. Your health care providers are also a good source for help and support.",
+          style: textTheme.title.copyWith(color: Colors.black),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
 
     return Positioned(
-      bottom: MediaQuery.of(context).size.height * 0.08,
+      bottom: 50,
       left: 32.0,
       right: 32.0,
-      child: Stack(
-        children: <Widget>[
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                children: [
-                  Text("Money Saved:",
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.085, 0, 0, 0),
-                    child: Text(
-                      moneySaved,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width * 0.40,
-                child: new Divider(
-                  color: Colors.black,
-                ),
-              ),
-              Row(
-                children: [
-                  Column(
-                    children: <Widget>[
-                      Text("Ciggerates",
-                      softWrap: true,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
-                      Text("Evaded:",
-                      softWrap: true,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
-                    ],
-                  ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.14, 0, 0, 0),
-                    child: Text(
-                      moneySaved,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text(
+              //item.stat,
+              "1-800-QUIT-NOW",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+          categoryText,
+          Container(
+            width: 180.0,
           ),
+          titleText,
         ],
       ),
     );
@@ -101,12 +85,13 @@ class MotivationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var imageOverlayGradient = DecoratedBox(
-      decoration: BoxDecoration(),
-      child: Container(
-        child: Image.asset(
-          'assets/images/bank_notes.jpg',
-          fit: BoxFit.fitHeight,
+      decoration: BoxDecoration(
         ),
+      child: Container(
+        child:  Image.asset(
+          'assets/images/clock.jpg',
+          fit: BoxFit.fitHeight,
+          ),
       ),
     );
 
