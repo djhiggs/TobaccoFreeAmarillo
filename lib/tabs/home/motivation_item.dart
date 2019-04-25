@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 //import 'intro_item.dart';
 import 'page_transformer.dart';
+import '../settings/person.dart';
 
 class MotivationItem extends StatelessWidget {
   MotivationItem({
@@ -31,52 +32,61 @@ class MotivationItem extends StatelessWidget {
     );
   }
 
+  _buildText(
+      BuildContext context, var moneySaved, var textTheme, var description) {
+    return _applyTextEffects(
+      translationFactor: 200.0,
+      child: Column(children: <Widget>[
+        Container(
+          child: Text(
+            moneySaved,
+            style: textTheme.title.copyWith(color: Colors.black),
+            //TextStyle(fontSize: 15),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Text(description,
+            style: textTheme.title.copyWith(color: Colors.black),
+            textAlign: TextAlign.center),
+      ]),
+    );
+  }
+
   _buildTextContainer(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    var categoryText = _applyTextEffects(
-      translationFactor: 300.0,
-      child: Text(
-        //item.category,
-        "test",
-        style: textTheme.caption.copyWith(
-          color: Colors.black,
-          letterSpacing: 2.0,
-          fontSize: 20.0,
-        ),
-        textAlign: TextAlign.center,
-      ),
-    );
 
-    var titleText = _applyTextEffects(
-      translationFactor: 200.0,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16.0),
-        child: Text(
-          //item.title,
-          "test",
-          style: textTheme.title.copyWith(color: Colors.black),
-          textAlign: TextAlign.left,
-        ),
-      ),
-    );
+    Person _person = new Person();
+    var moneySaved = "\$" +
+        (_person.smokeChart.averageUsage *
+                5.06 *
+                (((DateTime.now().millisecondsSinceEpoch -
+                            _person
+                                .smokeChart.startDate.millisecondsSinceEpoch) /
+                        (3600 * 1000 * 24 * 7))
+                    .round()))
+            .toString();
 
     return Positioned(
       bottom: 50,
       left: 32.0,
       right: 32.0,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Text(
-              //item.stat,
-              "test",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-          categoryText,
+      child: Stack(
+        children: <Widget>[
           Container(
-            width: 180.0,
+            height: MediaQuery.of(context).size.height * 0.30,
+            width: MediaQuery.of(context).size.width * 0.15,
+            child: new VerticalDivider(
+              color: Colors.black,
+            ),
           ),
-          titleText,
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildText(context, moneySaved, textTheme, "Money Saved:"),
+              _buildText(context, moneySaved, textTheme, "Money Saved:"),
+            ],
+          ),
         ],
       ),
     );
@@ -85,13 +95,12 @@ class MotivationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var imageOverlayGradient = DecoratedBox(
-      decoration: BoxDecoration(
-        ),
+      decoration: BoxDecoration(),
       child: Container(
-        child:  Image.asset(
-          'assets/images/child_dad.jpg',
+        child: Image.asset(
+          'assets/images/bank_notes.jpg',
           fit: BoxFit.fitHeight,
-          ),
+        ),
       ),
     );
 

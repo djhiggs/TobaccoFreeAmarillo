@@ -61,20 +61,25 @@ class ProfileItem extends StatelessWidget {
       ),
     );
     var daysUntilFreeIndicator = new CircularPercentIndicator(
-      radius: 175.0,
+      //radius: 175.0,
+      radius:  MediaQuery.of(context).size.width * 0.45,
       lineWidth: 25.0,
       animation: true,
       percent: 0.7,
-      center: Text(
-        "0 Days",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
-      ),
+      // center: Text(
+      //   "0 Days",
+      //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+      // ),
+      center: Icon(
+        Icons.smoke_free,
+        size: 50.0,
+        ),
       header:  Text(
         "Nickname",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
       ),
       footer:  Text(
-        "Until You are Smoke Free!",
+        "__ Days Until You Quit!",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       circularStrokeCap: CircularStrokeCap.round,
