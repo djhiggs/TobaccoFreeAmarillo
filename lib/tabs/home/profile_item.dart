@@ -33,33 +33,21 @@ class ProfileItem extends StatelessWidget {
   }
 
   _buildTextContainer(BuildContext context) {
-    var textTheme = Theme.of(context).textTheme;
-    var categoryText = _applyTextEffects(
-      translationFactor: 300.0,
-      child: Text(
-        //item.category,
-        "test",
-        style: textTheme.caption.copyWith(
-          color: Colors.black,
-          letterSpacing: 2.0,
-          fontSize: 20.0,
-        ),
-        textAlign: TextAlign.center,
-      ),
-    );
+    //var textTheme = Theme.of(context).textTheme;
+    // var categoryText = _applyTextEffects(
+    //   translationFactor: 300.0,
+    //   child: Text(
+    //     //item.category,
+    //     "test",
+    //     style: textTheme.caption.copyWith(
+    //       color: Colors.black,
+    //       letterSpacing: 2.0,
+    //       fontSize: 20.0,
+    //     ),
+    //     textAlign: TextAlign.center,
+    //   ),
+    // );
 
-    var titleText = _applyTextEffects(
-      translationFactor: 200.0,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16.0),
-        child: Text(
-          //item.title,
-          "test",
-          style: textTheme.title.copyWith(color: Colors.black),
-          textAlign: TextAlign.left,
-        ),
-      ),
-    );
     var daysUntilFreeIndicator = new CircularPercentIndicator(
       //radius: 175.0,
       radius:  MediaQuery.of(context).size.width * 0.45,

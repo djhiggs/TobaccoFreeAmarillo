@@ -20,41 +20,10 @@ class MotivationItem extends StatelessWidget {
     return Opacity(
       opacity: pageVisibility.visibleFraction,
       child: child,
-      // child: Transform(
-      //   alignment: FractionalOffset.bottomCenter,
-      //   // transform: Matrix4.translationValues(
-      //   //   0.0,
-      //   //   0.0,
-      //   //   0.0,
-      //   // ),
-      //   child: child,
-      // ),
     );
   }
 
-  // _buildText(
-  //     BuildContext context, var moneySaved, var textTheme, var description) {
-  //   return _applyTextEffects(
-  //     translationFactor: 200.0,
-  //     child: Column(children: <Widget>[
-  //       Container(
-  //         child: Text(
-  //           moneySaved,
-  //           style: textTheme.title.copyWith(color: Colors.black),
-  //           //TextStyle(fontSize: 15),
-  //           textAlign: TextAlign.center,
-  //         ),
-  //       ),
-  //       Text(description,
-  //           style: textTheme.title.copyWith(color: Colors.black),
-  //           textAlign: TextAlign.center),
-  //     ]),
-  //   );
-  // }
-
   _buildTextContainer(BuildContext context) {
-    var textTheme = Theme.of(context).textTheme;
-
     Person _person = new Person();
     var moneySaved = "\$" +
         (_person.smokeChart.averageUsage *
@@ -67,9 +36,7 @@ class MotivationItem extends StatelessWidget {
             .toString();
 
     return Positioned(
-      //width: MediaQuery.of(context).size.width * 0.4,
-      //height: MediaQuery.of(context).size.height * 0.3,
-      bottom: MediaQuery.of(context).size.height * 0.09,
+      bottom: MediaQuery.of(context).size.height * 0.08,
       left: 32.0,
       right: 32.0,
       child: Stack(
@@ -79,18 +46,15 @@ class MotivationItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Row(
-                //mainAxisSize: MainAxisSize.min,
-                //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Money Saved:",
-                      style: textTheme.title.copyWith(color: Colors.black),
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center),
                   Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.10, 0, 0, 0),
+                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.085, 0, 0, 0),
                     child: Text(
                       moneySaved,
-                      style: textTheme.title.copyWith(color: Colors.black),
-                      //TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -100,32 +64,28 @@ class MotivationItem extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.15,
                 width: MediaQuery.of(context).size.width * 0.40,
                 child: new Divider(
-                  //height: MediaQuery.of(context).size.height * 0.3,
                   color: Colors.black,
                 ),
               ),
               Row(
-                //mainAxisSize: MainAxisSize.min,
-                //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     children: <Widget>[
                       Text("Ciggerates",
                       softWrap: true,
-                      style: textTheme.title.copyWith(color: Colors.black),
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center),
-                      Text("Saved:",
+                      Text("Evaded:",
                       softWrap: true,
-                      style: textTheme.title.copyWith(color: Colors.black),
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center),
                     ],
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.15, 0, 0, 0),
+                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.14, 0, 0, 0),
                     child: Text(
                       moneySaved,
-                      style: textTheme.title.copyWith(color: Colors.black),
-                      //TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                   ),
