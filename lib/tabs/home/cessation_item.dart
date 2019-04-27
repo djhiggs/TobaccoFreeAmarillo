@@ -26,11 +26,11 @@ class CessationItem extends StatelessWidget {
   _buildTextContainer(BuildContext context) {
     Person _person = new Person();
     var moneySaved = "\$" +
-        (_person.smokeChart.averageUsage *
+        (_person.averageUsage *
                 5.06 *
                 (((DateTime.now().millisecondsSinceEpoch -
                             _person
-                                .smokeChart.startDate.millisecondsSinceEpoch) /
+                                .startDate.millisecondsSinceEpoch) /
                         (3600 * 1000 * 24 * 7))
                     .round()))
             .toString();
