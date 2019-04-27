@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'person.dart';
-import 'smokeChart.dart';
 
 class Settings extends StatelessWidget {
   @override
@@ -102,7 +101,7 @@ class _Settings extends State<StatefulSettings> {
           ),
           children: <Widget>[
             TextFormField(
-              initialValue: _person.smokeChart.averageUsage.toString(),
+              initialValue: _person.averageUsage.toString(),
               decoration: const InputDecoration(
                 icon: const Icon(Icons.smoking_rooms),
                 hintText: 'tobacco products used per week',
@@ -111,13 +110,13 @@ class _Settings extends State<StatefulSettings> {
               onFieldSubmitted: (String txt) {
                 int count = int.tryParse(txt);
                 if (count != null)
-                  _person.smokeChart.averageUsage = count;
+                  _person.averageUsage = count;
                 else
                   throw null;
               },
             ),
             TextFormField(
-              initialValue: _person.smokeChart.desiredUsage.toString(),
+              initialValue: _person.desiredUsage.toString(),
               decoration: const InputDecoration(
                 icon: const Icon(Icons.smoking_rooms),
                 hintText: 'desired tobacco products used per week',
@@ -126,14 +125,14 @@ class _Settings extends State<StatefulSettings> {
               onFieldSubmitted: (String txt) {
                 int count = int.tryParse(txt);
                 if (count != null)
-                  _person.smokeChart.desiredUsage = count;
+                  _person.desiredUsage = count;
                 else
                   throw null;
               },
             ),
             TextFormField(
               initialValue:
-                  _person.smokeChart.desiredDaysUntilComplete.toString(),
+                  _person.desiredDaysUntilComplete.toString(),
               decoration: const InputDecoration(
                 icon: const Icon(Icons.timer),
                 hintText: 'desired days till completion',
@@ -142,7 +141,7 @@ class _Settings extends State<StatefulSettings> {
               onFieldSubmitted: (String txt) {
                 int count = int.tryParse(txt);
                 if (count != null)
-                  _person.smokeChart.desiredDaysUntilComplete = count;
+                  _person.desiredDaysUntilComplete = count;
                 else
                   throw null;
               },
@@ -154,11 +153,11 @@ class _Settings extends State<StatefulSettings> {
             FormField(
               builder: (FormFieldState field) {
                 return DropdownButton(
-                  value: _person.smokeChart.product,
+                  value: _person.product,
                   hint: new Text("What are you trying to quit?"),
                   items: buildDropDownMenuItems(),
                   onChanged: (TobaccoProducts newProduct) {
-                    _person.smokeChart.product = newProduct;
+                    _person.product = newProduct;
                     setState(() {});
                   },
                 );

@@ -1,15 +1,20 @@
-import 'smokeChart.dart';
+
 import 'database.dart';
+enum TobaccoProducts{
+    Smoking,
+    Vaping,
+    SmokelessTobacco,
+  }
 class Person
 {
 
   Person(){ 
     db = Database();
-    smokeChart = SmokeChartState();
     nickname = "";
     notificationsEnabled =false;
     soundEnabled =false;
     zipCode = -1;
+    startDate =DateTime.now();
   }
   static Person _person =null;
 
@@ -28,17 +33,21 @@ class Person
   String nickname;
   bool notificationsEnabled;
   bool soundEnabled;
-  SmokeChartState smokeChart; 
+  DateTime startDate;
+  int desiredDaysUntilComplete;
+  int averageUsage;
+  int desiredUsage;
+  TobaccoProducts product;
   int zipCode;
   int expectedSmokingAmount(DateTime time) => 3;
   Future export() async{
     var userData = {
-      'DesiredDaysUntilComplete':smokeChart.desiredDaysUntilComplete,
-      'EndingUsage':smokeChart.desiredUsage,
+      'DesiredDaysUntilComplete':desiredDaysUntilComplete,
+      'EndingUsage':desiredUsage,
       'Nickname':nickname,
-      'Product':TobaccoProducts.values.indexOf(smokeChart.product),
-      'StartingUsage':smokeChart.averageUsage,
-      'StartDate':smokeChart.startDate.millisecondsSinceEpoch,
+      'Product':TobaccoProducts.values.indexOf(product),
+      'StartingUsage':averageUsage,
+      'StartDate':startDate.millisecondsSinceEpoch,
       'ZipCode':zipCode,
     };
     //cloud saved elements
@@ -49,12 +58,12 @@ class Person
   }
   Future import() async
   {
-    smokeChart.desiredDaysUntilComplete = int.parse(db["DesiredDaysUntilComplete"]);
-    smokeChart.desiredUsage = int.parse(db["EndingUsage"]);
+    desiredDaysUntilComplete = int.parse(db["DesiredDaysUntilComplete"]);
+    desiredUsage = int.parse(db["EndingUsage"]);
     nickname = db["Nickname"];
-    smokeChart.product = TobaccoProducts.values.elementAt(int.parse(db["Product"]));
-    smokeChart.averageUsage = int.parse(db["StartingUsage"]);
-    smokeChart.startDate = DateTime.fromMicrosecondsSinceEpoch(int.parse(db["StartDate"]));
+    product = TobaccoProducts.values.elementAt(int.parse(db["Product"]));
+    averageUsage = int.parse(db["StartingUsage"]);
+    startDate = DateTime.fromMicrosecondsSinceEpoch(int.parse(db["StartDate"]));
     notificationsEnabled = db["NotificationsEnabled"] =="true";
     soundEnabled = db["SoundEnabled"] =="true";
     zipCode = int.parse(db["ZipCode"]);
