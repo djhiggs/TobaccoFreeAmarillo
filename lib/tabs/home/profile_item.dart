@@ -33,48 +33,41 @@ class ProfileItem extends StatelessWidget {
   }
 
   _buildTextContainer(BuildContext context) {
-    var textTheme = Theme.of(context).textTheme;
-    var categoryText = _applyTextEffects(
-      translationFactor: 300.0,
-      child: Text(
-        //item.category,
-        "test",
-        style: textTheme.caption.copyWith(
-          color: Colors.black,
-          letterSpacing: 2.0,
-          fontSize: 20.0,
-        ),
-        textAlign: TextAlign.center,
-      ),
-    );
+    //var textTheme = Theme.of(context).textTheme;
+    // var categoryText = _applyTextEffects(
+    //   translationFactor: 300.0,
+    //   child: Text(
+    //     //item.category,
+    //     "test",
+    //     style: textTheme.caption.copyWith(
+    //       color: Colors.black,
+    //       letterSpacing: 2.0,
+    //       fontSize: 20.0,
+    //     ),
+    //     textAlign: TextAlign.center,
+    //   ),
+    // );
 
-    var titleText = _applyTextEffects(
-      translationFactor: 200.0,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16.0),
-        child: Text(
-          //item.title,
-          "test",
-          style: textTheme.title.copyWith(color: Colors.black),
-          textAlign: TextAlign.left,
-        ),
-      ),
-    );
     var daysUntilFreeIndicator = new CircularPercentIndicator(
-      radius: 175.0,
+      //radius: 175.0,
+      radius:  MediaQuery.of(context).size.width * 0.45,
       lineWidth: 25.0,
       animation: true,
       percent: 0.7,
-      center: Text(
-        "0 Days",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
-      ),
+      // center: Text(
+      //   "0 Days",
+      //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+      // ),
+      center: Icon(
+        Icons.smoke_free,
+        size: 50.0,
+        ),
       header:  Text(
         "Nickname",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
       ),
       footer:  Text(
-        "Until You are Smoke Free!",
+        "__ Days Until You Quit!",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       circularStrokeCap: CircularStrokeCap.round,

@@ -37,7 +37,7 @@ class MotivationItem extends StatelessWidget {
       translationFactor: 300.0,
       child: Text(
         //item.category,
-        "test",
+        "Get help if you want it",
         style: textTheme.caption.copyWith(
           color: Colors.black,
           letterSpacing: 2.0,
@@ -53,9 +53,9 @@ class MotivationItem extends StatelessWidget {
         padding: const EdgeInsets.only(top: 16.0),
         child: Text(
           //item.title,
-          "test",
+          "Smokers can receive free resources and assistance to help them quit. Your health care providers are also a good source for help and support.",
           style: textTheme.title.copyWith(color: Colors.black),
-          textAlign: TextAlign.left,
+          textAlign: TextAlign.center,
         ),
       ),
     );
@@ -69,7 +69,7 @@ class MotivationItem extends StatelessWidget {
         children: [
           Text(
               //item.stat,
-              "test",
+              "1-800-QUIT-NOW",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           categoryText,
@@ -89,7 +89,7 @@ class MotivationItem extends StatelessWidget {
         ),
       child: Container(
         child:  Image.asset(
-          'assets/images/child_dad.jpg',
+          'assets/images/clock.jpg',
           fit: BoxFit.fitHeight,
           ),
       ),

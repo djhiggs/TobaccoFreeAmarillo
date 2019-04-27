@@ -35,6 +35,12 @@ class HomeState extends State<Home> {
       );
     }
     double calenderPosition = 385.0;
+    
+    EventList<bool> successfulDays = EventList<bool>();
+    successfulDays.add(DateTime.utc(2019,4,25), false);
+    successfulDays.add(DateTime.utc(2019,4,24), true);
+    successfulDays.add(DateTime.utc(2019,4,23), true);
+    
     return new Scaffold(
         body: new Stack(
       children: <Widget>[
@@ -44,6 +50,7 @@ class HomeState extends State<Home> {
             child: Center(
               child: CalendarCarousel<bool>(
                 iconColor: Theme.of(context).primaryColor,
+                weekFormat: true,
                 weekdayTextStyle:
                     TextStyle(fontSize: 14.0, color: Theme.of(context).primaryColor),
                 headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.black),
@@ -53,7 +60,8 @@ class HomeState extends State<Home> {
                 selectedDayBorderColor: Colors.white,
                 selectedDayButtonColor: Colors.white,
                 selectedDayTextStyle: TextStyle(color: Colors.black),
-                markedDateIconBorderColor: Colors.white,
+                markedDateIconBorderColor: Colors.red,
+                markedDatesMap: successfulDays,
                 todayBorderColor: Colors.white,
                 todayButtonColor: Colors.white,
                 todayTextStyle: TextStyle(color: Colors.black),
