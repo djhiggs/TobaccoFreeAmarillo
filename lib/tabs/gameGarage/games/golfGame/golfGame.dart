@@ -25,7 +25,7 @@ import 'cannon.dart';
 
 class GolfGame extends GenericGame{
 
-  final double _diameter = 128;
+  static final double pixelsPerMeter = GolfBall.diameter/63E-3;//pixels / meters
   final int _floorHeight = 128;
   //Body golfBallBody;
   //World world;
@@ -34,85 +34,81 @@ class GolfGame extends GenericGame{
   Sprite grass;
   BuildContext context;
   Cannon cannon;
+  List<List<SpriteComponent>> ground;
+  Size size;
   GolfGame(this.context) : super(context){
     this.title = "Golf Game";
-    () async{
-      await Flame.images.load("Grass.png");
+    Flame.images.load("GolfBall.png");
+    size = MediaQuery.of(context).size;
+    Flame.images.load("Grass.png").whenComplete(()
+    {
       grass = Sprite.fromImage(Flame.images.loadedFiles["Grass.png"],
         x: 0,
         y: 0,
         width: 32,
         height: 32);
-      var y = MediaQuery.of(context).size.height - _floorHeight;
-      for(int i = 0; i < 100; i++){
+      var y = size.height - _floorHeight;
+      var x = size.width~/32 + 1;
+      ground = List();
+      for(int i = 0; i < x; i++){
+        ground.add(List());
         for(int j = 0; j < 10; j++){
           var c = SpriteComponent.fromSprite(32, 32, grass);
           c.y = y + j*32;
           c.x = i*32.0;
+          ground[i].add(c);
           components.add(c);
         }
       }
+    });
+    cannon = Cannon(context,_floorHeight);
 
-      golfBall =GolfBall(context,_floorHeight);
-      cannon = Cannon(context,_floorHeight);
+    Flame.util.addGestureRecognizer(PanGestureRecognizer()..
+      onUpdate = (DragUpdateDetails details){
+        var pressPos = Vector2D.fromOffset(details.globalPosition);
+        //pressPos.y =cannon.screenHeight - pressPos.y;
 
-      // Flame.util.addGestureRecognizer(PanGestureRecognizer()..
-      //   onUpdate = (DragUpdateDetails details){
-      //     var pressPos = Vector2D.fromOffset(details.globalPosition);
-      //     pressPos.y =cannon.screenHeight - pressPos.y;
-      //     cannon.setAngle(pressPos.angle());
-      //   }
-      // );
+        cannon.setAimState(pressPos);
+      }..onEnd = (DragEndDetails details){
+        golfBall = cannon.fire(this);
+      }
+    );
 
-      components.add(golfBall);
-      components.add(cannon);
-    };
-    // Flame.images.load("Grass.png");
-    // grass = Sprite.fromImage(Flame.images.loadedFiles["Grass.png"],
-    //   x: 0,
-    //   y: 0,
-    //   width: 32,
-    //   height: 32);
-    // var y = MediaQuery.of(context).size.height - _floorHeight;
-    // for(int i = 0; i < 100; i++){
-    //   for(int j = 0; j < 10; j++){
-    //     var c = SpriteComponent.fromSprite(32, 32, grass);
-    //     c.y = y + j*32;
-    //     c.x = i*32.0;
-    //     components.add(c);
-    //   }
-    // }
-
-    // golfBall =GolfBall(context,_floorHeight);
-    // cannon = Cannon(context,_floorHeight);
-
-    // // Flame.util.addGestureRecognizer(PanGestureRecognizer()..
-    // //   onUpdate = (DragUpdateDetails details){
-    // //     var pressPos = Vector2D.fromOffset(details.globalPosition);
-    // //     pressPos.y =cannon.screenHeight - pressPos.y;
-    // //     cannon.setAngle(pressPos.angle());
-    // //   }
-    // // );
-
-    // components.add(golfBall);
-    // components.add(cannon);
     
+    components.add(cannon);
+  }
+  bool stopped = false;
+  @override
+  void render(ui.Canvas canvas) {
+    if(golfBall !=null && golfBall.screenPosition !=null){
+      camera =Position(golfBall.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
+      if(golfBall.stopped)
+        stopped = true;
+    }
+    super.render(canvas);
   }
   @override
   void update(double dt) {
+    if(ground[0][0].x < camera.x){
+      double x_0 =camera.x / 32 * 32;
 
-    //golfBall.update(dt);
+      for(int i = 0; i < ground.length; i++){
+        for(int j = 0; j < ground[i].length; j++){
+          ground[i][j].x = x_0 + i*32.0;
+        }
+      }
+    } 
     super.update(dt);
+  }
 
-  }
   @override
-  void render(ui.Canvas canvas) {
-   // if(cannon !=null)
-    //  cannon.render(canvas);
-    if(golfBall !=null && golfBall.screenPosition !=null&&false)
-      camera =Position(golfBall.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
-    //camera =Position(cannon.screenPosition.x - MediaQuery.of(context).size.width/2,golfBall.screenPosition.y - MediaQuery.of(context).size.height/2);
-    super.render(canvas);
-    
-  }
+  Widget get widget => stopped? Scaffold(
+          body: Column(
+            children: <Widget>[
+              Text("Total Distance"),
+              Text(golfBall.distanceTraveled().toString()),
+            ],
+          ),
+        )
+  :super.widget;
 }

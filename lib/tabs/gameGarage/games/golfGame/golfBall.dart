@@ -7,45 +7,58 @@ import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import '../vector2D.dart';
+import 'golfGame.dart';
 
 class GolfBall extends Component{
   SpriteComponent _component;
-  final double _diameter = 32;
-  Vector2D golfBallLocation = Vector2D(0, 0);
-  Vector2D golfBallVelocity =Vector2D(40, 400);
-  final Vector2D g = Vector2D(0, -128);
+  static final double diameter = 32;
+  Vector2D initialLocation;
+  Vector2D golfBallLocation;
+  Vector2D velocity;
+  final Vector2D g = Vector2D(0, -9.81E-1)*GolfGame.pixelsPerMeter;
   int _floorHeight;
+  bool stopped = false;
   BuildContext _context;
-  GolfBall(this._context, this._floorHeight){
+  //returns the distance traveled in meters
+  double distanceTraveled() => 
+  (golfBallLocation - initialLocation).length()/GolfGame.pixelsPerMeter;
+
+  GolfBall(this._context, this._floorHeight,this.golfBallLocation){
+        initialLocation =golfBallLocation;
     if(!Flame.images.loadedFiles.containsKey("GolfBall.png"))
-      Flame.images.load("GolfBall.png");
-    _component = SpriteComponent.fromSprite(_diameter, _diameter, 
+      throw Exception("Item not found!!!!");
+      //await Flame.images.load("GolfBall.png");
+    _component = SpriteComponent.fromSprite(diameter, diameter, 
       Sprite.fromImage(
         Flame.images.loadedFiles["GolfBall.png"],
         x: 0,
         y: 0,
-        width: _diameter,
-        height: _diameter,
+        width: diameter,
+        height: diameter,
       )
     );
-    golfBallLocation.y = this._floorHeight + 1.0;
-    _component.width = _diameter;
-    _component.height = _diameter;
+    _component.width = diameter;
+    _component.height = diameter;
   }
   void update(double dt){
-    if(golfBallLocation.y < _floorHeight)
-      golfBallLocation += (golfBallVelocity + g*0.5*dt)*dt;
-    else
-      golfBallLocation += golfBallVelocity*dt;
-    golfBallVelocity += g*dt;
-    if(golfBallLocation.y < _floorHeight && golfBallVelocity.y < 0){
-      golfBallVelocity.y *= -0.8;
-      golfBallVelocity.x *= 0.8;
+    if(golfBallLocation.y < _floorHeight){
+      if(velocity.length() < 7){
+        stopped = true;
+        return;
+      }
+    }
+    velocity += g*dt;
+    golfBallLocation += velocity*dt;
+    velocity += g*dt;
+    if(golfBallLocation.y < _floorHeight && velocity.y < 0){
+      velocity.y *= -0.8;
+      velocity.x *= 0.8;
+      //golfBallLocation.y = _floorHeight.toDouble();
     }
   }
   Position screenPosition;
   void render(Canvas canvas) {
-    screenPosition = Position(golfBallLocation.x,MediaQuery.of(_context).size.height-_diameter-golfBallLocation.y);
+    screenPosition = Position(golfBallLocation.x,MediaQuery.of(_context).size.height-diameter-golfBallLocation.y);
     _component.setByPosition(screenPosition);
     //_component.setByPosition(Position(0,0));
     _component.render(canvas);

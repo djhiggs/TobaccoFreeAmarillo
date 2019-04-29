@@ -14,11 +14,11 @@ class Cannon extends Component {
   final _height = 128;
   BuildContext context;
   int _floorHeight;
-  Cannon(this.context,this._floorHeight){
+  void _load() async{
     if(!Flame.images.loadedFiles.containsKey("CannonStand.png"))
-      Flame.images.load("CannonStand.png");
+      await Flame.images.load("CannonStand.png");
     if(!Flame.images.loadedFiles.containsKey("CannonBarrel.png"))
-      Flame.images.load("CannonBarrel.png");
+      await Flame.images.load("CannonBarrel.png");
 
     _cannonStand = SpriteComponent.fromSprite(64, 64, 
       Sprite.fromImage(Flame.images.loadedFiles["CannonStand.png"],
@@ -38,11 +38,10 @@ class Cannon extends Component {
     _cannonBarrel.width = 150;
     _cannonBarrel.height = 30;
 
-    _cannonPosition =Vector2D(0, _floorHeight.toDouble());
-    
-    //_cannonBarrel.anchor =;
-
-    
+    cannonPosition =Vector2D(0, _floorHeight.toDouble());
+  }
+  Cannon(this.context,this._floorHeight){
+    _load();
   }
   //DragUpdateDetails dragUpdateDetails = DragUpdateDetails();
   bool active = true;
@@ -50,57 +49,56 @@ class Cannon extends Component {
   SpriteComponent _cannonBarrel;
   //relative to bottom left of cannon
   final Vector2D _cannonStandPos =Vector2D(64, 0); 
-  final Vector2D _cannonBarrelPos =Vector2D(64, 64);
+  final Vector2D cannonBarrelPos =Vector2D(64, 64);
   
   //
   //Anchor position;
-  Vector2D _cannonPosition; 
+  Vector2D cannonPosition; 
+  Vector2D cannonHingePosition;
   double screenHeight = -1;
+  Size screenSize;
   @override
   void render(Canvas c) {
     if(screenHeight == -1){
       screenHeight = MediaQuery.of(context).size.height;
+      screenSize = MediaQuery.of(context).size;
+      cannonHingePosition =Vector2D(screenSize.width/2,screenSize.height/2);
       //position =Anchor(Offset.fromDirection(-math.pi/2,_screenHeight));
 
     //_cannonStand.y = screenHeight - _height;
     //_cannonBarrel.y = screenHeight - 60;
     }
 
-    _cannonStand.setByPosition(Position(_cannonPosition.x + _cannonStandPos.x,
-      screenHeight - _cannonStand.height - _cannonPosition.y - _cannonStandPos.y));
+    _cannonStand.setByPosition(Position(cannonPosition.x + _cannonStandPos.x,
+      screenHeight - _cannonStand.height - cannonPosition.y - _cannonStandPos.y));
 
-    _cannonBarrel.setByPosition(Position(_cannonPosition.x + _cannonBarrelPos.x,
-      screenHeight - _cannonBarrel.height - _cannonPosition.y - _cannonBarrelPos.y));
-    _cannonBarrel.setByPosition(Position(-16,8));
-    _cannonStand.render(c);
+    //_cannonBarrel.setByPosition(Position(cannonPosition.x + cannonBarrelPos.x,
+    //  screenHeight - _cannonBarrel.height - cannonPosition.y - cannonBarrelPos.y));
+    //_cannonBarrel.setByPosition(Position(-16,8));
+    _cannonBarrel.setByPosition((cannonHingePosition + Vector2D(-_cannonBarrel.width/3, -_cannonBarrel.height/2).rotate(_cannonBarrel.angle)).toPosition());
+    //_cannonBarrel.angle = 0;
+    //_cannonStand.render(c);
     _cannonBarrel.render(c);
   }
   //Position screenPosition; 
-  @override
-  void update(double t) {
-    //_cannonBarrel.angle = 3.1415926535/2;
-    //screenPosition = Position(
-    //  _cannonStand.x,MediaQuery.of(_context).size.height-_cannonStand.height-_cannonStand.y-_floorHeight);
-    
-    //var p1 =Vector2D(
-    //  dragUpdateDetails.globalPosition.dx,
-    //  _screenHeight - dragUpdateDetails.globalPosition.dy);
-    //  p1 -= _cannonPosition;
-    //  power = p1.length();
-    //  _cannonBarrel.angle = p1.angle() + pi;
-    
+  void setAimState(Vector2D pressPos){
+    pressPos -= cannonHingePosition;
+    setAngle(pressPos.angle() + pi);
+    power =pressPos.length()*1E1;
   }
   void setAngle(double angle) => _cannonBarrel.angle =angle;
   double power;//user's desired firing power
-  void fire(GolfGame game){
-    var direction = Vector2D.fromAngle(_cannonBarrel.angle);
-    var pos = _cannonPosition + direction*_width.toDouble()/2;
+  GolfBall fire(GolfGame game){
+    var direction = Vector2D.fromAngle(-_cannonBarrel.angle);
     var velocity =direction*power;
-    GolfBall golfBall =GolfBall(context, _floorHeight);
-    golfBall.golfBallLocation =pos;
-    golfBall.golfBallVelocity =velocity;
+    GolfBall golfBall =GolfBall(context, _floorHeight,cannonHingePosition);
+    golfBall.velocity =velocity;
     game.add(golfBall);
+    return golfBall;
   }
-  
-  
+
+  @override
+  void update(double t) {
+    // TODO: implement update
+  } 
 }

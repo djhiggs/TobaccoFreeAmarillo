@@ -12,9 +12,13 @@ class Vector2D {
   Position toPosition() => Position(x,y);
   double dot(Vector2D b) => x*b.x+y*b.y;
   double cross(Vector2D b) => x*b.y-y*b.x;
-  double length() => x*x+y*y;
+  double length() => sqrt(x*x+y*y);
+  double lengthSqrd() => x*x+y*y;
   //angle is in radians
   static Vector2D fromOffset(Offset offset) => Vector2D(offset.dx,offset.dy);
   static Vector2D fromAngle(double angle) => Vector2D(cos(angle),sin(angle));
+  Vector2D rotate(double addAngle) {
+    return fromAngle(addAngle + angle())*length();
+  }
   double angle() => atan2(y, x);
 }

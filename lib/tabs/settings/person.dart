@@ -15,6 +15,10 @@ class Person
     soundEnabled =false;
     zipCode = -1;
     startDate =DateTime.now();
+    desiredDaysUntilComplete;
+    averageUsage = 5;
+    desiredUsage = 0;
+    product =TobaccoProducts.Vaping;
   }
   static Person _person =null;
 
