@@ -41,7 +41,7 @@ class GolfBall extends Component{
     _component.height = diameter;
   }
   void update(double dt){
-    if(golfBallLocation.y < _floorHeight){
+    if(golfBallLocation.y - _floorHeight - diameter/2 < 4){
       if(velocity.length() < 7){
         stopped = true;
         return;
@@ -50,17 +50,16 @@ class GolfBall extends Component{
     velocity += g*dt;
     golfBallLocation += velocity*dt;
     velocity += g*dt;
-    if(golfBallLocation.y < _floorHeight && velocity.y < 0){
+    if(golfBallLocation.y - diameter/2 <= _floorHeight && velocity.y < 0){
       velocity.y *= -0.8;
       velocity.x *= 0.8;
-      //golfBallLocation.y = _floorHeight.toDouble();
+      golfBallLocation.y = _floorHeight.toDouble() + diameter/2;
     }
+    screenPosition = Position(golfBallLocation.x - diameter/2,MediaQuery.of(_context).size.height-diameter/2-golfBallLocation.y);
+    _component.setByPosition(screenPosition);
   }
   Position screenPosition;
   void render(Canvas canvas) {
-    screenPosition = Position(golfBallLocation.x,MediaQuery.of(_context).size.height-diameter-golfBallLocation.y);
-    _component.setByPosition(screenPosition);
-    //_component.setByPosition(Position(0,0));
     _component.render(canvas);
   }
 }

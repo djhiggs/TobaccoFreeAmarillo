@@ -88,13 +88,20 @@ class Cannon extends Component {
   }
   void setAngle(double angle) => _cannonBarrel.angle =angle;
   double power;//user's desired firing power
-  GolfBall fire(GolfGame game){
+  void fire(GolfGame game){
     var direction = Vector2D.fromAngle(-_cannonBarrel.angle);
     var velocity =direction*power;
-    GolfBall golfBall =GolfBall(context, _floorHeight,cannonHingePosition);
-    golfBall.velocity =velocity;
-    game.add(golfBall);
-    return golfBall;
+    if(game.golfBall ==null){
+      game.golfBall =GolfBall(context, _floorHeight,cannonHingePosition);
+      game.golfBall.velocity =velocity;
+      game.components.add(game.golfBall);
+      
+    }
+    else{
+      game.golfBall.golfBallLocation =cannonHingePosition;
+      game.golfBall.velocity =velocity;
+    }
+
   }
 
   @override

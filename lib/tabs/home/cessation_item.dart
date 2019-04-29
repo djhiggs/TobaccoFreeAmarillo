@@ -29,8 +29,7 @@ class CessationItem extends StatelessWidget {
         (_person.averageUsage *
                 5.06 *
                 (((DateTime.now().millisecondsSinceEpoch -
-                            _person
-                                .startDate.millisecondsSinceEpoch) /
+                            _person.startDate.millisecondsSinceEpoch) /
                         (3600 * 1000 * 24 * 7))
                     .round()))
             .toString();
@@ -48,13 +47,16 @@ class CessationItem extends StatelessWidget {
               Row(
                 children: [
                   Text("Money Saved:",
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center),
                   Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.085, 0, 0, 0),
+                    padding: EdgeInsets.fromLTRB(
+                        MediaQuery.of(context).size.height * 0.085, 0, 0, 0),
                     child: Text(
                       moneySaved,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -72,20 +74,24 @@ class CessationItem extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       Text("Ciggerates",
-                      softWrap: true,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
+                          softWrap: true,
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center),
                       Text("Evaded:",
-                      softWrap: true,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
+                          softWrap: true,
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center),
                     ],
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.14, 0, 0, 0),
+                    padding: EdgeInsets.fromLTRB(
+                        MediaQuery.of(context).size.height * 0.14, 0, 0, 0),
                     child: Text(
                       moneySaved,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                   ),
