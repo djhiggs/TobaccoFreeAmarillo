@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../settings/person.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'intro_page_view.dart';
+import 'day_result.dart';
+
 
 class Home extends StatefulWidget {
   Person _person;
@@ -36,10 +38,12 @@ class HomeState extends State<Home> {
     }
     double calenderPosition = 385.0;
     
-    EventList<bool> successfulDays = EventList<bool>();
-    successfulDays.add(DateTime.utc(2019,4,25), false);
-    successfulDays.add(DateTime.utc(2019,4,24), true);
-    successfulDays.add(DateTime.utc(2019,4,23), true);
+    DayResult day1 = new DayResult(DateTime.utc(2019,4,25), Icon(Icons.check));
+
+    EventList<DayResult> successfulDays = EventList<DayResult>();
+    successfulDays.add(DateTime.utc(2019,4,25), day1);
+    //successfulDays.add(DateTime.utc(2019,4,24),);
+    //successfulDays.add(DateTime.utc(2019,4,23),);
     
     return new Scaffold(
         body: new Stack(
@@ -48,23 +52,24 @@ class HomeState extends State<Home> {
         Container(
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition),
             child: Center(
-              child: CalendarCarousel<bool>(
-                iconColor: Theme.of(context).primaryColor,
+              child: CalendarCarousel<DayResult>(
+                //iconColor: Theme.of(context).primaryColor,
                 weekFormat: true,
-                weekdayTextStyle:
-                    TextStyle(fontSize: 14.0, color: Theme.of(context).primaryColor),
-                headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.black),
+                //weekdayTextStyle:
+                    //TextStyle(fontSize: 14.0, color: Theme.of(context).primaryColor),
+                //headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.black),
                 //weekFormat: false,
                 //weekDayFormat: WeekdayFormat.short,
                 height: 300.0,
-                selectedDayBorderColor: Colors.white,
-                selectedDayButtonColor: Colors.white,
-                selectedDayTextStyle: TextStyle(color: Colors.black),
-                markedDateIconBorderColor: Colors.red,
+                // selectedDayBorderColor: Colors.white,
+                // selectedDayButtonColor: Colors.white,
+                // selectedDayTextStyle: TextStyle(color: Colors.black),
                 markedDatesMap: successfulDays,
-                todayBorderColor: Colors.white,
-                todayButtonColor: Colors.white,
-                todayTextStyle: TextStyle(color: Colors.black),
+                markedDateIconBorderColor: Colors.red,
+                markedDateWidget: Icon(Icons.check),
+                // todayBorderColor: Colors.white,
+                // todayButtonColor: Colors.white,
+                // todayTextStyle: TextStyle(color: Colors.black),
                 //onDayPressed: (DateTime data, List<>),
                 //onDayPressed: (DateTime data, List<bool> days){
                 //  _onPressed();
