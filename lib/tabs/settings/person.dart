@@ -15,7 +15,7 @@ class Person
     soundEnabled =false;
     zipCode = -1;
     startDate =DateTime.now();
-    desiredDaysUntilComplete;
+    desiredDaysUntilComplete = -1;
     averageUsage = 5;
     desiredUsage = 0;
     product =TobaccoProducts.Vaping;
