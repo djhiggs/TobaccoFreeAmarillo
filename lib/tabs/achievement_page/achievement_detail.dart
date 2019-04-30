@@ -77,8 +77,8 @@ class AchievementDetailScreen extends StatelessWidget {
                     //child: new Divider(color: Colors.black),
                   //),
                   Text(
-                    //this.achievement.description,
-                    "This description is longer for testing purposes. Please excuse me as I try to see if this fontsize is a good fit.",
+                    this.achievement.description,
+                    //"This description is longer for testing purposes. Please excuse me as I try to see if this fontsize is a good fit.",
                     style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 25.0),
                   ),
                 ],
