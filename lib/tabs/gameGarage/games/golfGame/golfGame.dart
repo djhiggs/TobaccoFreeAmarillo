@@ -10,6 +10,7 @@ import '../vector2D.dart';
 import 'golfBall.dart';
 import 'cannon.dart';
 import 'dart:async';
+import 'background.dart';
 
 class GolfGame extends GenericGame {
   static final double pixelsPerMeter =
@@ -22,6 +23,8 @@ class GolfGame extends GenericGame {
   Sprite grass;
   BuildContext context;
   Cannon cannon;
+  Background background;
+
   List<List<SpriteComponent>> ground;
   Size size;
   GolfGame(this.context) : super(context) {
@@ -29,36 +32,40 @@ class GolfGame extends GenericGame {
     this.description = "Toss that wacky tobacky away!";
     Flame.images.load("GolfBall.png");
     size = MediaQuery.of(context).size;
-    Flame.images.load("Grass.png").whenComplete(() {
-      grass = Sprite.fromImage(Flame.images.loadedFiles["Grass.png"],
-          x: 0, y: 0, width: 32, height: 32);
-      var y = size.height - _floorHeight;
-      var x = size.width ~/ 32 + 3;
-      ground = List();
-      for (int i = 0; i < x; i++) {
-        ground.add(List());
-        for (int j = 0; j < 10; j++) {
-          var c = SpriteComponent.fromSprite(32, 32, grass);
-          c.y = y + j * 32;
-          c.x = i * 32.0;
-          ground[i].add(c);
-          components.add(c);
+    background = Background(this, camera.x, size,_floorHeight.toDouble());
+    background.load().whenComplete((){
+      components.add(background);
+      Flame.images.load("Grass.png").whenComplete(() {
+        grass = Sprite.fromImage(Flame.images.loadedFiles["Grass.png"],
+            x: 0, y: 0, width: 32, height: 32);
+        var y = size.height - _floorHeight;
+        var x = size.width ~/ 32 + 3;
+        ground = List();
+        for (int i = 0; i < x; i++) {
+          ground.add(List());
+          for (int j = 0; j < 10; j++) {
+            var c = SpriteComponent.fromSprite(32, 32, grass);
+            c.y = y + j * 32;
+            c.x = i * 32.0;
+            ground[i].add(c);
+            components.add(c);
+          }
         }
-      }
-    });
-    cannon = Cannon(context, _floorHeight);
-    components.add(cannon);
-
-    Flame.util.addGestureRecognizer(PanGestureRecognizer()
-      ..onUpdate = (DragUpdateDetails details) {
-        var pressPos = Vector2D.fromOffset(details.globalPosition);
-        //pressPos.y =cannon.screenHeight - pressPos.y;
-
-        cannon.setAimState(pressPos);
-      }
-      ..onEnd = (DragEndDetails details) {
-        cannon.fire(this);
       });
+      cannon = Cannon(context, _floorHeight);
+      components.add(cannon);
+
+      Flame.util.addGestureRecognizer(PanGestureRecognizer()
+        ..onUpdate = (DragUpdateDetails details) {
+          var pressPos = Vector2D.fromOffset(details.globalPosition);
+          //pressPos.y =cannon.screenHeight - pressPos.y;
+
+          cannon.setAimState(pressPos);
+        }
+        ..onEnd = (DragEndDetails details) {
+          cannon.fire(this);
+        });
+    });
   }
   bool stopped = false;
   @override

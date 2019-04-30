@@ -39,6 +39,18 @@ flutter:
     - images/tfa.png
     - assets/images/RealCigarette.png
     - assets/images/
+    - assets/images/golfGame/background/
+    - assets/images/golfGame/background/back(1).png
+    - assets/images/golfGame/background/back(2).png
+    - assets/images/golfGame/background/back(3).png
+    - assets/images/golfGame/background/back(4).png
+    - assets/images/golfGame/background/back(5).png
+    - assets/images/golfGame/background/back(6).png
+    - assets/images/golfGame/background/back(7).png
+    - assets/images/golfGame/background/back(8).png
+    - assets/images/golfGame/background/back(9).png
+    - assets/images/golfGame/background/back(10).png
+    - assets/images/golfGame/background/back(11).png
     - assets/images/sprite.png
     - assets/images/Grass.png
     - assets/images/GolfBall.png
