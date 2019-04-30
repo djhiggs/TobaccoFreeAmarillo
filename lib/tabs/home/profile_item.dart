@@ -3,11 +3,15 @@ import 'package:meta/meta.dart';
 //import 'intro_item.dart';
 import 'page_transformer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import '../settings/person.dart';
 
 class ProfileItem extends StatelessWidget {
   ProfileItem({
     @required this.pageVisibility,
   });
+
+  _init() async {
+  }
 
   final PageVisibility pageVisibility;
 
@@ -48,12 +52,23 @@ class ProfileItem extends StatelessWidget {
     //   ),
     // );
 
+    // var person  = await Person.getInstance();
+    // var rawStart = person.startDate.millisecondsSinceEpoch;
+    // var start = rawStart * 0.000000864;
+    // var now = DateTime.now().millisecondsSinceEpoch;
+    // var rawEnd = now * 0.000000864;
+    // var end = rawEnd + person.desiredDaysUntilComplete;
+    // var rawPercentage = end - start;
+    // var percentage = rawPercentage / person.desiredDaysUntilComplete;
+
+
     var daysUntilFreeIndicator = new CircularPercentIndicator(
       //radius: 175.0,
       radius:  MediaQuery.of(context).size.width * 0.45,
       lineWidth: 25.0,
       animation: true,
-      percent: 0.7,
+      //percent: percentage.toDouble(),
+      percent: .7,
       // center: Text(
       //   "0 Days",
       //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
