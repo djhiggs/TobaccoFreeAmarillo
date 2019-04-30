@@ -12,6 +12,7 @@ class CigClick extends GenericGame{
   List<Achievement> achievements;
   CigClick(BuildContext context) : super(context){
     this.title = "Cigarette Crush";
+    this.description = "Trash those cigs!"; // TODO Pending better catch phrase
     cigClickWidget = CigClickWidget(this);
     //AchievementPage.achievements.addAll(achievements);
   }

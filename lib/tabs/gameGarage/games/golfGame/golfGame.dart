@@ -25,7 +25,8 @@ class GolfGame extends GenericGame {
   List<List<SpriteComponent>> ground;
   Size size;
   GolfGame(this.context) : super(context) {
-    this.title = "Golf Game";
+    this.title = "Snuff Shot";
+    this.description = "Toss that wacky tobacky away!";
     Flame.images.load("GolfBall.png");
     size = MediaQuery.of(context).size;
     Flame.images.load("Grass.png").whenComplete(() {

@@ -21,7 +21,8 @@ class TRex extends GenericGame
 {
   TRexGame tRexGame;
   TRex(BuildContext context) : super(context) {
-    title = "T Rex Game";
+    title = "Vape Runner";
+    description = "We all gotta blow off some steam."; //TODO: fix the name
       Flame.audio.disableLog();
   //List<Image> image = await Flame.images.loadAll(["sprite.png"]);
   //TRexGame tRexGame = TRexGame(spriteImage: image[0]);

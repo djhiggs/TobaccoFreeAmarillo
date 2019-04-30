@@ -9,6 +9,7 @@ class SnakeInterface extends GenericGame{
   MyApp snakeApp = MyApp();
   SnakeInterface(BuildContext context) : super(context){
     title = "Snake";
+    description = "We all gotta slither sometime...";
     Globals.initialize(context);
   }
   @override
