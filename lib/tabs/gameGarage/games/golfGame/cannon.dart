@@ -10,8 +10,6 @@ import 'golfGame.dart';
 import 'golfBall.dart';
 import 'dart:math';
 class Cannon extends Component {
-  final _width = 128;
-  final _height = 128;
   BuildContext context;
   static Future<void> initialize() async{
     if(!Flame.images.loadedFiles.containsKey("CannonStand.png"))

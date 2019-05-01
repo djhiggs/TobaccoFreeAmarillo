@@ -27,7 +27,7 @@ class Terrain extends Component{
       throw Exception("ERROR - Class has not been initialized!!");
 
     //ground
-    int width = (_screenSize.width/_spriteWidth).ceil() + 1;
+    int width = (_screenSize.width/_spriteWidth).ceil() + 2;
     int height = (_screenSize.height/(2*_spriteWidth)).ceil();
 
     _renderWidth =width*_spriteWidth;
@@ -43,7 +43,7 @@ class Terrain extends Component{
     golfGame.components.addAll(_groundTiles);
 
     //collidables
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < 50; i++){
       Collidable c =Collidable(golfGame,_screenSize.height);
       c.replace();
       c.spriteComponent.x = (i*100).toDouble();
@@ -71,12 +71,6 @@ class Terrain extends Component{
     for(var groundTile in _groundTiles)
       if(groundTile.x + _spriteWidth < golfGame.camera.x)
         groundTile.x += _renderWidth;
-    //handle collisions
-    if(golfBall !=null && golfBall.golfBallLocation.y < 0){
-      golfBall.golfBallLocation.y = 0;
-      golfBall.velocity.x *= 0.8;
-      golfBall.velocity.y *= -0.8;
-    }
   }
   
 }

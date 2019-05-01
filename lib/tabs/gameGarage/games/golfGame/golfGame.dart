@@ -30,11 +30,13 @@ class GolfGame extends GenericGame {
   Cannon cannon;
   Background background;
   Terrain terrain;
+  GolfGameUi gameUi;
 
   Size size;
   GolfGame(this.context) : super(context) {
     this.title = "Snuff Shot";
     this.description = "Toss that wacky tobacky away!";
+    gameUi = GolfGameUi(this);
     Flame.util.addGestureRecognizer(PanGestureRecognizer()
       ..onUpdate = (DragUpdateDetails details) {
         if(gameState ==GameStates.Aiming){
@@ -89,7 +91,6 @@ class GolfGame extends GenericGame {
   @override
   open() {
     _load();
-
     return super.open();
   }
   void restart(){
@@ -97,6 +98,7 @@ class GolfGame extends GenericGame {
     _load();
   }
   void _load(){
+    camera = Position(0,0);
     size = MediaQuery.of(context).size;
 
     background = Background(this, camera.x, size);
@@ -108,6 +110,7 @@ class GolfGame extends GenericGame {
     cannon = Cannon(context,size);
     components.add(cannon);
     gameState =GameStates.Aiming;
+    gameUi.update();
   }
   void _unload(){
     gameState = GameStates.Stopped;
@@ -123,42 +126,24 @@ class GolfGame extends GenericGame {
             close();
           },
         ),
-        title: GolfGameUi(this),
+        title: gameUi,
       ),
-      body: gameState ==GameStates.Paused? _buildFinished():super.widget);
-  Widget _buildFinished(){
-    var db =Database.getLoadedInstance();
-    var lastBest = db["GolfGamePreviousBest"] as int;
-    var current = golfBall.distanceTraveled().toInt();
-    Navigator.of(context);
-    if(lastBest < current)
-      db.setLocal("GolfGamePreviousBest", current);
-    return Column(
-      children: <Widget>[
-        Text("Distance Traveled"),
-        Text(current.toInt().toString() + " Meters"),
-
-        Text("Previous Best"),
-        Text(lastBest.toInt().toString() + " Meters"),
-
-        RaisedButton(
-          child: Text("Retry"),
-          onPressed: () => restart(),
-        ),
-      ],
-    );
-  }
+      body: super.widget);
 }
 
 class GolfGameUi extends StatefulWidget {
   GolfGameUi(this.golfGame);
   final GolfGame golfGame;
+  GolfGameUiState _state;
+  void update(){ 
+    if(_state != null && _state.mounted)
+      _state.setState((){});
+  }
   @override
-  GolfGameUiState createState() => GolfGameUiState(golfGame);
+  GolfGameUiState createState() => _state =GolfGameUiState(golfGame);
 }
 
 class GolfGameUiState extends State<GolfGameUi> {
-  void update() => setState(() {});
   GolfGameUiState(this.golfGame);
   GolfGame golfGame;
   @override
@@ -170,13 +155,50 @@ class GolfGameUiState extends State<GolfGameUi> {
     else if(golfGame.gameState ==GameStates.Fired){
       if(golfGame.golfBall.stopped){
         golfGame.gameState =GameStates.Paused;
-        Navigator.of(context).setState((){});
-      }
-      else
-        return Text(golfGame.golfBall.distanceTraveled().toInt().toString() + " Meters");
-    }
-    if(golfGame.gameState ==GameStates.Paused)
-      return Text("Results",textScaleFactor: 1.4);
+        var db =Database.getLoadedInstance();
+        var lastBest = db["GolfGamePreviousBest"] as int;
+        if(lastBest == null)
+          lastBest = 0;
+        var current = golfGame.golfBall.distanceTraveled().toInt();
+        if(current > lastBest)
+          db.setLocal("GolfGamePreviousBest", current);
+        Timer(Duration(milliseconds: 100),() => showDialog(
+          context: context,
+          builder: (BuildContext c) => Scaffold(
+            appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                Navigator.of(context).pop();
+                golfGame.close();
+              },
+            ),
+            title: Text("Results",textScaleFactor: 1.4),
+          ),
+            body:Center(child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("Distance Traveled",textScaleFactor: 1.5),
+                    Text(current.toInt().toString() + " Meters"),
 
+                    Text("Previous Best",textScaleFactor: 1.5),
+                    Text(lastBest.toInt().toString() + " Meters"),
+
+                    RaisedButton(
+                      child: Text("Retry",textScaleFactor: 1.3),
+                      onPressed: () { 
+                        golfGame.restart();
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                )
+              )
+            )
+          )
+        );
+      }
+    }
+    return Text((golfGame.golfBall==null?"":golfGame.golfBall.distanceTraveled().toInt().toString()) + " Meters");
   }
 }

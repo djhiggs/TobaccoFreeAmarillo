@@ -47,13 +47,13 @@ class Collidable extends Component{
     if(golfBall ==null || (spriteComponent !=null&& golfBall.golfBallLocation.x < spriteComponent.x))
       return;
     if(golfBall.golfBallLocation.x > location.x + spriteComponent.width){
-      if(spriteComponent ==null|| location.x + spriteComponent.width < golfGame.camera.x)
+      if(spriteComponent.x + spriteComponent.width < golfGame.camera.x)
         replace();
     }
-    else if(golfBall.golfBallLocation.y < GolfBall.radius + location.y + spriteComponent.height){//collision
+    else if(golfBall.golfBallLocation.y < location.y + spriteComponent.height){//collision
       golfBall.velocity.y *= -collisionCeoficient;
       golfBall.velocity.x *= collisionCeoficient;
-      golfBall.golfBallLocation.y = location.y + GolfBall.radius + spriteComponent.height;
+      golfBall.golfBallLocation.y = location.y + spriteComponent.height;
     }
   }
   int mult = 1;

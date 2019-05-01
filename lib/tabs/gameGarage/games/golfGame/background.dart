@@ -21,11 +21,26 @@ class Background extends Component{
   static const double VIRTICAL_SHIFT = 260;
 
   Background(this.game,this.lastCameraPosX,this.screenSize){
-    double n = 0.1;
-    for(int i = 1; i <= _names.length; i++){
-      n *= 1.21;
-      scales.add(n);
-    }
+    // double n = 0.1;
+    // for(int i = 1; i <= _names.length; i++){
+    //   n *= 1.21;
+    //   scales.add(n);
+    // }
+    // scales.last = 0.999;
+    // scales[scales.length-2] = 0.999;
+    scales = <double>[
+      0.1,  //01
+      0.2,  //02
+      0.3,  //03
+      0.5,  //04
+      0.6,  //05
+      0.7,  //06
+      0.8,  //07
+      0.85, //08
+      0.9,  //09
+      0.95, //10
+      0.99, //11
+    ];
     for(var name in _names){
       for(int i = 0; i < _HORIZONTAL_TILE_COUNT; i++){
         var image = Flame.images.loadedFiles[name];
@@ -64,15 +79,6 @@ class Background extends Component{
   @override
   void render(Canvas c) {
     //slides[0].setByPosition(camera);
-    for(int i = _slides.length - 1; i >= 0; i--){
-      //position[i] =Vector2D(0, floorHeight);
-      _slides[i].setByPosition((position[i]+Vector2D(0, camera.y*0)).toPosition());
-      //slides[i].render(c);
-    }
-  }
-
-  @override
-  void update(double t) {
     double newCameraPosX = camera.x;
     double dx = newCameraPosX - lastCameraPosX;
     
@@ -85,6 +91,27 @@ class Background extends Component{
       }
     }
     lastCameraPosX = newCameraPosX;
+    for(int i = _slides.length - 1; i >= 0; i--){
+      //position[i] =Vector2D(0, floorHeight);
+      _slides[i].setByPosition((position[i]).toPosition());
+      //slides[i].render(c);
+    }
+  }
+
+  @override
+  void update(double t) {
+    // double newCameraPosX = camera.x;
+    // double dx = newCameraPosX - lastCameraPosX;
+    
+    // for(int i = 0; i < _slides.length; i++){
+    //   //relativePos[i].x -= dS.x*scales[i~/_HORIZONTAL_TILE_COUNT];
+    //   position[i].x += dx*scales[i~/_HORIZONTAL_TILE_COUNT];
+    //   position[i].y = screenSize.height-_slides[i].height + VIRTICAL_SHIFT + camera.y*scales[i~/_HORIZONTAL_TILE_COUNT];
+    //   if(position[i].x + _slides[i].width <= camera.x){
+    //     position[i].x += _slides[i].width*_HORIZONTAL_TILE_COUNT;
+    //   }
+    // }
+    // lastCameraPosX = newCameraPosX;
   }
 
 }
