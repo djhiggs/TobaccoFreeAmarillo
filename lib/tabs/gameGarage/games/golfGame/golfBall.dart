@@ -10,6 +10,8 @@ import '../vector2D.dart';
 import 'golfGame.dart';
 
 class GolfBall extends Component{
+  ///mass of one object in kg
+  static const double MASS = 0.50;//this should be closer to 0.12948388
   SpriteComponent _component;
   static final double diameter = 32;
   static final double radius =diameter/2;

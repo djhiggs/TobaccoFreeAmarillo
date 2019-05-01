@@ -14,7 +14,7 @@ class Collidable extends Component{
   static const SPAWN_RANGE = 5;
   static List<Sprite> _sprites;
   static const List<double> _COLLISION_CEOFICIENTS = <double>[
-    1.1
+    1
   ]; 
   static Future<void> intitialize() async{
     List<String> names = <String>[
@@ -56,6 +56,7 @@ class Collidable extends Component{
       golfBall.golfBallLocation.y = location.y + GolfBall.radius + spriteComponent.height;
     }
   }
+  int mult = 1;
   void replace(){
     Random ran = Random();
     var newIndex = ran.nextInt(_sprites.length);
@@ -67,8 +68,9 @@ class Collidable extends Component{
     else
       spriteComponent.sprite =_sprites[newIndex];
     collisionCeoficient =_COLLISION_CEOFICIENTS[newIndex];
-    spriteComponent.x = location.x = (ran.nextInt(SPAWN_RANGE*100)/100 + SPAWN_MIN_DISTANCE)*GolfGame.pixelsPerMeter + golfGame.camera.x;
+    spriteComponent.x = location.x = (ran.nextInt(SPAWN_RANGE*100*mult)/100 + SPAWN_MIN_DISTANCE)*GolfGame.pixelsPerMeter + golfGame.camera.x;
     spriteComponent.y =screenHeight - location.y - spriteComponent.height;
 
+    mult*=2;
   }
 }

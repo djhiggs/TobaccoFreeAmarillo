@@ -20,7 +20,7 @@ class Cannon extends Component {
       await Flame.images.load("CannonBarrel.png");
     await GolfBall.initialize();
   }
-  Cannon(this.context){
+  Cannon(this.context,this.screenSize){
     _cannonStand = SpriteComponent.fromSprite(64, 64, 
       Sprite.fromImage(Flame.images.loadedFiles["CannonStand.png"],
         x: 0,
@@ -40,6 +40,7 @@ class Cannon extends Component {
     _cannonBarrel.height = 30;
 
     cannonPosition =Vector2D(0, 0);
+    cannonHingePosition =Vector2D(screenSize.width/2,screenSize.height/2);
   }
   //DragUpdateDetails dragUpdateDetails = DragUpdateDetails();
   bool active = true;
@@ -53,19 +54,10 @@ class Cannon extends Component {
   //Anchor position;
   Vector2D cannonPosition; 
   Vector2D cannonHingePosition;
-  double screenHeight = -1;
+  double get screenHeight => screenSize.height;
   Size screenSize;
   @override
   void render(Canvas c) {
-    if(screenHeight == -1){
-      screenHeight = MediaQuery.of(context).size.height;
-      screenSize = MediaQuery.of(context).size;
-      cannonHingePosition =Vector2D(screenSize.width/2,screenSize.height/2);
-      //position =Anchor(Offset.fromDirection(-math.pi/2,_screenHeight));
-
-    //_cannonStand.y = screenHeight - _height;
-    //_cannonBarrel.y = screenHeight - 60;
-    }
 
     _cannonStand.setByPosition(Position(cannonPosition.x + _cannonStandPos.x,
       screenHeight - _cannonStand.height - cannonPosition.y - _cannonStandPos.y));
@@ -87,7 +79,8 @@ class Cannon extends Component {
     }
   }
   void setAngle(double angle) => _cannonBarrel.angle =angle;
-  double power;//user's desired firing power
+  ///fire power (acceleration) in pixels per second^2
+  double power = 0;//user's desired firing power
   void fire(GolfGame game){
     var direction = Vector2D.fromAngle(-_cannonBarrel.angle);
     var velocity =direction*power;
