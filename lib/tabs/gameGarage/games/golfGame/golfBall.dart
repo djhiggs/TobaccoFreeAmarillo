@@ -12,21 +12,21 @@ import 'golfGame.dart';
 class GolfBall extends Component{
   SpriteComponent _component;
   static final double diameter = 32;
+  static final double radius =diameter/2;
+  double screenHeight;
   Vector2D initialLocation;
   Vector2D golfBallLocation;
   Vector2D velocity;
   final Vector2D g = Vector2D(0, -9.81E-1)*GolfGame.pixelsPerMeter;
-  int _floorHeight;
   bool stopped = false;
-  BuildContext _context;
+  static Future<void> initialize() async => 
+    await Flame.images.load("GolfBall.png");
   //returns the distance traveled in meters
   double distanceTraveled() => 
   (golfBallLocation - initialLocation).length()/GolfGame.pixelsPerMeter;
 
-  GolfBall(this._context, this._floorHeight,this.golfBallLocation){
+  GolfBall(this.screenHeight, this.golfBallLocation){
         initialLocation =golfBallLocation;
-    if(!Flame.images.loadedFiles.containsKey("GolfBall.png"))
-      throw Exception("Item not found!!!!");
       //await Flame.images.load("GolfBall.png");
     _component = SpriteComponent.fromSprite(diameter, diameter, 
       Sprite.fromImage(
@@ -41,25 +41,19 @@ class GolfBall extends Component{
     _component.height = diameter;
   }
   void update(double dt){
-    if(golfBallLocation.y - _floorHeight - diameter/2 < 4){
+    if(golfBallLocation.y - diameter/2 < 4){
       if(velocity.length() < 7){
         stopped = true;
         return;
       }
     }
     velocity += g*dt;
-    golfBallLocation += velocity*dt;
-    velocity += g*dt;
-    if(golfBallLocation.y - diameter/2 <= _floorHeight && velocity.y < 0){
-      velocity.y *= -0.8;
-      velocity.x *= 0.8;
-      golfBallLocation.y = _floorHeight.toDouble() + diameter/2;
-    }
-    screenPosition = Position(golfBallLocation.x - diameter/2,MediaQuery.of(_context).size.height-diameter/2-golfBallLocation.y);
-    _component.setByPosition(screenPosition);
+    golfBallLocation +=velocity*dt;
+    
   }
-  Position screenPosition;
   void render(Canvas canvas) {
+    _component.x =golfBallLocation.x - radius;
+    _component.y =screenHeight - golfBallLocation.y - diameter;
     _component.render(canvas);
   }
 }

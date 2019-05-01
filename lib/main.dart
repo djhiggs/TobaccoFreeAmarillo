@@ -9,6 +9,7 @@ import 'tabs/settings/settings.dart' as _thirdTab;
 import 'tabs/achievement_page/achievement_page.dart' as _achievementPage;
 import 'tabs/usefulInfo/categoriesWidget.dart';
 import 'tabs/usefulInfo/quiz.dart';
+import './tabs/gameGarage/games/golfGame/golfGame.dart';
 
 
 void main() => runApp(new MaterialApp(
@@ -93,6 +94,7 @@ checkIfFirstLaunch() {
   
   @override
   void initState() {
+    GolfGame.initialize();
     super.initState();
     checkIfFirstLaunch();
     _tabController = new PageController();

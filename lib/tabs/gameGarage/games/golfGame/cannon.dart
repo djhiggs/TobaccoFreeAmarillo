@@ -13,13 +13,14 @@ class Cannon extends Component {
   final _width = 128;
   final _height = 128;
   BuildContext context;
-  int _floorHeight;
-  void _load() async{
+  static Future<void> initialize() async{
     if(!Flame.images.loadedFiles.containsKey("CannonStand.png"))
       await Flame.images.load("CannonStand.png");
     if(!Flame.images.loadedFiles.containsKey("CannonBarrel.png"))
       await Flame.images.load("CannonBarrel.png");
-
+    await GolfBall.initialize();
+  }
+  Cannon(this.context){
     _cannonStand = SpriteComponent.fromSprite(64, 64, 
       Sprite.fromImage(Flame.images.loadedFiles["CannonStand.png"],
         x: 0,
@@ -38,10 +39,7 @@ class Cannon extends Component {
     _cannonBarrel.width = 150;
     _cannonBarrel.height = 30;
 
-    cannonPosition =Vector2D(0, _floorHeight.toDouble());
-  }
-  Cannon(this.context,this._floorHeight){
-    _load();
+    cannonPosition =Vector2D(0, 0);
   }
   //DragUpdateDetails dragUpdateDetails = DragUpdateDetails();
   bool active = true;
@@ -83,8 +81,10 @@ class Cannon extends Component {
   //Position screenPosition; 
   void setAimState(Vector2D pressPos){
     pressPos -= cannonHingePosition;
-    setAngle(pressPos.angle() + pi);
-    power =pressPos.length()*1E1;
+    if(pressPos.x < 0){
+      setAngle(pressPos.angle() + pi);
+      power =pressPos.length()*1E1;
+    }
   }
   void setAngle(double angle) => _cannonBarrel.angle =angle;
   double power;//user's desired firing power
@@ -92,7 +92,7 @@ class Cannon extends Component {
     var direction = Vector2D.fromAngle(-_cannonBarrel.angle);
     var velocity =direction*power;
     if(game.golfBall ==null){
-      game.golfBall =GolfBall(context, _floorHeight,cannonHingePosition);
+      game.golfBall =GolfBall(screenHeight,cannonHingePosition);
       game.golfBall.velocity =velocity;
       game.components.add(game.golfBall);
       

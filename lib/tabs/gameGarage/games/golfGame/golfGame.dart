@@ -11,69 +11,40 @@ import 'golfBall.dart';
 import 'cannon.dart';
 import 'dart:async';
 import 'background.dart';
+import 'terrain.dart';
 
 class GolfGame extends GenericGame {
   static final double pixelsPerMeter =
       GolfBall.diameter / 63E-3; //pixels / meters
-  final int _floorHeight = 128;
-  //Body golfBallBody;
-  //World world;
   GolfBall golfBall;
 
   Sprite grass;
   BuildContext context;
   Cannon cannon;
   Background background;
+  Terrain terrain;
 
-  List<List<SpriteComponent>> ground;
   Size size;
   GolfGame(this.context) : super(context) {
     this.title = "Snuff Shot";
     this.description = "Toss that wacky tobacky away!";
-    Flame.images.load("GolfBall.png");
-    size = MediaQuery.of(context).size;
-    background = Background(this, camera.x, size,_floorHeight.toDouble());
-    background.load().whenComplete((){
-      components.add(background);
-      Flame.images.load("Grass.png").whenComplete(() {
-        grass = Sprite.fromImage(Flame.images.loadedFiles["Grass.png"],
-            x: 0, y: 0, width: 32, height: 32);
-        var y = size.height - _floorHeight;
-        var x = size.width ~/ 32 + 3;
-        ground = List();
-        for (int i = 0; i < x; i++) {
-          ground.add(List());
-          for (int j = 0; j < 10; j++) {
-            var c = SpriteComponent.fromSprite(32, 32, grass);
-            c.y = y + j * 32;
-            c.x = i * 32.0;
-            ground[i].add(c);
-            components.add(c);
-          }
-        }
-      });
-      cannon = Cannon(context, _floorHeight);
-      components.add(cannon);
-
-      Flame.util.addGestureRecognizer(PanGestureRecognizer()
-        ..onUpdate = (DragUpdateDetails details) {
-          var pressPos = Vector2D.fromOffset(details.globalPosition);
-          //pressPos.y =cannon.screenHeight - pressPos.y;
-
-          cannon.setAimState(pressPos);
-        }
-        ..onEnd = (DragEndDetails details) {
-          cannon.fire(this);
-        });
-    });
   }
+
+  static Future<void> initialize() async{
+    await Cannon.initialize();
+    await Terrain.initialize();
+    await Background.initialize();
+  }
+
   bool stopped = false;
   @override
   void render(ui.Canvas canvas) {
-    if (golfBall != null && golfBall.screenPosition != null) {
+    if (golfBall != null) {
       camera = Position(
-          golfBall.screenPosition.x - MediaQuery.of(context).size.width / 2,
-          golfBall.screenPosition.y - MediaQuery.of(context).size.height / 2);
+          golfBall.golfBallLocation.x - size.width / 2,
+          golfBall.golfBallLocation.y > size.height*2/5?
+          size.height / 2 - golfBall.golfBallLocation.y:
+          size.height/10);
     }
     super.render(canvas);
   }
@@ -86,20 +57,28 @@ class GolfGame extends GenericGame {
   @override
   open() {
     stopped = false;
-    return super.open();
-  }
-  @override
-  void update(double dt) {
-    if (ground[0][0].x < camera.x - 16) {
-      double x_0 = (camera.x ~/ 32) * 32.0;
+    size = MediaQuery.of(context).size;
 
-      for (int i = 0; i < ground.length; i++) {
-        for (int j = 0; j < ground[i].length; j++) {
-          ground[i][j].x = x_0 + i * 32.0;
-        }
+    background = Background(this, camera.x, size);
+    components.add(background);
+
+    terrain =Terrain(this, size);
+    components.add(terrain);
+
+    cannon = Cannon(context);
+    components.add(cannon);
+
+    Flame.util.addGestureRecognizer(PanGestureRecognizer()
+      ..onUpdate = (DragUpdateDetails details) {
+        var pressPos = Vector2D.fromOffset(details.globalPosition);
+        //pressPos.y =cannon.screenHeight - pressPos.y;
+
+        cannon.setAimState(pressPos);
       }
-    }
-    super.update(dt);
+      ..onEnd = (DragEndDetails details) {
+        cannon.fire(this);
+      });
+    return super.open();
   }
 
   @override

@@ -51,6 +51,7 @@ flutter:
     - assets/images/golfGame/background/back(9).png
     - assets/images/golfGame/background/back(10).png
     - assets/images/golfGame/background/back(11).png
+    - assets/images/golfGame/colliders/spring.png
     - assets/images/sprite.png
     - assets/images/Grass.png
     - assets/images/GolfBall.png
