@@ -1,11 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:tobaccoFreeAmarilloApp/tabs/settings/person.dart';
+import '../settings/database.dart';
 class Day{
   DateTime dateTime;
+  ///If this is null then the success value was not specified
   bool successful;
+  Day(this.dateTime,this.successful);
 }
 class Calender extends StatefulWidget{
   List<Day> days;
+  Database db;
+  Person person;
+  void load(){
+    //- for not specified
+    //1 for successful
+    //0 for not successful
+    days = List();
+    String stats = db["SuccessStats"];
+    if(stats == null)
+      stats = "";
+    for(int i = 0; i < stats.length; i++)
+      days.add(Day(person.startDate.add(Duration(days: i)),stats[i]=='-'?null:stats[i]=='1'));
 
+    
+  }
+  void store(){
+    if(days.length == 0)
+      return;  
+    //- for not specified
+    //1 for successful
+    //0 for not successful
+    String stats = days[0].successful == null?'-':(days[0].successful?'1':'0');
+
+    for(int i = 1; i < days.length; i++){
+      int difference = days[i].dateTime.millisecondsSinceEpoch~/Duration.millisecondsPerDay
+        -days[i-1].dateTime.millisecondsSinceEpoch~/Duration.millisecondsPerDay;
+      for(int j = 0; j < difference; j++)
+        stats += '-';
+      stats += days[i].successful == null?'-':(days[i].successful?'1':'0');
+    }
+    db.setLocal("SuccessStats", stats);
+  }
+  Calender(){
+    db = Database.getLoadedInstance();
+    person = Person.getLoadedInstance();
+  }
   @override
   State<StatefulWidget> createState() {
     
@@ -13,7 +52,6 @@ class Calender extends StatefulWidget{
       days.length>CalenderState.LENGTH?days.length - CalenderState.LENGTH : 
       0,days);
   }
-  
 }
 class CalenderState extends State<Calender>{
   List<Day> days;
@@ -52,7 +90,8 @@ class CalenderState extends State<Calender>{
           Text(_WEEK_DAYS[days[i].dateTime.weekday].substring(0,3)),
           CircleAvatar(
             child:  Text(days[i].dateTime.day.toString()),
-            backgroundColor: days[i].successful? Colors.green : Colors.red
+            backgroundColor: days[i].successful == null? Colors.white : 
+              days[i].successful? Colors.green: Colors.red
           )
         ],
       ));
@@ -81,5 +120,4 @@ class CalenderState extends State<Calender>{
       ]);
     }
   }
-  
 }

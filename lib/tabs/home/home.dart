@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../settings/person.dart';
-import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
+//import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'intro_page_view.dart';
 import 'day_result.dart';
+import 'calender.dart';
 
 
 class Home extends StatefulWidget {
@@ -40,9 +41,9 @@ class HomeState extends State<Home> {
     
     DayResult day1 = new DayResult(DateTime.utc(2019,4,25), Icon(Icons.check));
     
-    EventList<DayResult> successfulDays = EventList<DayResult>();
+    List<Day> days = List();
     
-    successfulDays.add(DateTime.utc(2019,4,25), day1);
+    //successfulDays.add(DateTime.utc(2019,4,25), day1);
     //successfulDays.add(DateTime.utc(2019,4,24),);
     //successfulDays.add(DateTime.utc(2019,4,23),);
     
@@ -53,30 +54,9 @@ class HomeState extends State<Home> {
         Container(
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition),
             child: Center(
-              child: CalendarCarousel<DayResult>(
-                //iconColor: Theme.of(context).primaryColor,
-                weekFormat: true,
-                //weekdayTextStyle:
-                    //TextStyle(fontSize: 14.0, color: Theme.of(context).primaryColor),
-                //headerTextStyle: TextStyle(fontSize: 25.0, color: Colors.black),
-                //weekFormat: false,
-                //weekDayFormat: WeekdayFormat.short,
-                height: 300.0,
-                // selectedDayBorderColor: Colors.white,
-                // selectedDayButtonColor: Colors.white,
-                // selectedDayTextStyle: TextStyle(color: Colors.black),
-                markedDatesMap: successfulDays,
-                markedDateIconBorderColor: Colors.red,
-                markedDateWidget: Icon(Icons.check),
-                // todayBorderColor: Colors.white,
-                // todayButtonColor: Colors.white,
-                // todayTextStyle: TextStyle(color: Colors.black),
-                //onDayPressed: (DateTime data, List<>),
-                //onDayPressed: (DateTime data, List<bool> days){
-                //  _onPressed();
-                //}
-              ),
-            )),
+              child: Calender()
+              )
+            ),
         Opacity(
           opacity: 0.0,
           child: ButtonTheme(
