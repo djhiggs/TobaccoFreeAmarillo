@@ -14,14 +14,27 @@ class GenericGame extends game.BaseGame{
     _purchased =true;
   }
   bool _purchased;
-  Database db;
+  static Database db;
   GenericGame(this._context,this.price){
     title = "Game " + (count++).toString();
     description = "This is a game";
-    db = Database.getLoadedInstance();
-    _purchased = db["GamePrice.$title"];
-    if(_purchased)
-      db.setLocal("GamePrice.$title", false);
+    //initialize();
+
+    if(db == null)
+      Database.getInstance().then((Database data){
+        db = data;
+        _purchased = db["GamePrice.$title"];
+        if(_purchased)
+        db.setLocal("GamePrice.$title", false);
+      });
+    else{
+      _purchased = db["GamePrice.$title"];
+      if(_purchased)
+        db.setLocal("GamePrice.$title", false);
+    }
+  }
+  static Future<void> initialize() async{
+    db = await Database.getInstance();
   }
   open(){
     Navigator.push(_context, MaterialPageRoute(builder: (BuildContext context) {

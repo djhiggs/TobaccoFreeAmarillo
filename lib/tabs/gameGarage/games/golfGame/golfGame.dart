@@ -52,11 +52,11 @@ class GolfGame extends GenericGame {
         }
       });
   }
-
   static Future<void> initialize() async{
     await Cannon.initialize();
     await Terrain.initialize();
     await Background.initialize();
+    GenericGame.initialize();
   }
 
   GameStates gameState;

@@ -16,7 +16,14 @@ class GameGarage extends StatelessWidget {
   static List<GenericGame> _gamesList;
   Database db;
   void setPointCount(int n) => db.setLocal("PointAmount", n);
-  int get points => db["PointAmount"];
+  int getPointCount() {
+    int amnt = db["PointAmount"];
+    if(amnt == null){
+      setPointCount(0);
+      return 0;
+    }
+    return amnt;
+  }
   static getInstance(BuildContext context){
     if(_instance ==null)
       _instance =GameGarage(context);
@@ -45,7 +52,7 @@ class GameGarage extends StatelessWidget {
         onTap: () {
           if(_gamesList[index].purchased)
             _gamesList[index].open();
-          else if(points > _gamesList[index].price){
+          else if(getPointCount() > _gamesList[index].price){
             showDialog(
               context: context,
               builder: (BuildContext c) => AlertDialog(title: 
