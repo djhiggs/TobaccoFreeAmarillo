@@ -203,7 +203,7 @@ class _Settings extends State<StatefulSettings> {
   Widget privacyPolicyBuilder(BuildContext context) => AlertDialog(
         title: Text("Privacy Policy"),
         content: Column(children: <Widget>[
-          Text("    You get no data, we get all of the data, you get no data.  We want the data. " +
+          Text("" +
               "Oh yeah, and we are also planning to take all of your data, we like to say that: \"Nothing is sacred, we get it all\" " +
               "So just keep that in mind, you get nothing, we get everything."),
           Text(" -- Team")

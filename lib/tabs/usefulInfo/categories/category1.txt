@@ -162,7 +162,7 @@ Category: Cost
 						Choice: $9,400
 	Topic: Vaping
 		Passage: 
-			Paragraph: 
+			Paragraph: Vaping, being relatively new, has a pretty wide variety of costs associated with it. It all depends on what you use. 
 			Paragraph: 
 			Paragraph: 
 				Quiz: 
