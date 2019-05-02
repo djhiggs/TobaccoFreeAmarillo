@@ -19,19 +19,10 @@ class GenericGame extends game.BaseGame{
     title = "Game " + (count++).toString();
     description = "This is a game";
     //initialize();
-    return;
-    if(db == null)
-      Database.getInstance().then((Database data){
-        db = data;
-        _purchased = db["GamePrice.$title"];
-        if(_purchased)
-        db.setLocal("GamePrice.$title", false);
-      });
-    else{
-      _purchased = db["GamePrice.$title"];
-      if(_purchased)
-        db.setLocal("GamePrice.$title", false);
-    }
+    db = Database.getInstanceSync();
+    _purchased = db["GamePrice.$title"];
+    if(_purchased == null)
+      db.setLocal("GamePrice.$title", false);
   }
   static Future<void> initialize() async{
     db = await Database.getInstance();

@@ -14,7 +14,7 @@ class Database
   ///This gets an instance
   ///use this to get an object, don't just use a constructor!!!
   static Future<Database> getInstance() async{
-    if(_instance ==null){
+    if(_instance ==null || _instance._local == null){
       _instance =Database();
       await _instance._connect();
       Quiz.initialize(_instance);
@@ -23,7 +23,7 @@ class Database
   }
   ///use this to get an object, don't just use a constructor!!!
   static Database getInstanceSync() {
-    if(_instance != null)
+    if(_instance != null && _instance._local != null)
       return _instance;
     var n = Completer.sync();
     n.complete(getInstance());
