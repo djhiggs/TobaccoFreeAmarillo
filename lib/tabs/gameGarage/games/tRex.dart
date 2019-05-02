@@ -20,7 +20,7 @@ import 'game/game.dart';
 class TRex extends GenericGame
 {
   TRexGame tRexGame;
-  TRex(BuildContext context) : super(context) {
+  TRex(BuildContext context) : super(context,200) {
     title = "Vape Runner";
     description = "We all gotta blow off some steam."; //TODO: fix the name
       Flame.audio.disableLog();

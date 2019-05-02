@@ -33,6 +33,16 @@ class Person
     }
     return _person;
   }
+  static Person getInstanceSync()
+  {
+    if(_person ==null){
+      _person = Person();
+      _person.db =Database.getLoadedInstance();
+      if(!_person.db.exists())
+        _person.export();
+    }
+    return _person;
+  }
   Database db;
   String nickname;
   bool notificationsEnabled;

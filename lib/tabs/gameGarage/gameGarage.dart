@@ -5,6 +5,7 @@ import 'games/golfGame/golfGame.dart';
 import 'games/game/trexgame.dart';
 import 'games/cigClick/cigClick.dart';
 import 'games/snake/snakeInterface.dart';
+import '../settings/database.dart';
 
 //class GameGarage extends StatelessWidget {
 //  @override
@@ -13,6 +14,9 @@ import 'games/snake/snakeInterface.dart';
 class GameGarage extends StatelessWidget {
   static GameGarage _instance;
   static List<GenericGame> _gamesList;
+  Database db;
+  void setPointCount(int n) => db.setLocal("PointAmount", n);
+  int get points => db["PointAmount"];
   static getInstance(BuildContext context){
     if(_instance ==null)
       _instance =GameGarage(context);
@@ -24,7 +28,7 @@ class GameGarage extends StatelessWidget {
       TRex(context),
       CigClick(context),
       SnakeInterface(context),
-      GenericGame(context),
+      GenericGame(context,200),
     ];
   }
   //StatelessWidget _parent;
@@ -39,7 +43,19 @@ class GameGarage extends StatelessWidget {
     ListTile makeListTile(index) => ListTile(
         //When tile is tapped navigate to details page
         onTap: () {
-          _gamesList[index].open();
+          if(_gamesList[index].purchased)
+            _gamesList[index].open();
+          else if(points > _gamesList[index].price){
+            showDialog(
+              context: context,
+              builder: (BuildContext c) => AlertDialog(title: 
+                Text("Are you wish you would like to purchase " + _gamesList[index].title + "?"),
+                  actions: <Widget>[
+                    RaisedButton(child: Text("Purchase"),)
+                  ],
+                ),
+            );
+          }
         },
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         leading: Container(
