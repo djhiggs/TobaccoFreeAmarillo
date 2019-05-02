@@ -162,17 +162,21 @@ Category: Cost
 						Choice: $9,400
 	Topic: Vaping
 		Passage: 
-			Paragraph: Vaping, being relatively new, has a pretty wide variety of costs associated with it. It all depends on what you use. 
-			Paragraph: 
-			Paragraph: 
+			Paragraph: Vaping, being relatively new, has a pretty wide variety of costs associated with it. It all depends on what you use.
+			Paragraph: The most expensive vaping systems can end up costing you over $3,000 a year. Unlike cigarettes, where for the most part you are stuck using specific products, vaping systems are as numerous as the stars in the sky.
+			Paragraph: You can buy high end systems like Juul, go middle of the road with off brand systems, or even build your own. The costs associated with these systems essentially fluctuates based how much you want to put into vaping.
+			Paragraph: There are two things that are a common, constant money drain with vaping though: the medium the nicotine is stored in and the batteries used to power the vape system.
+			Paragraph: You always need to buy e-liquid replacements, and the prices can vary as much as the vaping systems themselves. Pods or bottles can range from $4 to $20 each, and have a wide number of puffs between them. 
+			Paragraph: Some vaping systems, like Juul have their batteries stored inside the system, generally inaccessible without special tools. This forces you to replace the whole vaporizor when the battery gives out.
+			Paragraph: Other vaping systems allow you to swap batteries at will. These batteries have prices ranging from $5 to $20 depending on the capacity and electrical discharge rate.
 				Quiz: 
-					Question: 
-						Choice: 
-						Choice: 
-						Choice: 
-						Choice: 
-					Question: 
-						Choice: 
-						Choice: 
+					Question: When a Juul system's battery wears out, what do you have to do?
+						Choice: Buy a new battery.
+						Choice: Pray to the ghost of Nikola Tesla.
+						Answer: Replace the vaporizor.
+						Choice: Tear apart the vaporizor with specialized tools and your teeth.
+					Question: Why are costs so varied when it comes to vaping?
+						Answer: There are many different kinds of vaping systems, with varying qualities and branding.
+						Choice: Since vaporizors are electronic, anything electronic is naturally more expensive.
 						Choice: 
 						Choice: 						
