@@ -24,11 +24,11 @@ import 'game.dart';
 //}
 
 class GameWrapper extends StatelessWidget {
-  final TRexGame tRexGame;
-  GameWrapper(this.tRexGame);
+  final TFRunner tfRunner;
+  GameWrapper(this.tfRunner);
 
   @override
   Widget build(BuildContext context) {
-    return tRexGame.widget;
+    return tfRunner.widget;
   }
 }
