@@ -33,14 +33,10 @@ class Person
     }
     return _person;
   }
-  static Person getInstanceSync()
+  static Person getLoadedInstance()
   {
-    if(_person ==null){
-      _person = Person();
-      _person.db =Database.getInstanceSync();
-      if(!_person.db.exists())
-        _person.export();
-    }
+    if(_person ==null)
+      throw Exception("Person has not been fully loaded");
     return _person;
   }
   Database db;

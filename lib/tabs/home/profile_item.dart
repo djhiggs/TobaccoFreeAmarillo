@@ -49,7 +49,7 @@ class ProfileItem extends StatelessWidget {
     //   ),
     // );
 
-    var person  = Person.getInstanceSync();
+    var person  = Person.getLoadedInstance();
     var rawStart = person.startDate.millisecondsSinceEpoch;
     var start = rawStart * 0.000000864;
     var now = DateTime.now().millisecondsSinceEpoch;

@@ -19,7 +19,7 @@ class GenericGame extends game.BaseGame{
     title = "Game " + (count++).toString();
     description = "This is a game";
     //initialize();
-    db = Database.getInstanceSync();
+    db = Database.getLoadedInstance();
     _purchased = db["GamePrice.$title"];
     if(_purchased == null)
       db.setLocal("GamePrice.$title", false);

@@ -21,12 +21,11 @@ class Database
     }
     return _instance;
   }
+  ///This gets an instance
   ///use this to get an object, don't just use a constructor!!!
-  static Database getInstanceSync() {
-    if(_instance != null && _instance._local != null)
-      return _instance;
-    var n = Completer.sync();
-    n.complete(getInstance());
+  static Database getLoadedInstance() {
+    if(_instance ==null || _instance._local ==null)
+      throw Exception("Database not fully loaded");
     return _instance;
   }
   ///Checks if the database has been created on this device.
