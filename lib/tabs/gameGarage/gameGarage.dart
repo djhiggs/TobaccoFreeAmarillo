@@ -69,6 +69,23 @@ class GameGarage extends StatelessWidget {
                 ),
             );
           }
+          else{
+            showDialog(
+              context: context,
+              builder: (BuildContext c) => AlertDialog(title: 
+                Text("Insufficient Funds" + _gamesList[index].title + "?"),
+                  actions: <Widget>[
+                    RaisedButton(
+                      child: Text("Purchase"),
+                      onPressed: (){
+                        setPointCount(getPointCount() - _gamesList[index].price);
+                        _gamesList[index].purchase();
+                      },
+                    )
+                  ],
+                ),
+            );
+          }
         },
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         leading: Container(

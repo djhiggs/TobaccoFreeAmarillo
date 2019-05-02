@@ -26,13 +26,16 @@ class Database
     if(_instance != null && _instance._local != null)
       return _instance;
     var n = Completer.sync();
+    var completer = Completer();
+    completer.complete(getInstance());
+    
     n.complete(getInstance());
     return _instance;
   }
   ///Checks if the database has been created on this device.
   bool exists() => 
     _local.getKeys().length != 0;  
-
+  dynamic get the => throw Exception("OBJECT NOT FOUND");
   Future _connect() async{
     _local 
     = await SharedPreferences.getInstance();
