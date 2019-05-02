@@ -1,14 +1,14 @@
 import 'collision_box.dart';
 import '../obstacle/obstacle.dart';
-import '../t_rex/config.dart';
-import '../t_rex/t_rex.dart';
+import '../tf_run/config.dart';
+import '../tf_run/tf_run.dart';
 
-bool checkForCollision(Obstacle obstacle, TRex tRex) {
-  CollisionBox tRexBox = CollisionBox(
-    x: tRex.x + 1,
-    y: tRex.y + 1,
-    width: TRexConfig.width - 2,
-    height: TRexConfig.height - 2,
+bool checkForCollision(Obstacle obstacle, TFVan tfVan) {
+  CollisionBox tfVanBox = CollisionBox(
+    x: tfVan.x + 1,
+    y: tfVan.y + 1,
+    width: TFVanConfig.width - 2,
+    height: TFVanConfig.height - 2,
   );
 
   CollisionBox obstacleBox = CollisionBox(
@@ -18,10 +18,10 @@ bool checkForCollision(Obstacle obstacle, TRex tRex) {
     height: obstacle.type.height - 2,
   );
 
-  if (boxCompare(tRexBox, obstacleBox)) {
+  if (boxCompare(tfVanBox, obstacleBox)) {
     List<CollisionBox> collisionBoxes = obstacle.collisionBoxes;
     List<CollisionBox> tRexCollisionBoxes =
-        tRex.ducking ? TRexCollisionBoxes.ducking : TRexCollisionBoxes.running;
+        tfVan.ducking ? TFVanCollisionBoxes.ducking : TFVanCollisionBoxes.running;
 
     bool crashed = false;
 
@@ -31,7 +31,7 @@ bool checkForCollision(Obstacle obstacle, TRex tRex) {
 
       tRexCollisionBoxes.forEach((tRexCollisionBox) {
         CollisionBox adjTRexBox =
-            createAdjustedCollisionBox(tRexCollisionBox, tRexBox);
+            createAdjustedCollisionBox(tRexCollisionBox, tfVanBox);
         crashed = crashed || boxCompare(adjTRexBox, adjObstacleBox);
       });
     });

@@ -59,6 +59,7 @@ flutter:
     - assets/images/CannonBarrel.png
     - assets/images/CannonStand.png
     - lib/tabs/usefulInfo/categories/
+    - lib/tabs/settings/privacy/privacy.txt
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/.
 
