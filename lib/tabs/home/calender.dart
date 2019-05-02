@@ -87,7 +87,7 @@ class CalenderState extends State<Calender>{
     for(int i = startingIndex; i < LENGTH + startingIndex && i < days.length; i++){
       columns.add(Column(
         children: <Widget>[
-          Text(_WEEK_DAYS[days[i].dateTime.weekday].substring(0,3)),
+          Text(_WEEK_DAYS[days[i].dateTime.weekday-1].substring(0,3)),
           CircleAvatar(
             child:  Text(days[i].dateTime.day.toString()),
             backgroundColor: days[i].successful == null? Colors.white : 
@@ -95,29 +95,32 @@ class CalenderState extends State<Calender>{
           )
         ],
       ));
-      return Column(children: <Widget>[
-        Row(
-          children: <Widget>[
-
-            IconButton(icon: Icon(Icons.chevron_left),
-              onPressed: () => setState((){
-                startingIndex -= LENGTH;
-                if(startingIndex < 0)
-                  startingIndex = 0;
-              })),
-
-            Text(_MONTHS[days[startingIndex].dateTime.month] + days[startingIndex].dateTime.year.toString()),
-            
-            IconButton(icon: Icon(Icons.chevron_right),
-              onPressed: () => setState((){
-                startingIndex += LENGTH;
-                if(startingIndex + columns.length >= days.length)
-                  startingIndex = days.length - columns.length - 1;
-              })),
-          ],
-        ),
-        Row(children: columns)
-      ]);
     }
+    return Column(children: <Widget>[
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+
+          IconButton(icon: Icon(Icons.chevron_left),
+            onPressed: () => setState((){
+              startingIndex -= LENGTH;
+              if(startingIndex < 0)
+                startingIndex = 0;
+            })),
+
+          Text(_MONTHS[days[startingIndex].dateTime.month-1]  + ' '+ days[startingIndex].dateTime.year.toString(),
+            textScaleFactor: 1.8),
+          
+          IconButton(icon: Icon(Icons.chevron_right),
+            onPressed: () => setState((){
+              startingIndex += LENGTH;
+              if(startingIndex + columns.length >= days.length)
+                startingIndex = days.length - columns.length;
+            })),
+        ],
+      ),
+      Row(children: columns,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,)
+    ]);
   }
 }

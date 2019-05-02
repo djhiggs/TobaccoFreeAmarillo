@@ -39,10 +39,16 @@ class HomeState extends State<Home> {
     }
     double calenderPosition = 385.0;
     
-    DayResult day1 = new DayResult(DateTime.utc(2019,4,25), Icon(Icons.check));
-    
-    List<Day> days = List();
-    
+    Calender calender = Calender();
+    calender.load();
+    calender.days.addAll(<Day>[
+      Day(DateTime(2019,4,27),true),
+      Day(DateTime(2019,4,28),true),
+      Day(DateTime(2019,4,29),false),
+      Day(DateTime(2019,4,30),null),
+      Day(DateTime(2019,5,01),null),
+      Day(DateTime(2019,5,02),true),
+    ]);
     //successfulDays.add(DateTime.utc(2019,4,25), day1);
     //successfulDays.add(DateTime.utc(2019,4,24),);
     //successfulDays.add(DateTime.utc(2019,4,23),);
@@ -54,7 +60,7 @@ class HomeState extends State<Home> {
         Container(
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition),
             child: Center(
-              child: Calender()
+              child: calender
               )
             ),
         Opacity(
