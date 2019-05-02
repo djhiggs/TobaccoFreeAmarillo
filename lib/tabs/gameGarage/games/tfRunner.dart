@@ -18,7 +18,7 @@ import 'game/game.dart';
 class TFVan extends GenericGame
 {
   TFRunner tfRunner;
-  TFVan(BuildContext context) : super(context) {
+  TFVan(BuildContext context) : super(context,200) {
     title = "Tobacco Free Runner";
     description = "Drive down the open road but don't hit those nasty tobaccos."; //TODO: fix the name
       Flame.audio.disableLog();

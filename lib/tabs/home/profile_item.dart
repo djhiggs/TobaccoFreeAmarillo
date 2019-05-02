@@ -10,9 +10,6 @@ class ProfileItem extends StatelessWidget {
     @required this.pageVisibility,
   });
 
-  _init() async {
-  }
-
   final PageVisibility pageVisibility;
 
   Widget _applyTextEffects({
@@ -52,14 +49,14 @@ class ProfileItem extends StatelessWidget {
     //   ),
     // );
 
-    // var person  = await Person.getInstance();
-    // var rawStart = person.startDate.millisecondsSinceEpoch;
-    // var start = rawStart * 0.000000864;
-    // var now = DateTime.now().millisecondsSinceEpoch;
-    // var rawEnd = now * 0.000000864;
-    // var end = rawEnd + person.desiredDaysUntilComplete;
-    // var rawPercentage = end - start;
-    // var percentage = rawPercentage / person.desiredDaysUntilComplete;
+    var person  = Person.getInstanceSync();
+    var rawStart = person.startDate.millisecondsSinceEpoch;
+    var start = rawStart * 0.000000864;
+    var now = DateTime.now().millisecondsSinceEpoch;
+    var rawEnd = now * 0.000000864;
+    var end = rawEnd + person.desiredDaysUntilComplete;
+    var rawPercentage = end - start;
+    var percentage = rawPercentage / person.desiredDaysUntilComplete;
 
 
     var daysUntilFreeIndicator = new CircularPercentIndicator(
@@ -67,8 +64,8 @@ class ProfileItem extends StatelessWidget {
       radius:  MediaQuery.of(context).size.width * 0.45,
       lineWidth: 25.0,
       animation: true,
-      //percent: percentage.toDouble(),
-      percent: .7,
+      percent: percentage.toDouble(),
+      //percent: .7,
       // center: Text(
       //   "0 Days",
       //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),

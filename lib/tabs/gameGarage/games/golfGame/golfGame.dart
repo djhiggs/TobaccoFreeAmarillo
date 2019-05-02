@@ -33,7 +33,7 @@ class GolfGame extends GenericGame {
   GolfGameUi gameUi;
 
   Size size;
-  GolfGame(this.context) : super(context) {
+  GolfGame(this.context) : super(context,200) {
     this.title = "Snuff Shot";
     this.description = "Toss that wacky tobacky away!";
     gameUi = GolfGameUi(this);
@@ -52,11 +52,11 @@ class GolfGame extends GenericGame {
         }
       });
   }
-
   static Future<void> initialize() async{
     await Cannon.initialize();
     await Terrain.initialize();
     await Background.initialize();
+    GenericGame.initialize();
   }
 
   GameStates gameState;
