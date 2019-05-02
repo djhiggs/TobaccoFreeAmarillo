@@ -49,6 +49,7 @@ class HomeState extends State<Home> {
       Day(DateTime(2019,5,01),null),
       Day(DateTime(2019,5,02),true),
     ]);
+    calender.store();
     //successfulDays.add(DateTime.utc(2019,4,25), day1);
     //successfulDays.add(DateTime.utc(2019,4,24),);
     //successfulDays.add(DateTime.utc(2019,4,23),);
