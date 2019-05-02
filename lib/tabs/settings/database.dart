@@ -18,6 +18,10 @@ class Database
     }
     return _instance;
   }
+  ///This gets an instance of database if one has already been loaded
+  ///otherwise, it returns null
+  ///use this to get an object, don't just use a constructor!!!
+  static Database getLoadedInstance() => _instance;
   ///Checks if the database has been created on this device.
   bool exists() => 
     _local.getKeys().length != 0;  

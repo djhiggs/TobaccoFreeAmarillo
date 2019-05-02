@@ -10,6 +10,8 @@ import '../vector2D.dart';
 import 'golfGame.dart';
 
 class GolfBall extends Component{
+  ///mass of one object in kg
+  static const double MASS = 0.50;//this should be closer to 0.12948388
   SpriteComponent _component;
   static final double diameter = 32;
   static final double radius =diameter/2;
@@ -17,7 +19,7 @@ class GolfBall extends Component{
   Vector2D initialLocation;
   Vector2D golfBallLocation;
   Vector2D velocity;
-  final Vector2D g = Vector2D(0, -9.81E-1)*GolfGame.pixelsPerMeter;
+  final Vector2D g = Vector2D(0, -9.81/2)*GolfGame.pixelsPerMeter;
   bool stopped = false;
   static Future<void> initialize() async => 
     await Flame.images.load("GolfBall.png");
@@ -49,7 +51,13 @@ class GolfBall extends Component{
     }
     velocity += g*dt;
     golfBallLocation +=velocity*dt;
-    
+
+    //handle collisions
+    if(golfBallLocation.y < 0){
+      golfBallLocation.y = 0;
+      velocity.x *= 0.8;
+      velocity.y *= -0.8;
+    }
   }
   void render(Canvas canvas) {
     _component.x =golfBallLocation.x - radius;

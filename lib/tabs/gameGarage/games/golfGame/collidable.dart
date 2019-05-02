@@ -14,7 +14,7 @@ class Collidable extends Component{
   static const SPAWN_RANGE = 5;
   static List<Sprite> _sprites;
   static const List<double> _COLLISION_CEOFICIENTS = <double>[
-    1.1
+    1
   ]; 
   static Future<void> intitialize() async{
     List<String> names = <String>[
@@ -47,15 +47,16 @@ class Collidable extends Component{
     if(golfBall ==null || (spriteComponent !=null&& golfBall.golfBallLocation.x < spriteComponent.x))
       return;
     if(golfBall.golfBallLocation.x > location.x + spriteComponent.width){
-      if(spriteComponent ==null|| location.x + spriteComponent.width < golfGame.camera.x)
+      if(spriteComponent.x + spriteComponent.width < golfGame.camera.x)
         replace();
     }
-    else if(golfBall.golfBallLocation.y < GolfBall.radius + location.y + spriteComponent.height){//collision
+    else if(golfBall.golfBallLocation.y < location.y + spriteComponent.height){//collision
       golfBall.velocity.y *= -collisionCeoficient;
       golfBall.velocity.x *= collisionCeoficient;
-      golfBall.golfBallLocation.y = location.y + GolfBall.radius + spriteComponent.height;
+      golfBall.golfBallLocation.y = location.y + spriteComponent.height;
     }
   }
+  int mult = 1;
   void replace(){
     Random ran = Random();
     var newIndex = ran.nextInt(_sprites.length);
@@ -67,8 +68,9 @@ class Collidable extends Component{
     else
       spriteComponent.sprite =_sprites[newIndex];
     collisionCeoficient =_COLLISION_CEOFICIENTS[newIndex];
-    spriteComponent.x = location.x = (ran.nextInt(SPAWN_RANGE*100)/100 + SPAWN_MIN_DISTANCE)*GolfGame.pixelsPerMeter + golfGame.camera.x;
+    spriteComponent.x = location.x = (ran.nextInt(SPAWN_RANGE*100*mult)/100 + SPAWN_MIN_DISTANCE)*GolfGame.pixelsPerMeter + golfGame.camera.x;
     spriteComponent.y =screenHeight - location.y - spriteComponent.height;
 
+    mult*=2;
   }
 }
