@@ -59,7 +59,7 @@ class ObstacleType {
         )
       ]);
 
-  static const cactusLarge = ObstacleType._internal("cactusLarge",
+  static const cactusLarge = ObstacleType._internal("cigaretteBox",
       width: 54.0,
       height: 100.0,
       y: 1.0,

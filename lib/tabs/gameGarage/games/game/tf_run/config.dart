@@ -1,6 +1,6 @@
 import '../collision/collision_box.dart';
 
-class TRexConfig {
+class TFVanConfig {
   static double dropVelocity = -5.0;
   static double gravity = 0.7;
   static double height = 90.0;
@@ -15,7 +15,7 @@ class TRexConfig {
   static double widthDuck = 118.0;
 }
 
-class TRexCollisionBoxes {
+class TFVanCollisionBoxes {
   static final List<CollisionBox> ducking = <CollisionBox>[
     CollisionBox(
       x: 1.0,

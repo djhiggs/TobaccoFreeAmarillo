@@ -10,7 +10,7 @@ import '../../../achievement_page/achievement_page.dart';
 class CigClick extends GenericGame{
   CigClickWidget cigClickWidget;
   List<Achievement> achievements;
-  CigClick(BuildContext context) : super(context){
+  CigClick(BuildContext context) : super(context,200){
     this.title = "Cigarette Crush";
     this.description = "Trash those cigs!"; // TODO Pending better catch phrase
     cigClickWidget = CigClickWidget(this);
