@@ -37,7 +37,13 @@ class _Settings extends State<StatefulSettings> {
       _person = new Person();
       Person.getInstance().then((Person p) {
         _person = p;
-        setState(() {});
+        PrivacyState.import().whenComplete((){
+          setState(() {
+            
+          });
+        });
+        //setState(() {});
+        //PrivacyState.import();
       });
     }
     return new Container(

@@ -35,8 +35,9 @@ class GameGarage extends StatelessWidget {
       TFVan(context),
       CigClick(context),
       SnakeInterface(context),
-      GenericGame(context,200),
+      //GenericGame(context,200),
     ];
+    db = Database.getLoadedInstance();
   }
   //StatelessWidget _parent;
   //BuildContext _context;  
@@ -63,24 +64,30 @@ class GameGarage extends StatelessWidget {
                       onPressed: (){
                         setPointCount(getPointCount() - _gamesList[index].price);
                         _gamesList[index].purchase();
+                        Navigator.of(context).pop();
                       },
+                    ),
+                    RaisedButton(
+                      child: Text("Cancel"),
+                      onPressed: () =>
+                        Navigator.of(context).pop(),
                     )
                   ],
                 ),
-            );
+              );
           }
           else{
             showDialog(
               context: context,
               builder: (BuildContext c) => AlertDialog(title: 
-                Text("Insufficient Funds" + _gamesList[index].title + "?"),
+                Text("Insufficient Funds"),
                   actions: <Widget>[
                     RaisedButton(
-                      child: Text("Purchase"),
+                      child: Text("Continue"),
                       onPressed: (){
-                        setPointCount(getPointCount() - _gamesList[index].price);
-                        _gamesList[index].purchase();
+                        Navigator.of(context).pop();
                       },
+                      textColor: Colors.white,
                     )
                   ],
                 ),

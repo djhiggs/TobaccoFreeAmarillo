@@ -155,7 +155,7 @@ class GolfGameUiState extends State<GolfGameUi> {
     else if(golfGame.gameState ==GameStates.Fired){
       if(golfGame.golfBall.stopped){
         golfGame.gameState =GameStates.Paused;
-        var db =Database.getInstanceSync();
+        var db =Database.getLoadedInstance();
         var lastBest = db["GolfGamePreviousBest"] as int;
         if(lastBest == null)
           lastBest = 0;

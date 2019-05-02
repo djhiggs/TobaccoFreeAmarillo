@@ -33,13 +33,19 @@ class Person
     }
     return _person;
   }
-  static Person getInstanceSync()
+  static Person getLoadedInstance()
   {
     if(_person ==null){
-      _person = Person();
-      _person.db =Database.getInstanceSync();
-      if(!_person.db.exists())
-        _person.export();
+          if(Database.loaded){
+            if(_person ==null){
+              _person = Person();
+              _person.db =Database.getLoadedInstance();
+              if(!_person.db.exists())
+                _person.export();
+        }
+      }
+      else
+        throw Exception("Person not loaded yet");
     }
     return _person;
   }
