@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../usefulInfo/quiz.dart';
+import 'package:synchronized/synchronized.dart';
 class Database
 {
   static Database _instance;
@@ -18,10 +21,14 @@ class Database
     }
     return _instance;
   }
-  ///This gets an instance of database if one has already been loaded
-  ///otherwise, it returns null
   ///use this to get an object, don't just use a constructor!!!
-  static Database getLoadedInstance() => _instance;
+  static Database getInstanceSync() {
+    if(_instance != null)
+      return _instance;
+    var n = Completer.sync();
+    n.complete(getInstance());
+    return _instance;
+  }
   ///Checks if the database has been created on this device.
   bool exists() => 
     _local.getKeys().length != 0;  

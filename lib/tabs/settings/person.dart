@@ -37,7 +37,7 @@ class Person
   {
     if(_person ==null){
       _person = Person();
-      _person.db =Database.getLoadedInstance();
+      _person.db =Database.getInstanceSync();
       if(!_person.db.exists())
         _person.export();
     }

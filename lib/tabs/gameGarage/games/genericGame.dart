@@ -19,7 +19,7 @@ class GenericGame extends game.BaseGame{
     title = "Game " + (count++).toString();
     description = "This is a game";
     //initialize();
-
+    return;
     if(db == null)
       Database.getInstance().then((Database data){
         db = data;
