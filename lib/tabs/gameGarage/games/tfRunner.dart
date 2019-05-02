@@ -19,8 +19,8 @@ class TFVan extends GenericGame
 {
   TFRunner tfRunner;
   TFVan(BuildContext context) : super(context,200) {
-    title = "Tobacco Free Runner";
-    description = "Drive down the open road but don't hit those nasty tobaccos."; //TODO: fix the name
+    title = "Tobacco Free Driver";
+    description = "Drive awacky from the tobacky"; //TODO: fix the name
       Flame.audio.disableLog();
   //List<Image> image = await Flame.images.loadAll(["sprite.png"]);
   //TRexGame tRexGame = TRexGame(spriteImage: image[0]);
