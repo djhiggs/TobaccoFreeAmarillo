@@ -19,6 +19,16 @@ class Privacy extends StatelessWidget {
       content: ListView(
         children: texts,
       ),
+      actions: <Widget>[
+      FlatButton(
+            color: Colors.black26,
+            textColor: Colors.black,
+            child: Text("Accept"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          )
+      ]
     );
   }
   Future<void> import() async{

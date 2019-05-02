@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tobaccoFreeAmarilloApp/tabs/settings/privacy.dart';
 import 'person.dart';
 
 class Settings extends StatelessWidget {
@@ -193,32 +194,14 @@ class _Settings extends State<StatefulSettings> {
             textScaleFactor: buttonTextScaleFactor,
           ),
           onTap: () {
-            showDialog(builder: privacyPolicyBuilder, context: context);
+            showDialog(builder: (BuildContext c)=>Privacy(), context: context);
           },
         ),
       ],
     ));
   }
 
-  Widget privacyPolicyBuilder(BuildContext context) => AlertDialog(
-        title: Text("Privacy Policy"),
-        content: Column(children: <Widget>[
-          Text("" +
-              "Oh yeah, and we are also planning to take all of your data, we like to say that: \"Nothing is sacred, we get it all\" " +
-              "So just keep that in mind, you get nothing, we get everything."),
-          Text(" -- Team")
-        ]),
-        actions: <Widget>[
-          FlatButton(
-            color: Colors.black26,
-            textColor: Colors.black,
-            child: Text("Accept"),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          )
-        ],
-      );
+  
   List<DropdownMenuItem<TobaccoProducts>> buildDropDownMenuItems() {
     var names = TobaccoProducts.values;
     int startingIndex = names[0].toString().indexOf('.') + 1;
