@@ -39,8 +39,9 @@ class HomeState extends State<Home> {
     double calenderPosition = 385.0;
     
     DayResult day1 = new DayResult(DateTime.utc(2019,4,25), Icon(Icons.check));
-
+    
     EventList<DayResult> successfulDays = EventList<DayResult>();
+    
     successfulDays.add(DateTime.utc(2019,4,25), day1);
     //successfulDays.add(DateTime.utc(2019,4,24),);
     //successfulDays.add(DateTime.utc(2019,4,23),);
