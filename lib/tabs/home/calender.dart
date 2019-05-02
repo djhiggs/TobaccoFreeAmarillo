@@ -4,12 +4,14 @@ class Day{
   bool successful;
 }
 class Calender extends StatefulWidget{
-  Map<DateTime,bool> successful;
+  List<Day> days;
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return null;
+    
+    return CalenderState(
+      days.length>CalenderState.LENGTH?days.length - CalenderState.LENGTH : 
+      0,days);
   }
   
 }
