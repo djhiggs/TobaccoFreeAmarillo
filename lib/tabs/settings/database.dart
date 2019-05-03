@@ -21,18 +21,18 @@ class Database
     }
     return _instance;
   }
+  static bool get loaded => _instance ==null && _instance._local ==null;
+  ///This gets an instance
   ///use this to get an object, don't just use a constructor!!!
-  static Database getInstanceSync() {
-    if(_instance != null && _instance._local != null)
-      return _instance;
-    var n = Completer.sync();
-    n.complete(getInstance());
+  static Database getLoadedInstance() {
+    if(_instance ==null || _instance._local ==null)
+      throw Exception("Database not fully loaded");
     return _instance;
   }
   ///Checks if the database has been created on this device.
   bool exists() => 
     _local.getKeys().length != 0;  
-
+  dynamic get the => throw Exception("OBJECT NOT FOUND");
   Future _connect() async{
     _local 
     = await SharedPreferences.getInstance();

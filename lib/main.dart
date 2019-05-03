@@ -10,20 +10,24 @@ import 'tabs/achievement_page/achievement_page.dart' as _achievementPage;
 import 'tabs/usefulInfo/categoriesWidget.dart';
 import 'tabs/usefulInfo/quiz.dart';
 import './tabs/gameGarage/games/golfGame/golfGame.dart';
+import './tabs/settings/database.dart';
 
 
-void main() => runApp(new MaterialApp(
-  title: 'TFA Cessation',
-  theme: new ThemeData(
-    primarySwatch: Colors.green,
-    scaffoldBackgroundColor: Colors.white,
-    primaryColor: Colors.green, backgroundColor: Colors.white,
-  ),
-  home: new Tabs(),
-  // routes: <String, WidgetBuilder> {
-  //   '/about': (BuildContext context) => new _aboutPage.About(),
-  // }
-));
+void main() async{ 
+  await Database.getInstance();
+  runApp(new MaterialApp(
+    title: 'TFA Cessation',
+    theme: new ThemeData(
+      primarySwatch: Colors.green,
+      scaffoldBackgroundColor: Colors.white,
+      primaryColor: Colors.green, backgroundColor: Colors.white,
+    ),
+    home: new Tabs(),
+    // routes: <String, WidgetBuilder> {
+    //   '/about': (BuildContext context) => new _aboutPage.About(),
+    // }
+  ));
+}
 
 class FromRightToLeft<T> extends MaterialPageRoute<T> {
   FromRightToLeft({ WidgetBuilder builder, RouteSettings settings })
