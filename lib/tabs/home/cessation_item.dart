@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-//import 'intro_item.dart';
+import 'intro_item.dart';
 import 'page_transformer.dart';
-import '../settings/person.dart';
 
 class CessationItem extends StatelessWidget {
   CessationItem({
+
     @required this.pageVisibility,
   });
 
@@ -19,87 +19,61 @@ class CessationItem extends StatelessWidget {
 
     return Opacity(
       opacity: pageVisibility.visibleFraction,
-      child: child,
+      child: Transform(
+        alignment: FractionalOffset.bottomCenter,
+        transform: Matrix4.translationValues(
+          0.0,
+          0.0,
+          0.0,
+        ),
+        child: child,
+      ),
     );
   }
 
   _buildTextContainer(BuildContext context) {
-    Person _person = new Person();
-    var moneySaved = "\$" +
-        (_person.averageUsage *
-                5.06 *
-                (((DateTime.now().millisecondsSinceEpoch -
-                            _person.startDate.millisecondsSinceEpoch) /
-                        (3600 * 1000 * 24 * 7))
-                    .round()))
-            .toString();
+    var textTheme = Theme.of(context).textTheme;
+    var categoryText = _applyTextEffects(
+      translationFactor: 300.0,
+      child: Text(
+        "category",
+        style: textTheme.caption.copyWith(
+          color: Colors.black,
+          letterSpacing: 2.0,
+          fontSize: 20.0,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    var titleText = _applyTextEffects(
+      translationFactor: 200.0,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: Text(
+          "title",
+          style: textTheme.title.copyWith(color: Colors.black),
+          textAlign: TextAlign.left,
+        ),
+      ),
+    );
 
     return Positioned(
-      bottom: MediaQuery.of(context).size.height * 0.08,
+      bottom: 50,
       left: 32.0,
       right: 32.0,
-      child: Stack(
-        children: <Widget>[
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                children: [
-                  Text("Money Saved:",
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
-                  Flexible(
-                    fit: FlexFit.tight,
-                    child: Container(
-                    //padding: EdgeInsets.fromLTRB(
-                        //MediaQuery.of(context).size.height * 0.02, 0, 0, 0),
-                    child: Text(
-                      moneySaved,
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  )
-                ],
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width * 0.40,
-                child: new Divider(
-                  color: Colors.black,
-                ),
-              ),
-              Row(
-                children: [
-                  Column(
-                    children: <Widget>[
-                      Flexible(
-                        fit: FlexFit.tight,
-                        child: Text("Ciggerates Evaded:",
-                          softWrap: true,
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center),
-                      )
-                    ],
-                  ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(
-                        MediaQuery.of(context).size.height * 0.14, 0, 0, 0),
-                    child: Text(
-                      moneySaved,
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text(
+            "Stat",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+          categoryText,
+          Container(
+            width: 180.0,
           ),
+          titleText,
         ],
       ),
     );
@@ -108,16 +82,24 @@ class CessationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var imageOverlayGradient = DecoratedBox(
-      decoration: BoxDecoration(),
-      child: Container(
-        child: Image.asset(
-          'assets/images/bank_notes.jpg',
-          fit: BoxFit.fitHeight,
+      decoration: BoxDecoration(
+        //image: Image.asset(name),
+        gradient: LinearGradient(
+          begin: FractionalOffset.bottomCenter,
+          end: FractionalOffset.topCenter,
+          colors: [
+            const Color(0xFF000000),
+            const Color(0x00000000),
+          ],
         ),
       ),
     );
 
     return Padding(
+      //padding: const EdgeInsets.symmetric(
+      //  vertical: 100.0,
+      //  horizontal: 8.0,
+      //),
       padding: EdgeInsets.fromLTRB(8.0, 180.0, 8.0, 10.0),
       child: Material(
         elevation: 4.0,
@@ -126,8 +108,8 @@ class CessationItem extends StatelessWidget {
           fit: StackFit.expand,
           children: <Widget>[
             Opacity(
-              opacity: 0.2,
-              child: imageOverlayGradient,
+              opacity: 0.1,
+              child: Icon(Icons.smoke_free, size: 200.0,color: Theme.of(context).primaryColor,),
             ),
             _buildTextContainer(context),
           ],
