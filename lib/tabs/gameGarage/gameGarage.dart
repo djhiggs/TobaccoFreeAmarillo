@@ -101,6 +101,7 @@ class GameGarage extends StatelessWidget {
                 context: context,
                 builder: (BuildContext c) => AlertDialog(title: 
                   Text("Insufficient Funds"),
+                  content: Text(""),
                     actions: <Widget>[
                       RaisedButton(
                         child: Text("Continue"),
