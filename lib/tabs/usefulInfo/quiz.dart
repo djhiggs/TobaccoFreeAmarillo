@@ -41,6 +41,8 @@ class Quiz extends StatefulWidget
   ///checks if any new achievements have been earned
   ///(assesses eligibility)
   static void checkAchievementStatus(){
+    if(_db["PointAmount"] == null)
+      _db["PointAmount"] =0;
     //a switch that covers all of the possible achievements
     switch (_quizPassedCount) {
       case 1:

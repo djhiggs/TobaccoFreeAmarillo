@@ -110,7 +110,7 @@ class GameGarage extends StatelessWidget {
                       Text("Are you wish you would like to purchase " + _gamesList[index].title + "?"),
                         actions: <Widget>[
                           RaisedButton(
-                            child: Text("Purchase"),
+                            child: Text("Purchase",style: TextStyle(color: Colors.white)),
                             onPressed: (){
                               setPointCount(getPointCount() - _gamesList[index].price);
                               _gamesList[index].purchase();
@@ -118,7 +118,7 @@ class GameGarage extends StatelessWidget {
                             },
                           ),
                           RaisedButton(
-                            child: Text("Cancel"),
+                            child: Text("Cancel",style: TextStyle(color: Colors.white)),
                             onPressed: () =>
                               Navigator.of(context).pop(),
                           )
@@ -134,7 +134,7 @@ class GameGarage extends StatelessWidget {
                       content: Text("You only have " + getPointCount().toString() + " points"),
                         actions: <Widget>[
                           RaisedButton(
-                            child: Text("Continue"),
+                            child: Text("Continue",style: TextStyle(color: Colors.white),),
                             onPressed: (){
                               Navigator.of(context).pop();
                             },
