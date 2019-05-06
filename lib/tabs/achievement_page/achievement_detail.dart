@@ -42,7 +42,7 @@ class AchievementDetailScreen extends StatelessWidget {
                       ),
                       Icon(
                         (this.achievement.status)?Icons.check_circle:Icons.cancel,
-                        color: (this.achievement.status)?Colors.green:Colors.redAccent,
+                        color: (this.achievement.status)?Colors.greenAccent:Colors.redAccent,
                         size: 40.0,
                       ),
                       SizedBox(height: 10.0),

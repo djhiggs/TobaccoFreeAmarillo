@@ -37,7 +37,7 @@ class AchievementPage extends StatelessWidget {
           decoration: new BoxDecoration(
               border: new Border(
                   right: new BorderSide(width: 1.0, color: Colors.white))),
-          child: Icon((achievements[index].status)?Icons.check_circle:Icons.cancel, color: (achievements[index].status)?Colors.green:Colors.redAccent),
+          child: Icon((achievements[index].status)?Icons.check_circle:Icons.cancel, color: (achievements[index].status)?Colors.greenAccent:Colors.redAccent),
         ),
         title: Text(
           achievements[index].name,
