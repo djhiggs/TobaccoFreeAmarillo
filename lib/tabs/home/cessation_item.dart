@@ -56,8 +56,7 @@ class CessationItem extends StatelessWidget {
                     //padding: EdgeInsets.fromLTRB(
                         //MediaQuery.of(context).size.height * 0.02, 0, 0, 0),
                     child: Text(
-                      //moneySaved,
-                      "\$1000.00",
+                      moneySaved,
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
@@ -77,16 +76,14 @@ class CessationItem extends StatelessWidget {
                 children: [
                   Column(
                     children: <Widget>[
-                      Text("Ciggerates",
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: Text("Ciggerates Evaded:",
                           softWrap: true,
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center),
-                      Text("Evaded:",
-                          softWrap: true,
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center),
+                      )
                     ],
                   ),
                   Container(
