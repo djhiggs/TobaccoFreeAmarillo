@@ -112,7 +112,7 @@ class CessationItem extends StatelessWidget {
               child: Icon(Icons.smoke_free, size: 200.0,color: Theme.of(context).primaryColor,),
             ),
             _buildTextContainer(context),
-          ],
+          ]
         ),
       ),
     );
