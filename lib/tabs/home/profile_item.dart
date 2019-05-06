@@ -49,14 +49,14 @@ class ProfileItem extends StatelessWidget {
     //   ),
     // );
 
-    var person  = Person.getLoadedInstance();
-    var rawStart = person.startDate.millisecondsSinceEpoch;
-    var start = rawStart * 0.000000864;
-    var now = DateTime.now().millisecondsSinceEpoch;
-    var rawEnd = now * 0.000000864;
-    var end = rawEnd + person.desiredDaysUntilComplete;
-    var rawPercentage = end - start;
-    var percentage = rawPercentage / person.desiredDaysUntilComplete;
+     var person  = Person.getLoadedInstance();
+    // var rawStart = person.startDate.millisecondsSinceEpoch;
+    // var start = rawStart * 0.000000864;
+    // var now = DateTime.now().millisecondsSinceEpoch;
+    // var rawEnd = now * 0.000000864;
+    // var end = rawEnd + person.desiredDaysUntilComplete;
+    // var rawPercentage = end - start;
+    // var percentage = rawPercentage / person.desiredDaysUntilComplete;
 
 
     var daysUntilFreeIndicator = new CircularPercentIndicator(
@@ -64,8 +64,8 @@ class ProfileItem extends StatelessWidget {
       radius:  MediaQuery.of(context).size.width * 0.45,
       lineWidth: 25.0,
       animation: true,
-      percent: percentage.toDouble(),
-      //percent: .7,
+      //percent: percentage.toDouble(),
+      percent: .7,
       // center: Text(
       //   "0 Days",
       //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
@@ -75,11 +75,11 @@ class ProfileItem extends StatelessWidget {
         size: 50.0,
         ),
       header:  Text(
-        "Nickname",
+        person.nickname,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
       ),
       footer:  Text(
-        "__ Days Until You Quit!",
+        person.desiredDaysUntilComplete.toString() + " Days Until You Quit!",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       circularStrokeCap: CircularStrokeCap.round,
