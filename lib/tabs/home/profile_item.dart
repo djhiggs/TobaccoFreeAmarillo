@@ -75,11 +75,13 @@ class ProfileItem extends StatelessWidget {
         size: 50.0,
         ),
       header:  Text(
+        //"nickname",
         person.nickname,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
       ),
       footer:  Text(
         person.desiredDaysUntilComplete.toString() + " Days Until You Quit!",
+        //"Days Until You Quit!",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       circularStrokeCap: CircularStrokeCap.round,

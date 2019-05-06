@@ -50,16 +50,20 @@ class CessationItem extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(
-                        MediaQuery.of(context).size.height * 0.085, 0, 0, 0),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: Container(
+                    //padding: EdgeInsets.fromLTRB(
+                        //MediaQuery.of(context).size.height * 0.02, 0, 0, 0),
                     child: Text(
-                      moneySaved,
+                      //moneySaved,
+                      "\$1000.00",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                   ),
+                  )
                 ],
               ),
               Container(
