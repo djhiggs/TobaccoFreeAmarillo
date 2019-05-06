@@ -48,38 +48,47 @@ class Quiz extends StatefulWidget
         _achievements[1].status =true;
         //updates the LOCAL database with the new
         //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[1].points);
         _db.setLocal("quiz.achieve.1", true);
         break;
       case 5:
         _achievements[2].status =true;
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[2].points);
         _db.setLocal("quiz.achieve.2", true);
         break;
       case 6:
         _achievements[3].status =true;
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[3].points);
         _db.setLocal("quiz.achieve.3", true);
         break;
       case 7:
         _achievements[4].status =true;
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[4].points);
         _db.setLocal("quiz.achieve.4", true);
         break;
       case 8:
         _achievements[5].status =true;
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[5].points);
         _db.setLocal("quiz.achieve.5", true);
         break;
       case 16:
         _achievements[6].status =true;
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[6].points);
         _db.setLocal("quiz.achieve.6", true);
         break;
       case 19:
         _achievements[7].status =true;
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[7].points);
         _db.setLocal("quiz.achieve.7", true);
         break;
       case 24:
         _achievements[8].status =true;
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[8].points);
         _db.setLocal("quiz.achieve.8", true);
         break;
       //default case for when no achievements have been earned.
       default:
+        return;
     }
   }
   //a constructor the the quiz

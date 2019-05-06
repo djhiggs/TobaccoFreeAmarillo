@@ -26,7 +26,7 @@ class GenericGame extends game.BaseGame{
       _purchased = false;
     }
     // TODO: remove this and get purchase working
-    _purchased = true;
+    //_purchased = true;
   }
   static Future<void> initialize() async{
     db = await Database.getInstance();

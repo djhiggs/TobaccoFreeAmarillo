@@ -73,47 +73,6 @@ class GameGarage extends StatelessWidget {
           onTap: () {
             if(_gamesList[index].purchased)
               _gamesList[index].open();
-            else if(getPointCount() > _gamesList[index].price){
-              showDialog(
-                context: context,
-                builder: (BuildContext c) => AlertDialog(title: 
-                  Text("Are you wish you would like to purchase " + _gamesList[index].title + "?"),
-                    actions: <Widget>[
-                      RaisedButton(
-                        child: Text("Purchase"),
-                        onPressed: (){
-                          setPointCount(getPointCount() - _gamesList[index].price);
-                          _gamesList[index].purchase();
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      RaisedButton(
-                        child: Text("Cancel"),
-                        onPressed: () =>
-                          Navigator.of(context).pop(),
-                      )
-                    ],
-                  ),
-                );
-            }
-            else{
-              showDialog(
-                context: context,
-                builder: (BuildContext c) => AlertDialog(title: 
-                  Text("Insufficient Funds"),
-                  content: Text(""),
-                    actions: <Widget>[
-                      RaisedButton(
-                        child: Text("Continue"),
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        },
-                        textColor: Colors.white,
-                      )
-                    ],
-                  ),
-              );
-            }
           },
           contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           leading: Container(
@@ -140,76 +99,77 @@ class GameGarage extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(color: Colors.black38),
               child: ListTile(
-          //When tile is tapped navigate to details page
-          onTap: () {
-            if(_gamesList[index].purchased)
-              _gamesList[index].open();
-            else if(getPointCount() > _gamesList[index].price){
-              showDialog(
-                context: context,
-                builder: (BuildContext c) => AlertDialog(title: 
-                  Text("Are you wish you would like to purchase " + _gamesList[index].title + "?"),
-                    actions: <Widget>[
-                      RaisedButton(
-                        child: Text("Purchase"),
-                        onPressed: (){
-                          setPointCount(getPointCount() - _gamesList[index].price);
-                          _gamesList[index].purchase();
-                          Navigator.of(context).pop();
-                        },
+              //When tile is tapped navigate to details page
+              onTap: () {
+                if(_gamesList[index].purchased)
+                  _gamesList[index].open();
+                else if(getPointCount() > _gamesList[index].price){
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext c) => AlertDialog(title: 
+                      Text("Are you wish you would like to purchase " + _gamesList[index].title + "?"),
+                        actions: <Widget>[
+                          RaisedButton(
+                            child: Text("Purchase"),
+                            onPressed: (){
+                              setPointCount(getPointCount() - _gamesList[index].price);
+                              _gamesList[index].purchase();
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          RaisedButton(
+                            child: Text("Cancel"),
+                            onPressed: () =>
+                              Navigator.of(context).pop(),
+                          )
+                        ],
                       ),
-                      RaisedButton(
-                        child: Text("Cancel"),
-                        onPressed: () =>
-                          Navigator.of(context).pop(),
-                      )
-                    ],
-                  ),
-                );
-            }
-            else{
-              showDialog(
-                context: context,
-                builder: (BuildContext c) => AlertDialog(title: 
-                  Text("Insufficient Funds"),
-                    actions: <Widget>[
-                      RaisedButton(
-                        child: Text("Continue"),
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        },
-                        textColor: Colors.white,
-                      )
-                    ],
-                  ),
-              );
-            }
-          },
-          contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-          leading: Container(
-            padding: EdgeInsets.only(right: 12.0),
-            decoration: new BoxDecoration(
-                border: new Border(
-                    right: new BorderSide(width: 1.0, color: Colors.white24))),
-            child: Icon(Icons.gamepad, color: Colors.white),
-          ),
-          title: Row(children: <Widget>[
-            Text(
-              _gamesList[index].title,
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-            Text(
-              "Price: " + _gamesList[index].price.toString(),
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          ),
-          // Show the points you can get from completing this achievement
-          subtitle: Text(
-            _gamesList[index].description,
-            style: TextStyle(color: Colors.white)
-          ),
-          trailing: 
-              Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0)),
+                    );
+                }
+                else{
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext c) => AlertDialog(title: 
+                      Text("Insufficient Funds"),
+                      content: Text("You only have " + getPointCount().toString() + " points"),
+                        actions: <Widget>[
+                          RaisedButton(
+                            child: Text("Continue"),
+                            onPressed: (){
+                              Navigator.of(context).pop();
+                            },
+                            textColor: Colors.white,
+                          )
+                        ],
+                      ),
+                  );
+                }
+              },
+              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              leading: Container(
+                padding: EdgeInsets.only(right: 12.0),
+                decoration: new BoxDecoration(
+                    border: new Border(
+                        right: new BorderSide(width: 1.0, color: Colors.white24))),
+                child: Icon(Icons.gamepad, color: Colors.white),
+              ),
+              title: Row(children: <Widget>[
+                Text(
+                  _gamesList[index].title,
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                Text(
+                  "Price: " + _gamesList[index].price.toString(),
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                ],
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+              // Show the points you can get from completing this achievement
+              subtitle: Text(
+                _gamesList[index].description,
+                style: TextStyle(color: Colors.white)
+              ),
+              trailing: 
+                  Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0)),
             );
     }
 }
