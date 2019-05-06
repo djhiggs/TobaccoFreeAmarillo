@@ -206,7 +206,8 @@ class GameGarage extends StatelessWidget {
           // Show the points you can get from completing this achievement
           subtitle: Text(
             _gamesList[index].description,
-            style: TextStyle(color: Colors.white)),
+            style: TextStyle(color: Colors.white)
+          ),
           trailing: 
               Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0)),
             );

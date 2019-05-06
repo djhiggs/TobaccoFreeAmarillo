@@ -17,6 +17,7 @@ class Achievement{
   complete(){
     //add points
     status = true;
+    var instance = SharedPreferences.getInstance(); 
     SharedPreferences.getInstance().then((SharedPreferences s){
       s.setBool("Achievements.$name", status);
     });

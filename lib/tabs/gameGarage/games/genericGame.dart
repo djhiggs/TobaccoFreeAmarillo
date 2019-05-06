@@ -25,6 +25,7 @@ class GenericGame extends game.BaseGame{
       db.setLocal("GamePrice.$title", false);
       _purchased = false;
     }
+    // TODO: remove this and get purchase working
     _purchased = true;
   }
   static Future<void> initialize() async{
