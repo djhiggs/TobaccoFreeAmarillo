@@ -61,9 +61,10 @@ class MotivationItem extends StatelessWidget {
     );
 
     return Positioned(
-      bottom: 50,
-      left: 32.0,
-      right: 32.0,
+      bottom: MediaQuery.of(context).size.height * 0.05,
+      left: MediaQuery.of(context).size.height * 0.01,
+      right: MediaQuery.of(context).size.height * 0.01,
+      //top: MediaQuery.of(context).size.height * 0.50,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [

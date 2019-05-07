@@ -19,7 +19,7 @@ class TFVan extends GenericGame
 {
   TFRunner tfRunner;
   TFVan(BuildContext context) : super(context,200) {
-    title = "Tobacco Free Driver";
+    title = "TF Driver";
     description = "Drive awacky from the tobacky"; //TODO: fix the name
       Flame.audio.disableLog();
   //List<Image> image = await Flame.images.loadAll(["sprite.png"]);

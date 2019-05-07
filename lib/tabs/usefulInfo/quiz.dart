@@ -15,7 +15,7 @@ class Quiz extends StatefulWidget
       Achievement(db["quiz.achieve.4"] as bool,"3!","Completed 3! 3 X 2 X 1 quizes",720),
       Achievement(db["quiz.achieve.3"] as bool,"Popular Prime","Completed seven quizes",777),
       Achievement(db["quiz.achieve.6"] as bool,"Miner Cube","Completed finished 8 quizes (2 X 2 X 2)",1024),
-      Achievement(db["quiz.achieve.7"] as bool,"Square of squares","Passed 16 or 4 X 4 or 2 X 2 X 2 X 2 quizes",2048),
+      Achievement(db["quiz.achieve.7"] as bool,"Square of □s","Passed 16 or 4 X 4 or 2 X 2 X 2 X 2 quizes",2048),
       Achievement(db["quiz.achieve.8"] as bool,"Ω Teen Prime","Passed 19 quizes (greatest prime that is a teen)",2190),
       Achievement(db["quiz.achieve.9"] as bool,"4!","Finished 24 or 4 X 3 X 2 X 1 quizes",1200),
     ];

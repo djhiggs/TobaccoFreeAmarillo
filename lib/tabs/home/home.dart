@@ -53,34 +53,38 @@ class HomeState extends State<Home> {
     //successfulDays.add(DateTime.utc(2019,4,25), day1);
     //successfulDays.add(DateTime.utc(2019,4,24),);
     //successfulDays.add(DateTime.utc(2019,4,23),);
-    
     return new Scaffold(
         body: new Stack(
-      children: <Widget>[
-        IntroPageView(),
-        Container(
-            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition),
-            child: Center(
-              child: calender
-              )
-            ),
-        Opacity(
-          opacity: 0.0,
-          child: ButtonTheme(
-            minWidth: 500.0,
-            child: Container(
-              margin:
-                  EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition - 100),
-              child: Center(
-                child: RaisedButton(
-                  onPressed: () {_onPressed();},
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ));
+          children: <Widget>[
+            IntroPageView(),
+            calender]));
+    // return new Scaffold(
+    //     body: new Stack(
+    //   children: <Widget>[
+    //     IntroPageView(),
+    //     Container(
+    //         margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition),
+    //         child: Center(
+    //           child: calender
+    //           )
+    //         ),
+    //     Opacity(
+    //       opacity: 0.0,
+    //       child: ButtonTheme(
+    //         minWidth: 500.0,
+    //         child: Container(
+    //           margin:
+    //               EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition - 100),
+    //           // child: Center(
+    //           //   child: RaisedButton(
+    //           //     onPressed: () {_onPressed();},
+    //           //   ),
+    //           // ),
+    //         ),
+    //       ),
+    //     ),
+    //   ],
+    // ));
 
 //     return new Scaffold(
 //         body: new Stack(

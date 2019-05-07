@@ -19,11 +19,11 @@ class AchievementDetailScreen extends StatelessWidget {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(left: 10.0),
-                height: MediaQuery.of(context).size.height * 0.5,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.5,
-                padding: EdgeInsets.all(40.0),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, MediaQuery.of(context).size.height * 0.009),
                 width: MediaQuery.of(context).size.width,
                 decoration:
                     BoxDecoration(color: Theme.of(context).primaryColor),
