@@ -11,10 +11,11 @@ import 'tabs/usefulInfo/categoriesWidget.dart';
 import 'tabs/usefulInfo/quiz.dart';
 import './tabs/gameGarage/games/golfGame/golfGame.dart';
 import './tabs/settings/database.dart';
-
+import './tabs/settings/person.dart';
 
 void main() async{ 
   await Database.getInstance();
+  await Person.getInstance();
   runApp(new MaterialApp(
     title: 'TFA Cessation',
     theme: new ThemeData(
