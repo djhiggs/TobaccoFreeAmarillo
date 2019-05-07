@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'page_transformer.dart';
 import 'profile_item.dart';
 import 'motivation_item.dart';
-import 'cessation_item.dart';
+//import 'cessation_item.dart';
 import 'game_item.dart';
 import 'milestone_item.dart';
 
@@ -21,7 +21,7 @@ class IntroPageView extends StatelessWidget {
                   ProfileItem(
                     pageVisibility: visibilityResolver.resolvePageVisibility(0),
                   ),
-                  CessationItem(
+                  MilestoneItem(
                     pageVisibility: visibilityResolver.resolvePageVisibility(1),
                   ),
                   MotivationItem(
@@ -30,14 +30,14 @@ class IntroPageView extends StatelessWidget {
                   GameItem(
                     pageVisibility: visibilityResolver.resolvePageVisibility(3),
                   ),
-                  MilestoneItem(
-                    pageVisibility: visibilityResolver.resolvePageVisibility(4),
-                  ),
+                  // MilestoneItem(
+                  //   pageVisibility: visibilityResolver.resolvePageVisibility(4),
+                  // ),
                   ];
               return PageView.builder(
                 
                 controller: PageController(viewportFraction: 0.85),
-                itemCount: 5,
+                itemCount: 4,
                 itemBuilder: (context, index) {
                   return items[index];
                 },

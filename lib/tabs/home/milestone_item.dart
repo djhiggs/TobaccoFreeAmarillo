@@ -29,8 +29,7 @@ class MilestoneItem extends StatelessWidget {
         (_person.averageUsage *
                 5.06 *
                 (((DateTime.now().millisecondsSinceEpoch -
-                            _person
-                                .startDate.millisecondsSinceEpoch) /
+                            _person.startDate.millisecondsSinceEpoch) /
                         (3600 * 1000 * 24 * 7))
                     .round()))
             .toString();
@@ -45,61 +44,34 @@ class MilestoneItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Row(
-                children: [
-                  Column(
-                    children: <Widget>[
-                      Text("Money",
+              Column(
+                children: <Widget>[
+                  Text("Money Saved",
                       softWrap: true,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center),
-                      Text("Saved:",
-                      softWrap: true,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
-                    ],
-                  ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.14, 0, 0, 0),
-                    child: Text(
-                      moneySaved,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
                 ],
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width * 0.40,
+                //height: MediaQuery.of(context).size.height * 0.15,
+                //width: MediaQuery.of(context).size.width * 0.40,
+                padding: EdgeInsets.fromLTRB(
+                  0,
+                  0,
+                  0,
+                  MediaQuery.of(context).size.height * 0.1
+                  ),
                 child: new Divider(
                   color: Colors.black,
                 ),
               ),
-              Row(
-                children: [
-                  Column(
-                    children: <Widget>[
-                      Text("Ciggerates",
-                      softWrap: true,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
-                      Text("Evaded:",
-                      softWrap: true,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
-                    ],
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(right: 10),
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.height * 0.07, 0, 0, 0),
-                    child: Text(
-                      moneySaved,
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
+              Container(
+                child: Text(
+                  moneySaved,
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ],
           ),
@@ -114,7 +86,7 @@ class MilestoneItem extends StatelessWidget {
       decoration: BoxDecoration(),
       child: Container(
         child: Image.asset(
-          'assets/images/cliff.jpg',
+          'assets/images/bank_notes.jpg',
           fit: BoxFit.fitHeight,
         ),
       ),
