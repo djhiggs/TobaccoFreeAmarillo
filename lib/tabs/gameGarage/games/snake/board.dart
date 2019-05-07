@@ -9,8 +9,11 @@ import 'snake_piece.dart';
 import 'point.dart';
 import 'splash.dart';
 import 'victory.dart';
+import '../../../settings/database.dart';
 import '../../../achievement_page/achievement.dart';
 import '../../../achievement_page/achievement_page.dart';
+
+
 
 
 
@@ -23,6 +26,42 @@ enum Direction { LEFT, RIGHT, UP, DOWN }
 enum GameState { SPLASH, RUNNING, VICTORY, FAILURE }
 
 class _BoardState extends State<Board> {
+  static List<Achievement> _achievements;
+  static Database _db;
+  ///this is called in main and loads in all of the achievements
+  static void initialize(Database db){
+    //initializes all of the achievements and gets their current stats from the database
+    _achievements = <Achievement>[
+      Achievement(db["snake.achieve.1"] as bool,"You're Hissstory!","Grabbed the apple for the first time",100),
+      Achievement(db["snake.achieve.2"] as bool,"π - thon!","Your snake is 15 blocks long",500),
+      Achievement(db["snake.achieve.3"] as bool,"Ouroboros","You got a game over",100),
+      Achievement(db["snake.achieve.4"] as bool,"New boots","Your snake is 10 blocks long",500),
+      Achievement(db["snake.achieve.5"] as bool,"Jormungand","Your snake is 20 blocks long",1000),
+      Achievement(db["snake.achieve.6"] as bool,"Snake in the grass!","Your snake is 5 blocks long",2048),
+      Achievement(db["snake.achieve.7"] as bool,"Sunning yourself","Played Snake for 10 minutes",3000),
+      
+    ];
+    //checks for achievements that have not been instantiated in the database yet
+    for(int i = 0; i < _achievements.length; i++)
+      if(_achievements[i].status ==null){
+        //assignes a default value
+        _achievements[i].status =false;
+        //sets the value to the LOCAL database
+        //using a general definition so it doesn't
+        //overide anything and distinguishes them
+        //using the index
+        db.setLocal("snake.achieve." + (i+ 1).toString(), false);
+      }
+    //adds these achievements to the global achievement list
+    //to be rendered later
+    AchievementPage.achievements.addAll(_achievements);
+    //saves the database instance for later use
+    _BoardState._db = db;
+  }
+
+  
+
+
   List<Point> _snakePiecePositions;
   Point _applePosition;
   Timer _timer;
