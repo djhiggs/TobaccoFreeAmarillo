@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'tabs/settings/database.dart';
+import 'tabs/settings/person.dart';
 
 class LandingScreen extends StatefulWidget {
   @override
@@ -12,7 +12,8 @@ class _LandingScreenState extends State<LandingScreen> {
   final _zipCodeController = TextEditingController();
   int _tabaccoTypesIndex = 0;
 
-  final firestore = Firestore.instance;
+  final Database db =Database.getLoadedInstance();
+  final Person person = Person.getLoadedInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +79,10 @@ class _LandingScreenState extends State<LandingScreen> {
             SizedBox(height: 10),
             RaisedButton(
               onPressed: () {
-                firestore.collection("clients").add({
-                  "nickname": _nickNameController.text,
-                  "zipcode": _zipCodeController.text,
-                  "type": tabaccoTypes[_tabaccoTypesIndex]
-                });
+                person.nickname =_nickNameController.text;
+                _zipCodeController.text;
+                person.product = TobaccoProducts.values[_tabaccoTypesIndex];
+                person.export();
                 Navigator.of(context).pop();
               },
               child: Padding(

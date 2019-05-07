@@ -22,6 +22,8 @@ class Database
     return _instance;
   }
   static bool get loaded => _instance ==null && _instance._local ==null;
+  bool getCanUseRemote() => this["CanUseRemote"]==true;
+  void setCanUseRemote(bool value) => setLocal("CanUseRemote", value);
   ///This gets an instance
   ///use this to get an object, don't just use a constructor!!!
   static Database getLoadedInstance() {
@@ -36,12 +38,14 @@ class Database
   Future _connect() async{
     _local 
     = await SharedPreferences.getInstance();
-    if(_local.getKeys().length == 0)
-      _remote = await Firestore.instance.collection("Users").add(
-        Map<String,dynamic>());
-    else
-      _remote = Firestore.instance.
-        document("Users/" + this["userID"].toString());
+    if(getCanUseRemote()){
+      if(_local.getKeys().length == 0)
+        _remote = await Firestore.instance.collection("Users").add(
+          Map<String,dynamic>());
+      else
+        _remote = Firestore.instance.
+          document("Users/" + this["userID"].toString());
+    }
   }
   ///Returns the object as specified by a String perameter.
   operator [](String key) => _local.get(key);
@@ -49,7 +53,8 @@ class Database
   ///Sets an object identified by the 'key' (String) perameter.
   void operator []=(String key,dynamic value) {
     setLocal(key, value);
-    _remote.updateData(<String,dynamic>{key:value});
+    if(getCanUseRemote())
+      _remote.updateData(<String,dynamic>{key:value});
   }
 
   ///Will set a value to the local datastore ONLY
@@ -83,6 +88,7 @@ class Database
         await setLocal(key, newData);
       }
     }
-    await _remote.updateData(changedData);
+    if(getCanUseRemote())
+      await _remote.updateData(changedData);
   }  
 }

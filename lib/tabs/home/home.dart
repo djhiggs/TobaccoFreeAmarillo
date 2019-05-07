@@ -5,7 +5,6 @@ import 'intro_page_view.dart';
 import 'day_result.dart';
 import 'calender.dart';
 
-
 class Home extends StatefulWidget {
   Person _person;
   @override
@@ -19,7 +18,44 @@ class HomeState extends State<Home> {
   Person _person;
   HomeState(this._person) : super();
   @override
+  void initState() {
+    super.initState();
+    _checkDate();
+  }
+
+  Calender calender = Calender();
+
+  _checkDate() async {
+    calender.load();
+    calender.days.addAll(<Day>[
+      Day(DateTime(2019, 4, 27), true),
+      Day(DateTime(2019, 4, 28), true),
+      Day(DateTime(2019, 4, 29), false),
+      Day(DateTime(2019, 4, 30), null),
+      Day(DateTime(2019, 5, 01), null),
+      Day(DateTime(2019, 5, 02), true),
+    ]);
+    if (calender.days.length != 0) {
+      if (DateTime.now().millisecondsSinceEpoch ~/
+              Duration.millisecondsPerDay !=
+          calender.days.last.dateTime.millisecondsSinceEpoch ~/
+              Duration.millisecondsPerDay) {
+                print("jumbalaya");
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text("Test"),
+                //contentPadding: ,
+                titlePadding: EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+              ),
+        );
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     if (_person == null) {
       _person = Person(); //initial state to get rid of nulls
       Person.getInstance().then((Person p) {
@@ -27,37 +63,41 @@ class HomeState extends State<Home> {
         setState(() {});
       });
     }
-    _onPressed() {
-      showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text("Check out your successful days with this Calender!"),
-        //contentPadding: ,
-        titlePadding: EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
-        ),
-      );
-    }
+    _onPressed() {}
     double calenderPosition = 385.0;
-    
-    Calender calender = Calender();
-    calender.load();
-    calender.days.addAll(<Day>[
-      Day(DateTime(2019,4,27),true),
-      Day(DateTime(2019,4,28),true),
-      Day(DateTime(2019,4,29),false),
-      Day(DateTime(2019,4,30),null),
-      Day(DateTime(2019,5,01),null),
-      Day(DateTime(2019,5,02),true),
-    ]);
-    calender.store();
+
+    // calender.load();
+    // calender.days.addAll(<Day>[
+    //   Day(DateTime(2019, 4, 27), true),
+    //   Day(DateTime(2019, 4, 28), true),
+    //   Day(DateTime(2019, 4, 29), false),
+    //   Day(DateTime(2019, 4, 30), null),
+    //   Day(DateTime(2019, 5, 01), null),
+    //   Day(DateTime(2019, 5, 02), true),
+    // ]);
+    // calender.store();
     //successfulDays.add(DateTime.utc(2019,4,25), day1);
     //successfulDays.add(DateTime.utc(2019,4,24),);
     //successfulDays.add(DateTime.utc(2019,4,23),);
     return new Scaffold(
-        body: new Stack(
-          children: <Widget>[
-            IntroPageView(),
-            calender]));
+        body: new Stack(children: <Widget>[IntroPageView(), calender]),
+        bottomSheet: Row(
+          children: <Widget> [
+            Expanded(child: RaisedButton(
+              child: Text("Testing"),
+              onPressed: () {
+                            showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text("Test"),
+                //contentPadding: ,
+                titlePadding: EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+              ),
+        );
+              },
+            ),)
+          ]
+        ),);
     // return new Scaffold(
     //     body: new Stack(
     //   children: <Widget>[
