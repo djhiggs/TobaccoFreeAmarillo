@@ -9,6 +9,10 @@ import 'snake_piece.dart';
 import 'point.dart';
 import 'splash.dart';
 import 'victory.dart';
+import '../../../achievement_page/achievement.dart';
+import '../../../achievement_page/achievement_page.dart';
+
+
 
 class Board extends StatefulWidget {
   @override
@@ -19,7 +23,7 @@ enum Direction { LEFT, RIGHT, UP, DOWN }
 enum GameState { SPLASH, RUNNING, VICTORY, FAILURE }
 
 class _BoardState extends State<Board> {
-  var _snakePiecePositions;
+  List<Point> _snakePiecePositions;
   Point _applePosition;
   Timer _timer;
   Direction _direction = Direction.UP;
