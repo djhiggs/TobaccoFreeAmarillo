@@ -59,7 +59,13 @@ class _BoardState extends State<Board> {
     _BoardState._db = db;
   }
 
-  
+  ///checks if any new achievements have been earned
+  ///(assesses eligibility)
+  static void checkAchievementStatus(){
+    if(_db["PointAmount"] == null)
+      _db["PointAmount"] =0;
+    
+  }
 
 
   List<Point> _snakePiecePositions;

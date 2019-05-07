@@ -14,6 +14,8 @@ import './tabs/settings/database.dart';
 
 
 void main() async{ 
+
+  
   await Database.getInstance();
   runApp(new MaterialApp(
     title: 'TFA Cessation',

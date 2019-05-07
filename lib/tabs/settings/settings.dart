@@ -13,10 +13,10 @@ class Settings extends StatelessWidget {
 }
 
 class StatefulSettings extends StatefulWidget {
-  bool notificationsEnabled = false;
-  bool soundEnabled = false;
-  StatefulSettings({Key key, this.notificationsEnabled, this.soundEnabled})
-      : super(key: key);
+  // bool notificationsEnabled = false;
+  // bool soundEnabled = false;
+  // StatefulSettings({Key key, this.notificationsEnabled, this.soundEnabled})
+  //     : super(key: key);
 
   @override
   _Settings createState() => _Settings();
@@ -37,40 +37,35 @@ class _Settings extends State<StatefulSettings> {
       _person = new Person();
       Person.getInstance().then((Person p) {
         _person = p;
-        PrivacyState.import().whenComplete((){
-          setState(() {
-            
-          });
-        });
-        //setState(() {});
+        setState(() {});
         //PrivacyState.import();
       });
     }
     return new Container(
         child: ListView(
       children: <Widget>[
-        ListTile(
-          title: Text(
-            "Notifications",
-            textScaleFactor: buttonTextScaleFactor,
-          ),
-          trailing: Switch(
-              onChanged: (bool state) {
-                _person.notificationsEnabled = state;
-              },
-              value: _person.notificationsEnabled),
-        ),
-        ListTile(
-          title: Text(
-            "Sound",
-            textScaleFactor: buttonTextScaleFactor,
-          ),
-          trailing: Switch(
-              onChanged: (bool state) {
-                _person.soundEnabled = state;
-              },
-              value: _person.soundEnabled),
-        ),
+        // ListTile(
+        //   title: Text(
+        //     "Notifications",
+        //     textScaleFactor: buttonTextScaleFactor,
+        //   ),
+        //   trailing: Switch(
+        //       onChanged: (bool state) {
+        //         _person.notificationsEnabled = state;
+        //       },
+        //       value: _person.notificationsEnabled),
+        // ),
+        // ListTile(
+        //   title: Text(
+        //     "Sound",
+        //     textScaleFactor: buttonTextScaleFactor,
+        //   ),
+        //   trailing: Switch(
+        //       onChanged: (bool state) {
+        //         _person.soundEnabled = state;
+        //       },
+        //       value: _person.soundEnabled),
+        // ),
         ExpansionTile(
           title: Text(
             "Personal Information",
@@ -200,7 +195,7 @@ class _Settings extends State<StatefulSettings> {
             textScaleFactor: buttonTextScaleFactor,
           ),
           onTap: () {
-            showDialog(builder: (BuildContext c)=>Privacy(), context: context);
+            Privacy.show(context);
           },
         ),
       ],
