@@ -75,6 +75,7 @@ class HomeState extends State<Home> {
             ),
             RaisedButton(child: Text("Submit"),
               onPressed: () => setState((){
+                int n = _person.expectedSmokingAmount(DateTime.now());
                 calender.add(Day(
                     DateTime.now(),
                     selectedAmount <= _person.expectedSmokingAmount(DateTime.now())

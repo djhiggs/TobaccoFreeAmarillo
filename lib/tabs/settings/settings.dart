@@ -103,7 +103,7 @@ class _Settings extends State<StatefulSettings> {
           ),
           children: <Widget>[
             TextFormField(
-              initialValue: _person.averageUsage.toString(),
+              initialValue: _person.startingUsage.toString(),
               decoration: const InputDecoration(
                 icon: const Icon(Icons.smoking_rooms),
                 hintText: 'tobacco products used per week',
@@ -112,7 +112,7 @@ class _Settings extends State<StatefulSettings> {
               onFieldSubmitted: (String txt) {
                 int count = int.tryParse(txt);
                 if (count != null)
-                  _person.averageUsage = count;
+                  _person.startingUsage = count;
                 else
                   throw null;
               },

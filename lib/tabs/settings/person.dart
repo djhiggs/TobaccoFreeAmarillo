@@ -1,5 +1,6 @@
 
 import 'database.dart';
+import 'dart:math';
 enum TobaccoProducts{
     Smoking,
     Vaping,
@@ -15,8 +16,8 @@ class Person
     soundEnabled =false;
     zipCode = -1;
     startDate =DateTime.now();
-    desiredDaysUntilComplete = -1;
-    averageUsage = 5;
+    desiredDaysUntilComplete = 100;
+    startingUsage = 5;
     desiredUsage = 0;
     product =TobaccoProducts.Vaping;
   }
@@ -54,12 +55,20 @@ class Person
   bool notificationsEnabled;
   bool soundEnabled;
   DateTime startDate;
+  ///the total amount of days from the first day to the desired last day
   int desiredDaysUntilComplete;
-  int averageUsage;
+  int startingUsage;
   int desiredUsage;
   TobaccoProducts product;
   int zipCode;
-  int expectedSmokingAmount(DateTime time) => 3;
+  int expectedSmokingAmount(DateTime time) {
+    double a = startingUsage + 1.0;
+    double b = (desiredUsage + 1)/a;
+    double c = (time.millisecondsSinceEpoch/Duration.millisecondsPerDay 
+      - startDate.millisecondsSinceEpoch/Duration.millisecondsPerDay)/
+      desiredDaysUntilComplete;
+    return (a * pow(b,c) - 1).round();
+  }
   //TODO: check these names
   String consumableUnitName(bool plural){
     switch (product) {
@@ -79,7 +88,7 @@ class Person
       'DesiredUsage':desiredUsage,
       'Nickname':nickname,
       'Product':TobaccoProducts.values.indexOf(product),
-      'StartingUsage':averageUsage,
+      'StartingUsage':startingUsage,
       'StartMilisecondSinceEpoch':startDate.millisecondsSinceEpoch,
       'ZipCode':zipCode,
     };
@@ -95,7 +104,7 @@ class Person
     desiredUsage = int.parse(db["EndingUsage"]);
     nickname = db["Nickname"];
     product = TobaccoProducts.values.elementAt(int.parse(db["Product"]));
-    averageUsage = int.parse(db["StartingUsage"]);
+    startingUsage = int.parse(db["StartingUsage"]);
     startDate = DateTime.fromMicrosecondsSinceEpoch(int.parse(db["StartDate"]));
     notificationsEnabled = db["NotificationsEnabled"] =="true";
     soundEnabled = db["SoundEnabled"] =="true";

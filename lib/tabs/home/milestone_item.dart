@@ -26,7 +26,7 @@ class MilestoneItem extends StatelessWidget {
   _buildTextContainer(BuildContext context) {
     Person _person = new Person();
     var moneySaved = "\$" +
-        (_person.averageUsage *
+        (_person.startingUsage *
                 5.06 *
                 (((DateTime.now().millisecondsSinceEpoch -
                             _person.startDate.millisecondsSinceEpoch) /
