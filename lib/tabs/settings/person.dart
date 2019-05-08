@@ -60,6 +60,19 @@ class Person
   TobaccoProducts product;
   int zipCode;
   int expectedSmokingAmount(DateTime time) => 3;
+  //TODO: check these names
+  String consumableUnitName(bool plural){
+    switch (product) {
+      case TobaccoProducts.SmokelessTobacco:
+        return plural? "Containers" : "Container";
+      case TobaccoProducts.Smoking:
+        return plural? "Cigarettes" : "Cigarette";
+      case TobaccoProducts.Vaping:
+        return plural? "Cartridges" : "Cartridge" ;
+      default:
+        throw Exception("Item does not exist"); 
+    }
+  }
   Future export() async{
     var userData = {
       'DesiredDaysUntilComplete':desiredDaysUntilComplete,
