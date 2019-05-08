@@ -67,8 +67,9 @@ class _Settings extends State<StatefulSettings> {
         //       value: _person.soundEnabled),
         // ),
         ExpansionTile(
+          initiallyExpanded: true,
           title: Text(
-            "Personal Information",
+            "User Information",
             textScaleFactor: buttonTextScaleFactor,
           ),
           children: <Widget>[
@@ -190,8 +191,8 @@ class _Settings extends State<StatefulSettings> {
         ),
         ListTile(
           title: Text(
-            "Privacy Policy",
-            textScaleFactor: buttonTextScaleFactor,
+            "View Privacy Policy",
+            textScaleFactor: 1,
           ),
           onTap: () {
             Privacy.show(context);
