@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'intro_item.dart';
+//import 'intro_item.dart';
 import 'page_transformer.dart';
 
 class CessationItem extends StatelessWidget {
@@ -15,7 +15,7 @@ class CessationItem extends StatelessWidget {
     @required double translationFactor,
     @required Widget child,
   }) {
-    final double xTranslation = pageVisibility.pagePosition * translationFactor;
+    //final double xTranslation = pageVisibility.pagePosition * translationFactor;
 
     return Opacity(
       opacity: pageVisibility.visibleFraction,
@@ -81,6 +81,7 @@ class CessationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
     var imageOverlayGradient = DecoratedBox(
       decoration: BoxDecoration(
         //image: Image.asset(name),
@@ -94,7 +95,8 @@ class CessationItem extends StatelessWidget {
         ),
       ),
     );
-
+    */
+    
     return Padding(
       //padding: const EdgeInsets.symmetric(
       //  vertical: 100.0,

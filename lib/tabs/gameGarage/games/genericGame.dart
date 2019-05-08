@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart' as game;
-import 'package:flame/flame.dart' as flame;
 import '../../settings/database.dart';
 class GenericGame extends game.BaseGame{
   static int count = 0;

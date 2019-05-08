@@ -31,7 +31,7 @@ class _Settings extends State<StatefulSettings> {
 
   @override
   Widget build(BuildContext context) {
-    int i = 5;
+    //int i = 5;
     //_person.export();
     if (_person == null) {
       _person = new Person();

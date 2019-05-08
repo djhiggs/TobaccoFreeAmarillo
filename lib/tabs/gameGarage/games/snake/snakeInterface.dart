@@ -1,5 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'mySnake.dart';
 import '../genericGame.dart';
 import 'package:flutter/material.dart';

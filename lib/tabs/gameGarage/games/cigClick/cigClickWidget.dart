@@ -8,17 +8,11 @@ import 'package:tobaccoFreeAmarilloApp/tabs/achievement_page/achievement.dart';
 import 'package:tobaccoFreeAmarilloApp/tabs/achievement_page/achievement_page.dart';
 
 class CigClickWidget extends StatefulWidget{
-  CigClick game;
+  final CigClick game;
   CigClickWidget(this.game);
-  CigClickWidgetState state;
-  refresh() {
-    if(state !=null)
-      state.setState((){});
-  }
   @override
   CigClickWidgetState createState() {
-    state = CigClickWidgetState(game);
-    return state;
+    return CigClickWidgetState(game);
   }
 
 static List<Achievement> _achievements;

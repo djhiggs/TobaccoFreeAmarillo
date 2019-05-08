@@ -1,13 +1,11 @@
 import 'dart:ui';
 
 import 'package:flame/components/component.dart';
-import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
 import 'golfBall.dart';
 import 'golfGame.dart';
-import '../vector2D.dart';
 import 'package:flame/flame.dart';
 import 'collidable.dart';
 
@@ -16,7 +14,6 @@ class Terrain extends Component{
   GolfBall get golfBall => golfGame.golfBall;
   Size _screenSize;
   List<Collidable> _collidables = List();
-  List<Position> _groundTileLocations = List();
   List<SpriteComponent> _groundTiles = List();
   static Sprite _groundSprite; 
   static int _spriteWidth;

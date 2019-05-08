@@ -14,7 +14,7 @@ class GameItem extends StatelessWidget {
     @required double translationFactor,
     @required Widget child,
   }) {
-    final double xTranslation = pageVisibility.pagePosition * translationFactor;
+    //final double xTranslation = pageVisibility.pagePosition * translationFactor;
 
     return Opacity(
       opacity: pageVisibility.visibleFraction,

@@ -6,9 +6,6 @@ class Achievement{
   int points;
 
   Achievement(this.status, this.name, this.description, this.points);
-  init(){
-    // TODO: init external data
-  }
   load(){
     SharedPreferences.getInstance().then((SharedPreferences s){
       status = s.getBool("Achievements.$name");

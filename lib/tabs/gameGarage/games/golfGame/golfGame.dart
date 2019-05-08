@@ -1,5 +1,4 @@
 import 'dart:ui' as ui;
-import 'package:flame/components/component.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';

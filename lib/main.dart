@@ -8,7 +8,6 @@ import 'tabs/gameGarage/gameGarage.dart' as _secondTab;
 import 'tabs/settings/settings.dart' as _thirdTab;
 import 'tabs/achievement_page/achievement_page.dart' as _achievementPage;
 import 'tabs/usefulInfo/categoriesWidget.dart';
-import 'tabs/usefulInfo/quiz.dart';
 import './tabs/gameGarage/games/golfGame/golfGame.dart';
 import './tabs/settings/database.dart';
 import './tabs/settings/person.dart';
@@ -81,10 +80,8 @@ class Tabs extends StatefulWidget {
 class TabsState extends State<Tabs> {
   List<Achievement> achievements = List<Achievement>();
   PageController _tabController;
-TabsState(){
-
-}
-  var _title_app = null;
+TabsState();
+  var _titleApp;
   int _tab = 0;
 
 
@@ -105,7 +102,7 @@ checkIfFirstLaunch() {
     super.initState();
     checkIfFirstLaunch();
     _tabController = new PageController();
-    this._title_app = TabItems[0].title;
+    this._titleApp = TabItems[0].title;
   }
 
   @override
@@ -120,7 +117,7 @@ checkIfFirstLaunch() {
     //App Bar
     appBar: new AppBar(
       title: new Text(
-        _title_app, 
+        _titleApp, 
         style: new TextStyle(
           fontSize: Theme.of(context).platform == TargetPlatform.iOS ? 17.0 : 20.0,
         ),
@@ -149,10 +146,10 @@ checkIfFirstLaunch() {
         activeColor: Theme.of(context).primaryColor,
         currentIndex: _tab,
         onTap: onTap,
-        items: TabItems.map((TabItem) {
+        items: TabItems.map((tabItem) {
           return new BottomNavigationBarItem(
-            title: new Text(TabItem.title),
-            icon: new Icon(TabItem.icon),
+            title: new Text(tabItem.title),
+            icon: new Icon(tabItem.icon),
           );
         }).toList(),
       ):
@@ -160,10 +157,10 @@ checkIfFirstLaunch() {
         type:BottomNavigationBarType.fixed,
         currentIndex: _tab,
         onTap: onTap,
-        items: TabItems.map((TabItem) {
+        items: TabItems.map((tabItem) {
           return new BottomNavigationBarItem(
-            title: new Text(TabItem.title),
-            icon: new Icon(TabItem.icon),
+            title: new Text(tabItem.title),
+            icon: new Icon(tabItem.icon),
           );
         }).toList(),
     ),
@@ -227,19 +224,19 @@ checkIfFirstLaunch() {
 
     switch (tab) {
       case 0:
-        this._title_app = TabItems[0].title;
+        this._titleApp = TabItems[0].title;
       break;
 
       case 1:
-        this._title_app = TabItems[1].title;
+        this._titleApp = TabItems[1].title;
       break;
 
       case 2:
-        this._title_app = TabItems[2].title;
+        this._titleApp = TabItems[2].title;
       break;
       
       case 3:
-        this._title_app =TabItems[3].title;
+        this._titleApp =TabItems[3].title;
       break;
 
     }

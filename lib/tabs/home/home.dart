@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../settings/person.dart';
 //import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'intro_page_view.dart';
-import 'day_result.dart';
 import 'calender.dart';
 
 class Home extends StatefulWidget {

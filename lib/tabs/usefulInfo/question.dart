@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'quiz.dart';
 class Question extends StatelessWidget{
   String question;
-  List<String> choices = List();
+  final List<String> choices = List();
   QuizState state;
   int correctAnswerIndex;
   int chosenAnswerIndex;

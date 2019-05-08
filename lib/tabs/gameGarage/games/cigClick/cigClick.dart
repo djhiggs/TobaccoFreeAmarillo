@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'upgrade.dart';
 import '../genericGame.dart';
 import 'cigClickWidget.dart';
-import 'dart:async';
 import 'dart:math';
 import '../../../achievement_page/achievement.dart';
-import '../../../achievement_page/achievement_page.dart';
 
 class CigClick extends GenericGame{
   CigClickWidget cigClickWidget;

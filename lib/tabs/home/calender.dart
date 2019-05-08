@@ -10,16 +10,15 @@ class Day{
   int daysSinceEpoch() => dateTime.millisecondsSinceEpoch ~/ Duration.millisecondsPerDay;
 }
 class Calender extends StatefulWidget{
-  List<Day> _days;
-  Database db;
-  Person person;
+  final List<Day> _days= List();
+  static Database db;
+  static Person person;
   bool isEmpty() => _days.length == 0;
   bool updatedToday() => !isEmpty() && _days.last.daysSinceEpoch() == DateTime.now().millisecondsSinceEpoch ~/ Duration.millisecondsPerDay;
   void load(){
     //- for not specified
     //1 for successful
     //0 for not successful
-    _days = List();
     String stats = db["SuccessStats"];
     if(stats == null)
       stats = "";
@@ -33,7 +32,6 @@ class Calender extends StatefulWidget{
     _days.add(day);
   }
   void store(){
-    return;
     if(_days.length == 0)
       return;  
     //- for not specified

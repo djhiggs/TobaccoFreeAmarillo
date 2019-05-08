@@ -99,13 +99,13 @@ class Obstacle extends SpriteComponent with Resizable {
   int internalSize;
 
   Obstacle(this.type, Sprite sprite, double speed, double gapCoefficient,
-      [double opt_xOffset])
+      [double optXOffset])
       : super.fromSprite(type.width, type.height, sprite) {
     cloneCollisionBoxes();
 
     internalSize =
         getRandomNum(1.0, ObstacleConfig.maxObstacleLength / 1).floor();
-    x = HorizonDimensions.width + (opt_xOffset ?? 0.0);
+    x = HorizonDimensions.width + (optXOffset ?? 0.0);
 
     if (this.internalSize > 1 && type.multipleSpeed > speed) {
       this.internalSize = 1;

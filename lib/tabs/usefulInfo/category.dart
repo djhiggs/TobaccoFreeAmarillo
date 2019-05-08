@@ -1,10 +1,9 @@
 import 'topic.dart';
-import 'dart:io';
 import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget{
   String header;
-  List<Topic> topics = List();
+  final List<Topic> topics = List();
   
   @override
   Widget build(BuildContext context) {

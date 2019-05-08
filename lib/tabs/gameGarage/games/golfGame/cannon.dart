@@ -97,6 +97,5 @@ class Cannon extends Component {
 
   @override
   void update(double t) {
-    // TODO: implement update
   } 
 }

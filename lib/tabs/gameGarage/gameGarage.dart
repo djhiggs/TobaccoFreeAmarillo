@@ -13,10 +13,10 @@ import '../settings/database.dart';
 class GameGarage extends StatelessWidget {
   static GameGarage _instance;
   static List<GenericGame> _gamesList;
-  Database db;
-  void setPointCount(int n) => db.setLocal("PointAmount", n);
+  static Database _db;
+  void setPointCount(int n) => _db.setLocal("PointAmount", n);
   int getPointCount() {
-    int amnt = db["PointAmount"];
+    int amnt = _db["PointAmount"];
     if(amnt == null){
       setPointCount(0);
       return 0;
@@ -36,7 +36,7 @@ class GameGarage extends StatelessWidget {
       SnakeInterface(context),
       //GenericGame(context,200),
     ];
-    db = Database.getLoadedInstance();
+    _db = Database.getLoadedInstance();
   }
   //StatelessWidget _parent;
   //BuildContext _context;  

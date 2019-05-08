@@ -1,19 +1,11 @@
-import 'dart:ui';
-
-import 'package:flame/components/component.dart';
-//import 'package:flame/flame.dart' as ui;
+import 'dart:ui' as ui;
 import 'package:flame/flame.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'game/game.dart';
 import 'game/tfrunner.dart';
 
 import 'genericGame.dart';
-import 'dart:ui' as ui;
-
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart' as material;
-import 'game/game.dart';
+import 'package:flutter/material.dart';
 
 class TFVan extends GenericGame
 {
@@ -24,7 +16,7 @@ class TFVan extends GenericGame
       Flame.audio.disableLog();
   //List<Image> image = await Flame.images.loadAll(["sprite.png"]);
   //TRexGame tRexGame = TRexGame(spriteImage: image[0]);
-  Flame.images.load("sprite.png").then((Image image){
+  Flame.images.load("sprite.png").then((ui.Image image){
     tfRunner = TFRunner(spriteImage: image);
     });
     Flame.audio.disableLog();
@@ -36,5 +28,5 @@ class TFVan extends GenericGame
     //SystemChrome.setEnabledSystemUIOverlays([]);
   }
   @override
-  Widget get widget => material.Material(child: GameWrapper(tfRunner));
+  Widget get widget => Material(child: GameWrapper(tfRunner));
 }
