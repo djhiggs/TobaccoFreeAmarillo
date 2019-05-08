@@ -165,29 +165,29 @@ class _Settings extends State<StatefulSettings> {
                 );
               },
             ),
-            FormField(
-              builder: (FormFieldState field) {
-                return Row(
-                  children: <Widget>[
-                    FlatButton(
-                      child: Text("Cancel"),
-                      onPressed: () {
-                        _person.import();
-                        setState(() {});
-                      },
-                    ),
-                    FlatButton(
-                      child: Text("Apply"),
-                      onPressed: () {
-                        _person.export();
-                        setState(() {});
-                      },
-                    )
-                  ],
-                );
-              },
-            ),
           ],
+        ),
+        FormField(
+          builder: (FormFieldState field) {
+            return Row(
+              children: <Widget>[
+                FlatButton(
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    _person.import();
+                    setState(() {});
+                  },
+                ),
+                FlatButton(
+                  child: Text("Apply"),
+                  onPressed: () {
+                    _person.export();
+                    setState(() {});
+                  },
+                )
+              ],
+            );
+          },
         ),
         ListTile(
           title: Text(

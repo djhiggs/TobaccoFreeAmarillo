@@ -14,11 +14,13 @@ class _LandingScreenState extends State<LandingScreen> {
 
   final Database db =Database.getLoadedInstance();
   final Person person = Person.getLoadedInstance();
-
+  bool dataCollectable = true;
   @override
   Widget build(BuildContext context) {
+
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -52,6 +54,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     borderSide: BorderSide(color: theme.primaryColor),
                   ),
                 ),
+                keyboardType: TextInputType.number,
               ),
             ),
             SizedBox(height: 10),
@@ -77,10 +80,23 @@ class _LandingScreenState extends State<LandingScreen> {
                   }),
             ),
             SizedBox(height: 10),
+            Row(children: <Widget>[
+              Flexible(child: 
+              Text("Do you or if under or 18 years of age your legal guardian consent of the collection of anonymous data?",
+              maxLines: 10,textScaleFactor: 0.8,)),
+              Checkbox(value: dataCollectable,onChanged: (bool val) {
+                    dataCollectable=val;
+                    setState((){});
+                  }
+                ,)
+            ],),
             RaisedButton(
               onPressed: () {
+                person.db.setCanUseRemote(dataCollectable);
                 person.nickname =_nickNameController.text;
-                person.zipCode =int.parse(_zipCodeController.text);
+                person.zipCode =int.tryParse(_zipCodeController.text);
+                if(person.zipCode == null)
+                  person.zipCode = -1;
                 person.product = TobaccoProducts.values[_tabaccoTypesIndex];
                 person.export();
                 Navigator.of(context).pop();

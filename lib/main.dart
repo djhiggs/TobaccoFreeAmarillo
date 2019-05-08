@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tobaccoFreeAmarilloApp/landing_screen.dart';
 import 'tabs/achievement_page/achievement.dart';
 import 'tabs/home/home.dart' as _firstTab;
@@ -11,6 +10,7 @@ import 'tabs/usefulInfo/categoriesWidget.dart';
 import './tabs/gameGarage/games/golfGame/golfGame.dart';
 import './tabs/settings/database.dart';
 import './tabs/settings/person.dart';
+import 'dart:async';
 
 void main() async{ 
 
@@ -85,15 +85,12 @@ TabsState();
   int _tab = 0;
 
 
-checkIfFirstLaunch() {
-    SharedPreferences.getInstance().then((pref) async {
-      final isFirstLaunch = pref.getBool("IS_FIRST_LAUNCH") ?? true;
-      if (isFirstLaunch) {
+checkIfFirstLaunch() async{
+    var db =Database.getLoadedInstance();
+    if (db["CanUseRemote"] == null)
+      Timer(Duration(milliseconds: 100),() =>
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => LandingScreen()));
-        pref.setBool("IS_FIRST_LAUNCH", false);
-      }      
-    });
+          .push(MaterialPageRoute(builder: (context) => LandingScreen())));     
   }
   
   @override

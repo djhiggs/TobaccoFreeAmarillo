@@ -149,8 +149,9 @@ class GolfGameUiState extends State<GolfGameUi> {
   Widget build(BuildContext context) {
     if (golfGame.gameState !=GameStates.Stopped && golfGame.gameState !=GameStates.Paused)
       Timer(Duration(milliseconds: 100), () => setState(() {}));
-    if(golfGame.gameState ==GameStates.Aiming)
+    if(golfGame.gameState ==GameStates.Aiming){
       return Text("F = " + ((golfGame.cannon.power*GolfBall.MASS/GolfGame.pixelsPerMeter*100).round()/100.0).toString() + " Newtons");
+    }
     else if(golfGame.gameState ==GameStates.Fired){
       if(golfGame.golfBall.stopped){
         golfGame.gameState =GameStates.Paused;
@@ -158,7 +159,7 @@ class GolfGameUiState extends State<GolfGameUi> {
         var lastBest = db["GolfGamePreviousBest"] as int;
         if(lastBest == null)
           lastBest = 0;
-        var current = golfGame.golfBall.distanceTraveled().toInt();
+        var current = (golfGame.golfBall.distanceTraveled()*100).round()/100;
         if(current > lastBest)
           db.setLocal("GolfGamePreviousBest", current);
         Timer(Duration(milliseconds: 100),() => showDialog(
@@ -198,6 +199,6 @@ class GolfGameUiState extends State<GolfGameUi> {
         );
       }
     }
-    return Text((golfGame.golfBall==null?"":golfGame.golfBall.distanceTraveled().toInt().toString()) + " Meters");
+    return Text((golfGame.golfBall==null?"":((golfGame.golfBall.distanceTraveled()*100).round()/100).toString()) + " Meters");
   }
 }

@@ -21,7 +21,7 @@ class Database
       if(_instance.getCanUseRemote()){
         if(_instance["remotePath"] ==null){
           _instance._remote = FirebaseDatabase.instance.reference().push();
-          _instance["remotePath"] =_instance._remote.path;
+          _instance.setLocal("remotePath",_instance._remote.path);
         }
         else
           _instance._remote = FirebaseDatabase.instance.reference().child(_instance["remotePath"]);
@@ -31,9 +31,18 @@ class Database
     return _instance;
   }
   static bool get loaded => _instance ==null && _instance._local ==null;
-  //TODO: get it so this is not necessary (always true bypass)
-  bool getCanUseRemote() => this["CanUseRemote"]==true||true;
-  void setCanUseRemote(bool value) => setLocal("CanUseRemote", value);
+  bool getCanUseRemote() => this["CanUseRemote"]==true;
+  void setCanUseRemote(bool value){
+    setLocal("CanUseRemote", value);
+    if(value){
+        if(_instance["remotePath"] ==null){
+          _instance._remote = FirebaseDatabase.instance.reference().push();
+          _instance.setLocal("remotePath",_instance._remote.path);
+        }
+        else
+          _instance._remote = FirebaseDatabase.instance.reference().child(_instance["remotePath"]);
+    }
+  }
   ///This gets an instance
   ///use this to get an object, don't just use a constructor!!!
   static Database getLoadedInstance() {

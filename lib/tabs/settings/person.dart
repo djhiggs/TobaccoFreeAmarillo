@@ -29,6 +29,7 @@ class Person
     if(_person ==null){
       _person = Person();
       _person.db =await Database.getInstance();
+      _person.import();
       if(!_person.db.exists())
         await _person.export();
     }
@@ -64,10 +65,12 @@ class Person
   int expectedSmokingAmount(DateTime time) {
     double a = startingUsage + 1.0;
     double b = (desiredUsage + 1)/a;
-    double c = (time.millisecondsSinceEpoch/Duration.millisecondsPerDay 
-      - startDate.millisecondsSinceEpoch/Duration.millisecondsPerDay)/
+    double c = (time.millisecondsSinceEpoch~/Duration.millisecondsPerDay 
+      - startDate.millisecondsSinceEpoch~/Duration.millisecondsPerDay)/
       desiredDaysUntilComplete;
-    return (a * pow(b,c) - 1).round();
+    //return (a * pow(b,c) - 1).round();
+    var y = (a * pow(b,c) - 1).ceil();
+    return y;
   }
   //TODO: check these names
   String consumableUnitName(bool plural){
@@ -100,14 +103,29 @@ class Person
   }
   Future import() async
   {
-    desiredDaysUntilComplete = int.parse(db["DesiredDaysUntilComplete"]);
-    desiredUsage = int.parse(db["EndingUsage"]);
-    nickname = db["Nickname"];
-    product = TobaccoProducts.values.elementAt(int.parse(db["Product"]));
-    startingUsage = int.parse(db["StartingUsage"]);
-    startDate = DateTime.fromMicrosecondsSinceEpoch(int.parse(db["StartDate"]));
-    notificationsEnabled = db["NotificationsEnabled"] =="true";
-    soundEnabled = db["SoundEnabled"] =="true";
-    zipCode = int.parse(db["ZipCode"]);
+    var data = db["DesiredDaysUntilComplete"];
+    desiredDaysUntilComplete = data == null?100:data;
+
+    data = db["DesiredUsage"];
+    desiredUsage = data==null?0:data;
+
+    data = db["Nickname"];
+    nickname = data==null?"Atlas":data;
+
+    data = db["Product"];
+    product = TobaccoProducts.values.elementAt(data==null?0:data);
+
+    data = db["StartingUsage"];
+    startingUsage = data==null?0:data;
+
+    data = db["StartMilisecondSinceEpoch"];
+    startDate = data==null?DateTime.now():DateTime.fromMicrosecondsSinceEpoch(data);
+
+    notificationsEnabled = db["NotificationsEnabled"] == true;
+
+    soundEnabled = db["SoundEnabled"] == true;
+
+    data = db["ZipCode"];
+    zipCode = data==null?0:data;
   }
 }

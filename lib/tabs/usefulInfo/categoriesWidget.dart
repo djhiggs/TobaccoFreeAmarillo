@@ -16,7 +16,10 @@ class CategoriesWidgetState extends State<CategoriesWidget>{
   @override
   Widget build(BuildContext context) {
     if(_categories.categories ==null){
-      _categories.import().whenComplete(() =>setState(() {}));
+      _categories.import().whenComplete(() {
+        if(mounted)
+          setState(() {});
+      });
       return Container();
     }
     var children = <Widget>[
