@@ -80,7 +80,7 @@ class _LandingScreenState extends State<LandingScreen> {
             RaisedButton(
               onPressed: () {
                 person.nickname =_nickNameController.text;
-                _zipCodeController.text;
+                person.zipCode =int.parse(_zipCodeController.text);
                 person.product = TobaccoProducts.values[_tabaccoTypesIndex];
                 person.export();
                 Navigator.of(context).pop();

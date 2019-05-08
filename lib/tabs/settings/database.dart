@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../usefulInfo/quiz.dart';
 import 'package:synchronized/synchronized.dart';
@@ -8,7 +8,7 @@ class Database
 {
   static Database _instance;
   SharedPreferences _local;
-  DocumentReference _remote;
+  DatabaseReference _remote;
   ///Not for you to use!
   Database();
   ///This gets an instance
@@ -16,13 +16,23 @@ class Database
   static Future<Database> getInstance() async{
     if(_instance ==null || _instance._local == null){
       _instance =Database();
-      await _instance._connect();
+      _instance._local 
+      = await SharedPreferences.getInstance();
+      if(_instance.getCanUseRemote()){
+        if(_instance["remotePath"] ==null){
+          _instance._remote = FirebaseDatabase.instance.reference().push();
+          _instance["remotePath"] =_instance._remote.path;
+        }
+        else
+          _instance._remote = FirebaseDatabase.instance.reference().child(_instance["remotePath"]);
+      }
       Quiz.initialize(_instance);
     }
     return _instance;
   }
   static bool get loaded => _instance ==null && _instance._local ==null;
-  bool getCanUseRemote() => this["CanUseRemote"]==true;
+  //TODO: get it so this is not necessary (always true bypass)
+  bool getCanUseRemote() => this["CanUseRemote"]==true||true;
   void setCanUseRemote(bool value) => setLocal("CanUseRemote", value);
   ///This gets an instance
   ///use this to get an object, don't just use a constructor!!!
@@ -35,26 +45,14 @@ class Database
   bool exists() => 
     _local.getKeys().length != 0;  
   dynamic get the => throw Exception("OBJECT NOT FOUND");
-  Future _connect() async{
-    _local 
-    = await SharedPreferences.getInstance();
-    if(getCanUseRemote()){
-      if(_local.getKeys().length == 0)
-        _remote = await Firestore.instance.collection("Users").add(
-          Map<String,dynamic>());
-      else
-        _remote = Firestore.instance.
-          document("Users/" + this["userID"].toString());
-    }
-  }
   ///Returns the object as specified by a String perameter.
   operator [](String key) => _local.get(key);
 
   ///Sets an object identified by the 'key' (String) perameter.
-  void operator []=(String key,dynamic value) {
+  void operator []=(String key,dynamic value) async{
     setLocal(key, value);
     if(getCanUseRemote())
-      _remote.updateData(<String,dynamic>{key:value});
+      await _remote.set(<String,dynamic>{key:value});
   }
 
   ///Will set a value to the local datastore ONLY
@@ -79,16 +77,17 @@ class Database
   //updates a collection of variables locally and
   //in the remote database
   Future updateRange(Map<String,dynamic> data) async{
-    Map<String,dynamic> changedData = Map();
+    //Map<String,dynamic> changedData = Map();
     for(String key in data.keys){
-      var localCopy = this[key];
+      //var localCopy = this[key];
       var newData = data[key];
-      if(localCopy != newData){
-        changedData[key]=newData;
-        await setLocal(key, newData);
-      }
+  //    if(localCopy != newData){
+        //changedData[key]=newData;
+//
+      //}
+      await setLocal(key, newData);
     }
     if(getCanUseRemote())
-      await _remote.updateData(changedData);
+      await _remote.set(data);
   }  
 }

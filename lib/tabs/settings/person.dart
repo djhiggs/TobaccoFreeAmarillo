@@ -76,11 +76,11 @@ class Person
   Future export() async{
     var userData = {
       'DesiredDaysUntilComplete':desiredDaysUntilComplete,
-      'EndingUsage':desiredUsage,
+      'DesiredUsage':desiredUsage,
       'Nickname':nickname,
       'Product':TobaccoProducts.values.indexOf(product),
       'StartingUsage':averageUsage,
-      'StartDate':startDate.millisecondsSinceEpoch,
+      'StartMilisecondSinceEpoch':startDate.millisecondsSinceEpoch,
       'ZipCode':zipCode,
     };
     //cloud saved elements
