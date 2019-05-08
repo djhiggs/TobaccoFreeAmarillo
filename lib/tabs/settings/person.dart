@@ -119,7 +119,7 @@ class Person
     startingUsage = data==null?0:data;
 
     data = db["StartMilisecondSinceEpoch"];
-    startDate = data==null?DateTime.now():DateTime.fromMicrosecondsSinceEpoch(data);
+    startDate = data==null?DateTime.now():DateTime.fromMillisecondsSinceEpoch(data);
 
     notificationsEnabled = db["NotificationsEnabled"] == true;
 

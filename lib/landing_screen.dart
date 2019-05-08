@@ -10,6 +10,9 @@ class LandingScreen extends StatefulWidget {
 class _LandingScreenState extends State<LandingScreen> {
   final _nickNameController = TextEditingController();
   final _zipCodeController = TextEditingController();
+  final _currentUsageController = TextEditingController();
+  final _desiredUsageController = TextEditingController();
+  final _daysUntilFullCessationController = TextEditingController();
   int _tabaccoTypesIndex = 0;
 
   final Database db =Database.getLoadedInstance();
@@ -57,6 +60,45 @@ class _LandingScreenState extends State<LandingScreen> {
                 keyboardType: TextInputType.number,
               ),
             ),
+            SizedBox(
+              width: 300,
+              child: TextFormField(
+                controller: _currentUsageController,
+                decoration: InputDecoration(
+                  labelText: "Current using per day",
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: theme.primaryColor),
+                  ),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+            ),
+            SizedBox(
+              width: 300,
+              child: TextFormField(
+                controller: _desiredUsageController,
+                decoration: InputDecoration(
+                  labelText: "Desired usage per day",
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: theme.primaryColor),
+                  ),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+            ),
+            SizedBox(
+              width: 300,
+              child: TextFormField(
+                controller: _daysUntilFullCessationController,
+                decoration: InputDecoration(
+                  labelText: "Expected transition time",
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: theme.primaryColor),
+                  ),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+            ),
             SizedBox(height: 10),
             InputDecorator(
               decoration: InputDecoration(
@@ -97,6 +139,16 @@ class _LandingScreenState extends State<LandingScreen> {
                 person.zipCode =int.tryParse(_zipCodeController.text);
                 if(person.zipCode == null)
                   person.zipCode = -1;
+                person.startingUsage =int.tryParse(_currentUsageController.text);
+                if(person.startingUsage == null)
+                  person.startingUsage = 5;
+                person.desiredUsage =int.tryParse(_desiredUsageController.text);
+                if(person.desiredUsage == null)
+                  person.desiredUsage = 0;
+                person.desiredDaysUntilComplete =int.tryParse(_daysUntilFullCessationController.text);
+                if(person.desiredDaysUntilComplete == null)
+                  person.desiredDaysUntilComplete = 100;
+                person.startDate = DateTime.now();
                 person.product = TobaccoProducts.values[_tabaccoTypesIndex];
                 person.export();
                 Navigator.of(context).pop();

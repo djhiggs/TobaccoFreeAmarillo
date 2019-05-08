@@ -19,11 +19,6 @@ class HomeState extends State<Home> {
   HomeState(this._person) : super();
   @override
   void initState() {
-    calender.load();
-    if(calender.isEmpty()){
-      calender.add(Day(DateTime(2019, 4, 27), true));
-    }
-
     super.initState();
     //_checkDate();
   }
@@ -66,7 +61,7 @@ class HomeState extends State<Home> {
             "Don't worry, you can always succeed tomorrow!",maxLines: 5,
             textAlign: TextAlign.center,
             ),
-          Text("Your goal for tommorrow is to consume no more than " + nextGoal.toString() + " " + _person.consumableUnitName(nextGoal==1)
+          Text("Your goal for tommorrow is to consume no more than " + nextGoal.toString() + " " + _person.consumableUnitName(nextGoal!=1)
           ,maxLines: 3,),
           RaisedButton(child: Text("Continue"),onPressed: () => setState((){}))
       ]));

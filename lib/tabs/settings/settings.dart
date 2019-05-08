@@ -93,6 +93,7 @@ class _Settings extends State<StatefulSettings> {
                 _person.zipCode = int.parse(txt);
               },
               initialValue: _person.zipCode.toString(),
+              keyboardType: TextInputType.number,
             ),
           ],
         ),
@@ -106,31 +107,29 @@ class _Settings extends State<StatefulSettings> {
               initialValue: _person.startingUsage.toString(),
               decoration: const InputDecoration(
                 icon: const Icon(Icons.smoking_rooms),
-                hintText: 'tobacco products used per week',
+                hintText: 'tobacco products used per day',
                 labelText: 'Average Usage',
               ),
               onFieldSubmitted: (String txt) {
                 int count = int.tryParse(txt);
                 if (count != null)
                   _person.startingUsage = count;
-                else
-                  throw null;
               },
+              keyboardType: TextInputType.number,
             ),
             TextFormField(
               initialValue: _person.desiredUsage.toString(),
               decoration: const InputDecoration(
                 icon: const Icon(Icons.smoking_rooms),
-                hintText: 'desired tobacco products used per week',
+                hintText: 'Desired tobacco product usage per day',
                 labelText: 'Desired Usage',
               ),
               onFieldSubmitted: (String txt) {
                 int count = int.tryParse(txt);
                 if (count != null)
                   _person.desiredUsage = count;
-                else
-                  throw null;
               },
+              keyboardType: TextInputType.number,
             ),
             TextFormField(
               initialValue:
@@ -144,9 +143,8 @@ class _Settings extends State<StatefulSettings> {
                 int count = int.tryParse(txt);
                 if (count != null)
                   _person.desiredDaysUntilComplete = count;
-                else
-                  throw null;
               },
+              keyboardType: TextInputType.number,
             ),
             Align(
               alignment: Alignment.centerLeft,
@@ -170,15 +168,16 @@ class _Settings extends State<StatefulSettings> {
         FormField(
           builder: (FormFieldState field) {
             return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                FlatButton(
+                RaisedButton(
                   child: Text("Cancel"),
                   onPressed: () {
                     _person.import();
                     setState(() {});
                   },
                 ),
-                FlatButton(
+                RaisedButton(
                   child: Text("Apply"),
                   onPressed: () {
                     _person.export();

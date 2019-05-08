@@ -15,7 +15,7 @@ class Calender extends StatefulWidget{
   static Person person;
   bool isEmpty() => _days.length == 0;
   bool updatedToday() => !isEmpty() && _days.last.daysSinceEpoch() == DateTime.now().millisecondsSinceEpoch ~/ Duration.millisecondsPerDay;
-  void load(){
+  void _load(){
     //- for not specified
     //1 for successful
     //0 for not successful
@@ -26,12 +26,14 @@ class Calender extends StatefulWidget{
       _days.add(Day(person.startDate.add(Duration(days: i)),stats[i]=='-'?null:stats[i]=='1'));
   }
   void add(Day day){
+    print("_days.length = " + _days.length.toString());
     if(_days.length > 0)
       while(_days.last.daysSinceEpoch() + 2 < day.daysSinceEpoch())
         _days.add(Day(_days.last.dateTime.add(Duration(days: 1)),null));
     _days.add(day);
+    _store();
   }
-  void store(){
+  void _store(){
     if(_days.length == 0)
       return;  
     //- for not specified
@@ -51,6 +53,8 @@ class Calender extends StatefulWidget{
   Calender(){
     db = Database.getLoadedInstance();
     person = Person.getLoadedInstance();
+    if(_days.length == 0)
+      _load();
   }
   @override
   State<StatefulWidget> createState() {
