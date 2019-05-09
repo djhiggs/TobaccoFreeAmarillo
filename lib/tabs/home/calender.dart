@@ -70,13 +70,14 @@ class CalenderState extends State<Calender>{
   CalenderState(this.startingIndex,this._days);
   static const int LENGTH = 7;
   static const List<String> _WEEK__days =<String>[
-    "Sunday",
+
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
+    "Sunday",
   ]; 
   static const List<String> _MONTHS =<String>[
     "Jan",

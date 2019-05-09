@@ -76,7 +76,7 @@ class Person
   String consumableUnitName(bool plural){
     switch (product) {
       case TobaccoProducts.SmokelessTobacco:
-        return plural? "Containers" : "Container";
+        return plural? "Cans" : "Can";
       case TobaccoProducts.Smoking:
         return plural? "Cigarettes" : "Cigarette";
       case TobaccoProducts.Vaping:

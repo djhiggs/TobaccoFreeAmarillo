@@ -156,7 +156,7 @@ class GolfGameUiState extends State<GolfGameUi> {
       if(golfGame.golfBall.stopped){
         golfGame.gameState =GameStates.Paused;
         var db =Database.getLoadedInstance();
-        var lastBest = db["GolfGamePreviousBest"] as int;
+        var lastBest = db["GolfGamePreviousBest"] as double;
         if(lastBest == null)
           lastBest = 0;
         var current = (golfGame.golfBall.distanceTraveled()*100).round()/100;
