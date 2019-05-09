@@ -31,41 +31,16 @@ class _Settings extends State<StatefulSettings> {
 
   @override
   Widget build(BuildContext context) {
-    //int i = 5;
-    //_person.export();
     if (_person == null) {
       _person = new Person();
       Person.getInstance().then((Person p) {
         _person = p;
         setState(() {});
-        //PrivacyState.import();
       });
     }
     return new Container(
         child: ListView(
       children: <Widget>[
-        // ListTile(
-        //   title: Text(
-        //     "Notifications",
-        //     textScaleFactor: buttonTextScaleFactor,
-        //   ),
-        //   trailing: Switch(
-        //       onChanged: (bool state) {
-        //         _person.notificationsEnabled = state;
-        //       },
-        //       value: _person.notificationsEnabled),
-        // ),
-        // ListTile(
-        //   title: Text(
-        //     "Sound",
-        //     textScaleFactor: buttonTextScaleFactor,
-        //   ),
-        //   trailing: Switch(
-        //       onChanged: (bool state) {
-        //         _person.soundEnabled = state;
-        //       },
-        //       value: _person.soundEnabled),
-        // ),
         ExpansionTile(
           title: Text(
             "Personal Information",
@@ -112,8 +87,7 @@ class _Settings extends State<StatefulSettings> {
               ),
               onFieldSubmitted: (String txt) {
                 int count = int.tryParse(txt);
-                if (count != null)
-                  _person.startingUsage = count;
+                if (count != null) _person.startingUsage = count;
               },
               keyboardType: TextInputType.number,
             ),
@@ -126,14 +100,12 @@ class _Settings extends State<StatefulSettings> {
               ),
               onFieldSubmitted: (String txt) {
                 int count = int.tryParse(txt);
-                if (count != null)
-                  _person.desiredUsage = count;
+                if (count != null) _person.desiredUsage = count;
               },
               keyboardType: TextInputType.number,
             ),
             TextFormField(
-              initialValue:
-                  _person.desiredDaysUntilComplete.toString(),
+              initialValue: _person.desiredDaysUntilComplete.toString(),
               decoration: const InputDecoration(
                 icon: const Icon(Icons.timer),
                 hintText: 'desired days till completion',
@@ -141,8 +113,7 @@ class _Settings extends State<StatefulSettings> {
               ),
               onFieldSubmitted: (String txt) {
                 int count = int.tryParse(txt);
-                if (count != null)
-                  _person.desiredDaysUntilComplete = count;
+                if (count != null) _person.desiredDaysUntilComplete = count;
               },
               keyboardType: TextInputType.number,
             ),
@@ -163,30 +134,30 @@ class _Settings extends State<StatefulSettings> {
                 );
               },
             ),
+            FormField(
+              builder: (FormFieldState field) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    RaisedButton(
+                      child: Text("Cancel"),
+                      onPressed: () {
+                        _person.import();
+                        setState(() {});
+                      },
+                    ),
+                    RaisedButton(
+                      child: Text("Apply"),
+                      onPressed: () {
+                        _person.export();
+                        setState(() {});
+                      },
+                    )
+                  ],
+                );
+              },
+            ),
           ],
-        ),
-        FormField(
-          builder: (FormFieldState field) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                RaisedButton(
-                  child: Text("Cancel"),
-                  onPressed: () {
-                    _person.import();
-                    setState(() {});
-                  },
-                ),
-                RaisedButton(
-                  child: Text("Apply"),
-                  onPressed: () {
-                    _person.export();
-                    setState(() {});
-                  },
-                )
-              ],
-            );
-          },
         ),
         ListTile(
           title: Text(
@@ -201,7 +172,6 @@ class _Settings extends State<StatefulSettings> {
     ));
   }
 
-  
   List<DropdownMenuItem<TobaccoProducts>> buildDropDownMenuItems() {
     var names = TobaccoProducts.values;
     int startingIndex = names[0].toString().indexOf('.') + 1;
