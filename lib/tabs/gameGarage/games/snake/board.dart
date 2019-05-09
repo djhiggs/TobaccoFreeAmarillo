@@ -28,6 +28,7 @@ enum GameState { SPLASH, RUNNING, VICTORY, FAILURE }
 class _BoardState extends State<Board> {
   static List<Achievement> _achievements;
   static Database _db;
+  static DateTime startTime;
   ///this is called in main and loads in all of the achievements
   static void initialize(Database db){
     //initializes all of the achievements and gets their current stats from the database
@@ -61,10 +62,62 @@ class _BoardState extends State<Board> {
 
   ///checks if any new achievements have been earned
   ///(assesses eligibility)
-  static void checkAchievementStatus(){
+  void checkAchievementStatus(){
+    int gameTime = (DateTime.now().millisecondsSinceEpoch - startTime.millisecondsSinceEpoch)~/Duration.millisecondsPerMinute;
     if(_db["PointAmount"] == null)
       _db["PointAmount"] =0;
-    
+      //logic for achievements
+      if(_isAppleCollision())
+      {
+        _achievements[1].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[1].points);
+        _db.setLocal("snake.achieve.1", true);
+      }else if(_snakePiecePositions.length == 15)
+      {
+        _achievements[2].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[2].points);
+        _db.setLocal("quiz.achieve.2", true);
+      }
+      else if(_isWallCollision())
+      {
+        _achievements[3].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[3].points);
+        _db.setLocal("quiz.achieve.3", true);
+      }else if(_snakePiecePositions.length == 10)
+      {
+        _achievements[4].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[4].points);
+        _db.setLocal("quiz.achieve.4", true);
+      }else if(_snakePiecePositions.length == 20)
+      {
+        _achievements[5].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[5].points);
+        _db.setLocal("quiz.achieve.5", true);
+      }else if(_snakePiecePositions.length == 5)
+      {
+        _achievements[6].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[6].points);
+        _db.setLocal("quiz.achieve.6", true);
+      }else if(gameTime == 10)
+      {
+        _achievements[7].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[7].points);
+        _db.setLocal("quiz.achieve.7", true);
+      }
   }
 
 
@@ -134,6 +187,7 @@ class _BoardState extends State<Board> {
 
   void _onTimerTick(Timer timer) {
     _move();
+    startTime=DateTime.now();
 
     if (_isWallCollision()) {
       _changeGameState(GameState.FAILURE);
