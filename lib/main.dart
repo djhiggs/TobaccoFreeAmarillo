@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:tobaccoFreeAmarilloApp/landing_screen.dart';
+import 'package:tobaccoFreeAmarilloApp/tabs/gameGarage/games/snake/board.dart';
 import 'tabs/achievement_page/achievement.dart';
 import 'tabs/home/home.dart' as _firstTab;
 import 'tabs/gameGarage/gameGarage.dart' as _secondTab;
@@ -22,6 +23,9 @@ void main() async{
   
   await Database.getInstance();
   await Person.getInstance();
+
+  BoardState.initialize(Database.getLoadedInstance()); 
+
   runApp(new MaterialApp(
     title: 'TFA Cessation',
     theme: new ThemeData(
