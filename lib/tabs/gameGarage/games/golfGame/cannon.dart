@@ -73,7 +73,7 @@ class Cannon extends Component {
     pressPos -= cannonHingePosition;
     if(pressPos.x < 0){
       setAngle(pressPos.angle() + pi);
-      power =pressPos.length()*5;
+      power =pressPos.length()*50;
     }
   }
   void setAngle(double angle) => _cannonBarrel.angle =angle;
