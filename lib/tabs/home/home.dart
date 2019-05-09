@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../settings/person.dart';
-//import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'intro_page_view.dart';
 import 'calender.dart';
 
@@ -10,7 +9,6 @@ class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return HomeState(_person);
-    //List<> achievements = List<>();
   }
 }
 
@@ -20,7 +18,6 @@ class HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    //_checkDate();
   }
 
   Calender calender = Calender();
@@ -30,19 +27,6 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     _person = Person.getLoadedInstance();
 
-    // calender.load();
-    // calender.days.addAll(<Day>[
-    //   Day(DateTime(2019, 4, 27), true),
-    //   Day(DateTime(2019, 4, 28), true),
-    //   Day(DateTime(2019, 4, 29), false),
-    //   Day(DateTime(2019, 4, 30), null),
-    //   Day(DateTime(2019, 5, 01), null),
-    //   Day(DateTime(2019, 5, 02), true),
-    // ]);
-    // calender.store();
-    //successfulDays.add(DateTime.utc(2019,4,25), day1);
-    //successfulDays.add(DateTime.utc(2019,4,24),);
-    //successfulDays.add(DateTime.utc(2019,4,23),);
     if(giveFeedback){
       giveFeedback = false;
       int nextGoal = _person.expectedSmokingAmount(DateTime.now().add(Duration(days: 1)));
@@ -118,7 +102,6 @@ class HomeState extends State<Home> {
           context: context,
           builder: (context) => AlertDialog(
                 title: Text("Test"),
-                //contentPadding: ,
                 titlePadding: EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
               ),
         );
@@ -126,45 +109,5 @@ class HomeState extends State<Home> {
             ),)
           ]
         ),);
-    // return new Scaffold(
-    //     body: new Stack(
-    //   children: <Widget>[
-    //     IntroPageView(),
-    //     Container(
-    //         margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition),
-    //         child: Center(
-    //           child: calender
-    //           )
-    //         ),
-    //     Opacity(
-    //       opacity: 0.0,
-    //       child: ButtonTheme(
-    //         minWidth: 500.0,
-    //         child: Container(
-    //           margin:
-    //               EdgeInsets.fromLTRB(0.0, 0.0, 0.0, calenderPosition - 100),
-    //           // child: Center(
-    //           //   child: RaisedButton(
-    //           //     onPressed: () {_onPressed();},
-    //           //   ),
-    //           // ),
-    //         ),
-    //       ),
-    //     ),
-    //   ],
-    // ));
-
-//     return new Scaffold(
-//         body: new Stack(
-//           children: <Widget>[
-//             Container(
-//               child: RaisedButton(
-//                 onPressed: _onPressed(),
-//               ),
-//             ),
-//             IntroPageView(),
-//           ],
-//         )
-//     );
   }
 }
