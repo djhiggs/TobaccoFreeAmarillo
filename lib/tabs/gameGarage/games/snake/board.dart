@@ -20,6 +20,10 @@ import '../../../achievement_page/achievement_page.dart';
 class Board extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _BoardState();
+  Board()
+  {
+    _BoardState.initialize(Database.getLoadedInstance()); 
+  }
 }
 
 enum Direction { LEFT, RIGHT, UP, DOWN }
@@ -35,10 +39,10 @@ class _BoardState extends State<Board> {
     _achievements = <Achievement>[
       Achievement(db["snake.achieve.1"] as bool,"You're Hissstory!","Grabbed the apple for the first time",100),
       Achievement(db["snake.achieve.2"] as bool,"π - thon!","Your snake is 15 blocks long",500),
-      Achievement(db["snake.achieve.3"] as bool,"Ouroboros","You got a game over",100),
+      Achievement(db["snake.achieve.3"] as bool,"Ouroboros","You got a game over",1001),
       Achievement(db["snake.achieve.4"] as bool,"New boots","Your snake is 10 blocks long",500),
       Achievement(db["snake.achieve.5"] as bool,"Jormungand","Your snake is 20 blocks long",1000),
-      Achievement(db["snake.achieve.6"] as bool,"Snake in the grass!","Your snake is 5 blocks long",2048),
+      Achievement(db["snake.achieve.6"] as bool,"Snake in the grass!","Your snake is 5 blocks long",400),
       Achievement(db["snake.achieve.7"] as bool,"Sunning yourself","Played Snake for 10 minutes",3000),
       
     ];
