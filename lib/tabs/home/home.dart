@@ -92,22 +92,7 @@ class HomeState extends State<Home> {
         );
     }
     return Scaffold(
-        body: Stack(children: <Widget>[IntroPageView(), calender]),
-        bottomSheet: Row(
-          children: <Widget> [
-            Expanded(child: RaisedButton(
-              child: Text("Testing"),
-              onPressed: () {
-                            showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-                title: Text("Test"),
-                titlePadding: EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
-              ),
-        );
-              },
-            ),)
-          ]
-        ),);
+        body: Stack(children: <Widget>[IntroPageView(), calender]));
+        
   }
 }
