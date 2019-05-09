@@ -55,7 +55,7 @@ class HomeState extends State<Home> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Text(successful? "Congradulations!" : "Hmmm, always tomorrow right?"),
+          Text(successful? "Congratulations!" : "Hmmm, always tomorrow right?"),
           Text(successful? 
             "You've taken another step towards independence from " + _person.consumableUnitName(true) + "!" : 
             "Don't worry, you can always succeed tomorrow!",maxLines: 5,
