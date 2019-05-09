@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:tobaccoFreeAmarilloApp/landing_screen.dart';
 import 'tabs/achievement_page/achievement.dart';
 import 'tabs/home/home.dart' as _firstTab;
@@ -14,11 +15,16 @@ import 'dart:async';
 
 void main() async{ 
 
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
   
   await Database.getInstance();
   await Person.getInstance();
   runApp(new MaterialApp(
     title: 'TFA Cessation',
+    debugShowCheckedModeBanner: false,
     theme: new ThemeData(
       primarySwatch: Colors.green,
       scaffoldBackgroundColor: Colors.white,

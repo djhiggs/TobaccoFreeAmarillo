@@ -20,6 +20,10 @@ import '../../../achievement_page/achievement_page.dart';
 class Board extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _BoardState();
+  Board()
+  {
+    _BoardState.initialize(Database.getLoadedInstance()); 
+  }
 }
 
 enum Direction { LEFT, RIGHT, UP, DOWN }
@@ -28,16 +32,17 @@ enum GameState { SPLASH, RUNNING, VICTORY, FAILURE }
 class _BoardState extends State<Board> {
   static List<Achievement> _achievements;
   static Database _db;
+  static DateTime startTime;
   ///this is called in main and loads in all of the achievements
   static void initialize(Database db){
     //initializes all of the achievements and gets their current stats from the database
     _achievements = <Achievement>[
       Achievement(db["snake.achieve.1"] as bool,"You're Hissstory!","Grabbed the apple for the first time",100),
       Achievement(db["snake.achieve.2"] as bool,"π - thon!","Your snake is 15 blocks long",500),
-      Achievement(db["snake.achieve.3"] as bool,"Ouroboros","You got a game over",100),
+      Achievement(db["snake.achieve.3"] as bool,"Ouroboros","You got a game over",1001),
       Achievement(db["snake.achieve.4"] as bool,"New boots","Your snake is 10 blocks long",500),
       Achievement(db["snake.achieve.5"] as bool,"Jormungand","Your snake is 20 blocks long",1000),
-      Achievement(db["snake.achieve.6"] as bool,"Snake in the grass!","Your snake is 5 blocks long",2048),
+      Achievement(db["snake.achieve.6"] as bool,"Snake in the grass!","Your snake is 5 blocks long",400),
       Achievement(db["snake.achieve.7"] as bool,"Sunning yourself","Played Snake for 10 minutes",3000),
       
     ];
@@ -61,10 +66,62 @@ class _BoardState extends State<Board> {
 
   ///checks if any new achievements have been earned
   ///(assesses eligibility)
-  static void checkAchievementStatus(){
+  void checkAchievementStatus(){
+    int gameTime = (DateTime.now().millisecondsSinceEpoch - startTime.millisecondsSinceEpoch)~/Duration.millisecondsPerMinute;
     if(_db["PointAmount"] == null)
       _db["PointAmount"] =0;
-    
+      //logic for achievements
+      if(_isAppleCollision())
+      {
+        _achievements[1].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[1].points);
+        _db.setLocal("snake.achieve.1", true);
+      }else if(_snakePiecePositions.length == 15)
+      {
+        _achievements[2].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[2].points);
+        _db.setLocal("quiz.achieve.2", true);
+      }
+      else if(_isWallCollision())
+      {
+        _achievements[3].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[3].points);
+        _db.setLocal("quiz.achieve.3", true);
+      }else if(_snakePiecePositions.length == 10)
+      {
+        _achievements[4].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[4].points);
+        _db.setLocal("quiz.achieve.4", true);
+      }else if(_snakePiecePositions.length == 20)
+      {
+        _achievements[5].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[5].points);
+        _db.setLocal("quiz.achieve.5", true);
+      }else if(_snakePiecePositions.length == 5)
+      {
+        _achievements[6].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[6].points);
+        _db.setLocal("quiz.achieve.6", true);
+      }else if(gameTime == 10)
+      {
+        _achievements[7].status =true;
+        //updates the LOCAL database with the new
+        //database value
+        _db.setLocal("PointAmount", _db["PointAmount"] + _achievements[7].points);
+        _db.setLocal("quiz.achieve.7", true);
+      }
   }
 
 
@@ -134,6 +191,7 @@ class _BoardState extends State<Board> {
 
   void _onTimerTick(Timer timer) {
     _move();
+    startTime=DateTime.now();
 
     if (_isWallCollision()) {
       _changeGameState(GameState.FAILURE);
