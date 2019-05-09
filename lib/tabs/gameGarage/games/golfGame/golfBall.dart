@@ -43,7 +43,7 @@ class GolfBall extends Component{
   }
   void update(double dt){
     if(golfBallLocation.y - diameter/2 < 4){
-      if(velocity.length() < 18){
+      if(velocity.length() < 20){
         stopped = true;
         return;
       }

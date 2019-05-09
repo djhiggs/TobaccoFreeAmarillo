@@ -4,8 +4,8 @@ import 'achievement.dart';
 
 class AchievementPage extends StatelessWidget {
   static List<Achievement> achievements= <Achievement>[
-    Achievement(true, "Achievement 1", "description", 5),
-    Achievement(false, "Achievement 2", "description", 10),
+    //Achievement(true, "Achievement 1", "description", 5),
+    //Achievement(false, "Achievement 2", "description", 10),
   ];
 
   AchievementPage({Key key}) : super(key: key);
