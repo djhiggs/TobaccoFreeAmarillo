@@ -10,12 +10,13 @@ class Day{
   int daysSinceEpoch() => dateTime.millisecondsSinceEpoch ~/ Duration.millisecondsPerDay;
 }
 class Calender extends StatefulWidget{
-  final List<Day> _days= List();
+  static List<Day> _days= List();
   static Database db;
   static Person person;
   bool isEmpty() => _days.length == 0;
   bool updatedToday() => !isEmpty() && _days.last.daysSinceEpoch() == DateTime.now().millisecondsSinceEpoch ~/ Duration.millisecondsPerDay;
   void _load(){
+    _days = List();
     //- for not specified
     //1 for successful
     //0 for not successful
@@ -70,7 +71,6 @@ class CalenderState extends State<Calender>{
   CalenderState(this.startingIndex,this._days);
   static const int LENGTH = 7;
   static const List<String> _WEEK__days =<String>[
-
     "Monday",
     "Tuesday",
     "Wednesday",
