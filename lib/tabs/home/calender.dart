@@ -14,7 +14,7 @@ class Calender extends StatefulWidget{
   static Database db;
   static Person person;
   bool isEmpty() => _days.length == 0;
-  bool updatedToday() => !isEmpty() && _days.last.daysSinceEpoch() == DateTime.now().millisecondsSinceEpoch ~/ Duration.millisecondsPerDay;
+  bool updatedToday() => !isEmpty() && _days.last.daysSinceEpoch() >= DateTime.now().millisecondsSinceEpoch ~/ Duration.millisecondsPerDay;
   void _load(){
     _days = List();
     //- for not specified

@@ -9,14 +9,12 @@ class GenericGame extends game.BaseGame{
   int price;
   bool get purchased =>_purchased;
   void purchase(){
-    db.setLocal("GamePrice.$title", false);
+    db.setLocal("GamePrice.$title", true);
     _purchased =true;
   }
   bool _purchased;
   static Database db;
   GenericGame(this._context,this.price){
-    title = "Game " + (count++).toString();
-    description = "This is a game";
     //initialize();
     db = Database.getLoadedInstance();
     _purchased = db["GamePrice.$title"];
