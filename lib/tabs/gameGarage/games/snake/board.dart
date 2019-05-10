@@ -19,17 +19,17 @@ import '../../../achievement_page/achievement_page.dart';
 
 class Board extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _BoardState();
+  State<StatefulWidget> createState() => BoardState();
   Board()
   {
-    _BoardState.initialize(Database.getLoadedInstance()); 
+
   }
 }
 
 enum Direction { LEFT, RIGHT, UP, DOWN }
 enum GameState { SPLASH, RUNNING, VICTORY, FAILURE }
 
-class _BoardState extends State<Board> {
+class BoardState extends State<Board> {
   static List<Achievement> _achievements;
   static Database _db;
   static DateTime startTime;
@@ -61,7 +61,7 @@ class _BoardState extends State<Board> {
     //to be rendered later
     AchievementPage.achievements.addAll(_achievements);
     //saves the database instance for later use
-    _BoardState._db = db;
+    BoardState._db = db;
   }
 
   ///checks if any new achievements have been earned
