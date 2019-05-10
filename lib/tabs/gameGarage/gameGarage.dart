@@ -106,8 +106,9 @@ class GameGarage extends StatelessWidget {
                 else if(getPointCount() > _gamesList[index].price){
                   showDialog(
                     context: context,
-                    builder: (BuildContext c) => AlertDialog(title: 
+                    builder: (BuildContext c) => AlertDialog(title:
                       Text("Are you wish you would like to purchase " + _gamesList[index].title + "?"),
+                      content: Text("You currently have " + getPointCount().toString() + " points"),
                         actions: <Widget>[
                           RaisedButton(
                             child: Text("Purchase",style: TextStyle(color: Colors.white)),
