@@ -68,13 +68,18 @@ class HomeState extends State<Home> {
       
 
       return Container(child: Column(children: <Widget>[
-            Text("How many " + _person.consumableUnitName(true) + " did you consume today?"),
+            Spacer(flex: 1),
+            Text("How many " + _person.consumableUnitName(true) + " did you consume today?",
+              textScaleFactor: 1.2,maxLines: 3,),
+            Spacer(flex: 3),
             Flexible(child: 
               CupertinoPicker(children: options, onSelectedItemChanged: (int index){
                   selectedAmount =index;
                 }, itemExtent: 16,),
               fit:FlexFit.tight,
+              flex: 10,
             ),
+            Spacer(flex: 3),
             RaisedButton(child: Text("Submit"),
               onPressed: () => setState((){
                     successful =selectedAmount <= _person.expectedSmokingAmount(DateTime.now());
@@ -86,8 +91,11 @@ class HomeState extends State<Home> {
                     giveFeedback =true;
                   }
                 ),
-              )
+              ),
+              Spacer(flex: 1),
             ],
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
           )
         );
     }

@@ -28,6 +28,7 @@ void main() async{
 
   runApp(new MaterialApp(
     title: 'TFA Cessation',
+    debugShowCheckedModeBanner: false,
     theme: new ThemeData(
       primarySwatch: Colors.green,
       scaffoldBackgroundColor: Colors.white,

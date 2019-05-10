@@ -21,7 +21,12 @@ class Privacy {
       appBar: 
         AppBar(title: Text("Privacy Policy"),
         ),
-        body: ListView(children: texts,)
+        body: ListView(children: texts,
+          padding: EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 15
+          ),
+        )
     )));
   }
 }

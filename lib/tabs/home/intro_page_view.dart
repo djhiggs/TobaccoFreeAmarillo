@@ -14,8 +14,9 @@ class IntroPageView extends StatelessWidget {
     
     return Scaffold(
       body: Center(
+        //heightFactor: MediaQuery.of(context).size.height * .9,
         child: SizedBox.fromSize(
-          size: const Size.fromHeight(500.0),
+          size: const Size.fromHeight(700.0),
           child: PageTransformer(
             pageViewBuilder: (context, visibilityResolver) {
               final items = <Widget>[
